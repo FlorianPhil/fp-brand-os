@@ -1,0 +1,9 @@
+# Brand OS is PUBLIC. Never add sensitive data.
+.DS_Store
+*.env
+*.key
+*.pem
+credentials*
+secrets*
+*.log
+node_modules/

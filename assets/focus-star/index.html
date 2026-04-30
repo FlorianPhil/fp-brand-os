@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Focus Star</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root {
+    --acc: #5A5CF9;
+    --acc-soft: rgba(90,92,249,.07);
+    --border: #E5E7EB;
+    --muted: #8888A0;
+    --ink: #1A1A2E;
+    --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+    --ff-b: 'Poppins', system-ui, sans-serif;
+    --ease: cubic-bezier(.16,1,.3,1);
+    --bg: #FFFFFF;
+    --bg-dial: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  body { font-family: var(--ff-b); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; }
+
+  /* ── LAYOUT ── (embedded variant: fixed-height container) */
+  .stage {
+    position: relative; width: 100%; height: 880px;
+    display: grid;
+    grid-template-columns: minmax(380px, 46%) 1fr;
+    align-items: start;
+    overflow: hidden;
+  }
+  .stage::after {
+    content: ''; position: absolute;
+    top: 0; bottom: 0; left: 46%;
+    width: 1px; background: var(--border);
+    pointer-events: none; z-index: 3;
+    opacity: var(--divider-opacity, 0);
+    transition: opacity .5s;
+  }
+
+  /* ── LEFT PANEL ── */
+  .reader {
+    position: relative; z-index: 2;
+    padding: clamp(48px,5vw,80px) clamp(40px,4vw,72px) clamp(40px,4vw,64px) clamp(48px,5.5vw,88px);
+    display: flex; flex-direction: column;
+    background: var(--bg);
+    height: 880px;
+    overflow-y: auto;
+  }
+
+  /* mode bar */
+  .mode-bar {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: clamp(48px,6vw,80px);
+  }
+
+  .case-logo {
+    display: none; align-items: center; gap: 10px;
+    opacity: 0; transition: opacity .35s var(--ease);
+    flex-shrink: 0;
+  }
+  .case-logo.visible { display: flex; opacity: 1; }
+  .case-logo .logo-lockup {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 14px 6px 10px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg);
+  }
+  .case-logo .logo-mark {
+    width: 28px; height: 28px; border-radius: 4px;
+    background: #1A1A2E;
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+  .case-logo .logo-mark svg { display: block; }
+  .case-logo .logo-text {
+    display: flex; flex-direction: column; line-height: 1.15;
+  }
+  .case-logo .logo-name {
+    font-family: var(--ff-h); font-weight: 800; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
+  }
+  .case-logo .logo-sub {
+    font-family: var(--ff-b); font-size: 9px; font-weight: 500;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+
+  .mode-toggle {
+    display: flex;
+    background: #F0F0F5;
+    border-radius: 100px; padding: 4px; gap: 2px;
+  }
+  .mode-btn {
+    font-family: var(--ff-b); font-size: 11px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    padding: 7px 18px; border-radius: 100px;
+    color: var(--muted);
+    transition: color .2s var(--ease), background .2s var(--ease), box-shadow .2s;
+    line-height: 1; white-space: nowrap;
+    background: transparent;
+  }
+  .mode-btn.active {
+    background: var(--bg);
+    color: var(--ink);
+    box-shadow: 0 1px 4px rgba(0,0,0,.12);
+  }
+
+  /* hero */
+  .hero { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+
+  .pillar-eyebrow {
+    font-family: var(--ff-h); font-size: clamp(12px,1.1vw,14px); font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--acc); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .pillar-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 10px;
+    border-top: 2px solid var(--acc);
+    border-left: 2px solid var(--acc);
+    background: transparent; flex-shrink: 0;
+    align-self: flex-end;
+    transform: translateY(1px);
+  }
+
+  .pillar-title {
+    font-family: var(--ff-h); font-weight: 800;
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: .9; letter-spacing: -.03em;
+    text-transform: uppercase; color: var(--ink);
+    margin: 0 0 28px;
+  }
+  .pillar-title .dot { color: var(--acc); }
+
+  .pillar-desc {
+    font-family: var(--ff-b); font-weight: 400;
+    font-size: clamp(14px,1.15vw,15px);
+    line-height: 1.72; color: var(--muted);
+    margin: 0 0 32px; max-width: 480px;
+  }
+  .pillar-desc strong { font-weight: 600; color: var(--ink); }
+
+  /* persona image placeholder */
+  .persona-block { display: none; margin-bottom: 28px; }
+  .persona-block.visible { display: flex; gap: 20px; align-items: flex-start; }
+  .persona-image {
+    width: 80px; height: 104px; flex-shrink: 0;
+    background: #F0F0F5; border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    overflow: hidden; position: relative;
+  }
+  .persona-silhouette {
+    width: 100%; height: 100%;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .persona-silhouette svg { width: 68px; height: auto; }
+  .persona-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,.08);
+    font-family: var(--ff-b); font-size: 8px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); text-align: center; padding: 4px 0;
+  }
+  .persona-info { flex: 1; padding-top: 4px; }
+  .persona-role {
+    font-family: var(--ff-h); font-weight: 700; font-size: 13px;
+    text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
+    line-height: 1.2; margin-bottom: 6px;
+  }
+  .persona-context {
+    font-family: var(--ff-b); font-size: 12px; font-weight: 400;
+    color: var(--muted); line-height: 1.5; margin-bottom: 8px;
+  }
+  .persona-need {
+    font-family: var(--ff-b); font-size: 12px; font-weight: 600;
+    color: var(--acc); line-height: 1.4;
+    border-top: 1px solid var(--border); padding-top: 8px;
+  }
+
+  /* archetype */
+  .archetype-block { display: none; margin-bottom: 28px; }
+  .archetype-block.visible { display: flex; gap: 18px; align-items: flex-start; }
+  .archetype-img {
+    width: 72px; height: 90px; flex-shrink: 0;
+    background: #F0F0F5; border: 1px solid var(--border); border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+  .archetype-img .arch-icon { font-size: 26px; line-height: 1; }
+  .archetype-img .arch-hint {
+    font-family: var(--ff-b); font-size: 7px; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: center;
+  }
+  .arch-name {
+    font-family: var(--ff-h); font-weight: 800; font-size: 20px;
+    text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
+    line-height: 1; margin-bottom: 4px;
+  }
+  .arch-type {
+    font-family: var(--ff-b); font-size: 10px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--acc); margin-bottom: 8px;
+  }
+  .arch-traits { display: flex; flex-wrap: wrap; gap: 4px; }
+  .arch-tag {
+    font-family: var(--ff-b); font-size: 10px; font-weight: 500;
+    color: var(--muted); border: 1px solid var(--border);
+    padding: 3px 8px; border-radius: 100px; line-height: 1;
+  }
+
+  /* apply block */
+  .apply-block {
+    border-left: 2px solid var(--border); padding-left: 16px;
+    margin-bottom: 28px; display: none;
+  }
+  .apply-block.visible { display: block; }
+  .apply-label {
+    font-family: var(--ff-b); font-size: 9px; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+  }
+  .apply-text {
+    font-family: var(--ff-b); font-size: 12px; line-height: 1.68;
+    color: var(--ink); font-weight: 400;
+  }
+
+  /* impacts */
+  .impacts-block { border-top: 1px solid var(--border); }
+  .impacts-head {
+    font-family: var(--ff-b); font-size: 9px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    padding: 12px 0 8px;
+  }
+  .impacts {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .impacts li {
+    display: flex; align-items: center;
+    padding: 9px 10px 9px 0; border-top: 1px solid var(--border);
+    font-family: var(--ff-b); font-weight: 500;
+    font-size: clamp(11px,.95vw,13px); color: var(--ink);
+  }
+  .impacts li:nth-child(even) { padding-left: 12px; border-left: 1px solid var(--border); }
+  .impacts li::before { content: '—'; color: var(--acc); margin-right: 7px; font-size: 9px; }
+
+  /* ── DIAL ── (embedded variant: relative + fixed height) */
+  .dial-wrap {
+    position: relative;
+    height: 880px; overflow: hidden;
+    background: var(--bg-dial);
+    cursor: grab;
+  }
+  .dial-wrap.dragging { cursor: grabbing; }
+  .dial-wrap > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .indicator {
+    position: absolute; top: 5%; left: 50%;
+    transform: translateX(-50%);
+    z-index: 5; pointer-events: none;
+    display: block; line-height: 0;
+  }
+  .indicator svg { display: block; }
+  .indicator .ix-line { stroke: var(--acc); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .indicator .ix-tip { fill: var(--acc); }
+
+  /* SVG */
+  .star-arm { transition: fill .6s var(--ease); }
+  .star-arm.active { fill: var(--acc); }
+  .star-outline { fill: none; stroke: var(--ink); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+  .ring-tick { stroke: rgba(80,80,100,.32); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .ring-tick.major { stroke: rgba(50,50,70,.6); }
+  .ring-tick.pillar { stroke: rgba(26,26,46,.55); stroke-width: 1.4; }
+  .ring-tick.pillar.active { stroke: var(--acc); stroke-width: 2; }
+  .pillar-text {
+    font-family: var(--ff-h); font-weight: 700;
+    font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+    fill: rgba(136,136,160,.6);
+    transition: fill .6s var(--ease), font-size .5s var(--ease);
+  }
+  .pillar-text.active { fill: var(--ink); }
+  .center-cap { fill: var(--bg); stroke: var(--border); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .center-spoke { stroke: var(--acc); stroke-width: 2; stroke-linecap: square; vector-effect: non-scaling-stroke; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <!-- LEFT -->
+  <section class="reader" aria-live="polite">
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="btn-guide" onclick="setMode('guide')">Guide</button>
+        <button class="mode-btn" id="btn-case" onclick="setMode('case')">Case Study</button>
+      </div>
+      <!-- logo: only case study, right of toggle -->
+      <div class="case-logo" id="case-logo">
+        <div class="logo-lockup">
+          <div class="logo-mark" style="font-family:'Bricolage Grotesque',system-ui;font-weight:800;font-size:16px;letter-spacing:-0.01em;color:#1A1A2E;">FP<span style="color:#5A5CF9;">.</span></div>
+          <div class="logo-text">
+            <span class="logo-name">Florian P.</span>
+            <span class="logo-sub">Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="pillar-eyebrow" id="p-eyebrow">Your why</div>
+      <h1 class="pillar-title"><span id="p-title">Purpose</span><span class="dot">.</span></h1>
+      <p class="pillar-desc" id="p-desc"></p>
+
+      <!-- Persona (People + case study) -->
+      <div class="persona-block" id="persona-block">
+        <div class="persona-image">
+          <div class="persona-silhouette">
+            <svg viewBox="0 0 68 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- head -->
+              <ellipse cx="34" cy="22" rx="13" ry="14" fill="#C8C8D8"/>
+              <!-- body/shoulders -->
+              <path d="M8 80 C8 56 60 56 60 80Z" fill="#C8C8D8"/>
+            </svg>
+          </div>
+          <div class="persona-img-label">Photo</div>
+        </div>
+        <div class="persona-info">
+          <div class="persona-role" id="persona-role"></div>
+          <div class="persona-context" id="persona-context"></div>
+          <div class="persona-need" id="persona-need"></div>
+        </div>
+      </div>
+
+      <!-- Archetype (Personality + case study) -->
+      <div class="archetype-block" id="archetype-block">
+        <div class="archetype-img">
+          <div class="arch-icon">♛</div>
+          <div class="arch-hint">archetype image</div>
+        </div>
+        <div class="archetype-info">
+          <div class="arch-name" id="arch-name">The Ruler</div>
+          <div class="arch-type" id="arch-type">Authority · Sovereignty</div>
+          <div class="arch-traits" id="arch-traits"></div>
+        </div>
+      </div>
+
+      <!-- Apply -->
+      <div class="apply-block" id="apply-block">
+        <div class="apply-label">How to apply</div>
+        <div class="apply-text" id="apply-text"></div>
+      </div>
+
+      <div class="impacts-block">
+        <div class="impacts-head" id="impacts-head">What it shapes</div>
+        <ul class="impacts" id="p-impacts"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT -->
+  <section class="dial-wrap" id="dialWrap" aria-label="Focus dial">
+    <svg id="dialSvg" viewBox="-750 -750 1500 1500" preserveAspectRatio="xMidYMid meet">
+      <g id="indicator-static" pointer-events="none">
+        <line x1="0" y1="-620" x2="0" y2="-540" stroke="var(--acc)" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g id="rotor">
+        <g id="fineTicks"></g>
+        <g id="pillarRing"></g>
+        <g id="starGroup"></g>
+        <circle class="center-cap" id="centerCap" cx="0" cy="0" r="38"/>
+        <g id="centerMark">
+          <line class="center-spoke" x1="0" y1="-10" x2="0" y2="10"/>
+          <line class="center-spoke" x1="-8.7" y1="-5" x2="8.7" y2="5"/>
+          <line class="center-spoke" x1="8.7" y1="-5" x2="-8.7" y2="5"/>
+        </g>
+      </g>
+    </svg>
+  </section>
+</div>
+
+<div id="tweaks-root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "springStiffness": 1,
+  "springBounce": 10,
+  "scrollResistance": 100,
+  "scrollLean": 27,
+  "scrollLeanBuildup": 300,
+  "centerMark": true,
+  "activeLabelScale": "3x",
+  "bgMode": "unified"
+}/*EDITMODE-END*/;
+
+function TweaksApp() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    const cm = document.getElementById('centerMark');
+    if (cm) cm.style.display = t.centerMark ? '' : 'none';
+
+    const scaleMap = {'1x': 14, '2x': 26, '3x': 38};
+    window.__activeLabelSize = scaleMap[t.activeLabelScale] || 26;
+    if (typeof highlightDial === 'function') highlightDial(window.__activeIdx || 0);
+
+    // spring: stiffness 1–10 → k 0.02–0.18; bounce 0–10 → damping 0.99–0.82
+    window.springK    = 0.02 + (t.springStiffness / 10) * 0.16;
+    window.springDamp = 0.99 - (t.springBounce    / 10) * 0.17;
+
+    // scroll resistance: slider 20–200
+    window.WHEEL_THRESHOLD = t.scrollResistance;
+    window.scrollLean = t.scrollLean;
+    window.scrollLeanBuildup = t.scrollLeanBuildup;
+
+    // background mode
+    const root = document.documentElement;
+    if (t.bgMode === 'unified') {
+      root.style.setProperty('--bg-dial', '#FFFFFF');
+      root.style.setProperty('--divider-opacity', '0');
+    } else {
+      root.style.setProperty('--bg-dial', '#F5F5F7');
+      root.style.setProperty('--divider-opacity', '1');
+    }
+  }, [t.centerMark, t.activeLabelScale, t.springStiffness, t.springBounce, t.scrollResistance, t.scrollLean, t.scrollLeanBuildup, t.bgMode]);
+
+  return (
+    <TweaksPanel>
+      <TweakSection label="Dial" />
+      <TweakToggle
+        label="Center mark"
+        value={t.centerMark}
+        onChange={v => setTweak('centerMark', v)}
+      />
+      <TweakRadio
+        label="Active label size"
+        value={t.activeLabelScale}
+        options={['1x','2x','3x']}
+        onChange={v => setTweak('activeLabelScale', v)}
+      />
+      <TweakSection label="Animation" />
+      <TweakSlider
+        label="Stiffness"
+        value={t.springStiffness}
+        min={1} max={10} step={1}
+        onChange={v => setTweak('springStiffness', v)}
+      />
+      <TweakSlider
+        label="Bounce"
+        value={t.springBounce}
+        min={0} max={10} step={1}
+        onChange={v => setTweak('springBounce', v)}
+      />
+      <TweakSection label="Scroll" />
+      <TweakSlider
+        label="Resistance"
+        value={t.scrollResistance}
+        min={20} max={200} step={10}
+        onChange={v => setTweak('scrollResistance', v)}
+      />
+      <TweakSlider
+        label="Pre-snap lean"
+        value={t.scrollLean}
+        min={0} max={40} step={1}
+        onChange={v => setTweak('scrollLean', v)}
+      />
+      <TweakSlider
+        label="Lean buildup"
+        value={t.scrollLeanBuildup}
+        min={20} max={300} step={10}
+        onChange={v => setTweak('scrollLeanBuildup', v)}
+      />
+      <TweakSection label="Background" />
+      <TweakRadio
+        label="Layout"
+        value={t.bgMode}
+        options={[{value:'split', label:'Split'}, {value:'unified', label:'Unified'}]}
+        onChange={v => setTweak('bgMode', v)}
+      />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
+
+<script>
+/* ============================================================ DATA */
+const PILLARS = [
+  {
+    id:'people', title:'People', eyebrow:'Your tribe',
+    guide:{
+      desc:'The specific people you are built to serve. <strong>Not everyone.</strong> The fewer the better, the sharper the work.',
+      impacts:['Personality','Product','Content','Targeting','Social Media','Sales motion'],
+    },
+    case:{
+      desc:'Leaders who are great at what they do but <strong>struggle to articulate what makes them different</strong>. Entrepreneurial. Go-getters trying to stand out strategically.',
+      apply:'The block is both emotional and strategic. Content speaks to people who would rather be understood than admired. Never sell directly.',
+      impacts:['Founders','Executives','Experts','Invisible leaders','Go-getters','Brand owners'],
+      persona:{ role:'The Invisible Expert', context:'Successful but unseen. 30-55, entrepreneurial.', need:'Clarity + visibility without feeling stupid about it' }
+    }
+  },
+  {
+    id:'purpose', title:'Purpose', eyebrow:'Your why',
+    guide:{
+      desc:'The reason the company exists past making money. <strong>What you are unwilling to compromise on</strong>, even when it costs you.',
+      impacts:['Vision','Story','Pro-bono work','Brand Partnerships','Recruitment','Investor narrative'],
+    },
+    case:{
+      desc:'<strong>Make every brand unique.</strong> Reveal existing authenticity, help brands own it, scale marketing down so the brand grows exponentially.',
+      apply:'Say no to every opportunity that doesn\'t need your brand specifically. Find perfect matches, not more matches. The work is subtractive.',
+      impacts:['Vision','Story','Partnerships','Recruitment','Pro-bono','Saying no'],
+    }
+  },
+  {
+    id:'personality', title:'Personality', eyebrow:'How you show up',
+    guide:{
+      desc:'How the brand sounds, looks, and behaves in public. <strong>Recognisable in the dark</strong>, or it does not exist.',
+      impacts:['Identity','Logo','Visual language','Verbal language','Typography','UI & Digital'],
+    },
+    case:{
+      desc:'<strong>Sharp, funny, unhurried.</strong> Professional first, but refuses to take itself too seriously. Self-aware humor. Never prescriptive first.',
+      apply:'Goofy when the moment calls for it, dry when it doesn\'t. Open perspectives, debate, ask questions. Let the audience think with you.',
+      impacts:['Premium minimalism','Viewfinder brackets','Bricolage + Poppins','Dry humor','Photography-forward','Whitespace'],
+      archetype:{ name:'The Innocent', type:'Optimism · Craft', traits:['Curious','Honest','Witty','Elegant','Real','Confident'] }
+    }
+  },
+  {
+    id:'promise', title:'Promise', eyebrow:'Your non-negotiable',
+    guide:{
+      desc:'The one standard you hold above all others. <strong>Set the bar first</strong>, chase novelty second.',
+      impacts:['Consistency','Culture','Service','Reputation','Trust','Compounding value'],
+    },
+    case:{
+      desc:'<strong>Curiosity.</strong> The one word at the center. Not a value to display. The connecting thread every artifact has to carry.',
+      apply:'The test for any touchpoint: can this be traced back to Curiosity? If not, it doesn\'t belong. Questions over assertions. "What if..." beats "Here\'s how."',
+      impacts:['Writing tone','Content topics','Visual metaphor','Client discovery','Social voice','Hiring bar'],
+    }
+  },
+  {
+    id:'product', title:'Product', eyebrow:'Your offering',
+    guide:{
+      desc:'What you actually sell, and the <strong>standard you hold it to</strong>. The proof your other promises are real.',
+      impacts:['Innovation','Features','Benefits','Design','Usability','Pricing'],
+    },
+    case:{
+      desc:'<strong>Brand Therapy.</strong> A guided clarity process using the Focus Star framework. The output is a strategic blueprint the founder returns to for years.',
+      apply:'Category: brand strategy workshop. Benefits stack emotional (feel seen, tweaking loop ends) and rational (positioning becomes defensible).',
+      impacts:['Focus Star session','Strategic blueprint','Founder clarity','Long-term use','Emotional relief','Defensible positioning'],
+    }
+  }
+];
+
+/* ============================================================ GEOMETRY */
+const STEP = 72;
+const STAR_R = 278, STAR_INNER = STAR_R * 0.38;
+const RING_INNER = 338, RING_TICK_R = 360, PILLAR_TEXT_R = 480;
+
+/* ============================================================ STATE */
+let mode = 'guide';
+let activeIdx = 0;
+let rotation = 0, target = 0;
+let dragging = false, lastPointerAng = 0, dragVelocity = 0, lastDragTime = 0;
+let wheelAccum = 0; // for scroll resistance
+
+const dialWrap   = document.getElementById('dialWrap');
+const rotor      = document.getElementById('rotor');
+const fineTicks  = document.getElementById('fineTicks');
+const pillarRing = document.getElementById('pillarRing');
+const starGroup  = document.getElementById('starGroup');
+
+/* ============================================================ BUILD DIAL */
+(function buildFineTicks(){
+  const f=document.createDocumentFragment();
+  for(let a=0;a<360;a+=6){
+    const major=(a%18===0);
+    const rad=(a-90)*Math.PI/180;
+    const x1=Math.cos(rad)*RING_INNER, y1=Math.sin(rad)*RING_INNER;
+    const r2=major?RING_TICK_R:RING_INNER+8;
+    const x2=Math.cos(rad)*r2, y2=Math.sin(rad)*r2;
+    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1',x1.toFixed(2)); ln.setAttribute('y1',y1.toFixed(2));
+    ln.setAttribute('x2',x2.toFixed(2)); ln.setAttribute('y2',y2.toFixed(2));
+    ln.setAttribute('class','ring-tick'+(major?' major':''));
+    f.appendChild(ln);
+  }
+  fineTicks.appendChild(f);
+})();
+
+(function buildPillarRing(){
+  const f=document.createDocumentFragment();
+  PILLARS.forEach((p,i)=>{
+    const ang=i*STEP, rad=(ang-90)*Math.PI/180;
+    const x1=Math.cos(rad)*(RING_TICK_R+4), y1=Math.sin(rad)*(RING_TICK_R+4);
+    const x2=Math.cos(rad)*(RING_TICK_R+24), y2=Math.sin(rad)*(RING_TICK_R+24);
+    const tk=document.createElementNS('http://www.w3.org/2000/svg','line');
+    tk.setAttribute('x1',x1.toFixed(2)); tk.setAttribute('y1',y1.toFixed(2));
+    tk.setAttribute('x2',x2.toFixed(2)); tk.setAttribute('y2',y2.toFixed(2));
+    tk.setAttribute('class','ring-tick pillar'); tk.dataset.pidx=i;
+    f.appendChild(tk);
+
+    const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','pillar-label-g'); g.dataset.ang=ang;
+    g.setAttribute('transform',`rotate(${ang}) translate(0 ${-PILLAR_TEXT_R}) rotate(${-ang})`);
+    g.style.cursor='pointer';
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','pillar-text');
+    t.setAttribute('text-anchor','middle');
+    t.setAttribute('dominant-baseline','central');
+    t.dataset.pidx=i;
+    t.textContent=p.title.toUpperCase();
+    g.appendChild(t);
+    g.addEventListener('click', e=>{ e.stopPropagation(); goToIndex(i); });
+    f.appendChild(g);
+  });
+  pillarRing.appendChild(f);
+})();
+
+(function buildStar(){
+  function pt(a,r){ const rad=(a-90)*Math.PI/180; return{x:Math.cos(rad)*r,y:Math.sin(rad)*r}; }
+  const f=document.createDocumentFragment();
+  PILLARS.forEach((p,i)=>{
+    const tip=pt(i*STEP,STAR_R), lv=pt(i*STEP-36,STAR_INNER), rv=pt(i*STEP+36,STAR_INNER);
+    const arm=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    arm.setAttribute('points',`0,0 ${lv.x.toFixed(2)},${lv.y.toFixed(2)} ${tip.x.toFixed(2)},${tip.y.toFixed(2)} ${rv.x.toFixed(2)},${rv.y.toFixed(2)}`);
+    arm.setAttribute('class','star-arm'); arm.setAttribute('fill','transparent'); arm.dataset.pidx=i;
+    arm.style.cursor='pointer';
+    arm.addEventListener('click', e=>{ e.stopPropagation(); goToIndex(i); });
+    f.appendChild(arm);
+  });
+  const out=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  function p2(a,r){ const rad=(a-90)*Math.PI/180; return `${(Math.cos(rad)*r).toFixed(2)},${(Math.sin(rad)*r).toFixed(2)}`; }
+  let pts=[];
+  for(let i=0;i<5;i++){ pts.push(p2(i*STEP,STAR_R)); pts.push(p2(i*STEP+36,STAR_INNER)); }
+  out.setAttribute('points',pts.join(' ')); out.setAttribute('class','star-outline');
+  f.appendChild(out);
+  starGroup.appendChild(f);
+})();
+
+/* ============================================================ INTERACTION */
+function clientAngle(e){
+  const r=dialWrap.getBoundingClientRect();
+  return Math.atan2(e.clientY-(r.top+r.height/2), e.clientX-(r.left+r.width/2))*180/Math.PI;
+}
+dialWrap.addEventListener('pointerdown',e=>{
+  dragging=true; dialWrap.classList.add('dragging');
+  dialWrap.setPointerCapture(e.pointerId);
+  lastPointerAng=clientAngle(e); lastDragTime=performance.now(); dragVelocity=0;
+});
+dialWrap.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  const ang=clientAngle(e);
+  let d=ang-lastPointerAng;
+  if(d>180)d-=360; if(d<-180)d+=360;
+  rotation+=d; target+=d;
+  const now=performance.now();
+  dragVelocity=d/Math.max(1,now-lastDragTime);
+  lastDragTime=now; lastPointerAng=ang;
+  applyRotation(); liveHighlight();
+});
+function endDrag(){
+  if(!dragging) return;
+  dragging=false; dialWrap.classList.remove('dragging');
+  // small momentum nudge, then snap
+  const nudge=dragVelocity*40;
+  goToIndex(nearestIdx(rotation+nudge));
+}
+dialWrap.addEventListener('pointerup',endDrag);
+dialWrap.addEventListener('pointercancel',endDrag);
+
+/* Scroll with resistance — accumulate delta, snap when crossing threshold */
+/* Scroll resistance threshold — controlled by tweaks */
+let WHEEL_THRESHOLD = 20;
+let leanOffset = 0; // visual lean during scroll build-up
+
+let leanResetTimer = null;
+let snapLockedUntil = 0;
+dialWrap.addEventListener('wheel',e=>{
+  e.preventDefault();
+  // ignore wheel events for 400ms after a snap (kills trackpad inertia chaining)
+  if (performance.now() < snapLockedUntil) return;
+
+  const threshold = window.WHEEL_THRESHOLD || WHEEL_THRESHOLD;
+  const lean = (window.scrollLean !== undefined ? window.scrollLean : 0);
+  const buildup = window.scrollLeanBuildup || threshold;
+  wheelAccum += e.deltaY;
+  if(lean > 0){
+    const progress = Math.min(Math.abs(wheelAccum) / buildup, 1);
+    leanOffset = -Math.sign(wheelAccum) * Math.pow(progress, 1.5) * lean;
+  } else {
+    leanOffset = 0;
+  }
+  if(Math.abs(wheelAccum) >= threshold){
+    // hold the leaned position briefly so the user sees the recoil at full amplitude
+    const dir = e.deltaY > 0 ? 1 : -1;
+    snapLockedUntil = performance.now() + 400;
+    setTimeout(() => {
+      leanOffset = 0;
+      wheelAccum = 0;
+      goToIndex((activeIdx + dir + 5) % 5);
+    }, 110);
+  }
+  // release: when scroll stops short of threshold, reset accumulator and clear lean
+  clearTimeout(leanResetTimer);
+  leanResetTimer = setTimeout(() => {
+    wheelAccum = 0;
+    leanOffset = 0;
+  }, 180);
+},{passive:false});
+
+/* Arrow keys: LEFT = next (clockwise), RIGHT = prev — reversed per request */
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft') goToIndex((activeIdx+1)%5);
+  if(e.key==='ArrowRight') goToIndex((activeIdx-1+5)%5);
+  if(e.key>='1'&&e.key<='5') goToIndex(+e.key-1);
+});
+
+/* ============================================================ LOGIC */
+function nearestIdx(rot){
+  let best=0, bestD=Infinity;
+  for(let i=0;i<5;i++){
+    const want=-i*STEP;
+    // compare modulo — find shortest arc
+    let d = ((rot - want) % 360 + 540) % 360 - 180;
+    if(Math.abs(d)<bestD){bestD=Math.abs(d);best=i;}
+  }
+  return best;
+}
+
+function angDelta(a,b){ let d=(a-b)%360; if(d>180)d-=360; if(d<-180)d+=360; return d; }
+
+function liveHighlight(){ highlightDial(nearestIdx(rotation)); }
+
+/* Infinite rotation: search ±10 full revolutions, pick closest to current rotation */
+function goToIndex(i){
+  const want = -i * STEP;
+  let best = want, bestD = Infinity;
+  for(let k = -10; k <= 10; k++){
+    const c = want + k * 360;
+    const d = Math.abs(rotation - c);
+    if(d < bestD){ bestD = d; best = c; }
+  }
+  target = best;
+  activeIdx = i;
+  setActivePillar(i);
+}
+
+/* spring params — controlled by tweaks */
+let springK = 0.055;
+let springDamp = 0.93; // higher = less bounce
+let velocity = 0;
+function tick(){
+  if(!dragging){
+    const force = (target - rotation) * (window.springK || springK);
+    velocity = (velocity + force) * (window.springDamp || springDamp);
+    rotation += velocity;
+    if(Math.abs(target - rotation) < 0.02 && Math.abs(velocity) < 0.02){
+      rotation = target; velocity = 0;
+    }
+    applyRotation();
+  }
+  requestAnimationFrame(tick);
+}
+
+function applyRotation(){
+  const display = rotation + leanOffset;
+  rotor.setAttribute('transform',`rotate(${display.toFixed(3)})`);
+  document.querySelectorAll('.pillar-label-g').forEach(g=>{
+    const ang=+g.dataset.ang;
+    g.setAttribute('transform',`rotate(${ang}) translate(0 ${-PILLAR_TEXT_R}) rotate(${-ang-display})`);
+  });
+}
+
+/* ============================================================ RENDER */
+function setActivePillar(i){
+  window.__activeIdx = i;
+  const p=PILLARS[i];
+  const data=mode==='case' ? p.case : p.guide;
+
+  document.getElementById('p-eyebrow').textContent=p.eyebrow.toUpperCase();
+  document.getElementById('p-title').textContent=p.title;
+  document.getElementById('p-desc').innerHTML=data.desc;
+
+  // persona
+  const pb=document.getElementById('persona-block');
+  if(mode==='case'&&p.id==='people'&&p.case.persona){
+    const pe=p.case.persona;
+    document.getElementById('persona-role').textContent=pe.role;
+    document.getElementById('persona-context').textContent=pe.context;
+    document.getElementById('persona-need').textContent=pe.need;
+    pb.classList.add('visible');
+  } else { pb.classList.remove('visible'); }
+
+  // archetype
+  const ab=document.getElementById('archetype-block');
+  if(mode==='case'&&p.id==='personality'&&p.case.archetype){
+    const a=p.case.archetype;
+    document.getElementById('arch-name').textContent=a.name;
+    document.getElementById('arch-type').textContent=a.type;
+    document.getElementById('arch-traits').innerHTML=a.traits.map(tr=>`<span class="arch-tag">${tr}</span>`).join('');
+    ab.classList.add('visible');
+  } else { ab.classList.remove('visible'); }
+
+  // apply
+  const apb=document.getElementById('apply-block');
+  if(mode==='case'&&data.apply){
+    document.getElementById('apply-text').textContent=data.apply;
+    apb.classList.add('visible');
+  } else { apb.classList.remove('visible'); }
+
+  document.getElementById('impacts-head').textContent=mode==='case'?'Key areas':'What it shapes';
+  document.getElementById('p-impacts').innerHTML=data.impacts.map(it=>`<li>${it}</li>`).join('');
+
+  highlightDial(i);
+}
+
+function highlightDial(i){
+  window.__activeIdx = i;
+  document.querySelectorAll('.star-arm').forEach(a=>a.classList.toggle('active',+a.dataset.pidx===i));
+  document.querySelectorAll('.ring-tick.pillar').forEach(a=>a.classList.toggle('active',+a.dataset.pidx===i));
+  const activeSize = window.__activeLabelSize || 26;
+  document.querySelectorAll('.pillar-text').forEach(a=>{
+    const on=+a.dataset.pidx===i;
+    a.classList.toggle('active',on);
+    a.style.fontSize=(on?activeSize:14)+'px';
+  });
+}
+
+function setMode(m){
+  mode=m;
+  document.getElementById('btn-guide').classList.toggle('active',m==='guide');
+  document.getElementById('btn-case').classList.toggle('active',m==='case');
+  const logo=document.getElementById('case-logo');
+  if(m==='case'){ logo.style.display='flex'; requestAnimationFrame(()=>logo.classList.add('visible')); }
+  else { logo.classList.remove('visible'); setTimeout(()=>logo.style.display='none',300); }
+  setActivePillar(activeIdx);
+}
+
+/* INIT */
+goToIndex(0);
+applyRotation();
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

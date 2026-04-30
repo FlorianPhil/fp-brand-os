@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FP Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BRAND TOKENS (white-label ready)
+   ============================================================ */
+:root {
+  --accent: #5A5CF9;
+  --accent-glow: rgba(90, 92, 249, 0.35);
+  --accent-soft: rgba(90, 92, 249, 0.06);
+  --accent-muted: rgba(90, 92, 249, 0.15);
+  --dark: #18181B;
+  --dark-card: #1E1E24;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #8888A0;
+  --border: #E5E7EB;
+  --border-soft: #F0F0F5;
+
+  --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-b: 'Poppins', system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --bar-height: 64px;
+  --panel-pad-x: clamp(40px, 6vw, 80px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--ff-b);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ========== GRAIN ========== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ========== SCROLL SNAP ========== */
+.scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* ========== PANELS ========== */
+.panel {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== DOT NAV ========== */
+.dot-nav {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+.dot-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.dot-nav-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out-expo);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.dot-nav-item:hover .dot-nav-label,
+.dot-nav-item.active .dot-nav-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.dot-nav-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--border);
+  transition: all 0.4s var(--ease-out-expo);
+  flex-shrink: 0;
+}
+.dot-nav-item.active .dot-nav-dot {
+  background: var(--accent);
+  width: 10px;
+  height: 28px;
+}
+.dot-nav-item:hover .dot-nav-dot {
+  background: var(--accent);
+}
+
+/* ========== TOP BAR ========== */
+.gallery-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: var(--bar-height);
+  mix-blend-mode: difference;
+}
+.gallery-brand {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--white);
+}
+.gallery-meta {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ========== PANEL 0: HERO ========== */
+.panel-hero {
+  background: var(--dark);
+}
+.panel-hero-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 40px;
+}
+.panel-hero .eyebrow {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: panelFadeUp 1s var(--ease-out-expo) 0.2s forwards;
+}
+.panel-hero h1 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(56px, 10vw, 120px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: panelFadeUp 1s var(--ease-out-expo) 0.4s forwards;
+}
+.panel-hero h1 .dot { color: var(--accent); }
+.panel-hero .sub {
+  font-family: var(--ff-h);
+  font-weight: 400;
+  font-size: clamp(16px, 2vw, 22px);
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: panelFadeUp 1s var(--ease-out-expo) 0.6s forwards;
+}
+.panel-hero .meta-pills {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: panelFadeUp 1s var(--ease-out-expo) 0.8s forwards;
+}
+.meta-pill {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: 10px 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.meta-pill strong { color: rgba(255,255,255,0.8); margin-left: 6px; }
+
+@keyframes panelFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+.panel-hero .eyebrow,
+.panel-hero h1,
+.panel-hero .sub,
+.panel-hero .meta-pills {
+  transform: translateY(30px);
+}
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: cueFloat 2s ease-in-out infinite;
+}
+.scroll-cue span {
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+.scroll-cue-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+}
+@keyframes cueFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ========== EDITORIAL SPREAD LAYOUT ========== */
+.panel-section {
+  background: var(--white);
+}
+.panel-section.dark-panel {
+  background: var(--dark);
+  color: var(--white);
+}
+.panel-section.alt-panel {
+  background: var(--border-soft);
+}
+
+.spread {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 var(--panel-pad-x);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+}
+.spread.reversed {
+  direction: rtl;
+}
+.spread.reversed > * {
+  direction: ltr;
+}
+
+/* --- Text column --- */
+.spread-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.spread-watermark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(100px, 14vw, 200px);
+  line-height: 0.75;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  opacity: 0.04;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.spread-watermark.left { left: var(--panel-pad-x); }
+.spread-watermark.right { right: var(--panel-pad-x); }
+.dark-panel .spread-watermark { color: var(--white); opacity: 0.04; }
+.alt-panel .spread-watermark { color: var(--text); opacity: 0.04; }
+
+.spread-kicker {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.spread-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.spread-title .dot { color: var(--accent); }
+.dark-panel .spread-title { color: var(--white); }
+
+.spread-body {
+  font-family: var(--ff-b);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 460px;
+  margin-bottom: 40px;
+}
+.dark-panel .spread-body { color: rgba(255,255,255,0.45); }
+
+/* --- Sub-page links --- */
+.page-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.page-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.35s var(--ease-out-expo);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.page-link:first-child {
+  border-top: 1px solid var(--border);
+}
+.page-link:hover {
+  padding-left: 8px;
+}
+.page-link:hover .page-link-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--accent);
+}
+.page-link:hover .page-link-name {
+  color: var(--accent);
+}
+
+.page-link-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  min-width: 28px;
+  flex-shrink: 0;
+}
+.page-link-name {
+  font-family: var(--ff-h);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  flex: 1;
+  transition: color 0.3s;
+}
+.page-link-arrow {
+  font-size: 16px;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out-expo), color 0.3s;
+  flex-shrink: 0;
+}
+
+/* Dark panel link overrides */
+.dark-panel .page-link {
+  border-color: rgba(255,255,255,0.08);
+}
+.dark-panel .page-link:first-child {
+  border-top-color: rgba(255,255,255,0.08);
+}
+.dark-panel .page-link-name {
+  color: rgba(255,255,255,0.85);
+}
+.dark-panel .page-link:hover .page-link-name {
+  color: var(--accent);
+}
+.dark-panel .page-link-arrow {
+  color: rgba(255,255,255,0.3);
+}
+
+/* --- Image column --- */
+.spread-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.spread-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.spread-image:hover img {
+  transform: scale(1.02);
+}
+
+/* Grain overlay on images */
+.spread-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Viewfinder bracket corners */
+.spread-image::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  z-index: 3;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  clip-path: polygon(
+    0 0, 24px 0, 24px 1.5px, 1.5px 1.5px, 1.5px 24px, 0 24px,
+    0 calc(100% - 24px), 1.5px calc(100% - 24px), 1.5px calc(100% - 1.5px), 24px calc(100% - 1.5px), 24px 100%, 0 100%,
+    100% 100%, calc(100% - 24px) 100%, calc(100% - 24px) calc(100% - 1.5px), calc(100% - 1.5px) calc(100% - 1.5px), calc(100% - 1.5px) calc(100% - 24px), 100% calc(100% - 24px),
+    100% 24px, calc(100% - 1.5px) 24px, calc(100% - 1.5px) 1.5px, calc(100% - 24px) 1.5px, calc(100% - 24px) 0, 100% 0
+  );
+  pointer-events: none;
+  transition: opacity 0.4s;
+  opacity: 0.7;
+}
+.spread-image:hover::after {
+  opacity: 1;
+}
+
+/* Purple tint overlay for section A image */
+.spread-image.purple-tint img {
+  filter: brightness(0.95);
+}
+.spread-image.purple-tint .tint-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(90, 92, 249, 0.08);
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* ========== PANEL TRANSITIONS ========== */
+.spread-text,
+.spread-image {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.spread-image {
+  transition-delay: 0.12s;
+}
+.panel.in-view .spread-text,
+.panel.in-view .spread-image {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger page-link entrance */
+.page-link {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo),
+              padding-left 0.35s var(--ease-out-expo), color 0.3s;
+}
+.panel.in-view .page-link:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.panel.in-view .page-link:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.38s; }
+.panel.in-view .page-link:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
+.panel.in-view .page-link:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.54s; }
+.panel.in-view .page-link:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.62s; }
+.panel.in-view .page-link:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.70s; }
+
+/* ========== FOOTER PANEL ========== */
+.panel-footer {
+  background: var(--dark);
+  flex-direction: column;
+  gap: 24px;
+}
+.panel-footer .footer-brand {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 48px;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.panel-footer .footer-brand .dot { color: var(--accent); }
+.panel-footer .footer-sub {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.panel-footer .footer-link {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 16px;
+  transition: opacity 0.3s;
+}
+.panel-footer .footer-link:hover { opacity: 0.7; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1000px) {
+  .spread {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .spread.reversed {
+    direction: ltr;
+  }
+  .spread-image {
+    aspect-ratio: 16 / 10;
+    max-height: 40vh;
+  }
+  .spread-watermark {
+    font-size: 80px;
+    top: 10%;
+    transform: none;
+  }
+  .spread-body {
+    max-width: 100%;
+  }
+  .panel {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0;
+  }
+  /* On mobile, image comes first in text-left layouts for visual impact */
+  .spread:not(.reversed) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .spread.reversed {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 900px) {
+  .dot-nav { right: 16px; }
+  .gallery-bar { padding: 0 24px; }
+}
+@media (max-width: 600px) {
+  .spread-title {
+    font-size: 32px;
+  }
+  .spread-body {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="gallery-bar">
+  <span class="gallery-brand">FP<span style="color:var(--accent)">.</span></span>
+  <span class="gallery-meta">Brand OS &middot; v4</span>
+</div>
+
+<!-- Dot navigation -->
+<nav class="dot-nav" id="dotNav">
+  <div class="dot-nav-item active" data-target="0">
+    <span class="dot-nav-label">Overview</span>
+    <div class="dot-nav-dot"></div>
+  </div>
+  <div class="dot-nav-item" data-target="1">
+    <span class="dot-nav-label">Focus Star</span>
+    <div class="dot-nav-dot"></div>
+  </div>
+  <div class="dot-nav-item" data-target="2">
+    <span class="dot-nav-label">Brand Identity</span>
+    <div class="dot-nav-dot"></div>
+  </div>
+  <div class="dot-nav-item" data-target="3">
+    <span class="dot-nav-label">Personal Branding</span>
+    <div class="dot-nav-dot"></div>
+  </div>
+</nav>
+
+<div class="scroll-container" id="scrollContainer">
+
+  <!-- PANEL 0: HERO -->
+  <section class="panel panel-hero">
+    <div class="panel-hero-content">
+      <span class="eyebrow">Florian P. Consulting</span>
+      <h1>Brand OS<span class="dot">.</span></h1>
+      <p class="sub">Single source of truth for strategy, identity, and voice.</p>
+      <div class="meta-pills">
+        <div class="meta-pill">Spectrum <strong>Position 5 / Founder-Led</strong></div>
+        <div class="meta-pill">Promise <strong>Curiosity</strong></div>
+        <div class="meta-pill">Version <strong>4</strong></div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </section>
+
+  <!-- PANEL 1: FOCUS STAR (Section A) — white, text left, image right -->
+  <section class="panel panel-section">
+    <div class="spread-watermark left">A</div>
+    <div class="spread">
+      <div class="spread-text">
+        <div class="spread-kicker">Brand strategy</div>
+        <h2 class="spread-title">Focus Star<span class="dot">.</span></h2>
+        <p class="spread-body">
+          The Focus Star is a five-pillar strategic compass that anchors every brand decision. It maps
+          Product, People, Purpose, Promise, and Personality into a single framework, so nothing gets
+          built in isolation. Start here. Everything else flows from it.
+        </p>
+        <nav class="page-links">
+          <a class="page-link" href="focus-star.html">
+            <span class="page-link-label">&star;</span>
+            <span class="page-link-name">The 5 Ps Compass</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="product.html">
+            <span class="page-link-label">P1</span>
+            <span class="page-link-name">Product</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="people.html">
+            <span class="page-link-label">P2</span>
+            <span class="page-link-name">People</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="purpose.html">
+            <span class="page-link-label">P3</span>
+            <span class="page-link-name">Purpose</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="promise.html">
+            <span class="page-link-label">P4</span>
+            <span class="page-link-name">Promise</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="personality.html">
+            <span class="page-link-label">P5</span>
+            <span class="page-link-name">Personality</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL 2: BRAND IDENTITY (Section B) — dark, image left, text right -->
+  <section class="panel panel-section dark-panel">
+    <div class="spread-watermark right">B</div>
+    <div class="spread reversed">
+      <div class="spread-text">
+        <div class="spread-kicker">Expression</div>
+        <h2 class="spread-title">Brand Identity<span class="dot">.</span></h2>
+        <p class="spread-body">
+          Strategy means nothing if it cannot be felt. Brand Identity translates the Focus Star into
+          tangible expression: how the brand sounds, how it looks, what makes it instantly recognizable,
+          and how it behaves across every touchpoint.
+        </p>
+        <nav class="page-links">
+          <a class="page-link" href="#">
+            <span class="page-link-label">B1</span>
+            <span class="page-link-name">Voice</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="#">
+            <span class="page-link-label">B2</span>
+            <span class="page-link-name">Visual Direction</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="#">
+            <span class="page-link-label">B3</span>
+            <span class="page-link-name">Signature</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="#">
+            <span class="page-link-label">B4</span>
+            <span class="page-link-name">Application</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL 3: FOUNDER (Section C) — alt background, text left, image right -->
+  <section class="panel panel-section alt-panel">
+    <div class="spread-watermark left">C</div>
+    <div class="spread">
+      <div class="spread-text">
+        <div class="spread-kicker">Section C</div>
+        <h2 class="spread-title">Personal Branding<span class="dot">.</span></h2>
+        <p class="spread-body">
+          At Position 5 on the Brand Spectrum, the founder is the brand. This section maps the person
+          behind the work: identity, background, and the imagery that carries it. When the audience
+          connects with the human, trust follows.
+        </p>
+        <nav class="page-links">
+          <a class="page-link" href="#">
+            <span class="page-link-label">C1</span>
+            <span class="page-link-name">Founder Identity</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="#">
+            <span class="page-link-label">C2</span>
+            <span class="page-link-name">Background</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+          <a class="page-link" href="#">
+            <span class="page-link-label">C3</span>
+            <span class="page-link-name">Imagery</span>
+            <span class="page-link-arrow">&rarr;</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL 4: FOOTER -->
+  <section class="panel panel-footer">
+    <div class="footer-brand">FP Brand OS<span class="dot">.</span></div>
+    <div class="footer-sub">FP Brand OS &middot; v4</div>
+    <a href="focus-star.html" class="footer-link">Begin with Focus Star &rarr;</a>
+  </section>
+
+</div>
+
+<script>
+const container = document.getElementById('scrollContainer');
+const panels = document.querySelectorAll('.panel');
+const dotItems = document.querySelectorAll('.dot-nav-item');
+
+// Panel visibility for animations + dot nav
+const panelObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      const idx = Array.from(panels).indexOf(entry.target);
+      dotItems.forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+  });
+}, { threshold: 0.5, root: container });
+
+panels.forEach(p => panelObserver.observe(p));
+
+// Dot nav click
+dotItems.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    panels[i].scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Dot nav color adapts to panel background
+const colorObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+      const isDark = entry.target.classList.contains('panel-hero') ||
+                     entry.target.classList.contains('dark-panel') ||
+                     entry.target.classList.contains('panel-footer');
+      const nav = document.getElementById('dotNav');
+      if (isDark) {
+        nav.querySelectorAll('.dot-nav-label').forEach(l => l.style.color = 'rgba(255,255,255,0.6)');
+        nav.querySelectorAll('.dot-nav-dot').forEach(d => {
+          if (!d.parentElement.classList.contains('active')) d.style.background = 'rgba(255,255,255,0.2)';
+        });
+      } else {
+        nav.querySelectorAll('.dot-nav-label').forEach(l => l.style.color = '');
+        nav.querySelectorAll('.dot-nav-dot').forEach(d => d.style.background = '');
+      }
+    }
+  });
+}, { threshold: 0.5, root: container });
+panels.forEach(p => colorObserver.observe(p));
+</script>
+</body>
+</html>
