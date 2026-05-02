@@ -3,11 +3,714 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Visual Direction &middot; FP Brand OS</title>
+<title>Look &amp; Feel · FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ========== VISUAL LANGUAGE — PAGE-SPECIFIC ========== */
+
+/* -- Section steps -- */
+.vs-step {
+  margin: 0 0 96px;
+}
+.vs-step-header {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--text);
+  margin-bottom: 40px;
+}
+.vs-step-num {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 12px;
+}
+.vs-step-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.vs-step-sub {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.vs-step-desc {
+  font-family: var(--ff-b);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* -- Full-bleed image with overlay -- */
+.vs-full-image {
+  margin: 64px 0;
+  position: relative;
+}
+.vs-full-image img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.vs-full-image-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 40px;
+  background: linear-gradient(transparent, rgba(26,26,46,0.7));
+}
+.vs-full-image-overlay span {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* -- Color palette -- */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 0;
+}
+@media (max-width: 700px) {
+  .palette-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.palette-swatch {
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+  border-right: 1px solid var(--border);
+}
+.palette-swatch:last-child { border-right: none; }
+.palette-swatch-label {
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.palette-swatch-hex {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.palette-swatch.dark-text .palette-swatch-label,
+.palette-swatch.dark-text .palette-swatch-hex { color: var(--text); }
+.palette-swatch.light-text .palette-swatch-label,
+.palette-swatch.light-text .palette-swatch-hex { color: var(--white); }
+
+.palette-usage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-top: none;
+  margin: 0 0 48px;
+}
+@media (max-width: 700px) {
+  .palette-usage { grid-template-columns: 1fr; }
+}
+.palette-usage-item {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.palette-usage-item:last-child { border-right: none; }
+.palette-usage-dot {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.palette-usage-text {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.palette-usage-text strong { font-weight: 600; }
+
+/* -- Typography specimen -- */
+.type-specimen {
+  margin: 32px 0 48px;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+.type-specimen-hero {
+  padding: 56px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.type-display {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.type-display .accent { color: var(--accent); }
+.type-body-sample {
+  font-family: var(--ff-b);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 560px;
+}
+.type-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+@media (max-width: 700px) {
+  .type-details { grid-template-columns: 1fr; }
+}
+.type-detail-card {
+  padding: 32px 36px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.type-detail-card:last-child { border-right: none; }
+.type-detail-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.type-detail-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.type-detail-weights {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.type-scale {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.type-scale-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: baseline;
+  padding: 20px 36px;
+  border-top: 1px solid var(--border);
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .type-scale-row { grid-template-columns: 1fr; gap: 8px; }
+}
+.type-scale-meta {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* -- Photography grid -- */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .photo-grid { grid-template-columns: 1fr; }
+}
+.photo-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.photo-card:nth-child(2n) { border-right: none; }
+.photo-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.photo-card-body {
+  padding: 24px 28px;
+}
+.photo-card-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.photo-card-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.photo-card-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* -- Spacing system -- */
+.spacing-visual {
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+  background: var(--white);
+}
+.spacing-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 120px;
+  align-items: center;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border);
+  gap: 24px;
+}
+.spacing-row:last-child { border-bottom: none; }
+.spacing-label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.spacing-bar-wrap {
+  height: 8px;
+  background: var(--light);
+  position: relative;
+}
+.spacing-bar {
+  height: 100%;
+  background: var(--accent);
+}
+.spacing-value {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 700px) {
+  .spacing-row { grid-template-columns: 1fr 1fr; }
+  .spacing-bar-wrap { display: none; }
+}
+
+/* -- Motion curves -- */
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .motion-grid { grid-template-columns: 1fr; }
+}
+.motion-card {
+  border-right: 1px solid var(--border);
+  padding: 32px 28px;
+  background: var(--white);
+}
+.motion-card:last-child { border-right: none; }
+.motion-curve-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.motion-curve-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.motion-curve-value {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+.motion-curve-demo {
+  height: 4px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.motion-curve-dot {
+  width: 24px;
+  height: 4px;
+  background: var(--accent);
+  position: absolute;
+  left: 0;
+  animation-duration: 2.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+@keyframes slideExpo {
+  0%, 100% { left: 0; }
+  50% { left: calc(100% - 24px); }
+}
+@keyframes slideQuart {
+  0%, 100% { left: 0; }
+  50% { left: calc(100% - 24px); }
+}
+@keyframes slideQuint {
+  0%, 100% { left: 0; }
+  50% { left: calc(100% - 24px); }
+}
+.motion-expo .motion-curve-dot {
+  animation-name: slideExpo;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-quart .motion-curve-dot {
+  animation-name: slideQuart;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+.motion-quint .motion-curve-dot {
+  animation-name: slideQuint;
+  animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+/* -- Forbidden rules grid -- */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 720px) {
+  .rules-grid { grid-template-columns: 1fr; }
+}
+.rule-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 28px;
+  background: var(--white);
+}
+.rule-cell .rule-icon {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #B8423D;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.rule-cell .rule-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.rule-cell .rule-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* -- Canvas principle -- */
+.canvas-principle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .canvas-principle { grid-template-columns: 1fr; }
+}
+.canvas-light {
+  background: var(--white);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.canvas-dark {
+  background: var(--dark);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.canvas-badge {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+.canvas-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.canvas-light .canvas-title { color: var(--text); }
+.canvas-dark .canvas-title { color: var(--white); }
+.canvas-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+.canvas-light .canvas-desc { color: var(--muted); }
+.canvas-dark .canvas-desc { color: rgba(255,255,255,0.5); }
+
+/* -- Anti-patterns grid -- */
+.anti-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+}
+@media (max-width: 700px) {
+  .anti-grid { grid-template-columns: 1fr 1fr; }
+}
+.anti-cell {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.anti-cell:nth-child(3n) { border-right: none; }
+
+/* -- Accent token row -- */
+.token-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+@media (max-width: 700px) {
+  .token-row { grid-template-columns: 1fr; }
+}
+.token-cell {
+  padding: 24px 28px;
+  border-right: 1px solid var(--border);
+}
+.token-cell:last-child { border-right: none; }
+.token-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.token-swatch {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 8px;
+}
+.token-value {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* -- Content type rules -- */
+.content-rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 0 0 48px;
+}
+@media (max-width: 700px) {
+  .content-rules { grid-template-columns: 1fr; }
+}
+.content-rule-cell {
+  padding: 28px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.content-rule-cell:nth-child(2n) { border-right: none; }
+.content-rule-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* -- Grain + edge callouts -- */
+.callout-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+@media (max-width: 700px) {
+  .callout-split { grid-template-columns: 1fr; }
+}
+.callout-cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--border);
+}
+.callout-cell:last-child { border-right: none; }
+.callout-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.callout-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.callout-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* -- Edge rule banner -- */
+.edge-banner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.edge-block {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.edge-block-num {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--white);
+}
+.edge-text-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.edge-text-desc {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* -- Iconography note -- */
+.icon-note {
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  background: var(--light);
+  margin-bottom: 48px;
+}
+.icon-note-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.icon-note-text {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,291 +725,516 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html" class="active">Look &amp; Feel</a>
         <a href="voice.html">Voice</a>
-        <a href="visual.html" class="active">Visual Direction</a>
         <a href="signature.html">Signature</a>
-        <a href="application.html">Application</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
         <a href="founder-identity.html">Founder Identity</a>
         <a href="background.html">Background</a>
         <a href="imagery.html">Imagery</a>
       </div>
     </details>
-  </div>
+    </div>
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>source.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-04-29</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section B &middot; Brand Identity</span>
-  <h1 class="page-title">Visual Direction<span class="dot">.</span></h1>
+  <span class="eyebrow">Section B &middot; Brand Identity &middot; Look &amp; Feel</span>
+  <h1 class="page-title">Look &amp; Feel<span class="dot">.</span></h1>
   <p class="page-subtitle">Clarity as a visual experience. Things coming into focus, seen through a new lens.</p>
 
   <div class="meta-row">
-    <span>Section<strong>B2</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Theme<strong>Light</strong></span>
-    <span>Edges<strong>Sharp only</strong></span>
+    <span>Status<strong>CONFIRMED</strong></span>
+    <span>Section<strong>B1</strong></span>
+    <span>Theme<span class="accent">Light-forward</span></span>
   </div>
 
-  <!-- 01 Core Concept -->
-  <div class="section-label">
-    <div class="section-number">01</div>
-    <div class="section-head">
-      <div class="kicker">Foundation</div>
-      <h2>Core concept<span class="dot">.</span></h2>
+
+  <!-- ============================================ -->
+  <!-- 01: CORE CONCEPT + CANVAS                    -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">01</div>
+      <div>
+        <div class="vs-step-sub">Foundation &middot; Canvas</div>
+        <h2 class="vs-step-title">The Visual Thesis<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">The FP visual system treats clarity as the primary design material. Sharp edges, extreme whitespace, light surfaces. Not SaaS dashboard. Not portfolio site. Editorial dossier. The reference aesthetic is a physical document you would leave on a boardroom table.</p>
+
+    <div class="vs-full-image" style="margin-top: 40px;">
+      <img src="assets/generated/visual-canvas.png" alt="Minimal concrete architecture with geometric precision">
+      <div class="vs-full-image-overlay">
+        <span>Structural clarity as design principle</span>
+      </div>
+    </div>
+
+    <div class="canvas-principle">
+      <div class="canvas-light">
+        <div class="canvas-badge">Default canvas</div>
+        <div class="canvas-title">Light-forward<span class="dot">.</span></div>
+        <p class="canvas-desc">White and light backgrounds as the default surface. Content breathes. Density is the enemy of clarity. The constraint creates the quality.</p>
+      </div>
+      <div class="canvas-dark">
+        <div class="canvas-badge">Inverted accent</div>
+        <div class="canvas-title">Dark sections<span class="dot">.</span></div>
+        <p class="canvas-desc">Dark surfaces only as inverted accent sections, never the default canvas. Used sparingly to create contrast and hierarchy.</p>
+      </div>
     </div>
   </div>
 
-  <p class="lede">Clarity as a visual experience. Things coming into focus, seen through a new lens.</p>
 
-  <ul class="bullets">
-    <li><strong>Theme:</strong> Light-forward. White/light background default. Dark surfaces only as inverted accent sections, never the default canvas</li>
-    <li><strong>Edges:</strong> Sharp. All zero border-radius. No curves, no rounded corners</li>
-    <li><strong>Density:</strong> Extreme whitespace</li>
-    <li><strong>Reference aesthetic:</strong> Editorial dossier, not SaaS dashboard</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 02: COLOR SYSTEM                              -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">02</div>
+      <div>
+        <div class="vs-step-sub">Color System &middot; Palette</div>
+        <h2 class="vs-step-title">Color<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">One accent. Six neutrals. The purple carries all brand energy. Everything else stays quiet. No warm colors, ever. The constraint is the point.</p>
 
-  <!-- 02 Viewfinder Bracket -->
-  <div class="section-label">
-    <div class="section-number">02</div>
-    <div class="section-head">
-      <div class="kicker">Signature device</div>
-      <h2>The viewfinder bracket<span class="dot">.</span></h2>
+    <div class="vs-full-image" style="margin-top: 40px;">
+      <img src="assets/generated/visual-color.png" alt="Matte concrete with purple geometric accent">
+      <div class="vs-full-image-overlay">
+        <span>Purple as singular brand energy</span>
+      </div>
+    </div>
+
+    <div class="palette-grid">
+      <div class="palette-swatch light-text" style="background:#5A5CF9">
+        <div class="palette-swatch-label">Accent</div>
+        <div class="palette-swatch-hex">#5A5CF9</div>
+      </div>
+      <div class="palette-swatch light-text" style="background:#1A1A2E">
+        <div class="palette-swatch-label">Text</div>
+        <div class="palette-swatch-hex">#1A1A2E</div>
+      </div>
+      <div class="palette-swatch light-text" style="background:#8888A0">
+        <div class="palette-swatch-label">Muted</div>
+        <div class="palette-swatch-hex">#8888A0</div>
+      </div>
+      <div class="palette-swatch dark-text" style="background:#E5E7EB">
+        <div class="palette-swatch-label">Border</div>
+        <div class="palette-swatch-hex">#E5E7EB</div>
+      </div>
+      <div class="palette-swatch dark-text" style="background:#F5F5F7">
+        <div class="palette-swatch-label">Light</div>
+        <div class="palette-swatch-hex">#F5F5F7</div>
+      </div>
+      <div class="palette-swatch dark-text" style="background:#FFFFFF; border-right: 1px solid var(--border);">
+        <div class="palette-swatch-label">White</div>
+        <div class="palette-swatch-hex">#FFFFFF</div>
+      </div>
+      <div class="palette-swatch light-text" style="background:#18181B">
+        <div class="palette-swatch-label">Dark</div>
+        <div class="palette-swatch-hex">#18181B</div>
+      </div>
+    </div>
+
+    <div class="palette-usage">
+      <div class="palette-usage-item">
+        <div class="palette-usage-dot" style="background:#5A5CF9"></div>
+        <div class="palette-usage-text"><strong>Accent</strong> only for CTAs, dots, active states, and emphasis. Never backgrounds.</div>
+      </div>
+      <div class="palette-usage-item">
+        <div class="palette-usage-dot" style="background:#1A1A2E"></div>
+        <div class="palette-usage-text"><strong>Dark</strong> for primary text, section borders, and dark-mode surfaces.</div>
+      </div>
+      <div class="palette-usage-item">
+        <div class="palette-usage-dot" style="background:#F5F5F7"></div>
+        <div class="palette-usage-text"><strong>Light</strong> for secondary backgrounds, cards, and quiet separation.</div>
+      </div>
+    </div>
+
+    <!-- Accent utility tokens -->
+    <div class="token-row">
+      <div class="token-cell">
+        <div class="token-label">Accent glow</div>
+        <div class="token-swatch" style="background: rgba(90, 92, 249, 0.35);"></div>
+        <div class="token-value">rgba(90, 92, 249, 0.35)</div>
+      </div>
+      <div class="token-cell">
+        <div class="token-label">Accent soft</div>
+        <div class="token-swatch" style="background: rgba(90, 92, 249, 0.06); border: 1px solid var(--border);"></div>
+        <div class="token-value">rgba(90, 92, 249, 0.06)</div>
+      </div>
+      <div class="token-cell">
+        <div class="token-label">Dark surface</div>
+        <div class="token-swatch" style="background: #1D1D1D;"></div>
+        <div class="token-value">#1D1D1D</div>
+      </div>
     </div>
   </div>
 
-  <p>Two purple L-shaped corners framing the subject. The literal visualization of looking through a lens.</p>
 
-  <h3>Construction</h3>
-  <ul class="bullets">
-    <li><strong>Corners:</strong> Top-right + bottom-left</li>
-    <li><strong>Color:</strong> #5A5CF9</li>
-    <li><strong>Arm length:</strong> ~30-40% of container dimension</li>
-    <li><strong>Weight:</strong> 8-10px relative to photo container</li>
-    <li><strong>Angles:</strong> Sharp 90-degree. No curves, no rounded corners</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 03: TYPOGRAPHY                                -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">03</div>
+      <div>
+        <div class="vs-step-sub">Type System &middot; Hierarchy</div>
+        <h2 class="vs-step-title">Typography<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">Two typefaces. One for impact, one for information. Bricolage Grotesque carries the personality at 800 weight. Poppins handles everything else with quiet legibility. No third typeface, ever. Mono-style labels use Poppins with wide letter-spacing.</p>
 
-  <h3>Focus treatment</h3>
-  <p>Everything outside bracket blurred + darkened. Bracket reveals focus within the image. No separate dark background.</p>
+    <div class="type-specimen">
+      <div class="type-specimen-hero">
+        <div class="type-display">Clarity is the strategy<span class="accent">.</span></div>
+        <div class="type-body-sample">Brand Therapy is a guided clarity process. The output is a strategic blueprint the founder returns to for years. Not a logo. Not a deck. A system of meaning that makes every decision easier.</div>
+      </div>
+      <div class="type-details">
+        <div class="type-detail-card">
+          <div class="type-detail-label">Display</div>
+          <div class="type-detail-name" style="font-family:var(--ff-h); font-weight:800;">Bricolage Grotesque</div>
+          <div class="type-detail-weights">Weight: 800 (ExtraBold)<br>Letter-spacing: -0.02em<br>Line-height: 1.05<br>Use: Headlines, titles, logo mark, pull quotes</div>
+        </div>
+        <div class="type-detail-card">
+          <div class="type-detail-label">Body</div>
+          <div class="type-detail-name" style="font-family:var(--ff-b); font-weight:400;">Poppins</div>
+          <div class="type-detail-weights">Weight: 400 (Regular), 600 (SemiBold)<br>Line-height: 1.7<br>Use: Body text, labels, navigation, UI</div>
+        </div>
+      </div>
 
-  <h3>Tiers</h3>
-  <ul class="bullets">
-    <li><strong>Primary:</strong> Full bracket with blur/darken. Hero usage on social, blog thumbnails, email headers</li>
-    <li><strong>Ambient:</strong> Bracket only (no blur), reduced opacity or partial corners. Website accents, email footers</li>
-  </ul>
+      <!-- Type scale -->
+      <div class="type-scale">
+        <div class="type-scale-row">
+          <div class="type-scale-meta">Page title / 104px</div>
+          <div style="font-family: var(--ff-h); font-weight: 800; font-size: 56px; line-height: 0.96; letter-spacing: -0.03em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Look &amp; Feel<span style="color: var(--accent)">.</span></div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-meta">Section / 56px</div>
+          <div style="font-family: var(--ff-h); font-weight: 800; font-size: 40px; line-height: 1.02; letter-spacing: -0.025em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Typography<span style="color: var(--accent)">.</span></div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-meta">Subsection / 30px</div>
+          <div style="font-family: var(--ff-h); font-weight: 800; font-size: 26px; line-height: 1.15; letter-spacing: -0.015em; color: var(--text);">Content Rules</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-meta">Body / 16px</div>
+          <div style="font-family: var(--ff-b); font-weight: 400; font-size: 16px; line-height: 1.75; color: var(--text);">The output is a strategic blueprint the founder returns to for years.</div>
+        </div>
+        <div class="type-scale-row">
+          <div class="type-scale-meta">Label / 11px</div>
+          <div style="font-family: var(--ff-b); font-weight: 600; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);">Section B &middot; Brand Identity</div>
+        </div>
+      </div>
+    </div>
 
-  <h3>Variants</h3>
-  <ul class="bullets">
-    <li><strong>Hero overlay:</strong> 2-corner (top-right + bottom-left). Full blur + darken outside bracket. Hero images, social post primary photos, blog thumbnails</li>
-    <li><strong>Heading lockup:</strong> Top-left only. Asymmetric L: top arm extending right, short left arm down. <code>border-top: 2px solid #5A5CF9; border-left: 2px solid #5A5CF9; width: 28px; height: 10px</code>. Eyebrow + headline lockups</li>
-    <li><strong>Ambient:</strong> Partial or reduced-opacity bracket. No blur. Website accents, email footers, presentation slides</li>
-    <li><strong>Button:</strong> 4-corner. Buttons and interactive elements only</li>
-  </ul>
-
-  <p><strong>Critical:</strong> hero_overlay = 2-corner. Buttons = 4-corner. Do not swap.</p>
-
-  <!-- 03 Colors -->
-  <div class="section-label">
-    <div class="section-number">03</div>
-    <div class="section-head">
-      <div class="kicker">Palette</div>
-      <h2>Colors<span class="dot">.</span></h2>
+    <!-- Content typography rules -->
+    <div class="content-rules">
+      <div class="content-rule-cell">
+        <div class="content-rule-label">Headlines</div>
+        <div style="font-family: var(--ff-h); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 6px;">ALL CAPS</div>
+        <div style="font-family: var(--ff-b); font-size: 12px; color: var(--muted);">Bricolage Grotesque, bold/800</div>
+      </div>
+      <div class="content-rule-cell">
+        <div class="content-rule-label">Supporting</div>
+        <div style="font-family: var(--ff-b); font-weight: 400; font-size: 18px; color: var(--text); margin-bottom: 6px;">Sentence case</div>
+        <div style="font-family: var(--ff-b); font-size: 12px; color: var(--muted);">Poppins, regular/medium</div>
+      </div>
+      <div class="content-rule-cell">
+        <div class="content-rule-label">Purple period</div>
+        <div style="font-family: var(--ff-h); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em;">Clarity<span style="color: var(--accent)">.</span></div>
+        <div style="font-family: var(--ff-b); font-size: 12px; color: var(--muted); margin-top: 6px;">Mandatory at end of every headline hook</div>
+      </div>
+      <div class="content-rule-cell">
+        <div class="content-rule-label">Single word highlight</div>
+        <div style="font-family: var(--ff-h); font-weight: 800; font-size: 22px; color: var(--text); letter-spacing: -0.01em;">One <span style="color: var(--accent);">word</span> per hook</div>
+        <div style="font-family: var(--ff-b); font-size: 12px; color: var(--muted); margin-top: 6px;">Bold, purple, or size shift. Never more than one.</div>
+      </div>
     </div>
   </div>
 
-  <p>Purple is always accent, never background. Exception: carousel slides, presentation decks. No warm colors ever.</p>
 
-  <ul class="bullets">
-    <li><strong>Accent:</strong> #5A5CF9</li>
-    <li><strong>Accent glow:</strong> rgba(90, 92, 249, 0.35)</li>
-    <li><strong>Accent soft:</strong> rgba(90, 92, 249, 0.06)</li>
-    <li><strong>Text:</strong> #1A1A2E</li>
-    <li><strong>Muted:</strong> #8888A0</li>
-    <li><strong>Border:</strong> #E5E7EB</li>
-    <li><strong>Light:</strong> #F5F5F7</li>
-    <li><strong>White:</strong> #FFFFFF</li>
-    <li><strong>Dark:</strong> #18181B</li>
-    <li><strong>Dark surface:</strong> #1D1D1D</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 04: PHOTOGRAPHY                               -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">04</div>
+      <div>
+        <div class="vs-step-sub">Imagery &middot; Direction</div>
+        <h2 class="vs-step-title">Photography<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">Two modes. Personal mode when Florian is in the frame: natural light, warm color, full color inside the bracket. Subject mode for concepts and objects: industrial minimalism, matte textures, studio directional lighting.</p>
 
-  <!-- 04 Typography -->
-  <div class="section-label">
-    <div class="section-number">04</div>
-    <div class="section-head">
-      <div class="kicker">Type system</div>
-      <h2>Typography<span class="dot">.</span></h2>
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="assets/generated/visual-canvas.png" alt="Editorial architecture reference">
+        <div class="photo-card-body">
+          <div class="photo-card-label">Personal mode</div>
+          <div class="photo-card-title">Natural Light, Warm Tones</div>
+          <p class="photo-card-desc">Available light, warm color temperature. Full color inside bracket. Outfits rotate between strategist, speaker, and thinker modes.</p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="assets/generated/visual-color.png" alt="Studio texture reference">
+        <div class="photo-card-body">
+          <div class="photo-card-label">Subject mode</div>
+          <div class="photo-card-title">Industrial Minimalism</div>
+          <p class="photo-card-desc">Matte textures, concrete, marble, stone. Studio directional lighting. Japanese clean minimalism with slight organic warmth.</p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <div style="width: 100%; height: 220px; background: var(--light); display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-family: var(--ff-h); font-weight: 800; font-size: 28px; color: var(--text); margin-bottom: 4px;">~3/4</div>
+            <div style="font-family: var(--ff-b); font-size: 11px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;">Purple accent</div>
+          </div>
+        </div>
+        <div class="photo-card-body">
+          <div class="photo-card-label">Color injection</div>
+          <div class="photo-card-title">Purple as Selective Accent</div>
+          <p class="photo-card-desc">Three out of four images use #5A5CF9 as selective color accent within the subject. One in four stays fully neutral.</p>
+        </div>
+      </div>
+      <div class="photo-card">
+        <div style="width: 100%; height: 220px; background: var(--dark); display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-family: var(--ff-h); font-weight: 800; font-size: 14px; color: var(--white); letter-spacing: -0.01em;">AI-generated</div>
+            <div style="font-family: var(--ff-b); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px;">Both modes</div>
+          </div>
+        </div>
+        <div class="photo-card-body">
+          <div class="photo-card-label">Source</div>
+          <div class="photo-card-title">AI with Consistency</div>
+          <p class="photo-card-desc">AI-generated for both modes. Consistent lighting direction, color grading, surface language. Same photographer feel across all images.</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <h3>Display: Bricolage Grotesque</h3>
-  <ul class="bullets">
-    <li><strong>Weights:</strong> 200, 300, 400, 600, 700, 800</li>
-    <li><strong>Default weight:</strong> 800</li>
-    <li><strong>Letter spacing:</strong> -0.02em</li>
-    <li><strong>Line height:</strong> 1.05</li>
-  </ul>
 
-  <h3>Body: Poppins</h3>
-  <ul class="bullets">
-    <li><strong>Weights:</strong> 300, 400, 500, 600, 700</li>
-    <li><strong>Default weight:</strong> 400</li>
-    <li><strong>Line height:</strong> 1.7</li>
-  </ul>
-
-  <h3>Content rules</h3>
-  <ul class="bullets">
-    <li><strong>Headlines:</strong> Bricolage Grotesque, bold/800, ALL CAPS</li>
-    <li><strong>Supporting:</strong> Poppins, regular/medium, sentence case</li>
-    <li><strong>Purple period:</strong> Mandatory at end of hook on every post. #5A5CF9</li>
-    <li><strong>Single word highlight:</strong> One word per hook emphasized (bold, purple, or size shift). Never more than one</li>
-    <li><strong>Footer attribution:</strong> Poppins, small, all caps, letter-spacing. For #BRAND THERAPY WEEKLY</li>
-  </ul>
-
-  <p><strong>No third typeface.</strong> Two families only: Bricolage Grotesque + Poppins. Mono-style labels use Poppins at letter-spacing 0.16-0.20em. No third family ever.</p>
-
-  <!-- 05 Photography -->
-  <div class="section-label">
-    <div class="section-number">05</div>
-    <div class="section-head">
-      <div class="kicker">Imagery</div>
-      <h2>Photography<span class="dot">.</span></h2>
+  <!-- ============================================ -->
+  <!-- FULL-BLEED IMAGE BREAK                        -->
+  <!-- ============================================ -->
+  <div class="vs-full-image">
+    <img src="assets/generated/visual-spacing.png" alt="Japanese minimal interior with extreme whitespace">
+    <div class="vs-full-image-overlay">
+      <span>Extreme whitespace as design material</span>
     </div>
   </div>
 
-  <p>AI-generated for both modes. Exception: real speaking/stage photos (can be AI-enhanced). Consistent lighting direction, color grading, surface language across all images. Same photographer feel.</p>
-  <p><strong>Editorial default:</strong> Light color overall. Light bases, soft tones, restrained shadows. #5A5CF9 as restrained accent only.</p>
 
-  <h3>Personal mode</h3>
-  <p>When Florian is in the frame. Natural/available light, warm color temperature. Full color inside bracket.</p>
-  <ul class="bullets">
-    <li><strong>Strategist:</strong> Dark button-down shirt, sleeves rolled up, no tie</li>
-    <li><strong>Speaker:</strong> Checkered shirt under vest, sleeves rolled up. No pocket square, no handkerchief</li>
-    <li><strong>Thinker:</strong> Dark crew neck sweater or tee, minimal</li>
-  </ul>
-  <p>Composition: one idea per post. Oversized bold typography + photo inside viewfinder bracket.</p>
+  <!-- ============================================ -->
+  <!-- 05: SPACING SYSTEM                            -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">05</div>
+      <div>
+        <div class="vs-step-sub">Layout &middot; Density</div>
+        <h2 class="vs-step-title">Spacing<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">Generous spacing between sections. Content breathes. Density is the enemy of clarity. Three tokens control the entire layout system.</p>
 
-  <h3>Subject mode</h3>
-  <p>Concept, object, or metaphor. No Florian. Industrial minimalism. Matte textures, concrete/marble/stone, studio directional lighting. Japanese clean minimalism with slight organic warmth.</p>
-  <ul class="bullets">
-    <li><strong>Purple injection:</strong> ~3/4 images use #5A5CF9 as selective color accent within the subject. ~1/4 fully neutral, bracket alone carries brand</li>
-    <li><strong>Primary use:</strong> BTW blog thumbnails, newsletter headers. Adaptable to square for social</li>
-    <li><strong>Safe subjects:</strong> Concrete, glass, metal objects render well in AI. Animals and organic textures need careful prompting</li>
-  </ul>
+    <div class="spacing-visual">
+      <div class="spacing-row">
+        <div class="spacing-label">Container</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 100%;"></div></div>
+        <div class="spacing-value">1200px</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">Section padding</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 75%;"></div></div>
+        <div class="spacing-value">clamp(100px, 12vw, 180px)</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">Gutter</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 27%;"></div></div>
+        <div class="spacing-value">clamp(24px, 5vw, 64px)</div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">Border radius</div>
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 0%;"></div></div>
+        <div class="spacing-value">0 (always)</div>
+      </div>
+    </div>
 
-  <!-- 06 Logo -->
-  <div class="section-label">
-    <div class="section-number">06</div>
-    <div class="section-head">
-      <div class="kicker">Mark</div>
-      <h2>Logo<span class="dot">.</span></h2>
+    <!-- Sharp edges rule -->
+    <div class="edge-banner">
+      <div class="edge-block">
+        <div class="edge-block-num">0</div>
+      </div>
+      <div>
+        <div class="edge-text-title">Sharp edges, always<span style="color: var(--accent)">.</span></div>
+        <div class="edge-text-desc">Zero border-radius everywhere. No rounded corners, no soft shapes. Precision is the aesthetic. This applies to every element: buttons, cards, images, inputs, containers.</div>
+      </div>
     </div>
   </div>
 
-  <ul class="bullets">
-    <li><strong>Mark:</strong> FP.</li>
-    <li><strong>Placement:</strong> Bottom-left</li>
-    <li><strong>Style:</strong> White with purple dot</li>
-    <li><strong>Size:</strong> Small, consistent</li>
-    <li><strong>URL line:</strong> florianp.com bottom-right, subtle sans-serif, ~1 in 3 posts</li>
-  </ul>
 
-  <!-- 07 Spacing & Motion -->
-  <div class="section-label">
-    <div class="section-number">07</div>
-    <div class="section-head">
-      <div class="kicker">System</div>
-      <h2>Spacing and motion<span class="dot">.</span></h2>
+  <!-- ============================================ -->
+  <!-- 06: MOTION                                    -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">06</div>
+      <div>
+        <div class="vs-step-sub">Animation &middot; Curves</div>
+        <h2 class="vs-step-title">Motion<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">Three easing curves. Each serves a specific purpose. Motion is restrained and purposeful. Grain overlay at 0.03 opacity on all surfaces prevents the digital from feeling sterile.</p>
+
+    <div class="motion-grid">
+      <div class="motion-card motion-expo">
+        <div class="motion-curve-label">Primary</div>
+        <div class="motion-curve-name">Ease Out Expo</div>
+        <div class="motion-curve-value">cubic-bezier(0.16, 1, 0.3, 1)</div>
+        <div class="motion-curve-demo"><div class="motion-curve-dot"></div></div>
+      </div>
+      <div class="motion-card motion-quart">
+        <div class="motion-curve-label">Secondary</div>
+        <div class="motion-curve-name">Ease Out Quart</div>
+        <div class="motion-curve-value">cubic-bezier(0.25, 1, 0.5, 1)</div>
+        <div class="motion-curve-demo"><div class="motion-curve-dot"></div></div>
+      </div>
+      <div class="motion-card motion-quint">
+        <div class="motion-curve-label">Dramatic</div>
+        <div class="motion-curve-name">Ease In-Out Quint</div>
+        <div class="motion-curve-value">cubic-bezier(0.86, 0, 0.07, 1)</div>
+        <div class="motion-curve-demo"><div class="motion-curve-dot"></div></div>
+      </div>
+    </div>
+
+    <!-- Grain -->
+    <div class="callout-split">
+      <div class="callout-cell">
+        <div class="callout-label">Grain texture</div>
+        <div class="callout-title">Analog warmth<span style="color: var(--accent)">.</span></div>
+        <p class="callout-desc">Subtle noise overlay on all surfaces. Adds analog warmth to the digital precision. Barely visible, always present.</p>
+      </div>
+      <div class="callout-cell" style="display: flex; align-items: center; justify-content: center; background: var(--light);">
+        <div style="text-align: center;">
+          <div style="font-family: var(--ff-h); font-weight: 800; font-size: 48px; letter-spacing: -0.03em; color: var(--text);">0.03</div>
+          <div style="font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 4px;">Opacity</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <ul class="bullets">
-    <li><strong>Container:</strong> 1200px</li>
-    <li><strong>Gutter clamp:</strong> clamp(24px, 5vw, 64px)</li>
-    <li><strong>Section padding:</strong> clamp(100px, 12vw, 180px)</li>
-    <li><strong>Border radius:</strong> 0. All zero. Sharp edges only</li>
-  </ul>
 
-  <h3>Motion curves</h3>
-  <ul class="bullets">
-    <li><strong>Ease out expo:</strong> cubic-bezier(0.16, 1, 0.3, 1)</li>
-    <li><strong>Ease out quart:</strong> cubic-bezier(0.25, 1, 0.5, 1)</li>
-    <li><strong>Ease in-out quint:</strong> cubic-bezier(0.86, 0, 0.07, 1)</li>
-    <li><strong>Grain opacity:</strong> 0.03</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 07: FORBIDDEN + ANTI-PATTERNS                 -->
+  <!-- ============================================ -->
+  <div class="vs-step">
+    <div class="vs-step-header">
+      <div class="vs-step-num">07</div>
+      <div>
+        <div class="vs-step-sub">Constraints &middot; Boundaries</div>
+        <h2 class="vs-step-title">Forbidden<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vs-step-desc">Non-negotiable constraints. These rules exist to maintain visual coherence across every touchpoint. If something is on this list, it does not appear in FP work. No exceptions.</p>
 
-  <!-- 08 Anti-patterns -->
-  <div class="section-label">
-    <div class="section-number">08</div>
-    <div class="section-head">
-      <div class="kicker">Avoid</div>
-      <h2>Anti-patterns<span class="dot">.</span></h2>
+    <div class="rules-grid">
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Rounded corners</div>
+        <p class="rule-desc">Zero border-radius everywhere. No rounded buttons, no pill shapes, no soft containers. The sharp edge is the signature.</p>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Warm colors</div>
+        <p class="rule-desc">Reds, oranges, yellows are permanently excluded. Cool palette only. This is architectural, not decorative.</p>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Light font weights for display</div>
+        <p class="rule-desc">Display type is always 800 weight. No thin, light, or regular weights for headlines or titles.</p>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Third typeface</div>
+        <p class="rule-desc">Two families only. Bricolage Grotesque and Poppins. Mono-style uses Poppins at wide letter-spacing.</p>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Italic emphasis on display</div>
+        <p class="rule-desc">No italic on headlines or display text. Emphasis uses weight, color, or size shift only.</p>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-icon">Never</div>
+        <div class="rule-name">Dark canvas as default</div>
+        <p class="rule-desc">Light-forward brand. Dark sections are accent only, never the primary surface.</p>
+      </div>
+    </div>
+
+    <!-- Anti-patterns -->
+    <div style="font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--border);">Visual anti-patterns</div>
+
+    <div class="anti-grid" style="margin-bottom: 48px;">
+      <div class="anti-cell">Magazine cover metaphors</div>
+      <div class="anti-cell">Glassmorphism</div>
+      <div class="anti-cell">Prism / 3D refraction</div>
+      <div class="anti-cell">B&W with selective color</div>
+      <div class="anti-cell">Polaroid treatments</div>
+      <div class="anti-cell">Avatar-size photography</div>
+      <div class="anti-cell">Generic stock photography</div>
+      <div class="anti-cell">Rounded pill buttons</div>
+      <div class="anti-cell">Decorative elements</div>
+    </div>
+
+    <!-- Iconography note -->
+    <div class="icon-note">
+      <div class="icon-note-label">Iconography</div>
+      <div class="icon-note-text">Strict minimalism. Thin-line, one or two colors only. No fills. Photography carries emotional weight, not icons.</div>
     </div>
   </div>
 
-  <p>If a design direction matches any of these, it's wrong. Stop and rethink.</p>
-  <ul class="bullets">
-    <li>Magazine cover metaphors</li>
-    <li>Glass panels or glassmorphism as brand concept</li>
-    <li>Prism, crystal, 3D refraction imagery</li>
-    <li>B&W with selective color reveal (old signature, replaced by viewfinder)</li>
-    <li>Polaroid treatments</li>
-    <li>Avatar-size photography</li>
-    <li>Generic stock photography</li>
-    <li>Rounded pill buttons</li>
-    <li>Multiple accent colors</li>
-    <li>Decorative elements for decoration's sake</li>
-    <li>Dark canvas as default (light-forward brand)</li>
-  </ul>
-
-  <p><strong>Iconography:</strong> Strict minimalism. Thin-line, one or two colors only. No fills. Photography carries emotional weight.</p>
 
   <footer class="page-footer">
-    <span><a href="voice.html">&larr; Voice</a></span>
-    <span>Section B &middot; Visual Direction</span>
-    <span><a href="signature.html">Signature &rarr;</a></span>
+    <span><a href="creative-direction.html">&larr; Creative Direction</a></span>
+    <span>Section B &middot; Look &amp; Feel</span>
+    <span><a href="voice.html">Voice &rarr;</a></span>
   </footer>
 
 </main>

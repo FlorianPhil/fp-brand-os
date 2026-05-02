@@ -3,11 +3,788 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Signature &middot; FP Brand OS</title>
+<title>Signature · FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/viewfinder-tokens.css">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ========== SIGNATURE PAGE — REBUILT ========== */
+/* Design approach: premium brand book (like creative-direction.html)
+   Show the system through FINISHED examples, not repeated CSS demos.
+   One hero viewfinder, construction details as spec, finished gallery as proof. */
+
+
+/* ================================================ */
+/* HERO: uses global .vf-hero.vf-no-focus           */
+/* (style.css). No focal rectangle, no blur, just   */
+/* the image with brackets framing OUTSIDE.         */
+/* ================================================ */
+.sig-hero {
+  height: 560px;
+  background: var(--dark);
+  /* Per-instance thickness override: no-focus mode = 3% of image min-dim (560px height).
+     Value pulled from source.yaml viewfinder.spec.thick_hero_no_focus_560px. */
+  --vf-thick: 17px;
+}
+.sig-hero .vf-fg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.sig-hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(transparent 60%, rgba(26,26,46,0.7));
+}
+.sig-hero-text .sig-label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.sig-hero-text h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+.sig-hero-text h2 .dot { color: var(--accent); }
+
+
+/* ================================================ */
+/* DEVICE CARDS (compact TOC grid)                  */
+/* ================================================ */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 0 0 96px;
+}
+@media (max-width: 700px) {
+  .device-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.device-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 32px 24px;
+  background: var(--white);
+}
+.device-card .num {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.device-card h4 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.device-card p {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+
+/* ================================================ */
+/* PROCESS STEPS (matches creative-direction style) */
+/* ================================================ */
+.sig-step {
+  counter-increment: sig-step;
+  margin: 0 0 96px;
+}
+.sig-step-header {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--text);
+  margin-bottom: 40px;
+}
+.sig-step-num {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 12px;
+}
+.sig-step-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.sig-step-sub {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.sig-step-desc {
+  font-family: var(--ff-b);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0;
+}
+
+
+/* ================================================ */
+/* CONSTRUCTION SPEC (clean data table approach)    */
+/* ================================================ */
+.construction-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 40px 0 56px;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+@media (max-width: 880px) {
+  .construction-split { grid-template-columns: 1fr; }
+}
+/* Left: single clean viewfinder demo */
+.construction-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  background: var(--dark);
+}
+.construction-visual .vf-bg,
+.construction-visual .vf-fg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.construction-visual .vf-bg {
+  filter: blur(4px) brightness(0.6);
+  z-index: 1;
+}
+.construction-visual .vf-fg {
+  clip-path: inset(var(--top) var(--right) var(--bottom) var(--left));
+  z-index: 2;
+}
+.construction-visual .vf-frame {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--top) - var(--bw));
+  right: calc(var(--right) - var(--bw));
+  bottom: calc(var(--bottom) - var(--bw));
+  left: calc(var(--left) - var(--bw));
+  --bw: 10px;
+  --al: 33%;
+  --ac: var(--accent);
+  pointer-events: none;
+  padding: 0;
+  margin: 0;
+  /* 2-corner: TR + BL only */
+  background:
+    linear-gradient(var(--ac), var(--ac)) 100% 0 / var(--al) var(--bw) no-repeat,
+    linear-gradient(var(--ac), var(--ac)) 100% 0 / var(--bw) var(--al) no-repeat,
+    linear-gradient(var(--ac), var(--ac)) 0 100% / var(--al) var(--bw) no-repeat,
+    linear-gradient(var(--ac), var(--ac)) 0 100% / var(--bw) var(--al) no-repeat;
+}
+/* Kill global style.css pseudo-element corners on this element */
+.construction-visual .vf-frame::before,
+.construction-visual .vf-frame::after {
+  display: none;
+}
+/* Annotations */
+.construction-visual .annot {
+  position: absolute;
+  z-index: 5;
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.annot-line {
+  width: 24px;
+  height: 1px;
+  background: rgba(255,255,255,0.4);
+}
+.annot-tr { top: 12%; right: 8%; }
+.annot-bl { bottom: 16%; left: 8%; }
+.annot-focal {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px 10px;
+  background: rgba(90, 92, 249, 0.15);
+  border: 1px solid rgba(90, 92, 249, 0.4);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+}
+
+/* Right: spec list */
+.construction-data {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.construction-data h3 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.construction-data h3 .dot { color: var(--accent); }
+.construction-data > p {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.spec-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 12px;
+}
+.spec-row .key {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding-top: 2px;
+}
+.spec-row .val {
+  color: var(--text);
+  line-height: 1.5;
+}
+.spec-row .val code {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  background: var(--border-soft, #f5f5f7);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  letter-spacing: 0.02em;
+}
+
+
+/* ================================================ */
+/* PROOF GALLERY: finished images, not CSS demos    */
+/* ================================================ */
+.proof-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 40px 0 48px;
+}
+@media (max-width: 700px) {
+  .proof-gallery { grid-template-columns: 1fr; }
+}
+.proof-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--dark);
+}
+.proof-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.proof-item.portrait { aspect-ratio: 4 / 5; }
+.proof-item.portrait img { height: 100%; object-fit: cover; }
+.proof-item.landscape { aspect-ratio: 16 / 9; }
+.proof-item.landscape img { height: 100%; object-fit: cover; }
+.proof-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(transparent, rgba(26,26,46,0.85));
+  z-index: 2;
+}
+.proof-caption .mode {
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.proof-caption .title {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+
+
+/* ================================================ */
+/* VARIANT SPEC TABLE                               */
+/* ================================================ */
+.variant-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--text);
+  margin: 32px 0 48px;
+}
+.variant-table th,
+.variant-table td {
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--text);
+  vertical-align: top;
+}
+.variant-table th {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--text);
+}
+.variant-table td code {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  background: var(--border-soft, #f5f5f7);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  letter-spacing: 0.02em;
+}
+
+
+/* ================================================ */
+/* RULES GRID (allowed / forbidden)                 */
+/* ================================================ */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+@media (max-width: 720px) {
+  .rules-grid { grid-template-columns: 1fr; }
+}
+.rule-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px;
+  background: var(--white);
+}
+.rule-cell.forbidden { background: var(--light, #fafafa); }
+.rule-cell .rule-tag {
+  display: inline-block;
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 14px;
+}
+.rule-cell.allowed .rule-tag {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.rule-cell.forbidden .rule-tag {
+  color: var(--muted);
+  border: 1px solid var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.rule-cell h4 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.rule-cell.forbidden h4 { color: var(--muted); }
+.rule-cell p {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+
+/* ================================================ */
+/* LOGO MARK SIZES                                  */
+/* ================================================ */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+@media (max-width: 700px) {
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.logo-cell:last-child { border-right: none; }
+.logo-cell-label {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.logo-cell.dark-bg { background: var(--dark); }
+.logo-cell.dark-bg .logo-cell-label { color: rgba(255,255,255,0.4); }
+.logo-cell.accent-bg { background: var(--accent); }
+.logo-cell.accent-bg .logo-cell-label { color: rgba(255,255,255,0.5); }
+.logo-cell.light-bg { background: var(--light, #fafafa); }
+.logo-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.logo-mark .dot { color: var(--accent); }
+.logo-dark { color: var(--text); }
+.logo-light { color: var(--white); }
+.logo-light .dot { color: var(--white); opacity: 0.5; }
+
+
+/* ================================================ */
+/* TYPE LOCKUP (1-corner, type-only variant)        */
+/* ================================================ */
+.typelock-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 56px;
+  background: var(--white);
+}
+@media (max-width: 600px) {
+  .typelock-grid { grid-template-columns: 1fr; }
+}
+.typelock-cell {
+  padding: 56px 40px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.typelock-cell:nth-child(2n) { border-right: none; }
+.typelock-cell:nth-last-child(-n+2) { border-bottom: none; }
+.typelock-cell .label {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.typelock {
+  position: relative;
+  display: inline-block;
+  padding-top: 14px;
+  padding-left: 4px;
+}
+.typelock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+}
+.typelock::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 10px;
+  background: var(--accent);
+}
+.typelock-eyebrow {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.typelock-headline {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+.typelock-headline .dot { color: var(--accent); }
+
+
+/* ================================================ */
+/* GRAIN DEMO                                       */
+/* ================================================ */
+.grain-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+@media (max-width: 600px) {
+  .grain-demo { grid-template-columns: 1fr; }
+}
+.grain-cell {
+  padding: 56px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--border);
+  min-height: 200px;
+}
+.grain-cell:last-child { border-right: none; }
+.grain-cell .grain-label {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.grain-cell .grain-text {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.grain-cell .grain-text .dot { color: var(--accent); }
+.grain-cell.with-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.grain-cell.no-grain { background: var(--white); }
+
+
+/* ================================================ */
+/* ACCENT PERIOD EXAMPLES                           */
+/* ================================================ */
+.period-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+@media (max-width: 600px) {
+  .period-grid { grid-template-columns: 1fr; }
+}
+.period-cell {
+  padding: 40px 32px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.period-cell:nth-child(2n) { border-right: none; }
+.period-cell .context {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.period-cell h3 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0;
+}
+.period-cell h3 .dot { color: var(--accent); }
+
+
+/* ================================================ */
+/* RECOGNITION TEST (closing blockquote)            */
+/* ================================================ */
+.recognition {
+  margin: 48px 0 64px;
+  padding: 40px 48px;
+  background: var(--dark);
+  position: relative;
+}
+.recognition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent);
+}
+.recognition blockquote {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  margin: 0;
+}
+.recognition .source {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 20px;
+}
+
+/* -- Subject mode process: raw -> finished (moved from application) -- */
+.process-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+@media (max-width: 720px) {
+  .process-row { grid-template-columns: 1fr; }
+  .process-arrow { display: none; }
+}
+.process-cell {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--dark);
+}
+.process-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.process-cell .process-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--text);
+  padding: 6px 12px;
+}
+.process-cell.finished .process-tag {
+  background: var(--accent);
+  color: var(--white);
+}
+.process-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--accent);
+  background: var(--light);
+  height: 100%;
+}
+
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,130 +799,528 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter"></span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter"></span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html">Look &amp; Feel</a>
         <a href="voice.html">Voice</a>
-        <a href="visual.html">Visual Direction</a>
         <a href="signature.html" class="active">Signature</a>
-        <a href="application.html">Application</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter"></span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter"></span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
         <a href="founder-identity.html">Founder Identity</a>
         <a href="background.html">Background</a>
         <a href="imagery.html">Imagery</a>
       </div>
     </details>
-  </div>
+    </div>
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>source.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-05-01</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section B &middot; Brand Identity</span>
+  <span class="eyebrow">Section B &middot; Brand Identity &middot; Signature</span>
   <h1 class="page-title">Signature<span class="dot">.</span></h1>
-  <p class="page-subtitle">The visual recognition system. What makes the brand identifiable at a glance, before any text is read.</p>
+  <p class="page-subtitle">The visual recognition system. Four devices that make FP recognizable at a glance, before anyone reads a word.</p>
 
   <div class="meta-row">
-    <span>Section<strong>B3</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Devices<strong>4</strong></span>
+    <span>Status<strong>CONFIRMED</strong></span>
+    <span>Section<strong>B</strong></span>
+    <span>Promise<span class="accent">Curiosity</span></span>
   </div>
 
-  <!-- 01 Concept -->
-  <div class="section-label">
-    <div class="section-number">01</div>
-    <div class="section-head">
-      <div class="kicker">Foundation</div>
-      <h2>Concept<span class="dot">.</span></h2>
+
+  <!-- ===================== HERO ===================== -->
+  <!-- Conceptual hero with .vf-no-focus mode: brackets sit OUTSIDE
+       the image edges. No blur, no focal rectangle. Pure framing. -->
+  <div class="vf-hero vf-no-focus sig-hero">
+    <img class="vf-fg" src="assets/generated/signature-concept.png" alt="Camera viewfinder in studio with purple lighting">
+    <div class="sig-hero-overlay">
+      <div class="sig-hero-text">
+        <div class="sig-label">Primary Signature Device</div>
+        <h2>Clarity as a visual experience<span class="dot">.</span></h2>
+      </div>
     </div>
   </div>
 
-  <p class="lede">Clarity as a visual experience. Things coming into focus, seen through a new lens.</p>
 
-  <p>The brand promise (Curiosity / Clarity) is expressed through the viewfinder bracket: a literal visualization of looking through a lens, discovering what was already there. The signature system turns the abstract promise into something people can recognize before they read a single word.</p>
-
-  <!-- 02 Devices -->
-  <div class="section-label">
-    <div class="section-number">02</div>
-    <div class="section-head">
-      <div class="kicker">Elements</div>
-      <h2>Signature devices<span class="dot">.</span></h2>
+  <!-- ===================== DEVICE CARDS ===================== -->
+  <div class="device-grid">
+    <div class="device-card">
+      <div class="num">DEVICE 01</div>
+      <h4>Viewfinder Bracket</h4>
+      <p>Two purple L-shaped corners framing the focal area. The primary recognition signal.</p>
+    </div>
+    <div class="device-card">
+      <div class="num">DEVICE 02</div>
+      <h4>Purple Dot</h4>
+      <p>FP. Two letters and an accent-colored period. The mark at every scale.</p>
+    </div>
+    <div class="device-card">
+      <div class="num">DEVICE 03</div>
+      <h4>Grain Texture</h4>
+      <p>Fractal noise at 0.025 opacity. Analog warmth on every digital surface.</p>
+    </div>
+    <div class="device-card">
+      <div class="num">DEVICE 04</div>
+      <h4>Accent Period</h4>
+      <p>Every headline ends with a #5A5CF9 period. The cheapest, most consistent signal.</p>
     </div>
   </div>
 
-  <h3>Viewfinder bracket</h3>
-  <p><strong>Role:</strong> Primary signature device. Carries the entire brand recognition.</p>
-  <p>Two purple L-shaped corners framing the subject. Construction: top-right + bottom-left corners, #5A5CF9, arm length ~30-40% of container, weight 8-10px, sharp 90-degree angles. Everything outside bracket blurred + darkened. Bracket reveals focus within the image.</p>
-  <p>Full construction details in the Visual Direction page.</p>
 
-  <h3>Purple dot</h3>
-  <p><strong>Role:</strong> Accent mark. Appears at end of headlines (FP.) and as the logo mark.</p>
-  <p>Color: #5A5CF9. The simplest expression of the brand. Present on every surface where the logo appears. The dot after FP is as much a brand element as the letters themselves.</p>
+  <!-- ========================================================= -->
+  <!-- 01: THE VIEWFINDER BRACKET                                 -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">01</div>
+      <div>
+        <div class="sig-step-sub">Construction</div>
+        <h2 class="sig-step-title">The Viewfinder Bracket<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">The viewfinder is the literal visualization of looking through a lens and finding focus. Inside the frame: sharp, clear, in focus. Outside: blurred, darkened, unfocused. This is the brand promise made visual.</p>
+  </div>
 
-  <h3>Grain texture</h3>
-  <p><strong>Role:</strong> Subtle warmth layer. 0.03 opacity overlay.</p>
-  <p>Prevents the design from feeling sterile or clinical. Applied as a fixed overlay across all brand surfaces. Adds the "human touch" that separates the brand from pure Swiss minimalism.</p>
-
-  <h3>Purple period</h3>
-  <p><strong>Role:</strong> Every headline ends with an accent-colored period.</p>
-  <p>Cheapest brand signal, most consistent. Applied across social posts, website headlines, email headers, and presentation slides. The period is always #5A5CF9. No exceptions on brand-owned surfaces.</p>
-
-  <!-- 03 Recognition Test -->
-  <div class="section-label">
-    <div class="section-number">03</div>
-    <div class="section-head">
-      <div class="kicker">Benchmark</div>
-      <h2>Recognition test<span class="dot">.</span></h2>
+  <!-- Construction split: visual + spec data -->
+  <!-- MANIFEST: florian-thinker-cafe-coffee.png, focal 52% 55% -->
+  <div class="construction-split" style="--top:30%; --right:28%; --bottom:18%; --left:32%;">
+    <div class="construction-visual">
+      <img class="vf-bg" src="assets/personal-branding/florian-thinker-cafe-coffee.png" alt="">
+      <img class="vf-fg" src="assets/personal-branding/florian-thinker-cafe-coffee.png" alt="Florian in cafe, focal area">
+      <div class="vf-frame"></div>
+      <div class="annot annot-tr"><span class="annot-line"></span>Top-right arm</div>
+      <div class="annot annot-bl">Bottom-left arm<span class="annot-line"></span></div>
+      <div class="annot annot-focal">Focal Rectangle</div>
+    </div>
+    <div class="construction-data">
+      <h3>Construction<span class="dot">.</span></h3>
+      <p>Two stacked image layers. Background carries blur and brightness filter. Foreground is clipped to the focal rectangle. Arms sit OUTSIDE the focal boundary.</p>
+      <div class="spec-list">
+        <div class="spec-row"><span class="key">Corners</span><span class="val">Top-right + bottom-left (2-corner)</span></div>
+        <div class="spec-row"><span class="key">Position</span><span class="val">OUTSIDE the focal rectangle</span></div>
+        <div class="spec-row"><span class="key">Arm length</span><span class="val"><code>33%</code> of adjacent focal dimension</span></div>
+        <div class="spec-row"><span class="key">Weight (personal)</span><span class="val"><code>5%</code> of image min-dimension (28px on a 560px-tall hero)</span></div>
+        <div class="spec-row"><span class="key">Weight (no-focus)</span><span class="val"><code>3%</code> of image min-dimension (17px on a 560px-tall hero)</span></div>
+        <div class="spec-row"><span class="key">Color</span><span class="val"><code>#5A5CF9</code></span></div>
+        <div class="spec-row"><span class="key">Angles</span><span class="val">Sharp 90 degrees. No curves.</span></div>
+      </div>
     </div>
   </div>
 
-  <p class="lede">If someone sees a photo with two purple L-shaped corners framing the subject, blurred outside, sharp inside, they should think FP before reading any text.</p>
 
-  <p>That is the bar. Every visual touchpoint either reinforces this association or dilutes it. There is no neutral. The viewfinder bracket, the purple dot, the grain, and the purple period work together as a system. Remove one, and the recognition weakens. Add a fifth device, and the system gets noisy.</p>
+  <!-- Variant spec table -->
+  <table class="variant-table">
+    <thead>
+      <tr>
+        <th>Variant</th>
+        <th>Corners</th>
+        <th>Outside Treatment</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Portrait</strong></td>
+        <td><code>2-corner</code> TR + BL</td>
+        <td><code>blur(8px) brightness(0.45)</code></td>
+        <td>Florian portraits, hero images, social posts</td>
+      </tr>
+      <tr>
+        <td><strong>Subject</strong></td>
+        <td><code>2-corner</code> TR + BL</td>
+        <td><code>blur(12px) brightness(0.3)</code></td>
+        <td>Concept imagery, blog thumbnails, BTW headers</td>
+      </tr>
+      <tr>
+        <td><strong>Type Lockup</strong></td>
+        <td><code>1-corner</code> TL only</td>
+        <td>None</td>
+        <td>Eyebrow + headline lockups</td>
+      </tr>
+      <tr>
+        <td><strong>Button</strong></td>
+        <td><code>4-corner</code> All</td>
+        <td>None</td>
+        <td>Buttons and interactive elements only</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- Rules grid -->
+  <div class="rules-grid">
+    <div class="rule-cell allowed">
+      <span class="rule-tag">Allowed</span>
+      <h4>2-corner on photos</h4>
+      <p>Top-right + bottom-left. Diagonal tension. Default for every photographed surface.</p>
+    </div>
+    <div class="rule-cell forbidden">
+      <span class="rule-tag">Forbidden</span>
+      <h4>Bracket as image border</h4>
+      <p>The arms never sit on the image edges. They frame the focal rectangle, inside the image.</p>
+    </div>
+    <div class="rule-cell allowed">
+      <span class="rule-tag">Allowed</span>
+      <h4>Data-driven focal points</h4>
+      <p>Coordinates from detect-focal-point.py and MANIFEST.md. Portraits: bridge of nose. Subjects: purple element centroid.</p>
+    </div>
+    <div class="rule-cell forbidden">
+      <span class="rule-tag">Forbidden</span>
+      <h4>Visually estimated placement</h4>
+      <p>Never guess. If detection fails, use the calibrator with MANUAL flag.</p>
+    </div>
+    <div class="rule-cell allowed">
+      <span class="rule-tag">Allowed</span>
+      <h4>Blur + darken outside</h4>
+      <p>Brightness filter on the blurred background layer. Never a separate solid-color overlay.</p>
+    </div>
+    <div class="rule-cell forbidden">
+      <span class="rule-tag">Forbidden</span>
+      <h4>4-corner on photos</h4>
+      <p>Four corners are reserved for buttons and UI elements. Photos always use 2-corner.</p>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 02: PROOF — THE SYSTEM IN ACTION                           -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">02</div>
+      <div>
+        <div class="sig-step-sub">Gallery</div>
+        <h2 class="sig-step-title">The System in Action<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">The viewfinder bracket in production. Social posts, blog thumbnails, and content headers showing the recognition system across portrait and subject modes.</p>
+  </div>
+
+  <!-- Portrait mode: finished social posts -->
+  <div class="proof-gallery">
+    <div class="proof-item portrait">
+      <img src="assets/references/personal-branding/finished/pb-clarity-from-fewer.png" alt="Social post: Clarity comes from fewer options">
+      <div class="proof-caption">
+        <div class="mode">Portrait Mode &middot; Social</div>
+        <div class="title">2-corner bracket on Florian portrait, cafe setting</div>
+      </div>
+    </div>
+    <div class="proof-item portrait">
+      <img src="assets/references/personal-branding/finished/pb-outsource-pov.png" alt="Social post: You can't outsource your point of view">
+      <div class="proof-caption">
+        <div class="mode">Portrait Mode &middot; Social</div>
+        <div class="title">Focal rectangle on face, hook text in Bricolage Grotesque</div>
+      </div>
+    </div>
+    <div class="proof-item portrait">
+      <img src="assets/references/personal-branding/finished/pb-brand-costume.png" alt="Social post: When your brand stops feeling like a costume">
+      <div class="proof-caption">
+        <div class="mode">Portrait Mode &middot; Social</div>
+        <div class="title">FP. logo bottom-left, purple period on hook</div>
+      </div>
+    </div>
+    <div class="proof-item portrait">
+      <img src="assets/references/personal-branding/finished/pb-tweaking-not-building.png" alt="Social post: Tweaking your brand isn't building your brand">
+      <div class="proof-caption">
+        <div class="mode">Portrait Mode &middot; Social</div>
+        <div class="title">Speaker outfit, mic, bracket frames the focal area</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject mode: BTW thumbnails -->
+  <div class="proof-gallery">
+    <div class="proof-item landscape">
+      <img src="assets/references/subject-mode/finished/btw-week-15.png" alt="BTW: Purple wolf among white sheep">
+      <div class="proof-caption">
+        <div class="mode">Subject Mode &middot; Blog</div>
+        <div class="title">Purple injection: wolf is #5A5CF9, stronger blur outside</div>
+      </div>
+    </div>
+    <div class="proof-item landscape">
+      <img src="assets/references/subject-mode/finished/btw-week-17.png" alt="BTW: Wine bottle with YOUR BRAND label">
+      <div class="proof-caption">
+        <div class="mode">Subject Mode &middot; Blog</div>
+        <div class="title">Purple label as focal anchor, concrete surface aesthetic</div>
+      </div>
+    </div>
+    <div class="proof-item landscape">
+      <img src="assets/references/subject-mode/finished/btw-week-18.png" alt="BTW: Fishbowl big fish metaphor">
+      <div class="proof-caption">
+        <div class="mode">Subject Mode &middot; Blog</div>
+        <div class="title">Purple fish centroid detected, bracket frames the concept</div>
+      </div>
+    </div>
+    <div class="proof-item landscape">
+      <img src="assets/references/subject-mode/finished/btw-week-19.png" alt="BTW: Headphones with purple cable">
+      <div class="proof-caption">
+        <div class="mode">Subject Mode &middot; Blog</div>
+        <div class="title">Purple cable as injection point, industrial minimalism</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 03: TYPE LOCKUP                                            -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">03</div>
+      <div>
+        <div class="sig-step-sub">Type Variant</div>
+        <h2 class="sig-step-title">The Type Lockup<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">Single-corner viewfinder for typography. Asymmetric L: 28px top arm, 10px left arm, 2px weight. Replaces a horizontal dash before an eyebrow + headline pair. Type only, never on a photo.</p>
+  </div>
+
+  <div class="typelock-grid">
+    <div class="typelock-cell">
+      <div class="label">Eyebrow + Headline</div>
+      <div class="typelock">
+        <div class="typelock-eyebrow">Section B &middot; Brand Identity</div>
+        <div class="typelock-headline">Clarity is the strategy<span class="dot">.</span></div>
+      </div>
+    </div>
+    <div class="typelock-cell">
+      <div class="label">Page Title Lockup</div>
+      <div class="typelock">
+        <div class="typelock-eyebrow">Brand Therapy</div>
+        <div class="typelock-headline">A guided clarity process<span class="dot">.</span></div>
+      </div>
+    </div>
+    <div class="typelock-cell">
+      <div class="label">Newsletter Header</div>
+      <div class="typelock">
+        <div class="typelock-eyebrow">Issue 12 &middot; This Week</div>
+        <div class="typelock-headline">What I noticed<span class="dot">.</span></div>
+      </div>
+    </div>
+    <div class="typelock-cell">
+      <div class="label">Section Marker</div>
+      <div class="typelock">
+        <div class="typelock-eyebrow">Construction</div>
+        <div class="typelock-headline">Two corners, one focal area<span class="dot">.</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 04: PURPLE DOT / LOGO                                      -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">04</div>
+      <div>
+        <div class="sig-step-sub">Mark</div>
+        <h2 class="sig-step-title">The Purple Dot<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">Two letters and a period. The dot carries the accent color and becomes the brand's most recognizable element at small scale. Works at every size, on every surface.</p>
+  </div>
+
+  <div class="logo-grid">
+    <div class="logo-cell">
+      <div class="logo-mark logo-dark" style="font-size:72px">FP<span class="dot">.</span></div>
+      <div class="logo-cell-label">Primary / 72px</div>
+    </div>
+    <div class="logo-cell dark-bg">
+      <div class="logo-mark logo-light" style="font-size:56px">FP<span class="dot">.</span></div>
+      <div class="logo-cell-label">Dark / 56px</div>
+    </div>
+    <div class="logo-cell accent-bg">
+      <div class="logo-mark logo-light" style="font-size:40px">FP<span class="dot">.</span></div>
+      <div class="logo-cell-label">Accent / 40px</div>
+    </div>
+    <div class="logo-cell light-bg">
+      <div class="logo-mark logo-dark" style="font-size:24px">FP<span class="dot">.</span></div>
+      <div class="logo-cell-label">Compact / 24px</div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 05: GRAIN TEXTURE                                          -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">05</div>
+      <div>
+        <div class="sig-step-sub">Texture</div>
+        <h2 class="sig-step-title">Grain Texture<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">Subtle noise overlay on all surfaces. Fractal noise at 0.025 opacity. The difference between clinical and crafted. Barely visible, always present.</p>
+  </div>
+
+  <div class="grain-demo">
+    <div class="grain-cell with-grain">
+      <div class="grain-label">With Grain &middot; 0.025</div>
+      <div class="grain-text">Clarity is decided<span class="dot">.</span></div>
+    </div>
+    <div class="grain-cell no-grain">
+      <div class="grain-label">Without Grain</div>
+      <div class="grain-text">Clarity is decided<span class="dot">.</span></div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 06: ACCENT PERIOD                                          -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">06</div>
+      <div>
+        <div class="sig-step-sub">Typography Signal</div>
+        <h2 class="sig-step-title">The Accent Period<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">Every headline ends with a #5A5CF9 period. The cheapest brand signal, the most consistent. This page uses it throughout.</p>
+  </div>
+
+  <div class="period-grid">
+    <div class="period-cell">
+      <div class="context">Page Title</div>
+      <h3>Clarity is the strategy<span class="dot">.</span></h3>
+    </div>
+    <div class="period-cell">
+      <div class="context">Section Header</div>
+      <h3>Not broken. Unfocused<span class="dot">.</span></h3>
+    </div>
+    <div class="period-cell">
+      <div class="context">Social Hook</div>
+      <h3>The tweaking loop<span class="dot">.</span></h3>
+    </div>
+    <div class="period-cell">
+      <div class="context">Newsletter</div>
+      <h3>What I noticed this week<span class="dot">.</span></h3>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 07: SUBJECT MODE PROCESS (moved from application)          -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">07</div>
+      <div>
+        <div class="sig-step-sub">Process &middot; Raw to Final</div>
+        <h2 class="sig-step-title">Subject Mode Process<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">Concept image, then viewfinder application. The raw render establishes the metaphor. The bracket treatment turns it into a brand asset. Same operation, different subjects.</p>
+
+    <div class="process-row">
+      <div class="process-cell">
+        <span class="process-tag">Raw</span>
+        <img src="assets/references/subject-mode/raw/subject-purple-wolf-sheep.png" alt="Raw, purple wolf among sheep">
+      </div>
+      <div class="process-arrow">&rarr;</div>
+      <div class="process-cell finished">
+        <span class="process-tag">Finished</span>
+        <img src="assets/references/subject-mode/finished/btw-week-18.png" alt="Finished, Learn to Stand Out, purple wolf among sheep">
+      </div>
+    </div>
+
+    <div class="process-row">
+      <div class="process-cell">
+        <span class="process-tag">Raw</span>
+        <img src="assets/references/subject-mode/raw/subject-fishbowl-big-fish.png" alt="Raw, fishbowl big fish small fish">
+      </div>
+      <div class="process-arrow">&rarr;</div>
+      <div class="process-cell finished">
+        <span class="process-tag">Finished</span>
+        <img src="assets/references/subject-mode/finished/btw-week-17.png" alt="Finished, Be the Big Fish, fishbowl with purple fish">
+      </div>
+    </div>
+
+    <div class="process-row">
+      <div class="process-cell">
+        <span class="process-tag">Raw</span>
+        <img src="assets/references/subject-mode/raw/subject-wine-bottle-your-brand.png" alt="Raw, wine bottle Your Brand label">
+      </div>
+      <div class="process-arrow">&rarr;</div>
+      <div class="process-cell finished">
+        <span class="process-tag">Finished</span>
+        <img src="assets/references/subject-mode/finished/btw-week-15.png" alt="Finished, You don't know what you know, wine bottle Your Brand">
+      </div>
+    </div>
+
+    <div class="process-row">
+      <div class="process-cell">
+        <span class="process-tag">Raw</span>
+        <img src="assets/references/subject-mode/raw/subject-notebook-concrete.png" alt="Raw, notebook on concrete">
+      </div>
+      <div class="process-arrow">&rarr;</div>
+      <div class="process-cell finished">
+        <span class="process-tag">Finished</span>
+        <img src="assets/references/subject-mode/finished/btw-week-14.png" alt="Finished, BTW Week 14 Notebook">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- 08: RECOGNITION TEST                                       -->
+  <!-- ========================================================= -->
+  <div class="sig-step">
+    <div class="sig-step-header">
+      <div class="sig-step-num">08</div>
+      <div>
+        <div class="sig-step-sub">Validation</div>
+        <h2 class="sig-step-title">Recognition Test<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="sig-step-desc">The signature system works when recognition happens before reading.</p>
+  </div>
+
+  <div class="recognition">
+    <blockquote>If someone sees a photo with two purple L-shaped corners framing the subject, blurred outside, sharp inside, they should think FP before reading any text.</blockquote>
+    <div class="source">Recognition Test &middot; Source.yaml</div>
+  </div>
+
 
   <footer class="page-footer">
-    <span><a href="visual.html">&larr; Visual Direction</a></span>
+    <span><a href="voice.html">&larr; Voice</a></span>
     <span>Section B &middot; Signature</span>
-    <span><a href="application.html">Application &rarr;</a></span>
+    <span><a href="application.html">Copy Patterns &rarr;</a></span>
   </footer>
 
 </main>

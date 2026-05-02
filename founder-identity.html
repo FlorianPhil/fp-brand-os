@@ -3,11 +3,535 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Founder Identity &middot; FP Brand OS</title>
+<title>Spectrum Position &middot; FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ========== FOUNDER SPECTRUM WIDGET (adapted from variation-2) ========== */
+
+.spectrum-stack {
+  width: 100%;
+  margin: 32px 0 64px;
+  border-top: 1px solid var(--text);
+}
+
+.sp-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 220px;
+  gap: 24px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.sp-row-num {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+
+.sp-row-title {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+
+.sp-row-tag {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-align: right;
+  opacity: 0.6;
+}
+
+/* Passed rows (positions 1-4 are below FP at position 5) */
+.sp-row.passed .sp-row-num { color: var(--accent); opacity: 0.55; }
+.sp-row.passed .sp-row-title { color: var(--text); opacity: 0.45; }
+
+/* Active row (position 5) */
+.sp-row.active {
+  display: block;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.sp-active-header {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-soft);
+  position: relative;
+  z-index: 1;
+}
+
+.sp-active-header .sp-row-num {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.sp-active-header .sp-row-title {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sp-active-badge {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 14px;
+  border: 1px solid var(--accent);
+}
+
+.sp-active-content {
+  display: grid;
+  grid-template-columns: 56px 1fr 360px;
+  gap: 24px;
+  padding: 36px 0 44px;
+  position: relative;
+  z-index: 1;
+}
+
+.sp-active-sidebar {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.sp-sidebar-line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+  min-height: 100px;
+}
+
+.sp-active-detail {
+  grid-column: 2;
+}
+
+.sp-active-desc {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 28px;
+  max-width: 380px;
+}
+
+.sp-active-desc strong { font-weight: 600; }
+
+.sp-active-insight {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  padding-left: 18px;
+  border-left: 2px solid var(--accent);
+  max-width: 340px;
+}
+
+.sp-active-identity {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sp-identity-visual {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 320px;
+  background: var(--light);
+  padding: 24px 16px 0;
+  overflow: hidden;
+}
+
+.sp-identity-visual::before,
+.sp-identity-visual::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  z-index: 3;
+}
+.sp-identity-visual::before {
+  top: 0; left: 0;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.sp-identity-visual::after {
+  bottom: 0; right: 0;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.sp-identity-person {
+  position: relative;
+  z-index: 2;
+  max-height: 300px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.12));
+}
+
+.sp-identity-logo {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 4;
+  width: 64px;
+  height: 64px;
+  background: var(--white);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sp-identity-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.sp-identity-fusion {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+
+.sp-identity-fusion .equals {
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 6px;
+}
+
+/* Scale row beneath the stack */
+.sp-scale {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 4px;
+}
+
+.sp-scale-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.sp-scale-axis {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  margin: 0 16px;
+  position: relative;
+}
+
+.sp-scale-axis::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+/* ---- Decision panel beneath spectrum ---- */
+.sp-decision {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+.sp-decision-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 26px;
+  background: var(--white);
+}
+
+.sp-decision-num {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.sp-decision-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.sp-decision-desc {
+  font-family: var(--ff-b);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .sp-decision { grid-template-columns: 1fr; }
+  .sp-active-content { grid-template-columns: 1fr; }
+  .sp-active-sidebar { display: none; }
+}
+
+/* ---- Archetype mix grid (matches creative-direction.html) ---- */
+.fi-archetype-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+.fi-archetype-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 28px 28px;
+  text-align: center;
+  background: var(--white);
+}
+.fi-archetype-card.primary { background: var(--accent-soft); }
+.fi-archetype-card img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 0 auto 20px;
+}
+.fi-archetype-pct {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.fi-archetype-card.primary .fi-archetype-pct { color: var(--accent); }
+.fi-archetype-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.fi-archetype-role {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.fi-archetype-essence {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+.fi-archetype-bar {
+  height: 3px;
+  background: var(--border);
+  margin-top: 18px;
+}
+.fi-archetype-bar-fill {
+  height: 100%;
+  background: var(--accent);
+}
+@media (max-width: 720px) {
+  .fi-archetype-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Host/Messenger principle block ---- */
+.fi-principle {
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 48px 44px;
+  margin: 32px 0 56px;
+  position: relative;
+}
+.fi-principle::before,
+.fi-principle::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
+.fi-principle::before {
+  top: -1px; left: -1px;
+  border-top: 3px solid var(--accent);
+  border-left: 3px solid var(--accent);
+}
+.fi-principle::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 3px solid var(--accent);
+  border-right: 3px solid var(--accent);
+}
+.fi-principle-eyebrow {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+h3.fi-principle-statement {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 20px;
+  max-width: 720px;
+}
+.fi-principle-statement .accent { color: var(--accent); }
+.fi-principle-rule {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0;
+}
+.fi-principle-rule strong { color: var(--text); font-weight: 600; }
+
+/* ---- How-it-shows numbered list ---- */
+.fi-rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+.fi-rule-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 26px;
+  background: var(--white);
+}
+.fi-rule-num {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.fi-rule-text {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+.fi-rule-text strong { font-weight: 600; }
+@media (max-width: 720px) {
+  .fi-rules { grid-template-columns: 1fr; }
+}
+
+/* ---- Identity essence callout ---- */
+.fi-essence {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+  background: var(--white);
+}
+.fi-essence-cell {
+  padding: 36px 32px;
+  border-right: 1px solid var(--border);
+}
+.fi-essence-cell:last-child { border-right: none; }
+.fi-essence-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.fi-essence-statement {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.fi-essence-detail {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .fi-essence { grid-template-columns: 1fr; }
+  .fi-essence-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .fi-essence-cell:last-child { border-bottom: none; }
+}
+
+/* ========== FUTURE ROW (vertical stack) ========== */
+.sp-row.future .sp-row-num { opacity: 0.35; }
+.sp-row.future .sp-row-title { opacity: 0.35; }
+.sp-row.future .sp-row-tag { opacity: 0.3; }
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,101 +546,214 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html">Look &amp; Feel</a>
         <a href="voice.html">Voice</a>
-        <a href="visual.html">Visual Direction</a>
         <a href="signature.html">Signature</a>
-        <a href="application.html">Application</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
-        <a href="founder-identity.html" class="active">Founder Identity</a>
+        <a href="founder-identity.html" class="active">Spectrum Position</a>
         <a href="background.html">Background</a>
         <a href="imagery.html">Imagery</a>
       </div>
     </details>
-  </div>
+    </div>
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>source.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-05-01</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section C &middot; Personal Branding</span>
-  <h1 class="page-title">Founder Identity<span class="dot">.</span></h1>
-  <p class="page-subtitle">The identity principle that governs how Florian shows up across every surface.</p>
+  <span class="eyebrow">Section D &middot; Personal Branding &middot; Spectrum Position</span>
+  <h1 class="page-title">Spectrum Position<span class="dot">.</span></h1>
+  <p class="page-subtitle">The first strategic decision of the brand. How visible is the founder. The answer for FP is unambiguous.</p>
 
   <div class="meta-row">
-    <span>Section<strong>C1</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Spectrum<strong>Position 5</strong></span>
+    <span>Status<strong>CONFIRMED</strong></span>
+    <span>Position<span class="accent">5 / 5</span></span>
+    <span>Reading order<strong>Founder First</strong></span>
   </div>
 
-  <!-- 01 Identity Principle -->
+  <!-- ============================================ -->
+  <!-- SPECTRUM WIDGET (HERO)                       -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">01</div>
     <div class="section-head">
-      <div class="kicker">Core rule</div>
+      <div class="kicker">Founder &middot; Brand Spectrum</div>
+      <h2>Where FP sits<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p>Five positions on a continuum from corporate anonymity to founder-as-the-brand. The spectrum determines how the founder shows up across every surface: website, content, pricing, hiring, exit planning. <strong>Test position: 4 (Founder-Forward).</strong> Variation-2 vertical stack from the founder-spectrum component library.</p>
+
+  <div class="spectrum-stack">
+
+    <!-- Row 1: Pure Corporate (passed) -->
+    <div class="sp-row passed">
+      <div class="sp-row-num">01</div>
+      <div class="sp-row-title">Pure Corporate</div>
+      <div class="sp-row-tag">Faceless brand. Logo only.</div>
+    </div>
+
+    <!-- Row 2: Executive Spokesperson (passed) -->
+    <div class="sp-row passed">
+      <div class="sp-row-num">02</div>
+      <div class="sp-row-title">Executive Spokesperson</div>
+      <div class="sp-row-tag">Brand leads, founder supports.</div>
+    </div>
+
+    <!-- Row 3: Balanced Partnership (passed) -->
+    <div class="sp-row passed">
+      <div class="sp-row-num">03</div>
+      <div class="sp-row-title">Balanced Partnership</div>
+      <div class="sp-row-tag">Brand and founder, equal weight.</div>
+    </div>
+
+    <!-- Row 4: Founder-Forward (ACTIVE: Florian's test position) -->
+    <div class="sp-row active">
+      <div class="sp-active-header">
+        <div class="sp-row-num">04</div>
+        <div class="sp-row-title">Founder-Forward</div>
+        <div class="sp-active-badge">FP Position</div>
+      </div>
+      <div class="sp-active-content">
+        <div class="sp-active-sidebar">
+          <div class="sp-sidebar-line"></div>
+        </div>
+        <div class="sp-active-detail">
+          <p class="sp-active-desc">
+            <strong>The founder is the face of the brand.</strong> The company name exists, the visual identity supports, but audiences connect with the person first and the entity second.
+          </p>
+          <div class="sp-active-insight">
+            Content strategy prioritizes the founder's voice. Brand assets amplify rather than replace their presence. Hiring decisions, content production, pricing, and growth bend around the founder's perspective without becoming inseparable from it.
+          </div>
+        </div>
+        <div class="sp-active-identity">
+          <div class="sp-identity-visual">
+            <img class="sp-identity-person" src="assets/personal-branding/florian-cutout.png" alt="Florian Philippe">
+            <div class="sp-identity-logo">
+              <img src="assets/personal-branding/fp-logo.png" alt="FP. Consulting">
+            </div>
+          </div>
+          <div class="sp-identity-fusion">
+            Florian <span class="equals">+</span> FP.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5: Founder-Led (future, not active) -->
+    <div class="sp-row future">
+      <div class="sp-row-num">05</div>
+      <div class="sp-row-title">Founder-Led</div>
+      <div class="sp-row-tag">Founder IS the brand.</div>
+    </div>
+
+  </div>
+
+  <div class="sp-scale">
+    <div class="sp-scale-label">Brand-led</div>
+    <div class="sp-scale-axis"></div>
+    <div class="sp-scale-label">Founder-led</div>
+  </div>
+
+  <!-- Implications panel -->
+  <div class="sp-decision">
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">01</div>
+      <div class="sp-decision-name">Voice</div>
+      <p class="sp-decision-desc">First-person observation, not corporate "we." The reader hears Florian, not a brand committee.</p>
+    </div>
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">02</div>
+      <div class="sp-decision-name">Photography</div>
+      <p class="sp-decision-desc">Florian appears in primary surfaces. The face is the proof. Imagery rules govern how he shows up.</p>
+    </div>
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">03</div>
+      <div class="sp-decision-name">Pricing</div>
+      <p class="sp-decision-desc">Time-bounded by Florian's availability. Capacity is the ceiling. Premium rate reflects scarcity, not features.</p>
+    </div>
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">04</div>
+      <div class="sp-decision-name">Hiring</div>
+      <p class="sp-decision-desc">Operational support, not voice replacement. Nobody else publishes content as FP.</p>
+    </div>
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">05</div>
+      <div class="sp-decision-name">Exit planning</div>
+      <p class="sp-decision-desc">Brand is non-transferable in its current form. Asset is the methodology, not the entity.</p>
+    </div>
+    <div class="sp-decision-cell">
+      <div class="sp-decision-num">06</div>
+      <div class="sp-decision-name">Risk</div>
+      <p class="sp-decision-desc">Single-point dependency. If Florian stops showing up, the brand stops. Acknowledged, not mitigated.</p>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- HOST / MESSENGER PRINCIPLE                   -->
+  <!-- ============================================ -->
+  <div class="section-label">
+    <div class="section-number">02</div>
+    <div class="section-head">
+      <div class="kicker">Identity Principle</div>
       <h2>Host, not star<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <p class="lede">Host, not star. Messenger, not guru.</p>
+  <p>Position 5 is dangerous without a counterweight. Founder-as-brand can tip into founder-as-protagonist fast. The Host/Messenger principle is the antidote: the founder is everywhere, but never in the first chair.</p>
 
-  <p><strong>Spotlight rule:</strong> Never in the first chair. Spotlight comes indirectly through generosity.</p>
-
-  <!-- 02 The Test -->
-  <div class="section-label">
-    <div class="section-number">02</div>
-    <div class="section-head">
-      <div class="kicker">Validation</div>
-      <h2>The dinner party test<span class="dot">.</span></h2>
-    </div>
+  <div class="fi-principle">
+    <div class="fi-principle-eyebrow">Core Rule</div>
+    <h3 class="fi-principle-statement">
+      Host, not star<span class="accent">.</span> Messenger, not guru<span class="accent">.</span>
+    </h3>
+    <p class="fi-principle-rule">
+      <strong>Spotlight rule.</strong> Never in the first chair. Spotlight comes indirectly through generosity. The work is about the people Florian serves, not Florian.
+    </p>
   </div>
 
-  <p class="lede">Read the copy out loud. If Florian would be uncomfortable saying it at a dinner party with strangers and friends both present, rewrite.</p>
+  <h3>The dinner party test</h3>
+  <p>Read the copy out loud. If Florian would be uncomfortable saying it at a dinner party with strangers and friends both present, rewrite. Single quality gate for all founder-facing copy. No exceptions.</p>
 
-  <p>This is the single quality gate for all founder-facing copy. No exceptions. If it sounds like a press release, a LinkedIn bio-hack, or a motivational poster, it fails the test.</p>
-
-  <!-- 03 How It Shows -->
+  <!-- ============================================ -->
+  <!-- HOW IT SHOWS                                 -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">03</div>
     <div class="section-head">
@@ -125,35 +762,78 @@
     </div>
   </div>
 
-  <p>Six rules that translate the Host/Messenger principle into concrete decisions.</p>
+  <p>Six rules that translate the Host/Messenger principle into concrete decisions. Every founder-facing surface gets checked against these.</p>
 
-  <ul class="bullets">
-    <li>The work is about the people Florian serves, not Florian</li>
-    <li>Lead with what he notices about others, not accomplishments</li>
-    <li>No hero framings: no "meet Florian," no "in his own words," no "a letter from me to you"</li>
-    <li>Quotes and testimonials outweigh first-person copy on About-style surfaces</li>
-    <li>When "I" must appear, it serves an observation about someone else or an honest admission</li>
-    <li>Credit influences generously but never put words in their mouths</li>
-  </ul>
+  <div class="fi-rules">
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">01</div>
+      <p class="fi-rule-text">The work is about the people Florian serves, not Florian.</p>
+    </div>
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">02</div>
+      <p class="fi-rule-text">Lead with what he <strong>notices about others</strong>, not accomplishments.</p>
+    </div>
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">03</div>
+      <p class="fi-rule-text">No hero framings. No "meet Florian," no "in his own words," no "a letter from me to you."</p>
+    </div>
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">04</div>
+      <p class="fi-rule-text">Quotes and testimonials <strong>outweigh</strong> first-person copy on About-style surfaces.</p>
+    </div>
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">05</div>
+      <p class="fi-rule-text">When "I" must appear, it serves an observation about someone else or an honest admission.</p>
+    </div>
+    <div class="fi-rule-cell">
+      <div class="fi-rule-num">06</div>
+      <p class="fi-rule-text">Credit influences generously, but never put words in their mouths.</p>
+    </div>
+  </div>
 
-  <!-- 04 Archetype Mix -->
+  <!-- ============================================ -->
+  <!-- ARCHETYPE MIX                                -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">04</div>
     <div class="section-head">
-      <div class="kicker">Character</div>
+      <div class="kicker">Character &middot; DNA</div>
       <h2>Archetype mix<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <p><strong>Innocent Creator.</strong> Optimism + craft. Witty, elegant, real, confident, nuanced.</p>
+  <p>Three archetypes, weighted. Optimism plus craft plus warmth. The Innocent/Creator pairing is the engine. Friend keeps it conversational instead of clinical.</p>
 
-  <ul class="bullets">
-    <li><strong>Innocent (50%):</strong> Optimism, honesty, belief that clarity is simple when you stop overcomplicating it</li>
-    <li><strong>Creator (30%):</strong> Drive to build something meaningful and beautiful</li>
-    <li><strong>Friend (20%):</strong> Conversation, not lectures. Perspective shifts, not lessons</li>
-  </ul>
+  <div class="fi-archetype-grid">
+    <div class="fi-archetype-card primary">
+      <img src="assets/archetypes/no-background/Innocent.png" alt="Innocent archetype">
+      <div class="fi-archetype-pct">50%</div>
+      <div class="fi-archetype-name">Innocent</div>
+      <div class="fi-archetype-role">Primary</div>
+      <p class="fi-archetype-essence">Optimism, honesty, belief that clarity is simple when you stop overcomplicating it.</p>
+      <div class="fi-archetype-bar"><div class="fi-archetype-bar-fill" style="width:100%"></div></div>
+    </div>
+    <div class="fi-archetype-card">
+      <img src="assets/archetypes/no-background/Creator.png" alt="Creator archetype">
+      <div class="fi-archetype-pct">30%</div>
+      <div class="fi-archetype-name">Creator</div>
+      <div class="fi-archetype-role">Secondary</div>
+      <p class="fi-archetype-essence">Drive to build something meaningful and beautiful. Craft as a posture, not a marketing word.</p>
+      <div class="fi-archetype-bar"><div class="fi-archetype-bar-fill" style="width:60%"></div></div>
+    </div>
+    <div class="fi-archetype-card">
+      <img src="assets/archetypes/no-background/Friend.png" alt="Friend archetype">
+      <div class="fi-archetype-pct">20%</div>
+      <div class="fi-archetype-name">Friend</div>
+      <div class="fi-archetype-role">Tertiary</div>
+      <p class="fi-archetype-essence">Conversation, not lectures. Perspective shifts, not lessons. Peer voice always.</p>
+      <div class="fi-archetype-bar"><div class="fi-archetype-bar-fill" style="width:40%"></div></div>
+    </div>
+  </div>
 
-  <!-- 05 Who He Is -->
+  <!-- ============================================ -->
+  <!-- WHO HE IS                                    -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">05</div>
     <div class="section-head">
@@ -164,22 +844,22 @@
 
   <p class="lede">Cosmopolitan, grounded, nuanced. European refinement (French) with Californian lightness.</p>
 
-  <p>The person at dinner who makes you think and laugh in the same sentence. Shares what he noticed. French words welcome when they capture something English can't.</p>
-
-  <!-- 06 Background Summary -->
-  <div class="section-label">
-    <div class="section-number">06</div>
-    <div class="section-head">
-      <div class="kicker">Context</div>
-      <h2>Background<span class="dot">.</span></h2>
+  <div class="fi-essence">
+    <div class="fi-essence-cell">
+      <div class="fi-essence-label">Energy</div>
+      <h4 class="fi-essence-statement">The person at dinner who makes you think and laugh in the same sentence.</h4>
+      <p class="fi-essence-detail">Shares what he noticed. Curious before prescriptive. Comfortable with a long pause if the question deserves one.</p>
+    </div>
+    <div class="fi-essence-cell">
+      <div class="fi-essence-label">Texture</div>
+      <h4 class="fi-essence-statement">French words welcome when they capture something English can't.</h4>
+      <p class="fi-essence-detail">The French accent and the occasional borrowed word are texture, not performance. Neither leaned into nor scrubbed out.</p>
     </div>
   </div>
 
-  <p>10+ years branding across 6 countries. Founded 3ANGLES (Taiwan, 25+ clients incl. Acer). CMO in cannabis. Brand Director at 4th Sector Innovations. Mentored by Fabian Geyrhalter.</p>
-
   <footer class="page-footer">
     <span><a href="application.html">&larr; Application</a></span>
-    <span>Section C &middot; Founder Identity</span>
+    <span>Section D &middot; Spectrum Position</span>
     <span><a href="background.html">Background &rarr;</a></span>
   </footer>
 

@@ -8,6 +8,61 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+.mode-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); margin: 32px 0 56px; background: var(--white); }
+.mode-intro-cell { padding: 36px 32px; border-right: 1px solid var(--border); }
+.mode-intro-cell:last-child { border-right: none; }
+.mode-intro-cell.dark { background: var(--text); color: var(--white); border-right: none; }
+.mode-intro-label { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.mode-intro-name { font-family: var(--ff-h); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--text); margin-bottom: 12px; line-height: 1.05; }
+.mode-intro-cell.dark .mode-intro-name { color: var(--white); }
+.mode-intro-desc { font-family: var(--ff-b); font-size: 13.5px; line-height: 1.65; color: var(--muted); margin: 0; }
+.mode-intro-cell.dark .mode-intro-desc { color: rgba(255,255,255,0.6); }
+@media (max-width: 700px) { .mode-intro { grid-template-columns: 1fr; } .mode-intro-cell { border-right: none; border-bottom: 1px solid var(--border); } }
+
+.portrait-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0 56px; }
+@media (max-width: 900px) { .portrait-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .portrait-grid { grid-template-columns: 1fr; } }
+.portrait-card { background: var(--white); border: 1px solid var(--border); display: flex; flex-direction: column; }
+.portrait-img-wrap { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--light, #F5F5F7); }
+.portrait-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-meta { padding: 18px 20px 22px; border-top: 1px solid var(--border); }
+.portrait-mode { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.portrait-name { font-family: var(--ff-h); font-weight: 700; font-size: 15px; letter-spacing: -0.005em; color: var(--text); margin-bottom: 4px; line-height: 1.2; }
+.portrait-context { font-family: var(--ff-b); font-size: 12px; font-weight: 300; line-height: 1.5; color: var(--muted); margin: 0; }
+
+.outfit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--text); border-left: 1px solid var(--border); margin: 32px 0 56px; }
+@media (max-width: 800px) { .outfit-grid { grid-template-columns: 1fr; } }
+.outfit-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 28px 24px; background: var(--white); }
+.outfit-num { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 16px; }
+.outfit-name { font-family: var(--ff-h); font-weight: 800; font-size: 22px; letter-spacing: -0.015em; color: var(--text); margin-bottom: 10px; }
+.outfit-desc { font-family: var(--ff-b); font-size: 13px; line-height: 1.6; color: var(--muted); margin: 0; }
+
+.rules-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0 56px; }
+@media (max-width: 720px) { .rules-pair { grid-template-columns: 1fr; } }
+.rules-block { border: 1px solid var(--border); background: var(--white); }
+.rules-block.do { border-color: var(--accent); }
+.rules-block-head { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 10px; }
+.rules-block.do .rules-block-head { background: rgba(90,92,249,0.06); border-bottom-color: var(--accent); }
+.rules-block-icon { font-family: var(--ff-b); font-size: 16px; font-weight: 700; color: var(--accent); }
+.rules-block-title { font-family: var(--ff-h); font-weight: 800; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+.rules-list { list-style: none; margin: 0; padding: 0; }
+.rules-list li { padding: 12px 22px; border-bottom: 1px solid var(--border); font-family: var(--ff-b); font-size: 13px; line-height: 1.55; color: var(--text); }
+.rules-list li:last-child { border-bottom: none; }
+
+.settings-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--text); border-left: 1px solid var(--border); margin: 32px 0 56px; }
+@media (max-width: 720px) { .settings-strip { grid-template-columns: 1fr; } }
+.setting { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 26px 24px; background: var(--white); }
+.setting-num { font-family: var(--ff-h); font-weight: 800; font-size: 28px; color: var(--accent); opacity: 0.18; line-height: 1; margin-bottom: 14px; }
+.setting-name { font-family: var(--ff-h); font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 6px; }
+.setting-desc { font-family: var(--ff-b); font-size: 12.5px; line-height: 1.6; color: var(--muted); margin: 0; }
+
+.presence-list { list-style: none; padding: 0; margin: 32px 0 56px; border-top: 1px solid var(--text); }
+.presence-list li { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.presence-key { font-family: var(--ff-b); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.presence-val { font-family: var(--ff-b); font-size: 14px; line-height: 1.65; color: var(--text); margin: 0; max-width: 640px; }
+@media (max-width: 700px) { .presence-list li { grid-template-columns: 1fr; gap: 6px; } }
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,50 +77,43 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html">Look &amp; Feel</a>
         <a href="voice.html">Voice</a>
-        <a href="visual.html">Visual Direction</a>
         <a href="signature.html">Signature</a>
-        <a href="application.html">Application</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
-        <a href="founder-identity.html">Founder Identity</a>
+        <a href="founder-identity.html">Spectrum Position</a>
         <a href="background.html">Background</a>
         <a href="imagery.html" class="active">Imagery</a>
       </div>
@@ -74,117 +122,239 @@
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>source.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-05-01</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section C &middot; Personal Branding</span>
+  <span class="eyebrow">Section D &middot; Personal Branding</span>
   <h1 class="page-title">Imagery<span class="dot">.</span></h1>
-  <p class="page-subtitle">The visual and physical presence rules that govern how Florian appears in photos, on stage, and in deliverables.</p>
+  <p class="page-subtitle">How the founder shows up in the frame. Three modes, one aesthetic, no posing.</p>
 
   <div class="meta-row">
-    <span>Section<strong>C3</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Source<strong>Visual Identity + Brand Voice</strong></span>
+    <span>Modes<strong>3</strong></span>
+    <span>Style<strong>Editorial / Observed</strong></span>
+    <span>Lighting<strong>Natural, available</strong></span>
   </div>
 
-  <!-- 01 Presence -->
   <div class="section-label">
     <div class="section-number">01</div>
     <div class="section-head">
-      <div class="kicker">Energy</div>
-      <h2>Presence<span class="dot">.</span></h2>
+      <div class="kicker">Photographic stance</div>
+      <h2>Editorial, not staged<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <ul class="bullets">
-    <li><strong>Energy:</strong> The person at dinner who makes you think and laugh in the same sentence</li>
-    <li><strong>Posture:</strong> Relaxed, open, assured. Never performative or staged</li>
-    <li><strong>Eye contact:</strong> Direct but not intense. Observes more than locks on</li>
-    <li><strong>Listening style:</strong> Notes patterns. Asks the question that reframes the conversation</li>
-  </ul>
+  <p class="lede">Portraits are observed, not posed. The point is to show a person who notices things, not a personality being performed for the camera.</p>
 
-  <!-- 02 Wardrobe -->
+  <div class="mode-intro">
+    <div class="mode-intro-cell">
+      <div class="mode-intro-label">The mode</div>
+      <div class="mode-intro-name">Editorial. Natural light. Warm color temperature.</div>
+      <p class="mode-intro-desc">Portraits look like they were caught between sentences. The camera arrives during the work, not before it. Available light from a window, a cafe, an atrium. Color stays warm without going amber.</p>
+    </div>
+    <div class="mode-intro-cell dark">
+      <div class="mode-intro-label">Hard nos</div>
+      <div class="mode-intro-name">No posing. No power postures. No gradient backdrops.</div>
+      <p class="mode-intro-desc">If the photo could double as a corporate headshot, it has already failed. Crossed arms, the meaningful look away, the staged laugh, the hand on chin. None of it. The work is the subject.</p>
+    </div>
+  </div>
+
   <div class="section-label">
     <div class="section-number">02</div>
     <div class="section-head">
-      <div class="kicker">Dress code</div>
-      <h2>Wardrobe<span class="dot">.</span></h2>
+      <div class="kicker">The library</div>
+      <h2>Approved portraits<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <h3>Palette</h3>
-  <p>Navy, charcoal, black, white. Clean neutrals only.</p>
+  <p>Seven approved portraits across the three outfit presets. Each tagged by mode and context for downstream use in email headers, social posts, About surfaces, and speaking decks.</p>
 
-  <h3>Silhouettes</h3>
-  <p>Clean, unfussy. European tailoring without the stiffness.</p>
+  <div class="portrait-grid">
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-strategist-home-office.png" alt="Florian, Strategist, home office"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Strategist</div>
+        <div class="portrait-name">Home office, daylight</div>
+        <p class="portrait-context">Dark button-down, sleeves rolled. Natural side light. Default for About-page hero and proposal covers.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-strategist-night-office.png" alt="Florian, Strategist, night office"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Strategist</div>
+        <div class="portrait-name">Night office, working</div>
+        <p class="portrait-context">Same outfit, evening light. Used when the post is about late thinking, founders working past polite hours, the unglamorous part of clarity.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-thinker-laptop-casual.png" alt="Florian, Thinker, laptop"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Thinker</div>
+        <div class="portrait-name">Laptop, casual</div>
+        <p class="portrait-context">Dark crew neck. Working frame, low pose. For BTW headers and LinkedIn long-form where the post is reflective.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-thinker-desk-sweater.png" alt="Florian, Thinker, desk sweater"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Thinker</div>
+        <div class="portrait-name">Desk, sweater</div>
+        <p class="portrait-context">Quiet. Warm. The look of somebody mid-question, not mid-pitch. Pairs with observation-mode posts.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-thinker-cafe-coffee.png" alt="Florian, Thinker, cafe"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Thinker</div>
+        <div class="portrait-name">Cafe, coffee</div>
+        <p class="portrait-context">Out of the office. Public space, single coffee cup, no staging. Used when the content is about noticing something in real life.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-speaker-vest-meeting.png" alt="Florian, Speaker, vest, meeting"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Speaker</div>
+        <div class="portrait-name">Vest, in meeting</div>
+        <p class="portrait-context">Checkered shirt under vest. Sleeves rolled. Used for keynote announcements, workshop landing pages, and brand-led case studies.</p>
+      </div>
+    </div>
+    <div class="portrait-card">
+      <div class="portrait-img-wrap"><img src="../assets/references/personal-branding/portraits/florian-speaker-mic-stage.png" alt="Florian, Speaker, on stage with mic"></div>
+      <div class="portrait-meta">
+        <div class="portrait-mode">Speaker</div>
+        <div class="portrait-name">Stage, with mic</div>
+        <p class="portrait-context">Live. Real audience. Reserved for credibility moments: speaking page, longer bios, testimonials lockup.</p>
+      </div>
+    </div>
+  </div>
 
-  <h3>Signature pieces</h3>
-  <ul class="bullets">
-    <li><strong>Strategist:</strong> Dark button-down, sleeves rolled up</li>
-    <li><strong>Speaker:</strong> Checkered shirt under vest, sleeves rolled up</li>
-    <li><strong>Thinker:</strong> Dark crew neck or tee</li>
-  </ul>
-
-  <h3>Forbidden</h3>
-  <ul class="bullets">
-    <li>Suits that look like they're wearing you</li>
-    <li>Pocket squares, handkerchiefs, ties</li>
-    <li>Logo-forward clothing</li>
-    <li>Hustle-bro accessories</li>
-  </ul>
-
-  <!-- 03 Aesthetic -->
   <div class="section-label">
     <div class="section-number">03</div>
     <div class="section-head">
-      <div class="kicker">Photography</div>
-      <h2>Aesthetic<span class="dot">.</span></h2>
+      <div class="kicker">Outfit system</div>
+      <h2>Three presets<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <h3>Portrait style</h3>
-  <p>Editorial. Natural/available light. Warm color temperature. Not posed, not candid. Observed.</p>
+  <p>Three locked outfits cover every context the brand asks for. Mixing or improvising new looks dilutes recognition.</p>
 
-  <h3>Settings</h3>
-  <ul class="bullets">
-    <li>Industrial minimal spaces (concrete, glass, matte surfaces)</li>
-    <li>Atrium or window light</li>
-    <li>Working spaces (desk, whiteboard, notebook)</li>
-  </ul>
+  <div class="outfit-grid">
+    <div class="outfit-card">
+      <div class="outfit-num">01 / Strategist</div>
+      <div class="outfit-name">Dark button-down. Sleeves rolled.</div>
+      <p class="outfit-desc">No tie. No jacket. Worn for advisory work, founder calls, About-page surfaces. The default.</p>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-num">02 / Speaker</div>
+      <div class="outfit-name">Checkered shirt under vest. Sleeves rolled.</div>
+      <p class="outfit-desc">Business casual with European edge. No pocket square, no handkerchief, no tie. Reserved for stage and brand-led work.</p>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-num">03 / Thinker</div>
+      <div class="outfit-name">Dark crew neck or tee. Minimal.</div>
+      <p class="outfit-desc">For reflective content, long-form, the quieter posts. The look of a person not trying to convince anyone of anything.</p>
+    </div>
+  </div>
 
-  <h3>No-go list</h3>
-  <ul class="bullets">
-    <li>Staged power poses</li>
-    <li>Arms crossed</li>
-    <li>Looking away meaningfully</li>
-    <li>Gradient backdrops</li>
-    <li>Over-styled environments</li>
-  </ul>
-
-  <!-- 04 Presentation -->
   <div class="section-label">
     <div class="section-number">04</div>
     <div class="section-head">
-      <div class="kicker">Delivery</div>
-      <h2>Presentation<span class="dot">.</span></h2>
+      <div class="kicker">Aesthetic rules</div>
+      <h2>What's allowed, what's not<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <h3>Deliverable format</h3>
-  <p>Sparse slides. Heavy whitespace. One idea per slide. Bricolage Grotesque headlines.</p>
+  <div class="rules-pair">
+    <div class="rules-block do">
+      <div class="rules-block-head">
+        <span class="rules-block-icon">+</span>
+        <span class="rules-block-title">Allowed</span>
+      </div>
+      <ul class="rules-list">
+        <li>Editorial framing. Subject between actions, not in front of a camera.</li>
+        <li>Natural and available light. Window, atrium, cafe, late office.</li>
+        <li>Warm color temperature. Cool tones reserved for subject mode.</li>
+        <li>Industrial minimal spaces. Concrete, glass, matte surfaces.</li>
+        <li>Working frames. Desk, whiteboard, notebook, laptop, stage.</li>
+        <li>Hands doing something. Notes, coffee, mic, pointing at a slide.</li>
+      </ul>
+    </div>
+    <div class="rules-block">
+      <div class="rules-block-head">
+        <span class="rules-block-icon" style="color:var(--muted)">&times;</span>
+        <span class="rules-block-title">Not allowed</span>
+      </div>
+      <ul class="rules-list">
+        <li>Staged power poses. Crossed arms, hand on chin, deep stare.</li>
+        <li>Looking away meaningfully into the middle distance.</li>
+        <li>Gradient backdrops. Studio sweeps. Pure white cyc.</li>
+        <li>Over-styled environments. Curated bookshelves, plant walls.</li>
+        <li>Logo-forward clothing. Pocket squares, handkerchiefs, ties.</li>
+        <li>Hustle accessories. Statement watches, chains, conspicuous brands.</li>
+      </ul>
+    </div>
+  </div>
 
-  <h3>Energy in presenting</h3>
-  <p>Conversational keynote energy. Thinks out loud with structure. Checks in with "right?" as invitation.</p>
+  <div class="section-label">
+    <div class="section-number">05</div>
+    <div class="section-head">
+      <div class="kicker">Settings</div>
+      <h2>Where the camera goes<span class="dot">.</span></h2>
+    </div>
+  </div>
 
-  <h3>Closing style</h3>
-  <p>Ends with a perspective shift, not a call to action.</p>
+  <div class="settings-strip">
+    <div class="setting">
+      <div class="setting-num">01</div>
+      <div class="setting-name">Industrial minimal interior</div>
+      <p class="setting-desc">Concrete, glass, matte surfaces. The space disappears into the subject. Cold tones, sharp shadows.</p>
+    </div>
+    <div class="setting">
+      <div class="setting-num">02</div>
+      <div class="setting-name">Atrium or window light</div>
+      <p class="setting-desc">Natural side light, warm late-afternoon temperature. Default for portraits at home or in private offices.</p>
+    </div>
+    <div class="setting">
+      <div class="setting-num">03</div>
+      <div class="setting-name">Working space</div>
+      <p class="setting-desc">Desk, whiteboard, notebook. Visible work. The frame says he was already doing the thing when the camera arrived.</p>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <div class="section-number">06</div>
+    <div class="section-head">
+      <div class="kicker">Presence</div>
+      <h2>How the body reads<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p>The portrait works when these read true. They are not directions for the day of the shoot. They are the test for whether a frame is keepable.</p>
+
+  <ul class="presence-list">
+    <li>
+      <span class="presence-key">Energy</span>
+      <p class="presence-val">The person at dinner who makes you think and laugh in the same sentence. Quiet, not low-energy. Curious, not eager.</p>
+    </li>
+    <li>
+      <span class="presence-key">Posture</span>
+      <p class="presence-val">Relaxed, open, assured. Never performative or staged. If a stranger walked through the frame, the body would not change.</p>
+    </li>
+    <li>
+      <span class="presence-key">Eye contact</span>
+      <p class="presence-val">Direct but not intense. Observes more than locks on. The camera is allowed in, not commanded.</p>
+    </li>
+    <li>
+      <span class="presence-key">Expression</span>
+      <p class="presence-val">Mid-thought. Half-smile permitted, not demanded. The look of somebody listening, not the look of somebody waiting to speak.</p>
+    </li>
+  </ul>
 
   <footer class="page-footer">
     <span><a href="background.html">&larr; Background</a></span>
-    <span>Section C &middot; Imagery</span>
+    <span>Section D &middot; Imagery</span>
     <span><a href="index.html">Home &rarr;</a></span>
   </footer>
 

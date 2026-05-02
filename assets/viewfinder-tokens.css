@@ -1,0 +1,14 @@
+/* Generated from source.yaml viewfinder.spec. DO NOT EDIT. Run build.py. */
+
+:root {
+  --vf-arm-pct: 33%;
+  --vf-thick-pct-personal: 5%;
+  --vf-thick-pct-no-focus: 3%;
+  --vf-thick: 6px;
+  --vf-thick-construction: 10px;
+  --vf-color: #5A5CF9;
+  --vf-blur-portrait: 8px;
+  --vf-bright-portrait: 0.45;
+  --vf-blur-subject: 12px;
+  --vf-bright-subject: 0.3;
+}

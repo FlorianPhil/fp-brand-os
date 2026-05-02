@@ -3,11 +3,533 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Voice &middot; FP Brand OS</title>
+<title>Voice · FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ========== VOICE — PAGE-SPECIFIC ========== */
+
+/* -- Section steps -- */
+.vc-step {
+  margin: 0 0 96px;
+}
+.vc-step-header {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--text);
+  margin-bottom: 40px;
+}
+.vc-step-num {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 12px;
+}
+.vc-step-title {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+.vc-step-sub {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.vc-step-desc {
+  font-family: var(--ff-b);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* -- Full-bleed image -- */
+.vc-full-image {
+  margin: 64px 0;
+  position: relative;
+}
+.vc-full-image img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.vc-full-image-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 40px;
+  background: linear-gradient(transparent, rgba(26,26,46,0.7));
+}
+.vc-full-image-overlay span {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* -- Voice trait comparison cards -- */
+.trait-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+.trait-card {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.trait-card:last-child { border-bottom: none; }
+@media (max-width: 800px) {
+  .trait-card { grid-template-columns: 1fr; }
+}
+.trait-name-cell {
+  padding: 28px 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+.trait-label {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.trait-def {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.trait-example {
+  padding: 28px 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.trait-example:last-child { border-right: none; }
+.trait-example-label {
+  font-family: var(--ff-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.trait-example-label.on { color: var(--accent); }
+.trait-example-label.off { color: #B8423D; }
+.trait-example-text {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* -- Vocabulary swap table -- */
+.vocab-table {
+  width: 100%;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+  border-collapse: collapse;
+}
+.vocab-table th {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.vocab-table td {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--text);
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+  vertical-align: top;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-use {
+  color: var(--accent);
+  font-weight: 600;
+}
+.vocab-not {
+  color: #B8423D;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-color: rgba(184, 66, 61, 0.3);
+}
+.vocab-why {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* -- Language territory tags -- */
+.territory-section {
+  margin: 32px 0 48px;
+}
+.territory-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.territory-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.tag-preferred {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  color: var(--white);
+  background: var(--accent);
+}
+.tag-careful {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--white);
+}
+
+/* -- On-voice quote blocks -- */
+.voice-quote {
+  border-left: 3px solid var(--accent);
+  padding: 20px 0 20px 28px;
+  margin: 0 0 32px;
+  max-width: 680px;
+}
+.voice-quote-text {
+  font-family: var(--ff-h);
+  font-weight: 400;
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.voice-quote-tag {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.voice-quote-source {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+/* -- Off-voice examples -- */
+.off-voice {
+  border-left: 3px solid #B8423D;
+  padding: 20px 0 20px 28px;
+  margin: 0 0 32px;
+  max-width: 680px;
+  background: rgba(184, 66, 61, 0.03);
+}
+.off-voice-text {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.off-voice-why {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: #B8423D;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* -- Structural patterns -- */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .pattern-grid { grid-template-columns: 1fr; }
+}
+.pattern-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+  background: var(--white);
+}
+.pattern-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.pattern-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.pattern-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* -- Content type adaptations -- */
+.channel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .channel-grid { grid-template-columns: 1fr; }
+}
+.channel-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  padding: 0;
+}
+.channel-card:nth-child(2n) { border-right: none; }
+.channel-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.channel-tag {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.channel-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.channel-body {
+  padding: 20px 28px 28px;
+}
+.channel-meta {
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.channel-meta strong {
+  font-weight: 600;
+  color: var(--text);
+}
+.channel-opens {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.channel-opens span {
+  display: block;
+  padding: 4px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.channel-opens span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* -- Principles list -- */
+.principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .principles-grid { grid-template-columns: 1fr; }
+}
+.principle-cell {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.principle-cell:nth-child(2n) { border-right: none; }
+.principle-num {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 28px;
+}
+
+/* -- Quality gate / anti-patterns -- */
+.gate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .gate-grid { grid-template-columns: 1fr; }
+}
+.gate-cell {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.gate-check {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.gate-x {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #B8423D;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+/* -- Style rules row -- */
+.style-rules {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 48px;
+}
+@media (max-width: 700px) {
+  .style-rules { grid-template-columns: repeat(2, 1fr); }
+}
+.style-rule-cell {
+  padding: 20px 20px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.style-rule-cell:last-child { border-right: none; }
+.style-rule-name {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.style-rule-value {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.style-rule-note {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,338 +544,684 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html">Look &amp; Feel</a>
         <a href="voice.html" class="active">Voice</a>
-        <a href="visual.html">Visual Direction</a>
         <a href="signature.html">Signature</a>
-        <a href="application.html">Application</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
         <a href="founder-identity.html">Founder Identity</a>
         <a href="background.html">Background</a>
         <a href="imagery.html">Imagery</a>
       </div>
     </details>
-  </div>
+    </div>
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>voice-exemplars.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-04-29</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section B &middot; Brand Identity</span>
+  <span class="eyebrow">Section B &middot; Brand Identity &middot; Voice</span>
   <h1 class="page-title">Voice<span class="dot">.</span></h1>
-  <p class="page-subtitle">How the brand sounds. Not a tone chart. A living calibration system built from real writing.</p>
+  <p class="page-subtitle">How FP sounds. The difference between words that land and words that bounce off.</p>
 
   <div class="meta-row">
-    <span>Section<strong>B1</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Source<strong>Brand Voice + Exemplars</strong></span>
+    <span>Status<strong>CONFIRMED</strong></span>
+    <span>Section<strong>B2</strong></span>
+    <span>Register<span class="accent">Spoken, not editorial</span></span>
   </div>
 
-  <!-- 01 Voice Traits -->
-  <div class="section-label">
-    <div class="section-number">01</div>
-    <div class="section-head">
-      <div class="kicker">Calibration</div>
-      <h2>Five traits<span class="dot">.</span></h2>
+
+  <!-- ============================================ -->
+  <!-- 01: VOICE PRINCIPLES                          -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">01</div>
+      <div>
+        <div class="vc-step-sub">Foundation &middot; Principles</div>
+        <h2 class="vc-step-title">The Rules<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Ten principles that govern every piece of FP content. They work as a checklist, not inspiration. If a piece of writing violates any of these, it gets rewritten.</p>
+
+    <div class="vc-full-image" style="margin-top: 40px;">
+      <img src="assets/generated/voice-overview.png" alt="Open notebook with handwritten notes on marble desk">
+      <div class="vc-full-image-overlay">
+        <span>The voice is decided, not discovered</span>
+      </div>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-cell">
+        <div class="principle-num">01</div>
+        Direct observation over encouragement
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">02</div>
+        Dry wit over cheerleading
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">03</div>
+        Spoken register, not editorial
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">04</div>
+        Questions over affirmations
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">05</div>
+        Short sentences when possible. Long when the idea demands breath
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">06</div>
+        Silence is an option
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">07</div>
+        Curious over prescriptive
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">08</div>
+        Prefer "brand" over "company"
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">09</div>
+        Do not overclaim what the Brand Therapy process does
+      </div>
+      <div class="principle-cell">
+        <div class="principle-num">10</div>
+        Bold the load-bearing phrases. Two to four per section
+      </div>
     </div>
   </div>
 
-  <h3>Witty</h3>
-  <p>French sarcasm meets Californian lightness. The humor is always present: goofy when the moment calls for it, dry when it doesn't.</p>
-  <ul class="bullets">
-    <li><strong>Sounds like:</strong> "Building a brand is emotionally violent. Most people would rather just pick a color palette."</li>
-    <li><strong>Not like:</strong> "Humor is a powerful branding tool that can help you build authentic connections with your audience!"</li>
-  </ul>
 
-  <h3>Unhurried</h3>
-  <p>Observes before speaking. Lets the idea breathe. Short sentences to anchor, long ones to reflect. No rushing to the point.</p>
-  <ul class="bullets">
-    <li><strong>Sounds like:</strong> "Sounds simple, but it's not easy."</li>
-    <li><strong>Not like:</strong> "Here are 7 quick tips to nail your brand voice today."</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 02: VOICE TRAITS                              -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">02</div>
+      <div>
+        <div class="vc-step-sub">Calibration &middot; Traits</div>
+        <h2 class="vc-step-title">Five Traits<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Each trait has a definition and a comparison. The "sounds like" column is the target. The "not like" column is what most brand voices default to. Knowing the gap is the whole game.</p>
 
-  <h3>Real</h3>
-  <p>Sounds like a person talking. Wonders out loud. Admits not knowing. Genuine confusion beats manufactured certainty.</p>
-  <ul class="bullets">
-    <li><strong>Sounds like:</strong> "Branding is really about small details. The ones nobody notices until they're wrong."</li>
-    <li><strong>Not like:</strong> "Our proven methodology has helped hundreds of founders unlock their brand potential."</li>
-  </ul>
+    <div class="trait-grid">
+      <!-- Witty -->
+      <div class="trait-card">
+        <div class="trait-name-cell">
+          <div class="trait-label">Witty</div>
+          <div class="trait-def">French sarcasm meets Californian lightness. Goofy when the moment calls for it, dry when it doesn't.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label on">Sounds like</div>
+          <div class="trait-example-text">Building a brand is emotionally violent. Most people would rather just pick a color palette.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label off">Not like</div>
+          <div class="trait-example-text">Humor is a powerful branding tool that can help you build authentic connections with your audience!</div>
+        </div>
+      </div>
 
-  <h3>Confident</h3>
-  <p>Speaks from experience, not from a need to prove anything. Quiet authority. Never prescriptive first.</p>
-  <ul class="bullets">
-    <li><strong>Sounds like:</strong> "You are already doing branding. It's up to you if you want to control that narrative."</li>
-    <li><strong>Not like:</strong> "Trust me, I've been doing this for 10+ years and I can tell you exactly what you need."</li>
-  </ul>
+      <!-- Unhurried -->
+      <div class="trait-card">
+        <div class="trait-name-cell">
+          <div class="trait-label">Unhurried</div>
+          <div class="trait-def">Observes before speaking. Lets the idea breathe. No rushing to the point.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label on">Sounds like</div>
+          <div class="trait-example-text">Sounds simple, but it's not easy.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label off">Not like</div>
+          <div class="trait-example-text">Here are 7 quick tips to nail your brand voice today.</div>
+        </div>
+      </div>
 
-  <h3>Nuanced</h3>
-  <p>Nothing is binary. Holds multiple possibilities. Opens the perspective instead of closing it.</p>
-  <ul class="bullets">
-    <li><strong>Sounds like:</strong> "Branding sometimes is not just about what's in front of you. You have to use your gut feelings."</li>
-    <li><strong>Not like:</strong> "There are only two types of founders: those who invest in branding and those who fail."</li>
-  </ul>
+      <!-- Real -->
+      <div class="trait-card">
+        <div class="trait-name-cell">
+          <div class="trait-label">Real</div>
+          <div class="trait-def">Sounds like a person talking. Wonders out loud. Admits not knowing.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label on">Sounds like</div>
+          <div class="trait-example-text">Branding is really about small details. The ones nobody notices until they're wrong.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label off">Not like</div>
+          <div class="trait-example-text">Our proven methodology has helped hundreds of founders unlock their brand potential.</div>
+        </div>
+      </div>
 
-  <!-- 02 Vocabulary -->
-  <div class="section-label">
-    <div class="section-number">02</div>
-    <div class="section-head">
-      <div class="kicker">Word choice</div>
-      <h2>Vocabulary swaps<span class="dot">.</span></h2>
+      <!-- Confident -->
+      <div class="trait-card">
+        <div class="trait-name-cell">
+          <div class="trait-label">Confident</div>
+          <div class="trait-def">Speaks from experience, not from a need to prove anything. Quiet authority.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label on">Sounds like</div>
+          <div class="trait-example-text">You are already doing branding. It's up to you if you want to control that narrative.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label off">Not like</div>
+          <div class="trait-example-text">Trust me, I've been doing this for 10+ years and I can tell you exactly what you need.</div>
+        </div>
+      </div>
+
+      <!-- Nuanced -->
+      <div class="trait-card">
+        <div class="trait-name-cell">
+          <div class="trait-label">Nuanced</div>
+          <div class="trait-def">Nothing is binary. Holds multiple possibilities. Opens the perspective instead of closing it.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label on">Sounds like</div>
+          <div class="trait-example-text">Branding sometimes is not just about what's in front of you. You have to use your gut feelings.</div>
+        </div>
+        <div class="trait-example">
+          <div class="trait-example-label off">Not like</div>
+          <div class="trait-example-text">There are only two types of founders: those who invest in branding and those who fail.</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <p>Specific word choices that keep the voice consistent across every surface.</p>
 
-  <ul class="bullets">
-    <li><strong>"brand"</strong> not "company." Reads broader. Fits solopreneur to SME. Use "company" only when org-chart scale is the actual topic.</li>
-    <li><strong>"the Brand Therapy process"</strong> not "Brand Therapy helps..." Methodology, not company. Never personify it.</li>
-    <li><strong>"noticed"</strong> not "believe." Observation voice. "I noticed" is grounded. "I believe" is prescriptive.</li>
-    <li><strong>"... (ellipsis)"</strong> not em dash. Ellipses create breathing room. Em dashes are banned.</li>
-    <li><strong>"perspective shift"</strong> not "lesson." We shift how people see things. We don't lecture.</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 03: VOCABULARY + LANGUAGE TERRITORY           -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">03</div>
+      <div>
+        <div class="vc-step-sub">Vocabulary &middot; Territory</div>
+        <h2 class="vc-step-title">Word Choice<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Specific swaps that keep the voice consistent at the word level. Plus the language territory: words we own versus words we use carefully.</p>
 
-  <!-- 03 Language Territory -->
-  <div class="section-label">
-    <div class="section-number">03</div>
-    <div class="section-head">
-      <div class="kicker">Territory</div>
-      <h2>Language territory<span class="dot">.</span></h2>
+    <!-- Vocabulary swaps -->
+    <table class="vocab-table">
+      <thead>
+        <tr>
+          <th>Use this</th>
+          <th>Not this</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="vocab-use">brand</span></td>
+          <td><span class="vocab-not">company</span></td>
+          <td><span class="vocab-why">Reads broader. Fits solopreneur to SME. Use "company" only when org-chart scale is the actual topic.</span></td>
+        </tr>
+        <tr>
+          <td><span class="vocab-use">the Brand Therapy process</span></td>
+          <td><span class="vocab-not">Brand Therapy helps...</span></td>
+          <td><span class="vocab-why">Methodology, not company. Never personify it.</span></td>
+        </tr>
+        <tr>
+          <td><span class="vocab-use">noticed</span></td>
+          <td><span class="vocab-not">believe</span></td>
+          <td><span class="vocab-why">Observation voice. "I noticed" is grounded. "I believe" is prescriptive.</span></td>
+        </tr>
+        <tr>
+          <td><span class="vocab-use">... (ellipsis)</span></td>
+          <td><span class="vocab-not">em dash</span></td>
+          <td><span class="vocab-why">Ellipses create breathing room. Em dashes are banned.</span></td>
+        </tr>
+        <tr>
+          <td><span class="vocab-use">perspective shift</span></td>
+          <td><span class="vocab-not">lesson</span></td>
+          <td><span class="vocab-why">We shift how people see things. We do not lecture.</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Language territory -->
+    <div class="territory-section">
+      <div class="territory-label">Preferred words</div>
+      <div class="territory-tags">
+        <span class="tag-preferred">clarity</span>
+        <span class="tag-preferred">paradox</span>
+        <span class="tag-preferred">process</span>
+        <span class="tag-preferred">attention</span>
+        <span class="tag-preferred">humor</span>
+        <span class="tag-preferred">design</span>
+        <span class="tag-preferred">perspective</span>
+        <span class="tag-preferred">instinct</span>
+        <span class="tag-preferred">psychology</span>
+        <span class="tag-preferred">elegance</span>
+        <span class="tag-preferred">perception</span>
+        <span class="tag-preferred">culture</span>
+        <span class="tag-preferred">contradiction</span>
+        <span class="tag-preferred">texture</span>
+        <span class="tag-preferred">connection</span>
+        <span class="tag-preferred">purpose</span>
+      </div>
+
+      <div class="territory-label">Use with care</div>
+      <div class="territory-tags">
+        <span class="tag-careful">growth</span>
+        <span class="tag-careful">success</span>
+        <span class="tag-careful">authenticity</span>
+        <span class="tag-careful">mindset</span>
+        <span class="tag-careful">passion</span>
+        <span class="tag-careful">leadership</span>
+        <span class="tag-careful">inspiration</span>
+        <span class="tag-careful">impact</span>
+      </div>
+    </div>
+
+    <!-- Style rules -->
+    <div style="font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px;">Style rules</div>
+    <div class="style-rules">
+      <div class="style-rule-cell">
+        <div class="style-rule-name">Oxford comma</div>
+        <div class="style-rule-value">No</div>
+        <div class="style-rule-note">Unless needed for clarity</div>
+      </div>
+      <div class="style-rule-cell">
+        <div class="style-rule-name">Ellipsis</div>
+        <div class="style-rule-value">...</div>
+        <div class="style-rule-note">Three dots, no space before</div>
+      </div>
+      <div class="style-rule-cell">
+        <div class="style-rule-name">Numbers</div>
+        <div class="style-rule-value">1-9 spelled</div>
+        <div class="style-rule-note">Numerals for 10+</div>
+      </div>
+      <div class="style-rule-cell">
+        <div class="style-rule-name">Headlines</div>
+        <div class="style-rule-value">Sentence</div>
+        <div class="style-rule-note">Title Case for proper nouns only</div>
+      </div>
+      <div class="style-rule-cell">
+        <div class="style-rule-name">Quotes</div>
+        <div class="style-rule-value">" double</div>
+        <div class="style-rule-note">Single for ironic emphasis</div>
+      </div>
     </div>
   </div>
 
-  <h3>Preferred words</h3>
-  <p>These live naturally in the brand's vocabulary. Use freely.</p>
-  <ul class="bullets">
-    <li>clarity, paradox, process, attention, humor, design</li>
-    <li>perspective, instinct, psychology, elegance</li>
-    <li>perception, culture, contradiction, texture, connection, purpose</li>
-  </ul>
 
-  <h3>Use with care</h3>
-  <p>Only when earned by context. These words become hollow fast.</p>
-  <ul class="bullets">
-    <li>growth, success, authenticity, mindset</li>
-    <li>passion, leadership, inspiration, impact</li>
-  </ul>
+  <!-- ============================================ -->
+  <!-- 04: ON-VOICE EXAMPLES                         -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">04</div>
+      <div>
+        <div class="vc-step-sub">Examples &middot; On-voice</div>
+        <h2 class="vc-step-title">Sounds Like This<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Real writing samples from Florian's content. Each one lands because of a specific technique. The tags explain what makes it work.</p>
 
-  <!-- 04 Principles -->
-  <div class="section-label">
-    <div class="section-number">04</div>
-    <div class="section-head">
-      <div class="kicker">Rules</div>
-      <h2>Voice principles<span class="dot">.</span></h2>
+    <!-- LinkedIn -->
+    <div class="voice-quote">
+      <div class="voice-quote-source">LinkedIn</div>
+      <div class="voice-quote-text">Building a brand is emotionally violent. You have to look at yourself, your story, your failures, your weird obsessions... and decide which ones to put on display.</div>
+      <div class="voice-quote-tag">Opens with a gut punch, then gets specific and funny. The ellipsis does the breathing.</div>
+    </div>
+
+    <div class="voice-quote">
+      <div class="voice-quote-source">LinkedIn</div>
+      <div class="voice-quote-text">Think of your brand as gift wrapping. Would you want to open a gift you're not attracted to... or even suspicious of?</div>
+      <div class="voice-quote-tag">Teaching through analogy, then turns the affirmation into a question. Lets the reader answer, not nod.</div>
+    </div>
+
+    <div class="voice-quote">
+      <div class="voice-quote-source">LinkedIn</div>
+      <div class="voice-quote-text">If no one really hates what you're doing, that means probably no one actually loves it.</div>
+      <div class="voice-quote-tag">Sharp one-liner. Uncomfortable truth delivered flat, no softening.</div>
+    </div>
+
+    <!-- Website -->
+    <div class="voice-quote">
+      <div class="voice-quote-source">Website</div>
+      <div class="voice-quote-text">Your work speaks for itself. To the people who already know you.</div>
+      <div class="voice-quote-tag">Two sentences. The second reframes the first. Quiet devastation.</div>
+    </div>
+
+    <div class="voice-quote">
+      <div class="voice-quote-source">Website</div>
+      <div class="voice-quote-text">Are you the brand? Or is the company?</div>
+      <div class="voice-quote-tag">Question as hook. No answer provided. Reader thinks with you.</div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="voice-quote">
+      <div class="voice-quote-source">Newsletter</div>
+      <div class="voice-quote-text">No one will try your product without poking inside the bubble first.</div>
+      <div class="voice-quote-tag">Conversational register. Casual metaphor. No framework name-dropping.</div>
     </div>
   </div>
 
-  <ul class="bullets">
-    <li>Direct observation over encouragement</li>
-    <li>Dry wit over cheerleading</li>
-    <li>Spoken register, not editorial</li>
-    <li>Questions over affirmations. Turn statements into invitations the reader answers</li>
-    <li>Short sentences when possible. Long when the idea demands breath</li>
-    <li>Silence is an option</li>
-    <li>Curious over prescriptive. Ask the question, observe the pattern</li>
-    <li>Prefer "brand" over "company" when ambiguity helps</li>
-    <li>Don't overclaim what the Brand Therapy process does</li>
-    <li>Bold the load-bearing phrases. Two to four per section in long-form</li>
-  </ul>
 
-  <!-- 05 Always / Never -->
-  <div class="section-label">
-    <div class="section-number">05</div>
-    <div class="section-head">
-      <div class="kicker">Guardrails</div>
-      <h2>Always / Never<span class="dot">.</span></h2>
+  <!-- ============================================ -->
+  <!-- 05: OFF-VOICE EXAMPLES                        -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">05</div>
+      <div>
+        <div class="vc-step-sub">Examples &middot; Off-voice</div>
+        <h2 class="vc-step-title">Not This<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">What FP copy should never sound like. Each example shows a specific failure mode. Knowing what to avoid is as important as knowing the target.</p>
+
+    <div class="off-voice">
+      <div class="off-voice-text">Great question! Let me help you with that. Brand strategy is all about aligning your vision with your audience's needs to create a powerful connection.</div>
+      <div class="off-voice-why">Hollow affirmation opener. Generic coaching-speak. No personality, no observation, no specificity.</div>
+    </div>
+
+    <div class="off-voice">
+      <div class="off-voice-text">In this article, we'll explore 5 proven strategies to level up your personal brand and stand out in a crowded marketplace.</div>
+      <div class="off-voice-why">Listicle energy. "Level up" is banned. "Personal brand" as lead framing. "Proven strategies" is empty.</div>
+    </div>
+
+    <div class="off-voice">
+      <div class="off-voice-text">As a seasoned brand strategist with over a decade of experience across six countries, I bring a unique perspective to every engagement.</div>
+      <div class="off-voice-why">First-chair bio. Resume voice. Florian would cringe reading this aloud at a dinner party.</div>
+    </div>
+
+    <div class="off-voice">
+      <div class="off-voice-text">However, it's worth noting that brand consistency requires a systematic approach. As a result, founders who invest in strategic clarity will see compounding returns over time.</div>
+      <div class="off-voice-why">Formal connectives ("however," "as a result," "it's worth noting"). Essay structure. Zero personality.</div>
+    </div>
+
+    <div class="off-voice">
+      <div class="off-voice-text">You've got this! Show up daily, be authentic, and watch your brand grow. The journey of a thousand miles starts with a single post.</div>
+      <div class="off-voice-why">Hustle-culture motivational post. Hollow affirmations stacked. Sounds like every LinkedIn influencer.</div>
+    </div>
+
+    <div class="off-voice">
+      <div class="off-voice-text">Brand Therapy helps founders unlock their full potential through our proprietary framework that has been refined over years of client work.</div>
+      <div class="off-voice-why">Brand Therapy as company ("helps founders"). "Unlock potential" is coaching-speak. "Proprietary framework" is consultant-speak.</div>
     </div>
   </div>
 
-  <h3>Always</h3>
-  <ul class="bullets">
-    <li>Use ellipsis, colon, comma, or new sentence where an em dash would go</li>
-    <li>Ellipses (...) freely for rhythm, irony, breathing room. Three dots, no space before, one space after</li>
-    <li>Refer to "the Brand Therapy process" or "Brand Therapy work"</li>
-    <li>State corrections directly when wrong</li>
-    <li>Match the founder's energy when they get playful</li>
-    <li>Peer voice default: "we/us" not "founders" or "every founder I know"</li>
-    <li>End with a perspective shift, not a lesson</li>
-    <li>Vary sentence rhythm: short to anchor, long to reflect</li>
-  </ul>
 
-  <h3>Never</h3>
-  <ul class="bullets">
-    <li>Em dashes or en dashes</li>
-    <li>Emojis in brand content</li>
-    <li>Brand Therapy as a company</li>
-    <li>"Personal brand" as lead framing</li>
-    <li>Bullet-point advice lists as main structure</li>
-    <li>Preachy, motivational, or hollow affirmations</li>
-    <li>Fabricated claims about named people</li>
-    <li>Fabricated empirical generalizations ("most founders...", invented stats)</li>
-    <li>Overly constructed paragraphs, essay-style topic sentences</li>
-    <li>Formal connectives: "however," "as a result," "in conclusion," "it's worth noting"</li>
-  </ul>
-
-  <!-- 06 Structural Patterns -->
-  <div class="section-label">
-    <div class="section-number">06</div>
-    <div class="section-head">
-      <div class="kicker">Structure</div>
-      <h2>Structural patterns<span class="dot">.</span></h2>
+  <!-- ============================================ -->
+  <!-- FULL-BLEED IMAGE BREAK                        -->
+  <!-- ============================================ -->
+  <div class="vc-full-image">
+    <img src="assets/generated/voice-content.png" alt="Two coffee cups on concrete table, conversation">
+    <div class="vc-full-image-overlay">
+      <span>Voice adapts to channel, never to trends</span>
     </div>
   </div>
 
-  <h3>Affirmations to questions</h3>
-  <p>Core pattern. When tempted to state something as fact, turn it into a question the reader answers themselves. "Nobody opens a gift they're not attracted to" becomes "Would you open a gift you're not attracted to... or even suspicious of?" Questions invite. Affirmations close.</p>
 
-  <h3>Rhythm</h3>
-  <p>Short to anchor. Long to reflect. Alternate. Never three long sentences in a row.</p>
+  <!-- ============================================ -->
+  <!-- 06: STRUCTURAL PATTERNS                       -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">06</div>
+      <div>
+        <div class="vc-step-sub">Structure &middot; Patterns</div>
+        <h2 class="vc-step-title">How It's Built<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Sentence-level and paragraph-level patterns that prevent voice drift after 500+ words. These are mechanical, not inspirational. Follow them.</p>
 
-  <h3>Openers</h3>
-  <p>Three default modes: observation, curiosity, or admission. Never encouragement.</p>
-
-  <h3>Punctuation</h3>
-  <ul class="bullets">
-    <li><strong>Ellipsis:</strong> Freely, for rhythm, irony, breathing room. Three dots, no space before, one space after</li>
-    <li><strong>Colon:</strong> For lists and setups. Replaces em dashes</li>
-    <li><strong>Period:</strong> Preferred over semicolons. Two short sentences beat one long compound</li>
-  </ul>
-
-  <h3>Closers</h3>
-  <p>End with a perspective shift, not a lesson. Leave the reader thinking, not nodding.</p>
-
-  <h3>Checks in</h3>
-  <p>"Right?" as invitation, not lecture. Short incomplete sentences followed by grounded explanations.</p>
-
-  <h3>Duality</h3>
-  <p>Switch lenses naturally: client vs. agency, creator vs. consumer, logic vs. emotion. Find clarity in paradox. Every idea has its shadow.</p>
-
-  <!-- 07 Content Type Adaptations -->
-  <div class="section-label">
-    <div class="section-number">07</div>
-    <div class="section-head">
-      <div class="kicker">Channels</div>
-      <h2>Content type adaptations<span class="dot">.</span></h2>
+    <div class="pattern-grid">
+      <div class="pattern-cell">
+        <div class="pattern-label">Core pattern</div>
+        <div class="pattern-name">Affirmations to questions</div>
+        <p class="pattern-desc">When tempted to state something as fact, turn it into a question the reader answers themselves. Questions invite. Affirmations close.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Rhythm</div>
+        <div class="pattern-name">Short to anchor, long to reflect</div>
+        <p class="pattern-desc">Alternate sentence lengths. Never three long sentences in a row. The short sentence lands the thought. The long sentence lets it breathe.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Openers</div>
+        <div class="pattern-name">Three default modes</div>
+        <p class="pattern-desc">Observation, curiosity, or admission. Never encouragement. "I noticed..." "What if..." "I got this wrong..."</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Closers</div>
+        <div class="pattern-name">Perspective shift, not lesson</div>
+        <p class="pattern-desc">End with a reframe. Leave the reader thinking, not nodding. No calls to action. No motivational send-off.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Check-ins</div>
+        <div class="pattern-name">"Right?" as invitation</div>
+        <p class="pattern-desc">Short incomplete sentences followed by grounded explanations. Invitation, not lecture.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Duality</div>
+        <div class="pattern-name">Switch lenses naturally</div>
+        <p class="pattern-desc">Client vs. agency, creator vs. consumer, logic vs. emotion. Find clarity in paradox. Every idea has its shadow.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Punctuation</div>
+        <div class="pattern-name">Ellipsis over em dash</div>
+        <p class="pattern-desc">Ellipses freely for rhythm, irony, breathing room. Three dots, no space before, one space after. Colon for lists and setups.</p>
+      </div>
+      <div class="pattern-cell">
+        <div class="pattern-label">Emphasis</div>
+        <div class="pattern-name">Bold the load-bearing phrases</div>
+        <p class="pattern-desc">Two to four bold phrases per section in long-form. Mark what a skim reader needs. Two short sentences beat one long compound.</p>
+      </div>
     </div>
   </div>
 
-  <h3>LinkedIn</h3>
-  <p>Hook under 100 chars. Follow-up line that reframes. Conversational body (3-6 short paragraphs). Perspective shift ending. Never end with a CTA. 150-300 words. Peak personality. Dad jokes earn their place here.</p>
-  <p><strong>Opening moves:</strong> sharp industry observation, personal admission, question that reframes a common assumption.</p>
 
-  <h3>Newsletter</h3>
-  <p>One idea per edition. Opens like writing to a smart friend. Can go longer, more reflective. Sections with bolded load-bearing phrases (2-4 per section). 500-1200 words. Most conversational channel.</p>
-  <p><strong>Opening moves:</strong> something that happened this week, a question a client asked, an observation that's been sitting with you.</p>
+  <!-- ============================================ -->
+  <!-- 07: CONTENT TYPE ADAPTATIONS                  -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">07</div>
+      <div>
+        <div class="vc-step-sub">Channels &middot; Adaptations</div>
+        <h2 class="vc-step-title">By Channel<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">The voice stays the same. The volume changes. LinkedIn is peak personality. Newsletter is most conversational. Website is witty with care. Proposals dial up composure.</p>
 
-  <h3>Website</h3>
-  <p>Lead with what the reader gets, not who Florian is. Witty with care. Smart humor that highlights value. Every section earns its place. Headlines under 8 words. Subheads conversational.</p>
-  <p><strong>Opening moves:</strong> reframe an expectation, ask the reader's real question before they do.</p>
+    <div class="channel-grid">
+      <!-- LinkedIn -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-tag">Channel</div>
+          <div class="channel-name">LinkedIn</div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-meta"><strong>150-300 words.</strong> Peak personality. Dad jokes earn their place here. Never end with a CTA.</div>
+          <div class="channel-meta">Hook under 100 chars. Follow-up line that reframes. Conversational body (3-6 short paragraphs). Perspective shift ending.</div>
+          <div class="channel-opens">
+            <span>Sharp observation about the industry</span>
+            <span>Personal admission or confession</span>
+            <span>Question that reframes a common assumption</span>
+          </div>
+        </div>
+      </div>
 
-  <h3>Proposal</h3>
-  <p>Professional confidence dialed up. Wit is subtle, not central. Clarity and composure dominate. Shorter paragraphs than newsletter. Every sentence does work.</p>
-  <p><strong>Opening moves:</strong> name the situation the client described, restate their words back to them.</p>
+      <!-- Newsletter -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-tag">Channel</div>
+          <div class="channel-name">Newsletter</div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-meta"><strong>500-1200 words.</strong> Most conversational channel. One idea per edition. Opens like writing to a smart friend.</div>
+          <div class="channel-meta">Sections with bolded load-bearing phrases (2-4 per section). Can go longer, more reflective.</div>
+          <div class="channel-opens">
+            <span>Something that happened this week</span>
+            <span>A question a client asked</span>
+            <span>An observation that has been sitting with you</span>
+          </div>
+        </div>
+      </div>
 
-  <!-- 08 Quality Gate -->
-  <div class="section-label">
-    <div class="section-number">08</div>
-    <div class="section-head">
-      <div class="kicker">QA</div>
-      <h2>Quality gate<span class="dot">.</span></h2>
+      <!-- Website -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-tag">Channel</div>
+          <div class="channel-name">Website</div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-meta"><strong>Headlines under 8 words.</strong> Witty with care. Smart humor that highlights value. Every section earns its place.</div>
+          <div class="channel-meta">Lead with what the reader gets, not who Florian is. Subheads conversational.</div>
+          <div class="channel-opens">
+            <span>Reframe an expectation</span>
+            <span>Ask the reader's real question before they do</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proposal -->
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-tag">Channel</div>
+          <div class="channel-name">Proposal</div>
+        </div>
+        <div class="channel-body">
+          <div class="channel-meta"><strong>As short as possible.</strong> Professional confidence dialed up. Wit is subtle, not central. Clarity and composure dominate.</div>
+          <div class="channel-meta">Shorter paragraphs than newsletter. Every sentence does work.</div>
+          <div class="channel-opens">
+            <span>Name the situation the client described</span>
+            <span>Restate their words back to them</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <p>Every piece of brand content passes through these checks before shipping.</p>
-  <ul class="bullets">
-    <li>Could Florian say this out loud without cringing?</li>
-    <li>At least one moment of wit or unexpected phrasing?</li>
-    <li>Ends with perspective, not a lesson?</li>
-    <li>Would someone know this wasn't written by ChatGPT?</li>
-    <li>Any em dashes? Replace every one</li>
-    <li>Does any sentence put Florian in first chair? Rewrite per Host/Messenger</li>
-    <li>Any fabricated claims about named people? Remove or soften to influence-language</li>
-  </ul>
 
-  <!-- 09 Anti-patterns -->
-  <div class="section-label">
-    <div class="section-number">09</div>
-    <div class="section-head">
-      <div class="kicker">Avoid</div>
-      <h2>Anti-patterns<span class="dot">.</span></h2>
+  <!-- ============================================ -->
+  <!-- 08: QUALITY GATE + ANTI-PATTERNS              -->
+  <!-- ============================================ -->
+  <div class="vc-step">
+    <div class="vc-step-header">
+      <div class="vc-step-num">08</div>
+      <div>
+        <div class="vc-step-sub">Enforcement &middot; Gates</div>
+        <h2 class="vc-step-title">Quality Gate<span class="dot">.</span></h2>
+      </div>
+    </div>
+    <p class="vc-step-desc">Seven questions that every piece of FP content must pass before publishing. Plus the anti-patterns that define what the voice is not.</p>
+
+    <!-- Quality gate checks -->
+    <div class="gate-grid">
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        Could Florian say this out loud without cringing?
+      </div>
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        At least one moment of wit or unexpected phrasing?
+      </div>
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        Ends with perspective, not a lesson?
+      </div>
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        Would someone know this was not written by ChatGPT?
+      </div>
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        Any em dashes? Replace every one.
+      </div>
+      <div class="gate-cell">
+        <div class="gate-check">PASS</div>
+        Does any sentence put Florian in first chair? Rewrite per Host/Messenger.
+      </div>
+      <div class="gate-cell" style="grid-column: 1 / -1;">
+        <div class="gate-check">PASS</div>
+        Any fabricated claims about named people? Remove or soften to influence-language.
+      </div>
+    </div>
+
+    <!-- Anti-patterns -->
+    <div style="font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--border);">Voice anti-patterns</div>
+
+    <div class="gate-grid" style="margin-bottom: 48px;">
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        Self-help book chapter
+      </div>
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        Corporate newsletter
+      </div>
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        Therapist's Instagram caption
+      </div>
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        Hustle-culture motivational post
+      </div>
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        AI-generated thought leadership
+      </div>
+      <div class="gate-cell">
+        <div class="gate-x">NEVER</div>
+        First-chair founder bio
+      </div>
+      <div class="gate-cell" style="grid-column: 1 / -1;">
+        <div class="gate-x">NEVER</div>
+        Fabricated attributions or empirical claims
+      </div>
     </div>
   </div>
 
-  <p>If the content sounds like any of these, it's off-voice. Rewrite.</p>
-  <ul class="bullets">
-    <li>Self-help book chapter</li>
-    <li>Corporate newsletter</li>
-    <li>Therapist's Instagram caption</li>
-    <li>Hustle-culture motivational post</li>
-    <li>AI-generated thought leadership piece</li>
-    <li>First-chair founder bio ("Meet Florian," "In his own words")</li>
-    <li>Fabricated attributions or empirical claims</li>
-  </ul>
-
-  <!-- 10 Style Rules -->
-  <div class="section-label">
-    <div class="section-number">10</div>
-    <div class="section-head">
-      <div class="kicker">Mechanics</div>
-      <h2>Style rules<span class="dot">.</span></h2>
-    </div>
-  </div>
-
-  <ul class="bullets">
-    <li><strong>Oxford comma:</strong> No, unless needed for clarity</li>
-    <li><strong>Ellipsis:</strong> Three dots, no space before, one space after. Never four dots</li>
-    <li><strong>Numbers:</strong> Spell out one through nine, numerals for 10+. Statistics always use numerals</li>
-    <li><strong>Capitalization:</strong> Sentence case for headlines and subheads. Title Case only for proper nouns and Brand Therapy</li>
-    <li><strong>Quotation marks:</strong> Double for dialogue/direct quotes. Single for quotes-within-quotes or ironic emphasis</li>
-  </ul>
 
   <footer class="page-footer">
-    <span><a href="personality.html">&larr; P5 Personality</a></span>
+    <span><a href="visual.html">&larr; Look &amp; Feel</a></span>
     <span>Section B &middot; Voice</span>
-    <span><a href="visual.html">Visual Direction &rarr;</a></span>
+    <span><a href="signature.html">Signature &rarr;</a></span>
   </footer>
 
 </main>

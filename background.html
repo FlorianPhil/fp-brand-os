@@ -8,6 +8,291 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+/* ========== BACKGROUND PAGE ========== */
+
+/* Stat strip */
+.bg-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--text);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 64px;
+}
+.bg-stat {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+  background: var(--white);
+}
+.bg-stat-num {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.bg-stat-num .accent { color: var(--accent); }
+.bg-stat-label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+@media (max-width: 720px) { .bg-stats { grid-template-columns: 1fr 1fr; } }
+
+/* Career timeline */
+.bg-timeline {
+  margin: 32px 0 56px;
+  border-top: 1px solid var(--text);
+}
+.bg-tl-row {
+  display: grid;
+  grid-template-columns: 120px 200px 1fr auto;
+  gap: 28px;
+  align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.bg-tl-year {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  padding-top: 4px;
+}
+.bg-tl-org {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.2;
+}
+.bg-tl-org .role {
+  display: block;
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.bg-tl-desc {
+  font-family: var(--ff-b);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+  max-width: 520px;
+}
+.bg-tl-desc strong { color: var(--text); font-weight: 600; }
+.bg-tl-loc {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  align-self: start;
+}
+@media (max-width: 880px) {
+  .bg-tl-row { grid-template-columns: 1fr; gap: 12px; }
+  .bg-tl-loc { justify-self: start; }
+}
+
+/* Country strip */
+.bg-countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 32px 0 56px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.bg-country {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.bg-country.accent {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Personality two-col */
+.bg-personality {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin: 32px 0 56px;
+  background: var(--white);
+}
+.bg-pers-cell {
+  padding: 36px 32px;
+  border-right: 1px solid var(--border);
+}
+.bg-pers-cell:last-child { border-right: none; }
+.bg-pers-eyebrow {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.bg-pers-headline {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.bg-pers-text {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .bg-personality { grid-template-columns: 1fr; }
+  .bg-pers-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .bg-pers-cell:last-child { border-bottom: none; }
+}
+
+/* Behavior matrix */
+.bg-behavior {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+.bg-beh-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 26px;
+  background: var(--white);
+}
+.bg-beh-context {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.bg-beh-name {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+.bg-beh-desc {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+@media (max-width: 880px) { .bg-behavior { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .bg-behavior { grid-template-columns: 1fr; } }
+
+/* Speech grid */
+.bg-speech {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 56px;
+}
+.bg-speech-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 26px;
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 20px;
+  align-items: baseline;
+}
+.bg-speech-label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.bg-speech-desc {
+  font-family: var(--ff-b);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+@media (max-width: 720px) { .bg-speech { grid-template-columns: 1fr; } .bg-speech-cell { grid-template-columns: 1fr; } }
+
+/* Mentor callout */
+.bg-mentor {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+  align-items: center;
+  padding: 32px 36px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  margin: 32px 0 56px;
+  max-width: 800px;
+}
+.bg-mentor-marker {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+.bg-mentor-text {
+  font-family: var(--ff-b);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
+}
+.bg-mentor-text strong { font-weight: 600; color: var(--text); }
+.bg-mentor-text em { color: var(--muted); font-style: normal; display: block; margin-top: 6px; font-size: 12px; letter-spacing: 0.06em; }
+@media (max-width: 720px) { .bg-mentor { grid-template-columns: 1fr; gap: 12px; } }
+</style>
 </head>
 <body class="grain">
 <div class="shell">
@@ -22,154 +307,321 @@
     <div class="label">Sections</div>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">&middot;</span>
-        <span class="group-label">Overview</span>
-      </summary>
-      <div class="nav-list">
-        <a href="index.html">Home</a>
-      </div>
+      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
+      <div class="nav-list"><a href="index.html">Home</a></div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">A</span>
-        <span class="group-label">Focus Star</span>
-      </summary>
+      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
       <div class="nav-list">
         <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">P1 Product</a>
-        <a href="people.html">P2 People</a>
-        <a href="purpose.html">P3 Purpose</a>
-        <a href="promise.html">P4 Promise</a>
-        <a href="personality.html">P5 Personality</a>
+        <a href="product.html">Product</a>
+        <a href="people.html">People</a>
+        <a href="purpose.html">Purpose</a>
+        <a href="promise.html">Promise</a>
+        <a href="personality.html">Personality</a>
       </div>
     </details>
 
     <details class="nav-group">
-      <summary>
-        <span class="group-letter">B</span>
-        <span class="group-label">Brand Identity</span>
-      </summary>
+      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
       <div class="nav-list">
+        <a href="creative-direction.html">Creative Direction</a>
+        <a href="visual.html">Look &amp; Feel</a>
         <a href="voice.html">Voice</a>
-        <a href="visual.html">Visual Direction</a>
         <a href="signature.html">Signature</a>
-        <a href="application.html">Application</a>
+      </div>
+    </details>
+
+    <details class="nav-group">
+      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
+      <div class="nav-list">
+        <a href="application.html">Copy Patterns</a>
       </div>
     </details>
 
     <details class="nav-group" open>
-      <summary>
-        <span class="group-letter">C</span>
-        <span class="group-label">Founder / Personal Brand</span>
-      </summary>
+      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
       <div class="nav-list">
-        <a href="founder-identity.html">Founder Identity</a>
+        <a href="founder-identity.html">Spectrum Position</a>
         <a href="background.html" class="active">Background</a>
         <a href="imagery.html">Imagery</a>
       </div>
     </details>
-  </div>
+    </div>
 
   <div class="toolbar-mini">
     <div class="row"><span>Source</span><strong>source.yaml</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-04-28</strong></div>
+    <div class="row"><span>Updated</span><strong>2026-05-01</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <span class="eyebrow">Section C &middot; Personal Branding</span>
+  <span class="eyebrow">Section D &middot; Personal Branding &middot; Background</span>
   <h1 class="page-title">Background<span class="dot">.</span></h1>
-  <p class="page-subtitle">The professional history, speech patterns, and behavioral signatures that make the founder recognizable.</p>
+  <p class="page-subtitle">Ten years of brand work across six countries. The career that earned the right to the methodology.</p>
 
   <div class="meta-row">
-    <span>Section<strong>C2</strong></span>
-    <span>Status<span class="accent">Confirmed</span></span>
-    <span>Source<strong>Brand Voice + Background</strong></span>
+    <span>Status<strong>CONFIRMED</strong></span>
+    <span>Source<span class="accent">source.yaml &middot; founder_identity</span></span>
+    <span>Updated<strong>2026-05-01</strong></span>
   </div>
 
-  <!-- 01 Professional History -->
+  <!-- ============================================ -->
+  <!-- 01 STAT STRIP                                -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">01</div>
     <div class="section-head">
       <div class="kicker">Track record</div>
-      <h2>Professional history<span class="dot">.</span></h2>
+      <h2>The receipts<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <p class="lede">10+ years branding across 6 countries. The kind of background that makes the work global without trying to sound global.</p>
+  <p>The credentials don't lead the conversation, but they have to be there. Brand Therapy works because the diagnosis is built on a decade of pattern recognition, not a framework someone read in a book.</p>
 
-  <ul class="bullets">
-    <li><strong>3ANGLES (Taiwan):</strong> Founded. 25+ clients including Acer, TAITRA</li>
-    <li><strong>Cannabis industry:</strong> CMO role. Built brand infrastructure in a nascent market</li>
-    <li><strong>4th Sector Innovations:</strong> Brand Director</li>
-    <li><strong>Renogy X:</strong> Founded the home division, built brand from zero</li>
-    <li><strong>Mentored by Fabian Geyrhalter:</strong> FINIEN founder, author of "Bigger Than This"</li>
-  </ul>
+  <div class="bg-stats">
+    <div class="bg-stat">
+      <div class="bg-stat-num">10<span class="accent">+</span></div>
+      <div class="bg-stat-label">Years branding</div>
+    </div>
+    <div class="bg-stat">
+      <div class="bg-stat-num">6</div>
+      <div class="bg-stat-label">Countries lived</div>
+    </div>
+    <div class="bg-stat">
+      <div class="bg-stat-num">25<span class="accent">+</span></div>
+      <div class="bg-stat-label">Clients at 3ANGLES</div>
+    </div>
+    <div class="bg-stat">
+      <div class="bg-stat-num">4</div>
+      <div class="bg-stat-label">Brand functions led</div>
+    </div>
+  </div>
 
-  <!-- 02 Speech Patterns -->
+  <!-- ============================================ -->
+  <!-- 02 CAREER TIMELINE                           -->
+  <!-- ============================================ -->
   <div class="section-label">
     <div class="section-number">02</div>
     <div class="section-head">
-      <div class="kicker">Voice</div>
+      <div class="kicker">Career arc</div>
+      <h2>Career timeline<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p>Each stop sharpened a different muscle. Studio founding taught the craft of running a brand business. The CMO seat taught how brand decisions cascade through P&amp;L. The mentorship taught how to compress all of it into a process that holds.</p>
+
+  <div class="bg-timeline">
+
+    <div class="bg-tl-row">
+      <div class="bg-tl-year">2024 &mdash; Now</div>
+      <div class="bg-tl-org">FP. Consulting<span class="role">Founder &middot; Brand Strategist</span></div>
+      <p class="bg-tl-desc"><strong>Brand Therapy</strong> as a methodology. Solo practice. Founder-led service designed for the leaders who built real value but never invested in being visible.</p>
+      <span class="bg-tl-loc">Los Angeles</span>
+    </div>
+
+    <div class="bg-tl-row">
+      <div class="bg-tl-year">2022 &mdash; 2024</div>
+      <div class="bg-tl-org">Renogy X<span class="role">Founder, Home Division</span></div>
+      <p class="bg-tl-desc">Built a new brand division from zero inside an established energy company. Strategy, identity, go-to-market.</p>
+      <span class="bg-tl-loc">USA</span>
+    </div>
+
+    <div class="bg-tl-row">
+      <div class="bg-tl-year">2020 &mdash; 2022</div>
+      <div class="bg-tl-org">Cannabis sector<span class="role">CMO</span></div>
+      <p class="bg-tl-desc">Brand infrastructure inside a regulated, fast-moving industry. Translating ambiguity into a coherent market position.</p>
+      <span class="bg-tl-loc">USA</span>
+    </div>
+
+    <div class="bg-tl-row">
+      <div class="bg-tl-year">2018 &mdash; 2020</div>
+      <div class="bg-tl-org">4th Sector Innovations<span class="role">Brand Director</span></div>
+      <p class="bg-tl-desc">Brand work for purpose-driven organizations. The intersection of strategy, social impact, and commercial discipline.</p>
+      <span class="bg-tl-loc">USA</span>
+    </div>
+
+    <div class="bg-tl-row">
+      <div class="bg-tl-year">2014 &mdash; 2018</div>
+      <div class="bg-tl-org">3ANGLES<span class="role">Founder &middot; Studio</span></div>
+      <p class="bg-tl-desc">Founded the studio. Twenty-five-plus clients including <strong>Acer</strong> and <strong>TAITRA</strong>. Built reputation by getting the strategy right before the design started.</p>
+      <span class="bg-tl-loc">Taiwan</span>
+    </div>
+
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 03 COUNTRIES                                 -->
+  <!-- ============================================ -->
+  <div class="section-label">
+    <div class="section-number">03</div>
+    <div class="section-head">
+      <div class="kicker">Geography</div>
+      <h2>Six countries, one eye<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p>Living somewhere is different from visiting. Six relocations means six different markets, six sets of cultural defaults to unlearn, six versions of what "premium" looks like. The work is global without trying to sound global.</p>
+
+  <div class="bg-countries">
+    <span class="bg-country accent">France</span>
+    <span class="bg-country">Taiwan</span>
+    <span class="bg-country">USA</span>
+    <span class="bg-country">UK</span>
+    <span class="bg-country">Japan</span>
+    <span class="bg-country">Spain</span>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 04 MENTORSHIP                                -->
+  <!-- ============================================ -->
+  <div class="section-label">
+    <div class="section-number">04</div>
+    <div class="section-head">
+      <div class="kicker">Lineage</div>
+      <h2>The mentorship<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p>The Brand Therapy methodology has a lineage. Crediting it generously is part of the practice.</p>
+
+  <div class="bg-mentor">
+    <div class="bg-mentor-marker">FG<span style="color: var(--text)">.</span></div>
+    <p class="bg-mentor-text">
+      <strong>Fabian Geyrhalter.</strong> FINIEN founder, author of <em>Bigger Than This</em>, brand consultant. The single biggest influence on how Florian frames the diagnostic side of brand work.<br>
+      <em>Mentor &middot; Practice lineage</em>
+    </p>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 05 PERSONALITY                               -->
+  <!-- ============================================ -->
+  <div class="section-label">
+    <div class="section-number">05</div>
+    <div class="section-head">
+      <div class="kicker">Character</div>
+      <h2>How he reads<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <p class="lede">Sharp, funny, unhurried. Professional first, but refuses to take itself too seriously.</p>
+
+  <div class="bg-personality">
+    <div class="bg-pers-cell">
+      <div class="bg-pers-eyebrow">Disposition</div>
+      <h3 class="bg-pers-headline">Observes before speaking.</h3>
+      <p class="bg-pers-text">Names patterns instead of cheerleading. Trusts the reader to think. Never prescriptive first. Unless enough time has been spent understanding a situation, no prescription gets issued.</p>
+    </div>
+    <div class="bg-pers-cell">
+      <div class="bg-pers-eyebrow">Humor</div>
+      <h3 class="bg-pers-headline">Goofy when the moment calls for it. Dry when it doesn't.</h3>
+      <p class="bg-pers-text">Self-aware enough to make fun of the whole LinkedIn-influencer thing while doing it himself. Taking yourself too seriously is not allowed.</p>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 06 SPEECH PATTERNS                           -->
+  <!-- ============================================ -->
+  <div class="section-label">
+    <div class="section-number">06</div>
+    <div class="section-head">
+      <div class="kicker">Voice mechanics</div>
       <h2>Speech patterns<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <p>How Florian sounds in conversation, on video, on stage. These patterns inform the written voice but exist independently.</p>
+  <p>How Florian sounds in conversation, on video, on stage. These patterns inform the written voice but exist independently. They predate any brand decision.</p>
 
-  <ul class="bullets">
-    <li><strong>Pace:</strong> Unhurried. Pauses before the load-bearing sentence</li>
-    <li><strong>Pause use:</strong> Strategic. Lets the observation land before adding to it</li>
-    <li><strong>Accent signature:</strong> French accent. Natural, not performed. Adds texture to English</li>
-    <li><strong>Sentence length:</strong> Short to anchor. Long when the idea needs room to breathe</li>
-  </ul>
+  <div class="bg-speech">
+    <div class="bg-speech-cell">
+      <div class="bg-speech-label">Pace</div>
+      <p class="bg-speech-desc">Unhurried. Pauses before the load-bearing sentence.</p>
+    </div>
+    <div class="bg-speech-cell">
+      <div class="bg-speech-label">Pause use</div>
+      <p class="bg-speech-desc">Strategic. Lets the observation land before adding to it.</p>
+    </div>
+    <div class="bg-speech-cell">
+      <div class="bg-speech-label">Accent</div>
+      <p class="bg-speech-desc">French. Natural, not performed. Adds texture to English. Neither leaned into nor scrubbed out.</p>
+    </div>
+    <div class="bg-speech-cell">
+      <div class="bg-speech-label">Sentence length</div>
+      <p class="bg-speech-desc">Short to anchor. Long when the idea needs room to breathe. Silence is also an option.</p>
+    </div>
+  </div>
 
-  <!-- 03 Behavioral Signatures -->
+  <!-- ============================================ -->
+  <!-- 07 BEHAVIORAL SIGNATURES                     -->
+  <!-- ============================================ -->
   <div class="section-label">
-    <div class="section-number">03</div>
+    <div class="section-number">07</div>
     <div class="section-head">
       <div class="kicker">Behavior</div>
       <h2>How he shows up<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <h3>In meetings</h3>
-  <p>Observes first. Asks the reframing question. Does not dominate.</p>
+  <p>Six contexts. Each one has a default mode. The defaults are deliberate, not accidental.</p>
 
-  <h3>On social</h3>
-  <p>Observational. Shares what he noticed, not what he accomplished.</p>
+  <div class="bg-behavior">
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">In meetings</div>
+      <h3 class="bg-beh-name">Observes first.</h3>
+      <p class="bg-beh-desc">Asks the reframing question. Does not dominate.</p>
+    </div>
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">On social</div>
+      <h3 class="bg-beh-name">Observational.</h3>
+      <p class="bg-beh-desc">Shares what he noticed, not what he accomplished.</p>
+    </div>
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">In video</div>
+      <h3 class="bg-beh-name">Conversational.</h3>
+      <p class="bg-beh-desc">Direct to camera. Thinking in real time, not scripted.</p>
+    </div>
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">In email</div>
+      <h3 class="bg-beh-name">Short, warm, specific.</h3>
+      <p class="bg-beh-desc">Sounds like a text from a smart friend.</p>
+    </div>
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">On stage</div>
+      <h3 class="bg-beh-name">Conversational keynote.</h3>
+      <p class="bg-beh-desc">Thinks out loud with structure. Checks in with "right?" as invitation.</p>
+    </div>
+    <div class="bg-beh-cell">
+      <div class="bg-beh-context">Boundaries</div>
+      <h3 class="bg-beh-name">No hero framings.</h3>
+      <p class="bg-beh-desc">No public vulnerability for content. Humor online only when it lands dry.</p>
+    </div>
+  </div>
 
-  <h3>In video</h3>
-  <p>Conversational, direct to camera. Thinking in real time, not scripted.</p>
-
-  <h3>In email</h3>
-  <p>Short, warm, specific. Sounds like a text from a smart friend.</p>
-
-  <h3>Boundaries</h3>
-  <p>No hero framings. No public vulnerability for content. Humor online only when it lands dry.</p>
-
-  <!-- 04 Presence -->
+  <!-- ============================================ -->
+  <!-- 08 PRESENCE                                  -->
+  <!-- ============================================ -->
   <div class="section-label">
-    <div class="section-number">04</div>
+    <div class="section-number">08</div>
     <div class="section-head">
-      <div class="kicker">Energy</div>
+      <div class="kicker">Energy in the room</div>
       <h2>Presence<span class="dot">.</span></h2>
     </div>
   </div>
 
+  <p class="lede">The person at dinner who makes you think and laugh in the same sentence.</p>
+
   <ul class="bullets">
-    <li><strong>Energy:</strong> The person at dinner who makes you think and laugh in the same sentence</li>
-    <li><strong>Posture:</strong> Relaxed, open, assured. Never performative or staged</li>
-    <li><strong>Eye contact:</strong> Direct but not intense. Observes more than locks on</li>
-    <li><strong>Listening style:</strong> Notes patterns. Asks the question that reframes the conversation</li>
+    <li><strong>Posture.</strong> Relaxed, open, assured. Never performative or staged.</li>
+    <li><strong>Eye contact.</strong> Direct but not intense. Observes more than locks on.</li>
+    <li><strong>Listening style.</strong> Notes patterns. Asks the question that reframes the conversation.</li>
+    <li><strong>Default state.</strong> Curious before prescriptive. Ask the question, observe the pattern.</li>
   </ul>
 
   <footer class="page-footer">
-    <span><a href="founder-identity.html">&larr; Founder Identity</a></span>
-    <span>Section C &middot; Background</span>
+    <span><a href="founder-identity.html">&larr; Spectrum Position</a></span>
+    <span>Section D &middot; Background</span>
     <span><a href="imagery.html">Imagery &rarr;</a></span>
   </footer>
 

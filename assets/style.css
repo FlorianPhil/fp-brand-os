@@ -327,25 +327,136 @@ code {
 }
 
 /* ---------- Viewfinder brackets, the FP signature ---------- */
+/* DEFAULT: 2-corner (top-right + bottom-left). Brand standard.
+   4-corner is ONLY for buttons (.vf-btn). Never on photos. */
 .vf-frame {
   position: relative;
   --vf-arm: 64px;
-  --vf-thick: 3px;
+  --vf-thick: 6px;
   padding: clamp(32px, 5vw, 56px);
   margin: 32px 0 56px;
 }
-.vf-frame::before, .vf-frame::after,
-.vf-frame > .vf-tr, .vf-frame > .vf-bl {
+/* 2-corner: TR + BL via pseudo-elements */
+.vf-frame::before, .vf-frame::after {
   content: ""; position: absolute; pointer-events: none;
   width: var(--vf-arm); height: var(--vf-arm);
   background:
     linear-gradient(var(--accent), var(--accent)) 0 0 / 100% var(--vf-thick) no-repeat,
     linear-gradient(var(--accent), var(--accent)) 0 0 / var(--vf-thick) 100% no-repeat;
 }
-.vf-frame::before { top: 0; left: 0; }
-.vf-frame::after  { bottom: 0; right: 0; transform: scale(-1); }
-.vf-frame > .vf-tr { top: 0; right: 0; transform: scaleX(-1); }
-.vf-frame > .vf-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.vf-frame::before { top: 0; right: 0; transform: scaleX(-1); }
+.vf-frame::after  { bottom: 0; left: 0; transform: scaleY(-1); }
+
+/* ---------- Viewfinder hero (FULL treatment, reusable) ---------- */
+/* Two stacked images: blurred bg + sharp clipped fg + 2-corner brackets.
+   Per-instance: set --top/--right/--bottom/--left (% inset to the focal rectangle)
+   on the .vf-hero element. Add .vf-subject for stronger blur+darken. */
+.vf-hero {
+  position: relative;
+  overflow: hidden;
+  /* Per-instance overrides (focal rectangle inset, in %): */
+  --top: 0%;
+  --right: 0%;
+  --bottom: 0%;
+  --left: 0%;
+  /* Treatment defaults (portrait mode): */
+  --vf-blur: 8px;
+  --vf-bright: 0.45;
+  --vf-thick: 6px;
+  /* Computed focal rect dimensions and arm lengths (33% of rect): */
+  --vf-rect-w: calc(100% - var(--left) - var(--right));
+  --vf-rect-h: calc(100% - var(--top) - var(--bottom));
+  --vf-arm-w: calc(var(--vf-rect-w) * 0.33);
+  --vf-arm-h: calc(var(--vf-rect-h) * 0.33);
+}
+.vf-hero .vf-bg,
+.vf-hero .vf-fg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vf-hero .vf-bg {
+  filter: blur(var(--vf-blur)) brightness(var(--vf-bright));
+  z-index: 1;
+}
+.vf-hero .vf-fg {
+  clip-path: inset(var(--top) var(--right) var(--bottom) var(--left));
+  z-index: 2;
+}
+/* 2-corner brackets: TR + BL, snapped to focal rectangle edges */
+.vf-hero::before,
+.vf-hero::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  width: var(--vf-arm-w);
+  height: var(--vf-arm-h);
+}
+.vf-hero::before {
+  top: var(--top);
+  right: var(--right);
+  background:
+    linear-gradient(var(--accent), var(--accent)) 100% 0 / 100% var(--vf-thick) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 100% 0 / var(--vf-thick) 100% no-repeat;
+}
+.vf-hero::after {
+  bottom: var(--bottom);
+  left: var(--left);
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 100% / 100% var(--vf-thick) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 0 100% / var(--vf-thick) 100% no-repeat;
+}
+/* Subject mode variant: stronger blur + darker outside */
+.vf-hero.vf-subject {
+  --vf-blur: 12px;
+  --vf-bright: 0.3;
+}
+
+/* No-focus mode: brackets sit OUTSIDE the image edges.
+   No focal rectangle, no blur, no clip. Decorative framing only.
+   Arms and thickness pulled from viewfinder-tokens.css (generated from source.yaml).
+   Per-instance: override --vf-thick with a px value matching weight_pct_no_focus
+   for the image's min-dimension (e.g. 17px on a 560px-tall hero). */
+.vf-hero.vf-no-focus {
+  overflow: visible;
+  /* Arms snap to IMAGE edges, not focal rectangle. Use spec arm length. */
+  --vf-arm-w: var(--vf-arm-pct, 33%);
+  --vf-arm-h: var(--vf-arm-pct, 33%);
+  margin: 48px var(--vf-thick) 96px var(--vf-thick);
+}
+.vf-hero.vf-no-focus .vf-bg {
+  display: none;
+}
+.vf-hero.vf-no-focus .vf-fg {
+  position: relative;
+  clip-path: none;
+  height: 100%;
+}
+/* Brackets sit OUTSIDE image edges, anchored to image corners (not focal rect) */
+.vf-hero.vf-no-focus::before {
+  top: calc(-1 * var(--vf-thick));
+  right: calc(-1 * var(--vf-thick));
+  width: var(--vf-arm-w);
+  height: var(--vf-arm-h);
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 0 / 100% var(--vf-thick) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 100% 0 / var(--vf-thick) 100% no-repeat;
+}
+.vf-hero.vf-no-focus::after {
+  bottom: calc(-1 * var(--vf-thick));
+  left: calc(-1 * var(--vf-thick));
+  top: auto;
+  right: auto;
+  width: var(--vf-arm-w);
+  height: var(--vf-arm-h);
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 100% / 100% var(--vf-thick) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 0 0 / var(--vf-thick) 100% no-repeat;
+}
 
 /* ---------- Viewfinder buttons ---------- */
 .vf-btn {
