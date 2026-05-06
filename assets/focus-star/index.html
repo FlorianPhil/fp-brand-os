@@ -491,65 +491,65 @@ ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />
 /* ============================================================ DATA */
 const PILLARS = [
   {
-    id:'people', title:'People', eyebrow:'Your tribe',
+    id:'product', title:'Product', eyebrow:'Your offering',
     guide:{
-      desc:'The specific people you are built to serve. <strong>Not everyone.</strong> The fewer the better, the sharper the work.',
-      impacts:['Personality','Product','Content','Targeting','Social Media','Sales motion'],
+      desc:'What the brand actually sells, and the standard the offer has to hold.',
+      impacts:['Offering architecture','Pricing','Deliverables','Sales conversation','Client experience','Proof'],
     },
     case:{
-      desc:'Leaders who are great at what they do but <strong>struggle to articulate what makes them different</strong>. Entrepreneurial. Go-getters trying to stand out strategically.',
-      apply:'The block is both emotional and strategic. Content speaks to people who would rather be understood than admired. Never sell directly.',
-      impacts:['Founders','Executives','Experts','Invisible leaders','Go-getters','Brand owners'],
-      persona:{ role:'The Invisible Expert', context:'Successful but unseen. 30-55, entrepreneurial.', need:'Clarity + visibility without feeling stupid about it' }
+      desc:'<strong>Brand Therapy.</strong> A guided clarity process using the Focus Star framework to surface what the brand actually is beneath the slogans. The output is a strategic blueprint the founder reads, executes from, and returns to for years.',
+      apply:'Clarity. The end of the tweaking loop. The ability to answer "what do you do?" without cringing.',
+      impacts:['Offering architecture','Pricing','Deliverables','Sales conversation','Client experience','Proof'],
+    }
+  },
+  {
+    id:'people', title:'People', eyebrow:'Your tribe',
+    guide:{
+      desc:'The specific people the brand is built to serve. <strong>Not everyone.</strong>',
+      impacts:['Positioning','Language','Visibility','Offer fit','Content themes','Sales filtering'],
+    },
+    case:{
+      desc:'<strong>The Invisible Expert.</strong> Leaders who are great at what they do but struggle to articulate what makes them different.',
+      apply:'The block is both emotional and strategic. Speak to people who would rather be understood than admired.',
+      impacts:['Positioning','Language','Visibility','Offer fit','Content themes','Sales filtering'],
+      persona:{ role:'The Invisible Expert', context:'Ages 30 to 55. Founder, executive, expert, or premium service operator.', need:'Visibility, clarity, and confidence without turning the brand into performance.' }
     }
   },
   {
     id:'purpose', title:'Purpose', eyebrow:'Your why',
     guide:{
-      desc:'The reason the company exists past making money. <strong>What you are unwilling to compromise on</strong>, even when it costs you.',
-      impacts:['Vision','Story','Pro-bono work','Brand Partnerships','Recruitment','Investor narrative'],
+      desc:'The impact the brand wants to move toward. The movement the audience is invited to join.',
+      impacts:['Vision','Story','Partnerships','Recruitment','Saying no','Editorial choices'],
     },
     case:{
-      desc:'<strong>Make every brand unique.</strong> Reveal existing authenticity, help brands own it, scale marketing down so the brand grows exponentially.',
-      apply:'Say no to every opportunity that doesn\'t need your brand specifically. Find perfect matches, not more matches. The work is subtractive.',
-      impacts:['Vision','Story','Partnerships','Recruitment','Pro-bono','Saying no'],
-    }
-  },
-  {
-    id:'personality', title:'Personality', eyebrow:'How you show up',
-    guide:{
-      desc:'How the brand sounds, looks, and behaves in public. <strong>Recognisable in the dark</strong>, or it does not exist.',
-      impacts:['Identity','Logo','Visual language','Verbal language','Typography','UI & Digital'],
-    },
-    case:{
-      desc:'<strong>Sharp, funny, unhurried.</strong> Professional first, but refuses to take itself too seriously. Self-aware humor. Never prescriptive first.',
-      apply:'Goofy when the moment calls for it, dry when it doesn\'t. Open perspectives, debate, ask questions. Let the audience think with you.',
-      impacts:['Premium minimalism','Viewfinder brackets','Bricolage + Poppins','Dry humor','Photography-forward','Whitespace'],
-      archetype:{ name:'The Innocent', type:'Optimism · Craft', traits:['Curious','Honest','Witty','Elegant','Real','Confident'] }
+      desc:'<strong>Make every brand unique.</strong> The authenticity already exists. The work reveals it, helps the brand own it, and makes it the foundation for every decision.',
+      apply:'Scale down marketing trial-and-error so the brand can grow exponentially. Find perfect matches, not more matches.',
+      impacts:['Vision','Story','Partnerships','Recruitment','Saying no','Editorial choices'],
     }
   },
   {
     id:'promise', title:'Promise', eyebrow:'Your non-negotiable',
     guide:{
-      desc:'The one standard you hold above all others. <strong>Set the bar first</strong>, chase novelty second.',
-      impacts:['Consistency','Culture','Service','Reputation','Trust','Compounding value'],
+      desc:'The one word at the center of everything. Not a value to display. The connecting thread every artifact has to carry.',
+      impacts:['Writing','Visual metaphor','Discovery','Decision filter','Content topics','Client process'],
     },
     case:{
-      desc:'<strong>Curiosity.</strong> The one word at the center. Not a value to display. The connecting thread every artifact has to carry.',
-      apply:'The test for any touchpoint: can this be traced back to Curiosity? If not, it doesn\'t belong. Questions over assertions. "What if..." beats "Here\'s how."',
-      impacts:['Writing tone','Content topics','Visual metaphor','Client discovery','Social voice','Hiring bar'],
+      desc:'<strong>Curiosity.</strong> Florian’s operating method: look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper brand choices.',
+      apply:'Questions over assertions. Observe before prescribing. Every artifact has to translate back to Curiosity.',
+      impacts:['Writing','Visual metaphor','Discovery','Decision filter','Content topics','Client process'],
     }
   },
   {
-    id:'product', title:'Product', eyebrow:'Your offering',
+    id:'personality', title:'Personality', eyebrow:'How you show up',
     guide:{
-      desc:'What you actually sell, and the <strong>standard you hold it to</strong>. The proof your other promises are real.',
-      impacts:['Innovation','Features','Benefits','Design','Usability','Pricing'],
+      desc:'How the brand sounds, looks, behaves, and is recognized.',
+      impacts:['Voice','Visual language','Social behavior','Website tone','Decks','Email rhythm'],
     },
     case:{
-      desc:'<strong>Brand Therapy.</strong> A guided clarity process using the Focus Star framework. The output is a strategic blueprint the founder returns to for years.',
-      apply:'Category: brand strategy workshop. Benefits stack emotional (feel seen, tweaking loop ends) and rational (positioning becomes defensible).',
-      impacts:['Focus Star session','Strategic blueprint','Founder clarity','Long-term use','Emotional relief','Defensible positioning'],
+      desc:'<strong>Funny first, dry diagnosis.</strong> The voice finds the absurdity inside the truth. Humor is how the insight arrives: warm enough to disarm, sharp enough to be useful.',
+      apply:'Name the specific tension, then leave the reader with a perspective shift. If the joke works without the strategy point, cut it.',
+      impacts:['Voice','Visual language','Social behavior','Website tone','Decks','Email rhythm'],
+      archetype:{ name:'The Innocent', type:'Creator · Friend', traits:['Curious','Honest','Witty','Specific','Warm','Unhurried'] }
     }
   }
 ];
@@ -678,7 +678,7 @@ let leanOffset = 0; // visual lean during scroll build-up
 
 let leanResetTimer = null;
 let snapLockedUntil = 0;
-dialWrap.addEventListener('wheel',e=>{
+window.addEventListener('wheel',e=>{
   e.preventDefault();
   // ignore wheel events for 400ms after a snap (kills trackpad inertia chaining)
   if (performance.now() < snapLockedUntil) return;

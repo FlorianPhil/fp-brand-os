@@ -1,0 +1,288 @@
+{
+  "source": {
+    "authoringSource": "Notion Brands row",
+    "snapshot": "brand-os/source/source.yaml",
+    "rowUrl": "https://www.notion.so/358c22dccbf98141bc3ac16ad95274df",
+    "fetchedAt": "2026-05-06 01:41:11.384000+00:00"
+  },
+  "brand": {
+    "name": "Florian P. Consulting",
+    "shortName": "FP",
+    "tagline": "Founder-led brand strategy and creative direction",
+    "description": "Founder-led Brand Therapy practice helping founders, executives, and brand owners clarify what makes their brand uniquely theirs.",
+    "accentColor": "#5A5CF9",
+    "inkColor": "#1A1A2E"
+  },
+  "visual": {
+    "darkMode": false,
+    "fonts": {
+      "heading": "Bricolage Grotesque",
+      "body": "Poppins",
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap"
+    },
+    "background": "#FFFFFF",
+    "dialBackground": "#FFFFFF",
+    "bgMode": "unified"
+  },
+  "center": "Curiosity",
+  "pillars": [
+    {
+      "id": "product",
+      "code": "P1",
+      "title": "Product",
+      "eyebrow": "Your offering",
+      "guide": {
+        "desc": "<strong>Product.</strong> What you actually sell, and the standard the offer has to hold.",
+        "impacts": [
+          "Offering architecture",
+          "Pricing",
+          "Deliverables",
+          "Sales conversation",
+          "Client experience",
+          "Proof"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Brand Therapy.</strong> Brand Therapy is a guided clarity process. The work uses the Focus Star framework to surface what the brand actually is, beneath the slogans. The output is a strategic blueprint the founder reads, executes from, and returns to for years. Three benefits stack: experiential (the founder feels seen), rational (positioning becomes legible and defensible), emotional (work after Brand Therapy feels lighter because every choice has a reason).",
+        "apply": "Clarity. The end of the tweaking loop. The ability to answer 'what do you do?' without cringing.",
+        "impacts": [
+          "Offering architecture",
+          "Pricing",
+          "Deliverables",
+          "Sales conversation",
+          "Client experience",
+          "Proof"
+        ],
+        "details": {
+          "What it is": [
+            "A guided clarity process using the Focus Star framework (5 edges). Discovery feels therapeutic. Output is a strategic blueprint."
+          ],
+          "What it is not": [
+            "logo design",
+            "content agency",
+            "clinical therapy",
+            "aesthetic refresh",
+            "template",
+            "Done for you solution"
+          ],
+          "Process": [
+            "Discovery Call: 20 min. Fit, success definition, timing.",
+            "Brand Therapy Blueprint: Focus Star session. Real positioning uncovered.",
+            "Brand Build: Strategy becomes substance. Messaging, identity, positioning copy.",
+            "Launch Ready: Brand goes to work. Content direction, messaging clarity."
+          ],
+          "Service lines": [
+            "Founders: $700 founding rate, 1-on-1, 2 weeks, Focus Star + full deliverables workspace",
+            "Brands: $5,000-15,000+, Full brand positioning, messaging architecture, visual identity"
+          ]
+        }
+      }
+    },
+    {
+      "id": "people",
+      "code": "P2",
+      "title": "People",
+      "eyebrow": "Your tribe",
+      "guide": {
+        "desc": "<strong>People.</strong> The specific people the brand is built to serve. Not everyone.",
+        "impacts": [
+          "Positioning",
+          "Language",
+          "Visibility",
+          "Offer fit",
+          "Content themes",
+          "Sales filtering"
+        ]
+      },
+      "case": {
+        "desc": "<strong>The Invisible Expert.</strong> Built real value through relationships, expertise, and hard work, but never invested in being visible. The friction is both emotional and strategic.",
+        "apply": "Founders, executives, and brand owners. Personal or company. The block is both emotional and strategic.",
+        "impacts": [
+          "Positioning",
+          "Language",
+          "Visibility",
+          "Offer fit",
+          "Content themes",
+          "Sales filtering"
+        ],
+        "details": {
+          "Fit is": [
+            "Founders who built real value but never invested in being visible",
+            "Executives who make others successful but struggle to articulate their own story",
+            "Leaders at a growth plateau who sense the block is clarity, not effort",
+            "People starting something new who understand brand matters from day one",
+            "Anyone who would rather be understood than admired"
+          ],
+          "Fit is not": [
+            "Logo shoppers looking for a quick design refresh",
+            "Hustle-culture personal branders optimizing for attention",
+            "Social media management seekers",
+            "ROI-first founders who treat brand as a marketing tactic",
+            "Anyone who wants to copy someone else's brand"
+          ],
+          "Trigger moments": [
+            "Lost a deal to someone louder",
+            "Preparing for a keynote",
+            "Raising a round",
+            "Hit a growth plateau",
+            "Watched someone less talented get more attention",
+            "Starting a new venture and understanding brand matters from day one"
+          ],
+          "Warning signs": [
+            "Does not value the purpose, culture, or values of the company",
+            "Expects instant ROI from brand work",
+            "Only interested in a short design fix",
+            "Cannot or will not involve the decision-makers",
+            "Treats brand as a tactic, not long-term equity",
+            "Says 'I just want more clients' as the only goal",
+            "Does not see the personal in the brand, or the brand in the personal"
+          ]
+        }
+      }
+    },
+    {
+      "id": "purpose",
+      "code": "P3",
+      "title": "Purpose",
+      "eyebrow": "Your why",
+      "guide": {
+        "desc": "<strong>Purpose.</strong> The reason the brand exists beyond activity and attention.",
+        "impacts": [
+          "Vision",
+          "Story",
+          "Partnerships",
+          "Recruitment",
+          "Saying no",
+          "Editorial choices"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Make every brand unique.</strong> The authenticity already exists. The work is revealing it, helping the brand own it, and making it the foundation for every decision. Most brands try to grow by doing more. Brand Therapy scales marketing down so the brand grows exponentially. That means making hard choices: saying no to every opportunity that doesn&#x27;t need your brand specifically. Finding perfect matches, not more matches.",
+        "apply": "Scale down marketing trial-and-error so the brand can grow exponentially.",
+        "impacts": [
+          "Vision",
+          "Story",
+          "Partnerships",
+          "Recruitment",
+          "Saying no",
+          "Editorial choices"
+        ],
+        "details": {
+          "Core belief": [
+            "The brand's truth already exists; strategy should reveal and sharpen it, not manufacture a costume."
+          ],
+          "Invitation": [
+            "Scale down marketing trial-and-error efforts so the brand can grow exponentially. Say no to every opportunity that does not need your brand specifically. Find perfect matches, not more matches."
+          ],
+          "Quote": [
+            "Finding perfect matches, not more matches."
+          ]
+        }
+      }
+    },
+    {
+      "id": "promise",
+      "code": "P4",
+      "title": "Promise",
+      "eyebrow": "Your non-negotiable",
+      "guide": {
+        "desc": "<strong>Promise.</strong> The one standard that should hold across every touchpoint.",
+        "impacts": [
+          "Writing",
+          "Visual metaphor",
+          "Discovery",
+          "Decision filter",
+          "Content topics",
+          "Client process"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Curiosity.</strong> Curiosity is Florian&#x27;s operating method: look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper brand choices. It keeps the work from becoming imitation, decoration, or performance.",
+        "apply": "Questions over assertions. Observe before prescribing. Every artifact has to translate back to Curiosity.",
+        "impacts": [
+          "Writing",
+          "Visual metaphor",
+          "Discovery",
+          "Decision filter",
+          "Content topics",
+          "Client process"
+        ],
+        "details": {
+          "Always": [
+            "Ask before asserting",
+            "observe before prescribing",
+            "reveal what is already there",
+            "use curiosity to find the specific tension",
+            "end with a perspective shift."
+          ],
+          "Never": [
+            "Never perform certainty for its own sake. Never copy someone else's brand. Never make Brand Therapy sound like a company. Never let a joke replace the strategy point. Never use brand work as a quick design fix."
+          ]
+        }
+      }
+    },
+    {
+      "id": "personality",
+      "code": "P5",
+      "title": "Personality",
+      "eyebrow": "How you show up",
+      "guide": {
+        "desc": "<strong>Personality.</strong> How the brand sounds, looks, behaves, and is recognized.",
+        "impacts": [
+          "Voice",
+          "Visual language",
+          "Social behavior",
+          "Website tone",
+          "Decks",
+          "Email rhythm"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Funny first, dry diagnosis.</strong> The voice finds the absurdity inside the truth. Humor is not decoration after the insight. It is how the insight arrives. Warm enough to disarm, sharp enough to be useful, self-aware enough to make fun of the whole LinkedIn-influencer thing while still doing the work. Observes before prescribing. Names the specific tension, then leaves the reader with a perspective shift. If the joke works without the strategy point, cut it.",
+        "apply": "Funny first, dry diagnosis. Warm enough to disarm, sharp enough to be useful.",
+        "impacts": [
+          "Voice",
+          "Visual language",
+          "Social behavior",
+          "Website tone",
+          "Decks",
+          "Email rhythm"
+        ],
+        "details": {
+          "Voice is": [
+            "Funny first",
+            "dry diagnosis",
+            "warm snap",
+            "unhurried",
+            "observant",
+            "specific",
+            "curious",
+            "conversational"
+          ],
+          "Voice is not": [
+            "Generic coaching-speak",
+            "self-help affirmation",
+            "corporate newsletter",
+            "formal essay voice",
+            "hustle-culture motivation",
+            "joke-only cleverness",
+            "AI thought leadership",
+            "first-chair founder bio"
+          ],
+          "Banned language": [
+            "at Brand Therapy",
+            "the Brand Therapy team",
+            "Most branding starts with a logo",
+            "credentialed"
+          ]
+        }
+      }
+    }
+  ],
+  "tweaks": {
+    "springStiffness": 1,
+    "springBounce": 8,
+    "scrollResistance": 100,
+    "activeLabelScale": "3x"
+  }
+}
