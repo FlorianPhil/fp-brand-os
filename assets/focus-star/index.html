@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <style>
   :root {
     --acc: #5A5CF9;
@@ -24,20 +21,20 @@
     --bg-dial: #FFFFFF;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); }
-  body { font-family: var(--ff-b); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
+  body { font-family: var(--ff-b); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; overscroll-behavior: none; }
 
   /* ── LAYOUT ── (embedded variant: fixed-height container) */
   .stage {
-    position: relative; width: 100%; height: 880px;
+    position: relative; width: 100%; height: 100vh; height: 100svh;
     display: grid;
-    grid-template-columns: minmax(380px, 46%) 1fr;
+    grid-template-columns: minmax(620px, 60%) 1fr;
     align-items: start;
     overflow: hidden;
   }
   .stage::after {
     content: ''; position: absolute;
-    top: 0; bottom: 0; left: 46%;
+    top: 0; bottom: 0; left: 60%;
     width: 1px; background: var(--border);
     pointer-events: none; z-index: 3;
     opacity: var(--divider-opacity, 0);
@@ -47,47 +44,48 @@
   /* ── LEFT PANEL ── */
   .reader {
     position: relative; z-index: 2;
-    padding: clamp(48px,5vw,80px) clamp(40px,4vw,72px) clamp(40px,4vw,64px) clamp(48px,5.5vw,88px);
+    min-width: 0;
+    padding: clamp(38px,4vw,64px) clamp(40px,3.6vw,68px) clamp(32px,3.2vw,52px) clamp(48px,4.5vw,86px);
     display: flex; flex-direction: column;
     background: var(--bg);
-    height: 880px;
-    overflow-y: auto;
+    height: 100%;
+    overflow: hidden;
+  }
+  .reader-fit {
+    width: 100%;
+  }
+  .detail-fit {
+    width: 100%;
+    transform-origin: top left;
+    will-change: transform;
   }
 
   /* mode bar */
   .mode-bar {
     display: flex; align-items: center; gap: 16px;
-    margin-bottom: clamp(48px,6vw,80px);
+    min-height: 42px;
+    margin-bottom: 14px;
   }
 
   .case-logo {
-    display: none; align-items: center; gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     opacity: 0; transition: opacity .35s var(--ease);
+    visibility: hidden; pointer-events: none;
     flex-shrink: 0;
   }
-  .case-logo.visible { display: flex; opacity: 1; }
+  .case-logo.visible { opacity: 1; visibility: visible; pointer-events: auto; }
   .case-logo .logo-lockup {
     display: flex; align-items: center; gap: 8px;
-    padding: 6px 14px 6px 10px;
+    padding: 9px 14px;
     border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg);
   }
-  .case-logo .logo-mark {
-    width: 28px; height: 28px; border-radius: 4px;
-    background: #1A1A2E;
-    display: grid; place-items: center; flex-shrink: 0;
-  }
-  .case-logo .logo-mark svg { display: block; }
   .case-logo .logo-text {
     display: flex; flex-direction: column; line-height: 1.15;
   }
   .case-logo .logo-name {
-    font-family: var(--ff-h); font-weight: 800; font-size: 11px;
+    font-family: var(--ff-h); font-weight: 800; font-size: 12px;
     text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
-  }
-  .case-logo .logo-sub {
-    font-family: var(--ff-b); font-size: 9px; font-weight: 500;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
   }
 
   .mode-toggle {
@@ -111,8 +109,100 @@
     box-shadow: 0 1px 4px rgba(0,0,0,.12);
   }
 
+  .navigation-panel {
+    min-width: 0;
+    display: grid;
+    gap: 14px;
+    margin-bottom: clamp(26px,3.4vw,44px);
+  }
+  .pillar-nav {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .pillar-link {
+    min-width: 0;
+    display: grid;
+    gap: 6px;
+    padding: 11px 10px 12px;
+    border-right: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+  }
+  .pillar-link:last-child { border-right: 0; }
+  .pillar-link:hover,
+  .pillar-link:focus-visible {
+    color: var(--ink);
+    background: #FAFAFC;
+    outline: none;
+  }
+  .pillar-link.active {
+    color: var(--ink);
+    background: var(--acc-soft);
+    box-shadow: inset 0 -2px 0 var(--acc);
+  }
+  .pillar-link .nav-index {
+    font-family: var(--ff-b);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--acc);
+    line-height: 1;
+  }
+  .pillar-link .nav-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--ff-h);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .step-controls {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .arrow-btn {
+    width: 38px; height: 34px;
+    display: grid; place-items: center;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: var(--ff-b);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+  }
+  .arrow-btn:hover,
+  .arrow-btn:focus-visible {
+    border-color: var(--acc);
+    color: var(--acc);
+    outline: none;
+  }
+  .section-count {
+    flex: 1;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    font-family: var(--ff-b);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
   /* hero */
-  .hero { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+  .hero { min-width: 0; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start; }
 
   .pillar-eyebrow {
     font-family: var(--ff-h); font-size: clamp(12px,1.1vw,14px); font-weight: 700;
@@ -141,17 +231,17 @@
 
   .pillar-desc {
     font-family: var(--ff-b); font-weight: 400;
-    font-size: clamp(14px,1.15vw,15px);
-    line-height: 1.72; color: var(--muted);
-    margin: 0 0 32px; max-width: 480px;
+    font-size: clamp(15px,1vw,17px);
+    line-height: 1.62; color: var(--muted);
+    margin: 0 0 28px; max-width: 720px;
   }
   .pillar-desc strong { font-weight: 600; color: var(--ink); }
 
   /* persona image placeholder */
-  .persona-block { display: none; margin-bottom: 28px; }
+  .persona-block { display: none; margin-bottom: 20px; }
   .persona-block.visible { display: flex; gap: 20px; align-items: flex-start; }
   .persona-image {
-    width: 80px; height: 104px; flex-shrink: 0;
+    width: 72px; height: 92px; flex-shrink: 0;
     background: #F0F0F5; border: 1px solid var(--border);
     border-radius: 4px;
     display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
@@ -171,16 +261,16 @@
   }
   .persona-info { flex: 1; padding-top: 4px; }
   .persona-role {
-    font-family: var(--ff-h); font-weight: 700; font-size: 13px;
+    font-family: var(--ff-h); font-weight: 700; font-size: 14px;
     text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
     line-height: 1.2; margin-bottom: 6px;
   }
   .persona-context {
-    font-family: var(--ff-b); font-size: 12px; font-weight: 400;
+    font-family: var(--ff-b); font-size: 13px; font-weight: 400;
     color: var(--muted); line-height: 1.5; margin-bottom: 8px;
   }
   .persona-need {
-    font-family: var(--ff-b); font-size: 12px; font-weight: 600;
+    font-family: var(--ff-b); font-size: 13px; font-weight: 600;
     color: var(--acc); line-height: 1.4;
     border-top: 1px solid var(--border); padding-top: 8px;
   }
@@ -217,7 +307,7 @@
   /* apply block */
   .apply-block {
     border-left: 2px solid var(--border); padding-left: 16px;
-    margin-bottom: 28px; display: none;
+    margin-bottom: 20px; display: none;
   }
   .apply-block.visible { display: block; }
   .apply-label {
@@ -225,7 +315,7 @@
     letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
   }
   .apply-text {
-    font-family: var(--ff-b); font-size: 12px; line-height: 1.68;
+    font-family: var(--ff-b); font-size: 13px; line-height: 1.62;
     color: var(--ink); font-weight: 400;
   }
 
@@ -242,9 +332,9 @@
   }
   .impacts li {
     display: flex; align-items: center;
-    padding: 9px 10px 9px 0; border-top: 1px solid var(--border);
+    padding: 8px 10px 8px 0; border-top: 1px solid var(--border);
     font-family: var(--ff-b); font-weight: 500;
-    font-size: clamp(11px,.95vw,13px); color: var(--ink);
+    font-size: clamp(12px,.82vw,14px); color: var(--ink);
   }
   .impacts li:nth-child(even) { padding-left: 12px; border-left: 1px solid var(--border); }
   .impacts li::before { content: '—'; color: var(--acc); margin-right: 7px; font-size: 9px; }
@@ -252,12 +342,12 @@
   /* ── DIAL ── (embedded variant: relative + fixed height) */
   .dial-wrap {
     position: relative;
-    height: 880px; overflow: hidden;
+    height: 100%; overflow: hidden;
     background: var(--bg-dial);
     cursor: grab;
   }
   .dial-wrap.dragging { cursor: grabbing; }
-  .dial-wrap > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .dial-wrap > svg { position: absolute; inset: 6%; width: 88%; height: 88%; }
 
   .indicator {
     position: absolute; top: 5%; left: 50%;
@@ -286,6 +376,94 @@
   .pillar-text.active { fill: var(--ink); }
   .center-cap { fill: var(--bg); stroke: var(--border); stroke-width: 1; vector-effect: non-scaling-stroke; }
   .center-spoke { stroke: var(--acc); stroke-width: 2; stroke-linecap: square; vector-effect: non-scaling-stroke; }
+
+  @media (max-width: 980px) {
+    .stage {
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(0, 1fr) clamp(104px, 16svh, 180px);
+      overflow: hidden;
+    }
+    .stage::after { display: none; }
+    .reader {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      padding: 26px clamp(20px,5vw,44px) 20px;
+    }
+    .navigation-panel { margin-bottom: 26px; }
+    .dial-wrap {
+      height: 100%;
+      min-height: 0;
+    }
+    .dial-wrap > svg { inset: 0; width: 100%; height: 100%; }
+  }
+
+  @media (max-width: 640px) {
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .stage {
+      grid-template-rows: minmax(0, 1fr) clamp(82px, 12svh, 118px);
+      overflow: hidden;
+    }
+    .stage,
+    .reader,
+    .navigation-panel,
+    .hero,
+    .pillar-desc,
+    .impacts-block {
+      width: 100%;
+      max-width: 100%;
+    }
+    .mode-bar {
+      align-items: flex-start;
+      flex-direction: column;
+      min-height: 74px;
+      gap: 8px;
+    }
+    .case-logo {
+      min-height: 32px;
+    }
+    .navigation-panel {
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pillar-nav {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .pillar-link {
+      padding: 8px 4px 9px;
+    }
+    .pillar-link .nav-index {
+      font-size: 8px;
+    }
+    .pillar-link .nav-label {
+      font-size: 9px;
+      letter-spacing: 0;
+    }
+    .arrow-btn {
+      width: 34px;
+      height: 32px;
+    }
+    .section-count {
+      padding: 9px 0;
+    }
+    .pillar-title {
+      font-size: clamp(46px,16vw,64px);
+    }
+    .pillar-desc {
+      min-height: 0;
+      margin-bottom: 24px;
+    }
+    .impacts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 </style>
 </head>
 <body>
@@ -293,7 +471,8 @@
 
   <!-- LEFT -->
   <section class="reader" aria-live="polite">
-    <div class="mode-bar">
+    <div class="reader-fit" id="reader-fit">
+      <div class="mode-bar">
       <div class="mode-toggle">
         <button class="mode-btn active" id="btn-guide" onclick="setMode('guide')">Guide</button>
         <button class="mode-btn" id="btn-case" onclick="setMode('case')">Case Study</button>
@@ -301,18 +480,26 @@
       <!-- logo: only case study, right of toggle -->
       <div class="case-logo" id="case-logo">
         <div class="logo-lockup">
-          <div class="logo-mark" style="font-family:'Bricolage Grotesque',system-ui;font-weight:800;font-size:16px;letter-spacing:-0.01em;color:#1A1A2E;">FP<span style="color:#5A5CF9;">.</span></div>
           <div class="logo-text">
-            <span class="logo-name">Florian P.</span>
-            <span class="logo-sub">Consulting</span>
+            <span class="logo-name" id="case-brand-name">Brand</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="hero">
+      <div class="navigation-panel">
+      <nav class="pillar-nav" id="pillar-nav" aria-label="Focus Star sections"></nav>
+      <div class="step-controls" aria-label="Section controls">
+        <button class="arrow-btn" type="button" onclick="goToIndex((activeIdx+PILLARS.length-1)%PILLARS.length)" aria-label="Previous section">&#8592;</button>
+        <span class="section-count" id="section-count">-- / --</span>
+        <button class="arrow-btn" type="button" onclick="goToIndex((activeIdx+1)%PILLARS.length)" aria-label="Next section">&#8594;</button>
+      </div>
+    </div>
+
+      <div class="hero">
       <div class="pillar-eyebrow" id="p-eyebrow">Your why</div>
       <h1 class="pillar-title"><span id="p-title">Purpose</span><span class="dot">.</span></h1>
+      <div class="detail-fit" id="detail-fit">
       <p class="pillar-desc" id="p-desc"></p>
 
       <!-- Persona (People + case study) -->
@@ -358,6 +545,8 @@
         <div class="impacts-head" id="impacts-head">What it shapes</div>
         <ul class="impacts" id="p-impacts"></ul>
       </div>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -382,177 +571,65 @@
   </section>
 </div>
 
-<div id="tweaks-root"></div>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "springStiffness": 1,
-  "springBounce": 10,
-  "scrollResistance": 100,
-  "scrollLean": 27,
-  "scrollLeanBuildup": 300,
-  "centerMark": true,
-  "activeLabelScale": "3x",
-  "bgMode": "unified"
-}/*EDITMODE-END*/;
-
-function TweaksApp() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-
-  React.useEffect(() => {
-    const cm = document.getElementById('centerMark');
-    if (cm) cm.style.display = t.centerMark ? '' : 'none';
-
-    const scaleMap = {'1x': 14, '2x': 26, '3x': 38};
-    window.__activeLabelSize = scaleMap[t.activeLabelScale] || 26;
-    if (typeof highlightDial === 'function') highlightDial(window.__activeIdx || 0);
-
-    // spring: stiffness 1–10 → k 0.02–0.18; bounce 0–10 → damping 0.99–0.82
-    window.springK    = 0.02 + (t.springStiffness / 10) * 0.16;
-    window.springDamp = 0.99 - (t.springBounce    / 10) * 0.17;
-
-    // scroll resistance: slider 20–200
-    window.WHEEL_THRESHOLD = t.scrollResistance;
-    window.scrollLean = t.scrollLean;
-    window.scrollLeanBuildup = t.scrollLeanBuildup;
-
-    // background mode
-    const root = document.documentElement;
-    if (t.bgMode === 'unified') {
-      root.style.setProperty('--bg-dial', '#FFFFFF');
-      root.style.setProperty('--divider-opacity', '0');
-    } else {
-      root.style.setProperty('--bg-dial', '#F5F5F7');
-      root.style.setProperty('--divider-opacity', '1');
-    }
-  }, [t.centerMark, t.activeLabelScale, t.springStiffness, t.springBounce, t.scrollResistance, t.scrollLean, t.scrollLeanBuildup, t.bgMode]);
-
-  return (
-    <TweaksPanel>
-      <TweakSection label="Dial" />
-      <TweakToggle
-        label="Center mark"
-        value={t.centerMark}
-        onChange={v => setTweak('centerMark', v)}
-      />
-      <TweakRadio
-        label="Active label size"
-        value={t.activeLabelScale}
-        options={['1x','2x','3x']}
-        onChange={v => setTweak('activeLabelScale', v)}
-      />
-      <TweakSection label="Animation" />
-      <TweakSlider
-        label="Stiffness"
-        value={t.springStiffness}
-        min={1} max={10} step={1}
-        onChange={v => setTweak('springStiffness', v)}
-      />
-      <TweakSlider
-        label="Bounce"
-        value={t.springBounce}
-        min={0} max={10} step={1}
-        onChange={v => setTweak('springBounce', v)}
-      />
-      <TweakSection label="Scroll" />
-      <TweakSlider
-        label="Resistance"
-        value={t.scrollResistance}
-        min={20} max={200} step={10}
-        onChange={v => setTweak('scrollResistance', v)}
-      />
-      <TweakSlider
-        label="Pre-snap lean"
-        value={t.scrollLean}
-        min={0} max={40} step={1}
-        onChange={v => setTweak('scrollLean', v)}
-      />
-      <TweakSlider
-        label="Lean buildup"
-        value={t.scrollLeanBuildup}
-        min={20} max={300} step={10}
-        onChange={v => setTweak('scrollLeanBuildup', v)}
-      />
-      <TweakSection label="Background" />
-      <TweakRadio
-        label="Layout"
-        value={t.bgMode}
-        options={[{value:'split', label:'Split'}, {value:'unified', label:'Unified'}]}
-        onChange={v => setTweak('bgMode', v)}
-      />
-    </TweaksPanel>
-  );
-}
-ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+<script>
+/* fixed defaults ... no edit panel in standalone build */
+window.springK = 0.036;
+window.springDamp = 0.82;
+window.WHEEL_THRESHOLD = 100;
+window.scrollLean = 27;
+window.scrollLeanBuildup = 300;
+window.__activeLabelSize = 38;
 </script>
 
+<script src="./config.js"></script>
 <script>
 /* ============================================================ DATA */
-const PILLARS = [
-  {
-    id:'product', title:'Product', eyebrow:'Your offering',
-    guide:{
-      desc:'What the brand actually sells, and the standard the offer has to hold.',
-      impacts:['Offering architecture','Pricing','Deliverables','Sales conversation','Client experience','Proof'],
-    },
-    case:{
-      desc:'<strong>Brand Therapy.</strong> A guided clarity process using the Focus Star framework to surface what the brand actually is beneath the slogans. The output is a strategic blueprint the founder reads, executes from, and returns to for years.',
-      apply:'Clarity. The end of the tweaking loop. The ability to answer "what do you do?" without cringing.',
-      impacts:['Offering architecture','Pricing','Deliverables','Sales conversation','Client experience','Proof'],
-    }
-  },
-  {
-    id:'people', title:'People', eyebrow:'Your tribe',
-    guide:{
-      desc:'The specific people the brand is built to serve. <strong>Not everyone.</strong>',
-      impacts:['Positioning','Language','Visibility','Offer fit','Content themes','Sales filtering'],
-    },
-    case:{
-      desc:'<strong>The Invisible Expert.</strong> Leaders who are great at what they do but struggle to articulate what makes them different.',
-      apply:'The block is both emotional and strategic. Speak to people who would rather be understood than admired.',
-      impacts:['Positioning','Language','Visibility','Offer fit','Content themes','Sales filtering'],
-      persona:{ role:'The Invisible Expert', context:'Ages 30 to 55. Founder, executive, expert, or premium service operator.', need:'Visibility, clarity, and confidence without turning the brand into performance.' }
-    }
-  },
-  {
-    id:'purpose', title:'Purpose', eyebrow:'Your why',
-    guide:{
-      desc:'The impact the brand wants to move toward. The movement the audience is invited to join.',
-      impacts:['Vision','Story','Partnerships','Recruitment','Saying no','Editorial choices'],
-    },
-    case:{
-      desc:'<strong>Make every brand unique.</strong> The authenticity already exists. The work reveals it, helps the brand own it, and makes it the foundation for every decision.',
-      apply:'Scale down marketing trial-and-error so the brand can grow exponentially. Find perfect matches, not more matches.',
-      impacts:['Vision','Story','Partnerships','Recruitment','Saying no','Editorial choices'],
-    }
-  },
-  {
-    id:'promise', title:'Promise', eyebrow:'Your non-negotiable',
-    guide:{
-      desc:'The one word at the center of everything. Not a value to display. The connecting thread every artifact has to carry.',
-      impacts:['Writing','Visual metaphor','Discovery','Decision filter','Content topics','Client process'],
-    },
-    case:{
-      desc:'<strong>Curiosity.</strong> Florian’s operating method: look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper brand choices.',
-      apply:'Questions over assertions. Observe before prescribing. Every artifact has to translate back to Curiosity.',
-      impacts:['Writing','Visual metaphor','Discovery','Decision filter','Content topics','Client process'],
-    }
-  },
-  {
-    id:'personality', title:'Personality', eyebrow:'How you show up',
-    guide:{
-      desc:'How the brand sounds, looks, behaves, and is recognized.',
-      impacts:['Voice','Visual language','Social behavior','Website tone','Decks','Email rhythm'],
-    },
-    case:{
-      desc:'<strong>Funny first, dry diagnosis.</strong> The voice finds the absurdity inside the truth. Humor is how the insight arrives: warm enough to disarm, sharp enough to be useful.',
-      apply:'Name the specific tension, then leave the reader with a perspective shift. If the joke works without the strategy point, cut it.',
-      impacts:['Voice','Visual language','Social behavior','Website tone','Decks','Email rhythm'],
-      archetype:{ name:'The Innocent', type:'Creator · Friend', traits:['Curious','Honest','Witty','Specific','Warm','Unhurried'] }
-    }
+const CONFIG_PATH = './config.json';
+let SOURCE_DATA = null;
+let BRAND = { name: 'Brand', shortName: 'Brand' };
+let PILLARS = [];
+
+function normalizePanel(panel={}){
+  return {
+    desc: panel.desc || '',
+    apply: panel.apply || '',
+    impacts: Array.isArray(panel.impacts) ? panel.impacts : [],
+    persona: panel.persona || null,
+    archetype: panel.archetype || null,
+    details: panel.details || null
+  };
+}
+
+function normalizeConfig(config){
+  if(!config || !Array.isArray(config.pillars) || !config.pillars.length){
+    throw new Error('config.json is missing pillars');
   }
-];
+  return {
+    ...config,
+    brand: config.brand || {},
+    visual: config.visual || {},
+    pillars: config.pillars.map((pillar,index)=>({
+      ...pillar,
+      id: pillar.id || `p${index+1}`,
+      title: pillar.title || `P${index+1}`,
+      eyebrow: pillar.eyebrow || '',
+      guide: normalizePanel(pillar.guide),
+      case: normalizePanel(pillar.case)
+    }))
+  };
+}
+
+function applyTheme(config){
+  const root = document.documentElement;
+  const brand = config.brand || {};
+  const visual = config.visual || {};
+  if(brand.accentColor) root.style.setProperty('--acc', brand.accentColor);
+  if(brand.inkColor) root.style.setProperty('--ink', brand.inkColor);
+  if(visual.background) root.style.setProperty('--bg', visual.background);
+  if(visual.dialBackground) root.style.setProperty('--bg-dial', visual.dialBackground);
+  document.getElementById('case-brand-name').textContent = brand.name || brand.shortName || 'Brand';
+  document.title = `${brand.shortName || brand.name || 'Brand'} Focus Star`;
+}
 
 /* ============================================================ GEOMETRY */
 const STEP = 72;
@@ -566,14 +643,35 @@ let rotation = 0, target = 0;
 let dragging = false, lastPointerAng = 0, dragVelocity = 0, lastDragTime = 0;
 let wheelAccum = 0; // for scroll resistance
 
+const stage      = document.getElementById('stage');
 const dialWrap   = document.getElementById('dialWrap');
 const rotor      = document.getElementById('rotor');
 const fineTicks  = document.getElementById('fineTicks');
 const pillarRing = document.getElementById('pillarRing');
 const starGroup  = document.getElementById('starGroup');
+const reader     = document.querySelector('.reader');
+const readerFit  = document.getElementById('reader-fit');
+const detailFit  = document.getElementById('detail-fit');
+const pillarNav  = document.getElementById('pillar-nav');
+
+function buildSectionNav(){
+  pillarNav.innerHTML = PILLARS.map((p,i)=>`
+    <a class="pillar-link${i===activeIdx?' active':''}" href="#${p.id}" data-pidx="${i}">
+      <span class="nav-index">${String(i+1).padStart(2,'0')}</span>
+      <span class="nav-label">${p.title}</span>
+    </a>
+  `).join('');
+  pillarNav.querySelectorAll('.pillar-link').forEach(link=>{
+    link.addEventListener('click',event=>{
+      event.preventDefault();
+      goToIndex(+link.dataset.pidx);
+    });
+  });
+}
 
 /* ============================================================ BUILD DIAL */
-(function buildFineTicks(){
+function buildFineTicks(){
+  fineTicks.innerHTML = '';
   const f=document.createDocumentFragment();
   for(let a=0;a<360;a+=6){
     const major=(a%18===0);
@@ -588,9 +686,10 @@ const starGroup  = document.getElementById('starGroup');
     f.appendChild(ln);
   }
   fineTicks.appendChild(f);
-})();
+}
 
-(function buildPillarRing(){
+function buildPillarRing(){
+  pillarRing.innerHTML = '';
   const f=document.createDocumentFragment();
   PILLARS.forEach((p,i)=>{
     const ang=i*STEP, rad=(ang-90)*Math.PI/180;
@@ -617,9 +716,10 @@ const starGroup  = document.getElementById('starGroup');
     f.appendChild(g);
   });
   pillarRing.appendChild(f);
-})();
+}
 
-(function buildStar(){
+function buildStar(){
+  starGroup.innerHTML = '';
   function pt(a,r){ const rad=(a-90)*Math.PI/180; return{x:Math.cos(rad)*r,y:Math.sin(rad)*r}; }
   const f=document.createDocumentFragment();
   PILLARS.forEach((p,i)=>{
@@ -638,7 +738,7 @@ const starGroup  = document.getElementById('starGroup');
   out.setAttribute('points',pts.join(' ')); out.setAttribute('class','star-outline');
   f.appendChild(out);
   starGroup.appendChild(f);
-})();
+}
 
 /* ============================================================ INTERACTION */
 function clientAngle(e){
@@ -678,7 +778,7 @@ let leanOffset = 0; // visual lean during scroll build-up
 
 let leanResetTimer = null;
 let snapLockedUntil = 0;
-window.addEventListener('wheel',e=>{
+function handleWheel(e){
   e.preventDefault();
   // ignore wheel events for 400ms after a snap (kills trackpad inertia chaining)
   if (performance.now() < snapLockedUntil) return;
@@ -686,7 +786,9 @@ window.addEventListener('wheel',e=>{
   const threshold = window.WHEEL_THRESHOLD || WHEEL_THRESHOLD;
   const lean = (window.scrollLean !== undefined ? window.scrollLean : 0);
   const buildup = window.scrollLeanBuildup || threshold;
-  wheelAccum += e.deltaY;
+  const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+  if(delta === 0) return;
+  wheelAccum += delta;
   if(lean > 0){
     const progress = Math.min(Math.abs(wheelAccum) / buildup, 1);
     leanOffset = -Math.sign(wheelAccum) * Math.pow(progress, 1.5) * lean;
@@ -695,12 +797,12 @@ window.addEventListener('wheel',e=>{
   }
   if(Math.abs(wheelAccum) >= threshold){
     // hold the leaned position briefly so the user sees the recoil at full amplitude
-    const dir = e.deltaY > 0 ? 1 : -1;
+    const dir = delta > 0 ? 1 : -1;
     snapLockedUntil = performance.now() + 400;
     setTimeout(() => {
       leanOffset = 0;
       wheelAccum = 0;
-      goToIndex((activeIdx + dir + 5) % 5);
+      goToIndex((activeIdx + dir + PILLARS.length) % PILLARS.length);
     }, 110);
   }
   // release: when scroll stops short of threshold, reset accumulator and clear lean
@@ -709,19 +811,22 @@ window.addEventListener('wheel',e=>{
     wheelAccum = 0;
     leanOffset = 0;
   }, 180);
-},{passive:false});
+}
+stage.addEventListener('wheel',handleWheel,{passive:false});
 
 /* Arrow keys: LEFT = next (clockwise), RIGHT = prev — reversed per request */
 window.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft') goToIndex((activeIdx+1)%5);
-  if(e.key==='ArrowRight') goToIndex((activeIdx-1+5)%5);
-  if(e.key>='1'&&e.key<='5') goToIndex(+e.key-1);
+  if(!PILLARS.length) return;
+  if(e.key==='ArrowLeft') goToIndex((activeIdx+1)%PILLARS.length);
+  if(e.key==='ArrowRight') goToIndex((activeIdx-1+PILLARS.length)%PILLARS.length);
+  if(e.key==='Escape') goToIndex(0);
+  if(e.key>='1'&&e.key<=String(PILLARS.length)) goToIndex(+e.key-1);
 });
 
 /* ============================================================ LOGIC */
 function nearestIdx(rot){
   let best=0, bestD=Infinity;
-  for(let i=0;i<5;i++){
+  for(let i=0;i<PILLARS.length;i++){
     const want=-i*STEP;
     // compare modulo — find shortest arc
     let d = ((rot - want) % 360 + 540) % 360 - 180;
@@ -736,6 +841,8 @@ function liveHighlight(){ highlightDial(nearestIdx(rotation)); }
 
 /* Infinite rotation: search ±10 full revolutions, pick closest to current rotation */
 function goToIndex(i){
+  if(!PILLARS.length || !Number.isFinite(i)) return;
+  i = (i + PILLARS.length) % PILLARS.length;
   const want = -i * STEP;
   let best = want, bestD = Infinity;
   for(let k = -10; k <= 10; k++){
@@ -745,6 +852,9 @@ function goToIndex(i){
   }
   target = best;
   activeIdx = i;
+  if(PILLARS[i] && window.location.hash !== `#${PILLARS[i].id}`){
+    history.replaceState(null, '', `#${PILLARS[i].id}`);
+  }
   setActivePillar(i);
 }
 
@@ -775,14 +885,15 @@ function applyRotation(){
 }
 
 /* ============================================================ RENDER */
-function setActivePillar(i){
+function setActivePillar(i, options={}){
   window.__activeIdx = i;
   const p=PILLARS[i];
+  if(!p) return;
   const data=mode==='case' ? p.case : p.guide;
 
   document.getElementById('p-eyebrow').textContent=p.eyebrow.toUpperCase();
   document.getElementById('p-title').textContent=p.title;
-  document.getElementById('p-desc').innerHTML=data.desc;
+  document.getElementById('p-desc').innerHTML=data.desc || '';
 
   // persona
   const pb=document.getElementById('persona-block');
@@ -812,9 +923,11 @@ function setActivePillar(i){
   } else { apb.classList.remove('visible'); }
 
   document.getElementById('impacts-head').textContent=mode==='case'?'Key areas':'What it shapes';
-  document.getElementById('p-impacts').innerHTML=data.impacts.map(it=>`<li>${it}</li>`).join('');
+  document.getElementById('p-impacts').innerHTML=(data.impacts || []).map(it=>`<li>${it}</li>`).join('');
 
   highlightDial(i);
+  updateSectionNav(i);
+  if(!options.skipFit) requestAnimationFrame(fitReader);
 }
 
 function highlightDial(i){
@@ -829,20 +942,84 @@ function highlightDial(i){
   });
 }
 
+function updateSectionNav(i){
+  document.querySelectorAll('.pillar-link').forEach(link=>{
+    const on=+link.dataset.pidx===i;
+    link.classList.toggle('active',on);
+    if(on) link.setAttribute('aria-current','true');
+    else link.removeAttribute('aria-current');
+  });
+  const count=document.getElementById('section-count');
+  if(count) count.textContent=`${String(i+1).padStart(2,'0')} / ${String(PILLARS.length).padStart(2,'0')}`;
+}
+
+let fittingReader = false;
+function fitReader(){
+  if(fittingReader || !reader || !readerFit || !detailFit) return;
+  fittingReader = true;
+
+  detailFit.style.transform = 'scale(1)';
+  detailFit.style.width = '100%';
+
+  const styles = getComputedStyle(reader);
+  const availableHeight = reader.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+  const availableForDetails = availableHeight - detailFit.offsetTop;
+  const needed = Math.max(1, detailFit.scrollHeight);
+  let scale = availableForDetails / needed;
+
+  scale = Math.max(0.01, Math.min(1, scale));
+  detailFit.style.transform = `scale(${scale})`;
+  detailFit.style.width = `${100 / scale}%`;
+  reader.dataset.fitScale = scale.toFixed(3);
+
+  fittingReader = false;
+}
+
 function setMode(m){
   mode=m;
   document.getElementById('btn-guide').classList.toggle('active',m==='guide');
   document.getElementById('btn-case').classList.toggle('active',m==='case');
   const logo=document.getElementById('case-logo');
-  if(m==='case'){ logo.style.display='flex'; requestAnimationFrame(()=>logo.classList.add('visible')); }
-  else { logo.classList.remove('visible'); setTimeout(()=>logo.style.display='none',300); }
+  if(m==='case'){ logo.classList.add('visible'); }
+  else { logo.classList.remove('visible'); }
   setActivePillar(activeIdx);
 }
 
-/* INIT */
-goToIndex(0);
-applyRotation();
-requestAnimationFrame(tick);
+async function init(){
+  try {
+    let rawConfig = window.FOCUS_STAR_CONFIG || null;
+    if(!rawConfig){
+      const response = await fetch(CONFIG_PATH, { cache: 'no-store' });
+      if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      rawConfig = await response.json();
+    }
+    SOURCE_DATA = normalizeConfig(rawConfig);
+    BRAND = SOURCE_DATA.brand;
+    PILLARS = SOURCE_DATA.pillars;
+    applyTheme(SOURCE_DATA);
+    buildSectionNav();
+    buildFineTicks();
+    buildPillarRing();
+    buildStar();
+
+    const initialIdx = PILLARS.findIndex(p=>`#${p.id}`===window.location.hash);
+    goToIndex(initialIdx >= 0 ? initialIdx : 0);
+    window.addEventListener('hashchange',()=>{
+      const idx=PILLARS.findIndex(p=>`#${p.id}`===window.location.hash);
+      if(idx>=0 && idx!==activeIdx) goToIndex(idx);
+    });
+    window.addEventListener('resize',()=>requestAnimationFrame(fitReader));
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>requestAnimationFrame(fitReader));
+    applyRotation();
+    requestAnimationFrame(tick);
+  } catch(error) {
+    document.getElementById('p-eyebrow').textContent = 'Config error';
+    document.getElementById('p-title').textContent = 'Focus Star';
+    document.getElementById('p-desc').textContent = `Could not load ${CONFIG_PATH}: ${error.message}`;
+  }
+}
+
+init();
 </script>
 </body>
 </html>
