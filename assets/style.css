@@ -619,6 +619,193 @@ code {
   display: inline-block;
 }
 
+/* ---------- Strategy snapshot pages ---------- */
+.snapshot-grid,
+.benefit-grid,
+.offer-grid,
+.scope-grid,
+.proof-grid {
+  display: grid;
+  border-top: 1px solid var(--text);
+  border-left: 1px solid var(--border);
+}
+.snapshot-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 0 64px;
+}
+.benefit-grid,
+.proof-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 32px 0 52px;
+}
+.offer-grid,
+.scope-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 32px 0 52px;
+}
+.snapshot-cell,
+.benefit-card,
+.offer-card,
+.scope-card,
+.proof-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 26px 24px;
+}
+.snapshot-cell {
+  min-height: 156px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.snapshot-cell .label,
+.benefit-card .label,
+.offer-card .label,
+.scope-card .label,
+.process-row .label,
+.proof-card .label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.snapshot-cell strong {
+  display: block;
+  font-family: var(--ff-h);
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 24px 0 12px;
+}
+.snapshot-cell span {
+  color: var(--muted);
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.definition-block {
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 44px;
+  margin: 0 0 64px;
+}
+.definition-block p {
+  font-family: var(--ff-h);
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 920px;
+  margin: 0;
+}
+.benefit-card {
+  min-height: 216px;
+}
+.benefit-card h3,
+.offer-card h3,
+.scope-card h3 {
+  margin: 22px 0 14px;
+  font-size: clamp(28px, 3vw, 42px);
+}
+.benefit-card p,
+.offer-card p,
+.scope-card p,
+.proof-card p {
+  margin: 0;
+  max-width: 100%;
+}
+.process-table {
+  border-top: 1px solid var(--text);
+  margin: 32px 0 52px;
+}
+.process-row {
+  display: grid;
+  grid-template-columns: 112px minmax(180px, 0.8fr) 1.2fr;
+  gap: 28px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--border);
+  padding: 22px 0;
+}
+.process-row h3 {
+  margin: 0;
+  font-size: clamp(23px, 2.6vw, 36px);
+}
+.process-row p {
+  margin: 0;
+  max-width: 560px;
+}
+.scope-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.scope-card li {
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.48;
+}
+.scope-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 2px;
+  background: var(--accent);
+}
+.proof-card strong {
+  display: block;
+  font-family: var(--ff-h);
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 22px 0 12px;
+}
+@media (max-width: 1100px) {
+  .snapshot-grid,
+  .benefit-grid,
+  .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .process-row {
+    grid-template-columns: 96px 1fr;
+  }
+  .process-row p {
+    grid-column: 2;
+  }
+}
+@media (max-width: 720px) {
+  .snapshot-grid,
+  .benefit-grid,
+  .offer-grid,
+  .scope-grid,
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .process-row p {
+    grid-column: auto;
+  }
+}
+@media (max-width: 960px) {
+  body.strategy-page main.content {
+    order: 1;
+  }
+  body.strategy-page aside.sidebar {
+    order: 2;
+    border-top: 1px solid var(--border);
+    border-bottom: none;
+  }
+}
+
 /* ---------- Focus Star pentagon ---------- */
 .star-stage {
   margin: 56px 0;
