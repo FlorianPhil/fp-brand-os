@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <style>
   :root {
     --acc: #5A5CF9;
@@ -24,20 +21,20 @@
     --bg-dial: #FFFFFF;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); }
-  body { font-family: var(--ff-b); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; }
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--bg); overflow: hidden; }
+  body { font-family: var(--ff-b); color: var(--ink); -webkit-font-smoothing: antialiased; user-select: none; overscroll-behavior: none; }
 
   /* ── LAYOUT ── (embedded variant: fixed-height container) */
   .stage {
-    position: relative; width: 100%; height: 880px;
+    position: relative; width: 100%; height: 100vh; height: 100svh;
     display: grid;
-    grid-template-columns: minmax(380px, 46%) 1fr;
+    grid-template-columns: minmax(620px, 60%) 1fr;
     align-items: start;
     overflow: hidden;
   }
   .stage::after {
     content: ''; position: absolute;
-    top: 0; bottom: 0; left: 46%;
+    top: 0; bottom: 0; left: 60%;
     width: 1px; background: var(--border);
     pointer-events: none; z-index: 3;
     opacity: var(--divider-opacity, 0);
@@ -47,47 +44,61 @@
   /* ── LEFT PANEL ── */
   .reader {
     position: relative; z-index: 2;
-    padding: clamp(48px,5vw,80px) clamp(40px,4vw,72px) clamp(40px,4vw,64px) clamp(48px,5.5vw,88px);
+    min-width: 0;
+    padding: clamp(38px,4vw,64px) clamp(40px,3.6vw,68px) clamp(32px,3.2vw,52px) clamp(48px,4.5vw,86px);
     display: flex; flex-direction: column;
     background: var(--bg);
-    height: 880px;
-    overflow-y: auto;
+    height: 100%;
+    overflow: hidden;
+  }
+  .reader-fit {
+    width: 100%;
+  }
+  .detail-fit {
+    width: 100%;
+    transform-origin: top left;
+    will-change: transform;
+  }
+
+  .stage[data-mode="case"] {
+    grid-template-columns: minmax(700px, 62%) 1fr;
+  }
+
+  .stage[data-mode="case"] .reader {
+    padding-top: clamp(34px,3.4vw,54px);
+    padding-bottom: clamp(28px,2.8vw,44px);
+  }
+
+  .stage[data-mode="case"] .navigation-panel {
+    margin-bottom: clamp(22px,2.4vw,34px);
   }
 
   /* mode bar */
   .mode-bar {
     display: flex; align-items: center; gap: 16px;
-    margin-bottom: clamp(48px,6vw,80px);
+    min-height: 42px;
+    margin-bottom: 14px;
   }
 
   .case-logo {
-    display: none; align-items: center; gap: 10px;
+    display: flex; align-items: center; gap: 10px;
     opacity: 0; transition: opacity .35s var(--ease);
+    visibility: hidden; pointer-events: none;
     flex-shrink: 0;
   }
-  .case-logo.visible { display: flex; opacity: 1; }
+  .case-logo.visible { opacity: 1; visibility: visible; pointer-events: auto; }
   .case-logo .logo-lockup {
     display: flex; align-items: center; gap: 8px;
-    padding: 6px 14px 6px 10px;
+    padding: 9px 14px;
     border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg);
   }
-  .case-logo .logo-mark {
-    width: 28px; height: 28px; border-radius: 4px;
-    background: #1A1A2E;
-    display: grid; place-items: center; flex-shrink: 0;
-  }
-  .case-logo .logo-mark svg { display: block; }
   .case-logo .logo-text {
     display: flex; flex-direction: column; line-height: 1.15;
   }
   .case-logo .logo-name {
-    font-family: var(--ff-h); font-weight: 800; font-size: 11px;
+    font-family: var(--ff-h); font-weight: 800; font-size: 12px;
     text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
-  }
-  .case-logo .logo-sub {
-    font-family: var(--ff-b); font-size: 9px; font-weight: 500;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
   }
 
   .mode-toggle {
@@ -111,8 +122,100 @@
     box-shadow: 0 1px 4px rgba(0,0,0,.12);
   }
 
+  .navigation-panel {
+    min-width: 0;
+    display: grid;
+    gap: 14px;
+    margin-bottom: clamp(26px,3.4vw,44px);
+  }
+  .pillar-nav {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .pillar-link {
+    min-width: 0;
+    display: grid;
+    gap: 6px;
+    padding: 11px 10px 12px;
+    border-right: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+  }
+  .pillar-link:last-child { border-right: 0; }
+  .pillar-link:hover,
+  .pillar-link:focus-visible {
+    color: var(--ink);
+    background: #FAFAFC;
+    outline: none;
+  }
+  .pillar-link.active {
+    color: var(--ink);
+    background: var(--acc-soft);
+    box-shadow: inset 0 -2px 0 var(--acc);
+  }
+  .pillar-link .nav-index {
+    font-family: var(--ff-b);
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--acc);
+    line-height: 1;
+  }
+  .pillar-link .nav-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: var(--ff-h);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .step-controls {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .arrow-btn {
+    width: 38px; height: 34px;
+    display: grid; place-items: center;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: var(--ff-b);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+  }
+  .arrow-btn:hover,
+  .arrow-btn:focus-visible {
+    border-color: var(--acc);
+    color: var(--acc);
+    outline: none;
+  }
+  .section-count {
+    flex: 1;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    font-family: var(--ff-b);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
   /* hero */
-  .hero { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+  .hero { min-width: 0; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-start; }
 
   .pillar-eyebrow {
     font-family: var(--ff-h); font-size: clamp(12px,1.1vw,14px); font-weight: 700;
@@ -139,28 +242,45 @@
   }
   .pillar-title .dot { color: var(--acc); }
 
+  .stage[data-mode="case"] .pillar-eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .stage[data-mode="case"] .pillar-title {
+    font-size: clamp(46px, 4.6vw, 70px);
+    line-height: .92;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+  }
+
   .pillar-desc {
     font-family: var(--ff-b); font-weight: 400;
-    font-size: clamp(14px,1.15vw,15px);
-    line-height: 1.72; color: var(--muted);
-    margin: 0 0 32px; max-width: 480px;
+    font-size: clamp(15px,1vw,17px);
+    line-height: 1.62; color: var(--muted);
+    margin: 0 0 28px; max-width: 720px;
   }
   .pillar-desc strong { font-weight: 600; color: var(--ink); }
 
+  .stage[data-mode="case"] .pillar-desc {
+    font-size: clamp(16px,1.04vw,18px);
+    line-height: 1.56;
+    color: #6E6E86;
+    max-width: 860px;
+    margin-bottom: 20px;
+  }
+
   /* persona image placeholder */
-  .persona-block { display: none; margin-bottom: 28px; }
+  .persona-block { display: none; margin-bottom: 20px; }
   .persona-block.visible { display: flex; gap: 20px; align-items: flex-start; }
   .persona-image {
-    width: 80px; height: 104px; flex-shrink: 0;
+    width: 118px; height: 142px; flex-shrink: 0;
     background: #F0F0F5; border: 1px solid var(--border);
-    border-radius: 4px;
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    border-radius: 0;
+    display: block;
     overflow: hidden; position: relative;
   }
-  .persona-silhouette {
-    width: 100%; height: 100%;
-    display: flex; align-items: flex-end; justify-content: center;
-  }
+  .persona-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .persona-silhouette { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; }
   .persona-silhouette svg { width: 68px; height: auto; }
   .persona-img-label {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -170,34 +290,108 @@
     color: var(--muted); text-align: center; padding: 4px 0;
   }
   .persona-info { flex: 1; padding-top: 4px; }
+
+  .stage[data-mode="case"] .persona-block.visible {
+    display: grid;
+    grid-template-columns: minmax(150px, 184px) minmax(0, 1fr);
+    gap: 22px;
+    align-items: stretch;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    margin-bottom: 18px;
+  }
+
+  .stage[data-mode="case"] .persona-image {
+    width: 100%;
+    height: auto;
+    min-height: 184px;
+    aspect-ratio: 4 / 5;
+    background: #F7F7FA;
+  }
+
+  .stage[data-mode="case"] .persona-img-label {
+    display: none;
+  }
+
+  .stage[data-mode="case"] .persona-info {
+    display: grid;
+    align-content: center;
+    gap: 10px;
+    padding-top: 0;
+  }
+
   .persona-role {
-    font-family: var(--ff-h); font-weight: 700; font-size: 13px;
+    font-family: var(--ff-h); font-weight: 700; font-size: 14px;
     text-transform: uppercase; letter-spacing: .04em; color: var(--ink);
     line-height: 1.2; margin-bottom: 6px;
   }
   .persona-context {
-    font-family: var(--ff-b); font-size: 12px; font-weight: 400;
+    font-family: var(--ff-b); font-size: 13px; font-weight: 400;
     color: var(--muted); line-height: 1.5; margin-bottom: 8px;
   }
   .persona-need {
-    font-family: var(--ff-b); font-size: 12px; font-weight: 600;
+    font-family: var(--ff-b); font-size: 13px; font-weight: 600;
     color: var(--acc); line-height: 1.4;
     border-top: 1px solid var(--border); padding-top: 8px;
   }
 
+  .stage[data-mode="case"] .persona-role {
+    font-size: clamp(17px,1.2vw,22px);
+    margin-bottom: 0;
+  }
+
+  .stage[data-mode="case"] .persona-context {
+    max-width: 720px;
+    font-family: var(--ff-h);
+    font-size: clamp(24px,2.05vw,36px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -.015em;
+    color: var(--ink);
+    margin-bottom: 0;
+  }
+
+  .stage[data-mode="case"] .persona-need {
+    max-width: 780px;
+    border-top: 0;
+    padding-top: 0;
+    font-size: clamp(15px,1vw,17px);
+    line-height: 1.5;
+  }
+
+  .persona-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .persona-tags span {
+    border: 1px solid var(--border);
+    padding: 4px 7px;
+    font-family: var(--ff-b);
+    font-size: 10px;
+    line-height: 1;
+    color: var(--muted);
+    background: var(--bg);
+  }
+
   /* archetype */
-  .archetype-block { display: none; margin-bottom: 28px; }
-  .archetype-block.visible { display: flex; gap: 18px; align-items: flex-start; }
+  .archetype-block { display: none; margin-bottom: 20px; }
+  .archetype-block.visible { display: grid; grid-template-columns: minmax(140px, 190px) 1fr; gap: 18px; align-items: start; }
+  .archetype-icons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
   .archetype-img {
-    width: 72px; height: 90px; flex-shrink: 0;
-    background: #F0F0F5; border: 1px solid var(--border); border-radius: 4px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    aspect-ratio: 1;
+    background: #F7F7FA; border: 1px solid var(--border); border-radius: 0;
+    display: grid; place-items: center;
+    overflow: hidden;
   }
-  .archetype-img .arch-icon { font-size: 26px; line-height: 1; }
-  .archetype-img .arch-hint {
-    font-family: var(--ff-b); font-size: 7px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: center;
-  }
+  .archetype-img img { width: 88%; height: 88%; object-fit: contain; display: block; }
+  .archetype-img .arch-icon { font-size: 24px; line-height: 1; color: var(--acc); }
   .arch-name {
     font-family: var(--ff-h); font-weight: 800; font-size: 20px;
     text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
@@ -214,10 +408,146 @@
     padding: 3px 8px; border-radius: 100px; line-height: 1;
   }
 
+  .stage[data-mode="case"] .archetype-block.visible {
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    margin-bottom: 16px;
+  }
+
+  .stage[data-mode="case"] .archetype-icons {
+    gap: 10px;
+  }
+
+  .stage[data-mode="case"] .archetype-img {
+    background: #FAFAFC;
+  }
+
+  .stage[data-mode="case"] .archetype-img img {
+    width: 92%;
+    height: 92%;
+  }
+
+  .stage[data-mode="case"] .arch-name {
+    font-size: clamp(30px,2.5vw,46px);
+    line-height: .9;
+    margin-bottom: 8px;
+  }
+
+  .stage[data-mode="case"] .arch-type {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
+  .stage[data-mode="case"] .arch-tag {
+    display: block;
+    font-size: 12px;
+    line-height: 1.25;
+    padding: 5px 8px;
+    border-radius: 0;
+  }
+
+  .stage[data-mode="case"] .arch-traits {
+    display: grid;
+    gap: 6px;
+    max-width: 760px;
+  }
+
+  .insight-grid {
+    display: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .insight-grid.visible { display: grid; }
+  .insight-card {
+    min-width: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 12px 14px;
+  }
+  .insight-card .label {
+    font-family: var(--ff-b); font-size: 8px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--acc);
+    margin-bottom: 6px;
+  }
+  .insight-card p {
+    margin: 0;
+    font-family: var(--ff-b);
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  .stage[data-mode="case"] .insight-grid {
+    gap: 10px;
+    border: 0;
+    margin-bottom: 16px;
+  }
+
+  .stage[data-mode="case"] .insight-card {
+    border: 1px solid var(--border);
+    background: #FAFAFC;
+    padding: 15px 16px 17px;
+    min-height: 118px;
+  }
+
+  .stage[data-mode="case"] .insight-card .label {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+
+  .stage[data-mode="case"] .insight-card p {
+    font-size: clamp(13px,.92vw,15px);
+    line-height: 1.5;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .tag-row span {
+    border: 1px solid var(--border);
+    padding: 3px 6px;
+    font-family: var(--ff-b);
+    font-size: 9px;
+    line-height: 1;
+    color: var(--muted);
+  }
+  .moodboard-block {
+    display: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .moodboard-block.visible { display: grid; }
+  .moodboard-item {
+    aspect-ratio: 1.15;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: #F7F7FA;
+  }
+  .moodboard-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .stage[data-mode="case"] .moodboard-block {
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .stage[data-mode="case"] .moodboard-item {
+    aspect-ratio: 1.45;
+  }
+
   /* apply block */
   .apply-block {
     border-left: 2px solid var(--border); padding-left: 16px;
-    margin-bottom: 28px; display: none;
+    margin-bottom: 20px; display: none;
   }
   .apply-block.visible { display: block; }
   .apply-label {
@@ -225,12 +555,23 @@
     letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
   }
   .apply-text {
-    font-family: var(--ff-b); font-size: 12px; line-height: 1.68;
+    font-family: var(--ff-b); font-size: 13px; line-height: 1.62;
     color: var(--ink); font-weight: 400;
+  }
+
+  .stage[data-mode="case"] .apply-block.visible {
+    border-left-color: var(--acc);
+    margin-bottom: 16px;
+  }
+
+  .stage[data-mode="case"] .apply-text {
+    font-size: clamp(13px,.92vw,15px);
+    line-height: 1.55;
   }
 
   /* impacts */
   .impacts-block { border-top: 1px solid var(--border); }
+  .stage[data-mode="case"] .impacts-block { display: none; }
   .impacts-head {
     font-family: var(--ff-b); font-size: 9px; font-weight: 600;
     letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
@@ -242,9 +583,9 @@
   }
   .impacts li {
     display: flex; align-items: center;
-    padding: 9px 10px 9px 0; border-top: 1px solid var(--border);
+    padding: 8px 10px 8px 0; border-top: 1px solid var(--border);
     font-family: var(--ff-b); font-weight: 500;
-    font-size: clamp(11px,.95vw,13px); color: var(--ink);
+    font-size: clamp(12px,.82vw,14px); color: var(--ink);
   }
   .impacts li:nth-child(even) { padding-left: 12px; border-left: 1px solid var(--border); }
   .impacts li::before { content: '—'; color: var(--acc); margin-right: 7px; font-size: 9px; }
@@ -252,12 +593,12 @@
   /* ── DIAL ── (embedded variant: relative + fixed height) */
   .dial-wrap {
     position: relative;
-    height: 880px; overflow: hidden;
+    height: 100%; overflow: hidden;
     background: var(--bg-dial);
     cursor: grab;
   }
   .dial-wrap.dragging { cursor: grabbing; }
-  .dial-wrap > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .dial-wrap > svg { position: absolute; inset: 6%; width: 88%; height: 88%; }
 
   .indicator {
     position: absolute; top: 5%; left: 50%;
@@ -286,6 +627,137 @@
   .pillar-text.active { fill: var(--ink); }
   .center-cap { fill: var(--bg); stroke: var(--border); stroke-width: 1; vector-effect: non-scaling-stroke; }
   .center-spoke { stroke: var(--acc); stroke-width: 2; stroke-linecap: square; vector-effect: non-scaling-stroke; }
+
+  @media (max-width: 980px) {
+    .stage,
+    .stage[data-mode="case"] {
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(0, 1fr) clamp(104px, 16svh, 180px);
+      overflow: hidden;
+    }
+    .stage::after { display: none; }
+    .reader {
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      padding: 26px clamp(20px,5vw,44px) 20px;
+    }
+    .navigation-panel { margin-bottom: 26px; }
+    .dial-wrap {
+      height: 100%;
+      min-height: 0;
+    }
+    .dial-wrap > svg { inset: 0; width: 100%; height: 100%; }
+    .stage[data-mode="case"] .reader {
+      padding: 26px clamp(20px,5vw,44px) 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .stage,
+    .stage[data-mode="case"] {
+      grid-template-rows: minmax(0, 1fr) clamp(82px, 12svh, 118px);
+      overflow: hidden;
+    }
+    .stage,
+    .reader,
+    .navigation-panel,
+    .hero,
+    .pillar-desc,
+    .impacts-block {
+      width: 100%;
+      max-width: 100%;
+    }
+    .mode-bar {
+      align-items: flex-start;
+      flex-direction: column;
+      min-height: 74px;
+      gap: 8px;
+    }
+    .case-logo {
+      min-height: 32px;
+    }
+    .navigation-panel {
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pillar-nav {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .pillar-link {
+      padding: 8px 4px 9px;
+    }
+    .pillar-link .nav-index {
+      font-size: 8px;
+    }
+    .pillar-link .nav-label {
+      font-size: 9px;
+      letter-spacing: 0;
+    }
+    .arrow-btn {
+      width: 34px;
+      height: 32px;
+    }
+    .section-count {
+      padding: 9px 0;
+    }
+    .pillar-title {
+      font-size: clamp(46px,16vw,64px);
+    }
+    .pillar-desc {
+      min-height: 0;
+      margin-bottom: 24px;
+    }
+    .impacts {
+      grid-template-columns: 1fr 1fr;
+    }
+    .persona-block.visible,
+    .archetype-block.visible,
+    .stage[data-mode="case"] .persona-block.visible,
+    .stage[data-mode="case"] .archetype-block.visible {
+      grid-template-columns: 1fr;
+    }
+    .persona-block.visible {
+      display: grid;
+    }
+    .stage[data-mode="case"] .persona-block.visible,
+    .stage[data-mode="case"] .archetype-block.visible {
+      padding: 12px 0;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .persona-image {
+      width: 100%;
+      height: 132px;
+    }
+    .stage[data-mode="case"] .persona-image {
+      min-height: 104px;
+      aspect-ratio: 16 / 7;
+    }
+    .stage[data-mode="case"] .persona-context {
+      font-size: clamp(20px,7vw,28px);
+    }
+    .stage[data-mode="case"] .insight-card {
+      min-height: 0;
+      padding: 11px 12px;
+    }
+    .insight-grid,
+    .stage[data-mode="case"] .insight-grid {
+      grid-template-columns: 1fr;
+    }
+    .moodboard-block,
+    .stage[data-mode="case"] .moodboard-block {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 </style>
 </head>
 <body>
@@ -293,7 +765,8 @@
 
   <!-- LEFT -->
   <section class="reader" aria-live="polite">
-    <div class="mode-bar">
+    <div class="reader-fit" id="reader-fit">
+      <div class="mode-bar">
       <div class="mode-toggle">
         <button class="mode-btn active" id="btn-guide" onclick="setMode('guide')">Guide</button>
         <button class="mode-btn" id="btn-case" onclick="setMode('case')">Case Study</button>
@@ -301,24 +774,33 @@
       <!-- logo: only case study, right of toggle -->
       <div class="case-logo" id="case-logo">
         <div class="logo-lockup">
-          <div class="logo-mark" style="font-family:'Bricolage Grotesque',system-ui;font-weight:800;font-size:16px;letter-spacing:-0.01em;color:#1A1A2E;">FP<span style="color:#5A5CF9;">.</span></div>
           <div class="logo-text">
-            <span class="logo-name">Florian P.</span>
-            <span class="logo-sub">Consulting</span>
+            <span class="logo-name" id="case-brand-name">Brand</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="hero">
+      <div class="navigation-panel">
+      <nav class="pillar-nav" id="pillar-nav" aria-label="Focus Star sections"></nav>
+      <div class="step-controls" aria-label="Section controls">
+        <button class="arrow-btn" type="button" onclick="goToIndex((activeIdx+PILLARS.length-1)%PILLARS.length)" aria-label="Previous section">&#8592;</button>
+        <span class="section-count" id="section-count">-- / --</span>
+        <button class="arrow-btn" type="button" onclick="goToIndex((activeIdx+1)%PILLARS.length)" aria-label="Next section">&#8594;</button>
+      </div>
+    </div>
+
+      <div class="hero">
       <div class="pillar-eyebrow" id="p-eyebrow">Your why</div>
       <h1 class="pillar-title"><span id="p-title">Purpose</span><span class="dot">.</span></h1>
+      <div class="detail-fit" id="detail-fit">
       <p class="pillar-desc" id="p-desc"></p>
 
       <!-- Persona (People + case study) -->
       <div class="persona-block" id="persona-block">
         <div class="persona-image">
-          <div class="persona-silhouette">
+          <img id="persona-img" alt="">
+          <div class="persona-silhouette" id="persona-fallback">
             <svg viewBox="0 0 68 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- head -->
               <ellipse cx="34" cy="22" rx="13" ry="14" fill="#C8C8D8"/>
@@ -332,21 +814,22 @@
           <div class="persona-role" id="persona-role"></div>
           <div class="persona-context" id="persona-context"></div>
           <div class="persona-need" id="persona-need"></div>
+          <div class="persona-tags" id="persona-tags"></div>
         </div>
       </div>
 
       <!-- Archetype (Personality + case study) -->
       <div class="archetype-block" id="archetype-block">
-        <div class="archetype-img">
-          <div class="arch-icon">♛</div>
-          <div class="arch-hint">archetype image</div>
-        </div>
+        <div class="archetype-icons" id="archetype-icons"></div>
         <div class="archetype-info">
           <div class="arch-name" id="arch-name">The Ruler</div>
           <div class="arch-type" id="arch-type">Authority · Sovereignty</div>
           <div class="arch-traits" id="arch-traits"></div>
         </div>
       </div>
+
+      <div class="insight-grid" id="insight-grid"></div>
+      <div class="moodboard-block" id="moodboard-block"></div>
 
       <!-- Apply -->
       <div class="apply-block" id="apply-block">
@@ -357,6 +840,8 @@
       <div class="impacts-block">
         <div class="impacts-head" id="impacts-head">What it shapes</div>
         <ul class="impacts" id="p-impacts"></ul>
+      </div>
+      </div>
       </div>
     </div>
   </section>
@@ -382,177 +867,86 @@
   </section>
 </div>
 
-<div id="tweaks-root"></div>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-
-<script type="text/babel">
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "springStiffness": 1,
-  "springBounce": 10,
-  "scrollResistance": 100,
-  "scrollLean": 27,
-  "scrollLeanBuildup": 300,
-  "centerMark": true,
-  "activeLabelScale": "3x",
-  "bgMode": "unified"
-}/*EDITMODE-END*/;
-
-function TweaksApp() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-
-  React.useEffect(() => {
-    const cm = document.getElementById('centerMark');
-    if (cm) cm.style.display = t.centerMark ? '' : 'none';
-
-    const scaleMap = {'1x': 14, '2x': 26, '3x': 38};
-    window.__activeLabelSize = scaleMap[t.activeLabelScale] || 26;
-    if (typeof highlightDial === 'function') highlightDial(window.__activeIdx || 0);
-
-    // spring: stiffness 1–10 → k 0.02–0.18; bounce 0–10 → damping 0.99–0.82
-    window.springK    = 0.02 + (t.springStiffness / 10) * 0.16;
-    window.springDamp = 0.99 - (t.springBounce    / 10) * 0.17;
-
-    // scroll resistance: slider 20–200
-    window.WHEEL_THRESHOLD = t.scrollResistance;
-    window.scrollLean = t.scrollLean;
-    window.scrollLeanBuildup = t.scrollLeanBuildup;
-
-    // background mode
-    const root = document.documentElement;
-    if (t.bgMode === 'unified') {
-      root.style.setProperty('--bg-dial', '#FFFFFF');
-      root.style.setProperty('--divider-opacity', '0');
-    } else {
-      root.style.setProperty('--bg-dial', '#F5F5F7');
-      root.style.setProperty('--divider-opacity', '1');
-    }
-  }, [t.centerMark, t.activeLabelScale, t.springStiffness, t.springBounce, t.scrollResistance, t.scrollLean, t.scrollLeanBuildup, t.bgMode]);
-
-  return (
-    <TweaksPanel>
-      <TweakSection label="Dial" />
-      <TweakToggle
-        label="Center mark"
-        value={t.centerMark}
-        onChange={v => setTweak('centerMark', v)}
-      />
-      <TweakRadio
-        label="Active label size"
-        value={t.activeLabelScale}
-        options={['1x','2x','3x']}
-        onChange={v => setTweak('activeLabelScale', v)}
-      />
-      <TweakSection label="Animation" />
-      <TweakSlider
-        label="Stiffness"
-        value={t.springStiffness}
-        min={1} max={10} step={1}
-        onChange={v => setTweak('springStiffness', v)}
-      />
-      <TweakSlider
-        label="Bounce"
-        value={t.springBounce}
-        min={0} max={10} step={1}
-        onChange={v => setTweak('springBounce', v)}
-      />
-      <TweakSection label="Scroll" />
-      <TweakSlider
-        label="Resistance"
-        value={t.scrollResistance}
-        min={20} max={200} step={10}
-        onChange={v => setTweak('scrollResistance', v)}
-      />
-      <TweakSlider
-        label="Pre-snap lean"
-        value={t.scrollLean}
-        min={0} max={40} step={1}
-        onChange={v => setTweak('scrollLean', v)}
-      />
-      <TweakSlider
-        label="Lean buildup"
-        value={t.scrollLeanBuildup}
-        min={20} max={300} step={10}
-        onChange={v => setTweak('scrollLeanBuildup', v)}
-      />
-      <TweakSection label="Background" />
-      <TweakRadio
-        label="Layout"
-        value={t.bgMode}
-        options={[{value:'split', label:'Split'}, {value:'unified', label:'Unified'}]}
-        onChange={v => setTweak('bgMode', v)}
-      />
-    </TweaksPanel>
-  );
-}
-ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+<script>
+/* fixed defaults ... no edit panel in standalone build */
+window.springK = 0.036;
+window.springDamp = 0.82;
+window.WHEEL_THRESHOLD = 100;
+window.scrollLean = 27;
+window.scrollLeanBuildup = 300;
+window.__activeLabelSize = 38;
 </script>
 
+<script src="./config.js"></script>
 <script>
 /* ============================================================ DATA */
-const PILLARS = [
-  {
-    id:'people', title:'People', eyebrow:'Your tribe',
-    guide:{
-      desc:'The specific people you are built to serve. <strong>Not everyone.</strong> The fewer the better, the sharper the work.',
-      impacts:['Personality','Product','Content','Targeting','Social Media','Sales motion'],
-    },
-    case:{
-      desc:'Leaders who are great at what they do but <strong>struggle to articulate what makes them different</strong>. Entrepreneurial. Go-getters trying to stand out strategically.',
-      apply:'The block is both emotional and strategic. Content speaks to people who would rather be understood than admired. Never sell directly.',
-      impacts:['Founders','Executives','Experts','Invisible leaders','Go-getters','Brand owners'],
-      persona:{ role:'The Invisible Expert', context:'Successful but unseen. 30-55, entrepreneurial.', need:'Clarity + visibility without feeling stupid about it' }
-    }
-  },
-  {
-    id:'purpose', title:'Purpose', eyebrow:'Your why',
-    guide:{
-      desc:'The reason the company exists past making money. <strong>What you are unwilling to compromise on</strong>, even when it costs you.',
-      impacts:['Vision','Story','Pro-bono work','Brand Partnerships','Recruitment','Investor narrative'],
-    },
-    case:{
-      desc:'<strong>Make every brand unique.</strong> Reveal existing authenticity, help brands own it, scale marketing down so the brand grows exponentially.',
-      apply:'Say no to every opportunity that doesn\'t need your brand specifically. Find perfect matches, not more matches. The work is subtractive.',
-      impacts:['Vision','Story','Partnerships','Recruitment','Pro-bono','Saying no'],
-    }
-  },
-  {
-    id:'personality', title:'Personality', eyebrow:'How you show up',
-    guide:{
-      desc:'How the brand sounds, looks, and behaves in public. <strong>Recognisable in the dark</strong>, or it does not exist.',
-      impacts:['Identity','Logo','Visual language','Verbal language','Typography','UI & Digital'],
-    },
-    case:{
-      desc:'<strong>Sharp, funny, unhurried.</strong> Professional first, but refuses to take itself too seriously. Self-aware humor. Never prescriptive first.',
-      apply:'Goofy when the moment calls for it, dry when it doesn\'t. Open perspectives, debate, ask questions. Let the audience think with you.',
-      impacts:['Premium minimalism','Viewfinder brackets','Bricolage + Poppins','Dry humor','Photography-forward','Whitespace'],
-      archetype:{ name:'The Innocent', type:'Optimism · Craft', traits:['Curious','Honest','Witty','Elegant','Real','Confident'] }
-    }
-  },
-  {
-    id:'promise', title:'Promise', eyebrow:'Your non-negotiable',
-    guide:{
-      desc:'The one standard you hold above all others. <strong>Set the bar first</strong>, chase novelty second.',
-      impacts:['Consistency','Culture','Service','Reputation','Trust','Compounding value'],
-    },
-    case:{
-      desc:'<strong>Curiosity.</strong> The one word at the center. Not a value to display. The connecting thread every artifact has to carry.',
-      apply:'The test for any touchpoint: can this be traced back to Curiosity? If not, it doesn\'t belong. Questions over assertions. "What if..." beats "Here\'s how."',
-      impacts:['Writing tone','Content topics','Visual metaphor','Client discovery','Social voice','Hiring bar'],
-    }
-  },
-  {
-    id:'product', title:'Product', eyebrow:'Your offering',
-    guide:{
-      desc:'What you actually sell, and the <strong>standard you hold it to</strong>. The proof your other promises are real.',
-      impacts:['Innovation','Features','Benefits','Design','Usability','Pricing'],
-    },
-    case:{
-      desc:'<strong>Brand Therapy.</strong> A guided clarity process using the Focus Star framework. The output is a strategic blueprint the founder returns to for years.',
-      apply:'Category: brand strategy workshop. Benefits stack emotional (feel seen, tweaking loop ends) and rational (positioning becomes defensible).',
-      impacts:['Focus Star session','Strategic blueprint','Founder clarity','Long-term use','Emotional relief','Defensible positioning'],
-    }
+const CONFIG_PATH = './config.json';
+let SOURCE_DATA = null;
+let BRAND = { name: 'Brand', shortName: 'Brand' };
+let PILLARS = [];
+
+function normalizePanel(panel={}){
+  return {
+    desc: panel.desc || '',
+    apply: panel.apply || '',
+    impacts: Array.isArray(panel.impacts) ? panel.impacts : [],
+    persona: panel.persona || null,
+    archetype: panel.archetype || null,
+    archetypeAssets: panel.archetypeAssets || null,
+    moodboard: Array.isArray(panel.moodboard) ? panel.moodboard : [],
+    details: panel.details || null
+  };
+}
+
+function escapeHTML(value=''){
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function truncate(value='', max=150){
+  const clean = String(value).trim();
+  return clean.length > max ? `${clean.slice(0, max - 1).trim()}...` : clean;
+}
+
+function resolveAssetPath(path=''){
+  const value = String(path);
+  return value.startsWith('assets/') ? `../${value.slice('assets/'.length)}` : value;
+}
+
+function normalizeConfig(config){
+  if(!config || !Array.isArray(config.pillars) || !config.pillars.length){
+    throw new Error('config.json is missing pillars');
   }
-];
+  return {
+    ...config,
+    brand: config.brand || {},
+    visual: config.visual || {},
+    pillars: config.pillars.map((pillar,index)=>({
+      ...pillar,
+      id: pillar.id || `p${index+1}`,
+      title: pillar.title || `P${index+1}`,
+      eyebrow: pillar.eyebrow || '',
+      guide: normalizePanel(pillar.guide),
+      case: normalizePanel(pillar.case)
+    }))
+  };
+}
+
+function applyTheme(config){
+  const root = document.documentElement;
+  const brand = config.brand || {};
+  const visual = config.visual || {};
+  if(brand.accentColor) root.style.setProperty('--acc', brand.accentColor);
+  if(brand.inkColor) root.style.setProperty('--ink', brand.inkColor);
+  if(visual.background) root.style.setProperty('--bg', visual.background);
+  if(visual.dialBackground) root.style.setProperty('--bg-dial', visual.dialBackground);
+  document.getElementById('case-brand-name').textContent = brand.name || brand.shortName || 'Brand';
+  document.title = `${brand.shortName || brand.name || 'Brand'} Focus Star`;
+}
 
 /* ============================================================ GEOMETRY */
 const STEP = 72;
@@ -566,14 +960,35 @@ let rotation = 0, target = 0;
 let dragging = false, lastPointerAng = 0, dragVelocity = 0, lastDragTime = 0;
 let wheelAccum = 0; // for scroll resistance
 
+const stage      = document.getElementById('stage');
 const dialWrap   = document.getElementById('dialWrap');
 const rotor      = document.getElementById('rotor');
 const fineTicks  = document.getElementById('fineTicks');
 const pillarRing = document.getElementById('pillarRing');
 const starGroup  = document.getElementById('starGroup');
+const reader     = document.querySelector('.reader');
+const readerFit  = document.getElementById('reader-fit');
+const detailFit  = document.getElementById('detail-fit');
+const pillarNav  = document.getElementById('pillar-nav');
+
+function buildSectionNav(){
+  pillarNav.innerHTML = PILLARS.map((p,i)=>`
+    <a class="pillar-link${i===activeIdx?' active':''}" href="#${p.id}" data-pidx="${i}">
+      <span class="nav-index">${String(i+1).padStart(2,'0')}</span>
+      <span class="nav-label">${p.title}</span>
+    </a>
+  `).join('');
+  pillarNav.querySelectorAll('.pillar-link').forEach(link=>{
+    link.addEventListener('click',event=>{
+      event.preventDefault();
+      goToIndex(+link.dataset.pidx);
+    });
+  });
+}
 
 /* ============================================================ BUILD DIAL */
-(function buildFineTicks(){
+function buildFineTicks(){
+  fineTicks.innerHTML = '';
   const f=document.createDocumentFragment();
   for(let a=0;a<360;a+=6){
     const major=(a%18===0);
@@ -588,9 +1003,10 @@ const starGroup  = document.getElementById('starGroup');
     f.appendChild(ln);
   }
   fineTicks.appendChild(f);
-})();
+}
 
-(function buildPillarRing(){
+function buildPillarRing(){
+  pillarRing.innerHTML = '';
   const f=document.createDocumentFragment();
   PILLARS.forEach((p,i)=>{
     const ang=i*STEP, rad=(ang-90)*Math.PI/180;
@@ -617,9 +1033,10 @@ const starGroup  = document.getElementById('starGroup');
     f.appendChild(g);
   });
   pillarRing.appendChild(f);
-})();
+}
 
-(function buildStar(){
+function buildStar(){
+  starGroup.innerHTML = '';
   function pt(a,r){ const rad=(a-90)*Math.PI/180; return{x:Math.cos(rad)*r,y:Math.sin(rad)*r}; }
   const f=document.createDocumentFragment();
   PILLARS.forEach((p,i)=>{
@@ -638,7 +1055,7 @@ const starGroup  = document.getElementById('starGroup');
   out.setAttribute('points',pts.join(' ')); out.setAttribute('class','star-outline');
   f.appendChild(out);
   starGroup.appendChild(f);
-})();
+}
 
 /* ============================================================ INTERACTION */
 function clientAngle(e){
@@ -678,7 +1095,7 @@ let leanOffset = 0; // visual lean during scroll build-up
 
 let leanResetTimer = null;
 let snapLockedUntil = 0;
-dialWrap.addEventListener('wheel',e=>{
+function handleWheel(e){
   e.preventDefault();
   // ignore wheel events for 400ms after a snap (kills trackpad inertia chaining)
   if (performance.now() < snapLockedUntil) return;
@@ -686,7 +1103,9 @@ dialWrap.addEventListener('wheel',e=>{
   const threshold = window.WHEEL_THRESHOLD || WHEEL_THRESHOLD;
   const lean = (window.scrollLean !== undefined ? window.scrollLean : 0);
   const buildup = window.scrollLeanBuildup || threshold;
-  wheelAccum += e.deltaY;
+  const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+  if(delta === 0) return;
+  wheelAccum += delta;
   if(lean > 0){
     const progress = Math.min(Math.abs(wheelAccum) / buildup, 1);
     leanOffset = -Math.sign(wheelAccum) * Math.pow(progress, 1.5) * lean;
@@ -695,12 +1114,12 @@ dialWrap.addEventListener('wheel',e=>{
   }
   if(Math.abs(wheelAccum) >= threshold){
     // hold the leaned position briefly so the user sees the recoil at full amplitude
-    const dir = e.deltaY > 0 ? 1 : -1;
+    const dir = delta > 0 ? 1 : -1;
     snapLockedUntil = performance.now() + 400;
     setTimeout(() => {
       leanOffset = 0;
       wheelAccum = 0;
-      goToIndex((activeIdx + dir + 5) % 5);
+      goToIndex((activeIdx + dir + PILLARS.length) % PILLARS.length);
     }, 110);
   }
   // release: when scroll stops short of threshold, reset accumulator and clear lean
@@ -709,19 +1128,22 @@ dialWrap.addEventListener('wheel',e=>{
     wheelAccum = 0;
     leanOffset = 0;
   }, 180);
-},{passive:false});
+}
+stage.addEventListener('wheel',handleWheel,{passive:false});
 
 /* Arrow keys: LEFT = next (clockwise), RIGHT = prev — reversed per request */
 window.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft') goToIndex((activeIdx+1)%5);
-  if(e.key==='ArrowRight') goToIndex((activeIdx-1+5)%5);
-  if(e.key>='1'&&e.key<='5') goToIndex(+e.key-1);
+  if(!PILLARS.length) return;
+  if(e.key==='ArrowLeft') goToIndex((activeIdx+1)%PILLARS.length);
+  if(e.key==='ArrowRight') goToIndex((activeIdx-1+PILLARS.length)%PILLARS.length);
+  if(e.key==='Escape') goToIndex(0);
+  if(e.key>='1'&&e.key<=String(PILLARS.length)) goToIndex(+e.key-1);
 });
 
 /* ============================================================ LOGIC */
 function nearestIdx(rot){
   let best=0, bestD=Infinity;
-  for(let i=0;i<5;i++){
+  for(let i=0;i<PILLARS.length;i++){
     const want=-i*STEP;
     // compare modulo — find shortest arc
     let d = ((rot - want) % 360 + 540) % 360 - 180;
@@ -736,6 +1158,8 @@ function liveHighlight(){ highlightDial(nearestIdx(rotation)); }
 
 /* Infinite rotation: search ±10 full revolutions, pick closest to current rotation */
 function goToIndex(i){
+  if(!PILLARS.length || !Number.isFinite(i)) return;
+  i = (i + PILLARS.length) % PILLARS.length;
   const want = -i * STEP;
   let best = want, bestD = Infinity;
   for(let k = -10; k <= 10; k++){
@@ -745,6 +1169,9 @@ function goToIndex(i){
   }
   target = best;
   activeIdx = i;
+  if(PILLARS[i] && window.location.hash !== `#${PILLARS[i].id}`){
+    history.replaceState(null, '', `#${PILLARS[i].id}`);
+  }
   setActivePillar(i);
 }
 
@@ -775,22 +1202,65 @@ function applyRotation(){
 }
 
 /* ============================================================ RENDER */
-function setActivePillar(i){
+function setActivePillar(i, options={}){
   window.__activeIdx = i;
   const p=PILLARS[i];
+  if(!p) return;
   const data=mode==='case' ? p.case : p.guide;
+  stage.dataset.mode = mode;
+  stage.dataset.pillar = p.id;
 
   document.getElementById('p-eyebrow').textContent=p.eyebrow.toUpperCase();
   document.getElementById('p-title').textContent=p.title;
-  document.getElementById('p-desc').innerHTML=data.desc;
+  document.getElementById('p-desc').innerHTML=data.desc || '';
 
   // persona
   const pb=document.getElementById('persona-block');
+  const insightGrid=document.getElementById('insight-grid');
+  const moodboardBlock=document.getElementById('moodboard-block');
+  const personaTags=document.getElementById('persona-tags');
+  insightGrid.classList.remove('visible');
+  insightGrid.innerHTML='';
+  moodboardBlock.classList.remove('visible');
+  moodboardBlock.innerHTML='';
+  personaTags.innerHTML='';
+
   if(mode==='case'&&p.id==='people'&&p.case.persona){
     const pe=p.case.persona;
     document.getElementById('persona-role').textContent=pe.role;
-    document.getElementById('persona-context').textContent=pe.context;
+    document.getElementById('persona-context').textContent=pe.quote || pe.tagline || pe.context;
     document.getElementById('persona-need').textContent=pe.need;
+    const personaImg=document.getElementById('persona-img');
+    const personaFallback=document.getElementById('persona-fallback');
+    if(pe.image && pe.image.path){
+      personaImg.src=resolveAssetPath(pe.image.path);
+      personaImg.alt=pe.image.alt || pe.role || 'Persona avatar';
+      personaImg.style.display='block';
+      personaFallback.style.display='none';
+      personaImg.onerror=()=>{
+        personaImg.style.display='none';
+        personaFallback.style.display='flex';
+      };
+    } else {
+      personaImg.removeAttribute('src');
+      personaImg.style.display='none';
+      personaFallback.style.display='flex';
+    }
+    const insightCards = [
+      ['Motivation', pe.rationalMotivation],
+      ['Pain', pe.painPoint],
+      ['Trigger', pe.decisionTrigger || (pe.buyingCriteria || []).slice(0,3).join(', ')],
+    ].filter(card=>card[1]);
+    insightGrid.innerHTML = insightCards.map(([label,value])=>`
+      <article class="insight-card">
+        <div class="label">${escapeHTML(label)}</div>
+        <p>${escapeHTML(truncate(value, 230))}</p>
+      </article>
+    `).join('');
+    if(pe.tags && pe.tags.length){
+      personaTags.innerHTML = pe.tags.slice(0,6).map(tag=>`<span>${escapeHTML(tag)}</span>`).join('');
+    }
+    insightGrid.classList.add('visible');
     pb.classList.add('visible');
   } else { pb.classList.remove('visible'); }
 
@@ -798,23 +1268,86 @@ function setActivePillar(i){
   const ab=document.getElementById('archetype-block');
   if(mode==='case'&&p.id==='personality'&&p.case.archetype){
     const a=p.case.archetype;
-    document.getElementById('arch-name').textContent=a.name;
-    document.getElementById('arch-type').textContent=a.type;
-    document.getElementById('arch-traits').innerHTML=a.traits.map(tr=>`<span class="arch-tag">${tr}</span>`).join('');
+    const primary=a.primary || {};
+    const secondary=(a.secondary || []).filter(item=>item && item.name);
+    const assets=p.case.archetypeAssets || {};
+    const iconItems=[
+      assets.primary || null,
+      ...((assets.secondary || []).filter(Boolean))
+    ].filter(Boolean);
+    document.getElementById('archetype-icons').innerHTML=iconItems.map(item=>`
+      <div class="archetype-img">
+        ${item.icon ? `<img src="${escapeHTML(resolveAssetPath(item.icon))}" alt="${escapeHTML(item.alt || item.name || 'Archetype')}">` : '<div class="arch-icon">*</div>'}
+      </div>
+    `).join('');
+    document.getElementById('arch-name').textContent=primary.name || 'Archetype';
+    document.getElementById('arch-type').textContent=[
+      primary.weight ? `Primary ${Math.round(primary.weight*100)}%` : 'Primary',
+      secondary.length ? `Secondary ${secondary.map(item=>item.name).join(' + ')}` : ''
+    ].filter(Boolean).join(' · ');
+    const traitItems=[
+      primary.essence,
+      ...secondary.map(item=>item.essence)
+    ].filter(Boolean);
+    document.getElementById('arch-traits').innerHTML=traitItems.map(tr=>`<span class="arch-tag">${escapeHTML(truncate(tr, 70))}</span>`).join('');
+    const details=p.case.details || {};
+    const insightCards=[
+      ['Tone', 'Warm but not soft. Sharp but not mean. Playful but not empty.'],
+      ['Signature', (details['Voice is'] || []).slice(0,4).join(', ')],
+      ['Not', (details['Voice is not'] || []).slice(0,4).join(', ')],
+    ].filter(card=>card[1]);
+    insightGrid.innerHTML = insightCards.map(([label,value])=>`
+      <article class="insight-card">
+        <div class="label">${escapeHTML(label)}</div>
+        <p>${escapeHTML(truncate(value, 150))}</p>
+      </article>
+    `).join('');
+    insightGrid.classList.add('visible');
+    if(data.moodboard && data.moodboard.length){
+      moodboardBlock.innerHTML=data.moodboard.slice(0,4).map(item=>`
+        <div class="moodboard-item"><img src="${escapeHTML(resolveAssetPath(item.path))}" alt="${escapeHTML(item.alt || item.role || 'Moodboard reference')}"></div>
+      `).join('');
+      moodboardBlock.classList.add('visible');
+    }
     ab.classList.add('visible');
   } else { ab.classList.remove('visible'); }
+
+  if(mode==='case' && !insightGrid.classList.contains('visible') && data.details){
+    const detailCards = Object.entries(data.details)
+      .filter(([,value])=>Array.isArray(value) ? value.length : value)
+      .slice(0,3)
+      .map(([label,value])=>[
+        label,
+        Array.isArray(value) ? value.join(' · ') : value
+      ]);
+    if(detailCards.length){
+      insightGrid.innerHTML = detailCards.map(([label,value])=>`
+        <article class="insight-card">
+          <div class="label">${escapeHTML(label)}</div>
+          <p>${escapeHTML(truncate(value, 260))}</p>
+        </article>
+      `).join('');
+      insightGrid.classList.add('visible');
+    }
+  }
 
   // apply
   const apb=document.getElementById('apply-block');
   if(mode==='case'&&data.apply){
+    const applyLabel = document.querySelector('#apply-block .apply-label');
+    if(applyLabel) {
+      applyLabel.textContent = p.id === 'people' ? 'Audience fit' : p.id === 'personality' ? 'Operating rule' : 'How to use';
+    }
     document.getElementById('apply-text').textContent=data.apply;
     apb.classList.add('visible');
   } else { apb.classList.remove('visible'); }
 
-  document.getElementById('impacts-head').textContent=mode==='case'?'Key areas':'What it shapes';
-  document.getElementById('p-impacts').innerHTML=data.impacts.map(it=>`<li>${it}</li>`).join('');
+  document.getElementById('impacts-head').textContent='What it shapes';
+  document.getElementById('p-impacts').innerHTML=(mode==='guide' ? (data.impacts || []) : []).map(it=>`<li>${it}</li>`).join('');
 
   highlightDial(i);
+  updateSectionNav(i);
+  if(!options.skipFit) requestAnimationFrame(fitReader);
 }
 
 function highlightDial(i){
@@ -829,20 +1362,89 @@ function highlightDial(i){
   });
 }
 
+function updateSectionNav(i){
+  document.querySelectorAll('.pillar-link').forEach(link=>{
+    const on=+link.dataset.pidx===i;
+    link.classList.toggle('active',on);
+    if(on) link.setAttribute('aria-current','true');
+    else link.removeAttribute('aria-current');
+  });
+  const count=document.getElementById('section-count');
+  if(count) count.textContent=`${String(i+1).padStart(2,'0')} / ${String(PILLARS.length).padStart(2,'0')}`;
+}
+
+let fittingReader = false;
+function fitReader(){
+  if(fittingReader || !reader || !readerFit || !detailFit) return;
+  fittingReader = true;
+
+  detailFit.style.transform = 'scale(1)';
+  detailFit.style.width = '100%';
+
+  const styles = getComputedStyle(reader);
+  const availableHeight = reader.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+  const availableForDetails = availableHeight - detailFit.offsetTop;
+  const needed = Math.max(1, detailFit.scrollHeight);
+  let scale = availableForDetails / needed;
+
+  const minScale = window.innerWidth >= 1180 ? 0.8 : window.innerWidth >= 900 ? 0.7 : 0.01;
+  scale = Math.max(minScale, Math.min(1, scale));
+  detailFit.style.transform = `scale(${scale})`;
+  detailFit.style.width = `${100 / scale}%`;
+  reader.dataset.fitScale = scale.toFixed(3);
+
+  fittingReader = false;
+}
+
 function setMode(m){
   mode=m;
+  stage.dataset.mode = m;
   document.getElementById('btn-guide').classList.toggle('active',m==='guide');
   document.getElementById('btn-case').classList.toggle('active',m==='case');
   const logo=document.getElementById('case-logo');
-  if(m==='case'){ logo.style.display='flex'; requestAnimationFrame(()=>logo.classList.add('visible')); }
-  else { logo.classList.remove('visible'); setTimeout(()=>logo.style.display='none',300); }
+  if(m==='case'){ logo.classList.add('visible'); }
+  else { logo.classList.remove('visible'); }
   setActivePillar(activeIdx);
 }
 
-/* INIT */
-goToIndex(0);
-applyRotation();
-requestAnimationFrame(tick);
+async function init(){
+  try {
+    let rawConfig = window.FOCUS_STAR_CONFIG || null;
+    if(!rawConfig){
+      const response = await fetch(CONFIG_PATH, { cache: 'no-store' });
+      if(!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      rawConfig = await response.json();
+    }
+    SOURCE_DATA = normalizeConfig(rawConfig);
+    BRAND = SOURCE_DATA.brand;
+    PILLARS = SOURCE_DATA.pillars;
+    applyTheme(SOURCE_DATA);
+    buildSectionNav();
+    buildFineTicks();
+    buildPillarRing();
+    buildStar();
+
+    const initialMode = new URLSearchParams(window.location.search).get('mode');
+    if(initialMode === 'case' || initialMode === 'guide') mode = initialMode;
+    const initialIdx = PILLARS.findIndex(p=>`#${p.id}`===window.location.hash);
+    goToIndex(initialIdx >= 0 ? initialIdx : 0);
+    setMode(mode);
+    window.addEventListener('hashchange',()=>{
+      const idx=PILLARS.findIndex(p=>`#${p.id}`===window.location.hash);
+      if(idx>=0 && idx!==activeIdx) goToIndex(idx);
+    });
+    window.addEventListener('resize',()=>requestAnimationFrame(fitReader));
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>requestAnimationFrame(fitReader));
+    applyRotation();
+    requestAnimationFrame(tick);
+  } catch(error) {
+    document.getElementById('p-eyebrow').textContent = 'Config error';
+    document.getElementById('p-title').textContent = 'Focus Star';
+    document.getElementById('p-desc').textContent = `Could not load ${CONFIG_PATH}: ${error.message}`;
+  }
+}
+
+init();
 </script>
 </body>
 </html>
