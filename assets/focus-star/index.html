@@ -241,16 +241,14 @@
   .persona-block { display: none; margin-bottom: 20px; }
   .persona-block.visible { display: flex; gap: 20px; align-items: flex-start; }
   .persona-image {
-    width: 72px; height: 92px; flex-shrink: 0;
+    width: 118px; height: 142px; flex-shrink: 0;
     background: #F0F0F5; border: 1px solid var(--border);
-    border-radius: 4px;
-    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    border-radius: 0;
+    display: block;
     overflow: hidden; position: relative;
   }
-  .persona-silhouette {
-    width: 100%; height: 100%;
-    display: flex; align-items: flex-end; justify-content: center;
-  }
+  .persona-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .persona-silhouette { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; }
   .persona-silhouette svg { width: 68px; height: auto; }
   .persona-img-label {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -276,18 +274,21 @@
   }
 
   /* archetype */
-  .archetype-block { display: none; margin-bottom: 28px; }
-  .archetype-block.visible { display: flex; gap: 18px; align-items: flex-start; }
+  .archetype-block { display: none; margin-bottom: 20px; }
+  .archetype-block.visible { display: grid; grid-template-columns: minmax(140px, 190px) 1fr; gap: 18px; align-items: start; }
+  .archetype-icons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
   .archetype-img {
-    width: 72px; height: 90px; flex-shrink: 0;
-    background: #F0F0F5; border: 1px solid var(--border); border-radius: 4px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    aspect-ratio: 1;
+    background: #F7F7FA; border: 1px solid var(--border); border-radius: 0;
+    display: grid; place-items: center;
+    overflow: hidden;
   }
-  .archetype-img .arch-icon { font-size: 26px; line-height: 1; }
-  .archetype-img .arch-hint {
-    font-family: var(--ff-b); font-size: 7px; font-weight: 600;
-    letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: center;
-  }
+  .archetype-img img { width: 88%; height: 88%; object-fit: contain; display: block; }
+  .archetype-img .arch-icon { font-size: 24px; line-height: 1; color: var(--acc); }
   .arch-name {
     font-family: var(--ff-h); font-weight: 800; font-size: 20px;
     text-transform: uppercase; letter-spacing: -.01em; color: var(--ink);
@@ -303,6 +304,61 @@
     color: var(--muted); border: 1px solid var(--border);
     padding: 3px 8px; border-radius: 100px; line-height: 1;
   }
+  .insight-grid {
+    display: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .insight-grid.visible { display: grid; }
+  .insight-card {
+    min-width: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 12px 14px;
+  }
+  .insight-card .label {
+    font-family: var(--ff-b); font-size: 8px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--acc);
+    margin-bottom: 6px;
+  }
+  .insight-card p {
+    margin: 0;
+    font-family: var(--ff-b);
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .tag-row span {
+    border: 1px solid var(--border);
+    padding: 3px 6px;
+    font-family: var(--ff-b);
+    font-size: 9px;
+    line-height: 1;
+    color: var(--muted);
+  }
+  .moodboard-block {
+    display: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .moodboard-block.visible { display: grid; }
+  .moodboard-item {
+    aspect-ratio: 1.15;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: #F7F7FA;
+  }
+  .moodboard-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* apply block */
   .apply-block {
@@ -463,6 +519,23 @@
     .impacts {
       grid-template-columns: 1fr 1fr;
     }
+    .persona-block.visible,
+    .archetype-block.visible {
+      grid-template-columns: 1fr;
+    }
+    .persona-block.visible {
+      display: grid;
+    }
+    .persona-image {
+      width: 100%;
+      height: 132px;
+    }
+    .insight-grid {
+      grid-template-columns: 1fr;
+    }
+    .moodboard-block {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 </style>
 </head>
@@ -505,7 +578,8 @@
       <!-- Persona (People + case study) -->
       <div class="persona-block" id="persona-block">
         <div class="persona-image">
-          <div class="persona-silhouette">
+          <img id="persona-img" alt="">
+          <div class="persona-silhouette" id="persona-fallback">
             <svg viewBox="0 0 68 80" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- head -->
               <ellipse cx="34" cy="22" rx="13" ry="14" fill="#C8C8D8"/>
@@ -524,16 +598,16 @@
 
       <!-- Archetype (Personality + case study) -->
       <div class="archetype-block" id="archetype-block">
-        <div class="archetype-img">
-          <div class="arch-icon">♛</div>
-          <div class="arch-hint">archetype image</div>
-        </div>
+        <div class="archetype-icons" id="archetype-icons"></div>
         <div class="archetype-info">
           <div class="arch-name" id="arch-name">The Ruler</div>
           <div class="arch-type" id="arch-type">Authority · Sovereignty</div>
           <div class="arch-traits" id="arch-traits"></div>
         </div>
       </div>
+
+      <div class="insight-grid" id="insight-grid"></div>
+      <div class="moodboard-block" id="moodboard-block"></div>
 
       <!-- Apply -->
       <div class="apply-block" id="apply-block">
@@ -596,8 +670,29 @@ function normalizePanel(panel={}){
     impacts: Array.isArray(panel.impacts) ? panel.impacts : [],
     persona: panel.persona || null,
     archetype: panel.archetype || null,
+    archetypeAssets: panel.archetypeAssets || null,
+    moodboard: Array.isArray(panel.moodboard) ? panel.moodboard : [],
     details: panel.details || null
   };
+}
+
+function escapeHTML(value=''){
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function truncate(value='', max=150){
+  const clean = String(value).trim();
+  return clean.length > max ? `${clean.slice(0, max - 1).trim()}...` : clean;
+}
+
+function resolveAssetPath(path=''){
+  const value = String(path);
+  return value.startsWith('assets/') ? `../${value.slice('assets/'.length)}` : value;
 }
 
 function normalizeConfig(config){
@@ -897,11 +992,54 @@ function setActivePillar(i, options={}){
 
   // persona
   const pb=document.getElementById('persona-block');
+  const insightGrid=document.getElementById('insight-grid');
+  const moodboardBlock=document.getElementById('moodboard-block');
+  insightGrid.classList.remove('visible');
+  insightGrid.innerHTML='';
+  moodboardBlock.classList.remove('visible');
+  moodboardBlock.innerHTML='';
+
   if(mode==='case'&&p.id==='people'&&p.case.persona){
     const pe=p.case.persona;
     document.getElementById('persona-role').textContent=pe.role;
-    document.getElementById('persona-context').textContent=pe.context;
+    document.getElementById('persona-context').textContent=pe.quote || pe.context;
     document.getElementById('persona-need').textContent=pe.need;
+    const personaImg=document.getElementById('persona-img');
+    const personaFallback=document.getElementById('persona-fallback');
+    if(pe.image && pe.image.path){
+      personaImg.src=resolveAssetPath(pe.image.path);
+      personaImg.alt=pe.image.alt || pe.role || 'Persona avatar';
+      personaImg.style.display='block';
+      personaFallback.style.display='none';
+      personaImg.onerror=()=>{
+        personaImg.style.display='none';
+        personaFallback.style.display='flex';
+      };
+    } else {
+      personaImg.removeAttribute('src');
+      personaImg.style.display='none';
+      personaFallback.style.display='flex';
+    }
+    const insightCards = [
+      ['Rational', pe.rationalMotivation],
+      ['Emotional', pe.need],
+      ['Trigger', pe.decisionTrigger || (pe.buyingCriteria || []).slice(0,3).join(', ')],
+    ].filter(card=>card[1]);
+    insightGrid.innerHTML = insightCards.map(([label,value])=>`
+      <article class="insight-card">
+        <div class="label">${escapeHTML(label)}</div>
+        <p>${escapeHTML(truncate(value, 170))}</p>
+      </article>
+    `).join('');
+    if(pe.tags && pe.tags.length){
+      insightGrid.innerHTML += `
+        <article class="insight-card">
+          <div class="label">Tags</div>
+          <div class="tag-row">${pe.tags.slice(0,6).map(tag=>`<span>${escapeHTML(tag)}</span>`).join('')}</div>
+        </article>
+      `;
+    }
+    insightGrid.classList.add('visible');
     pb.classList.add('visible');
   } else { pb.classList.remove('visible'); }
 
@@ -909,9 +1047,47 @@ function setActivePillar(i, options={}){
   const ab=document.getElementById('archetype-block');
   if(mode==='case'&&p.id==='personality'&&p.case.archetype){
     const a=p.case.archetype;
-    document.getElementById('arch-name').textContent=a.name;
-    document.getElementById('arch-type').textContent=a.type;
-    document.getElementById('arch-traits').innerHTML=a.traits.map(tr=>`<span class="arch-tag">${tr}</span>`).join('');
+    const primary=a.primary || {};
+    const secondary=(a.secondary || []).filter(item=>item && item.name);
+    const assets=p.case.archetypeAssets || {};
+    const iconItems=[
+      assets.primary || null,
+      ...((assets.secondary || []).filter(Boolean))
+    ].filter(Boolean);
+    document.getElementById('archetype-icons').innerHTML=iconItems.map(item=>`
+      <div class="archetype-img">
+        ${item.icon ? `<img src="${escapeHTML(resolveAssetPath(item.icon))}" alt="${escapeHTML(item.alt || item.name || 'Archetype')}">` : '<div class="arch-icon">*</div>'}
+      </div>
+    `).join('');
+    document.getElementById('arch-name').textContent=primary.name || 'Archetype';
+    document.getElementById('arch-type').textContent=[
+      primary.weight ? `Primary ${Math.round(primary.weight*100)}%` : 'Primary',
+      secondary.length ? `Secondary ${secondary.map(item=>item.name).join(' + ')}` : ''
+    ].filter(Boolean).join(' · ');
+    const traitItems=[
+      primary.essence,
+      ...secondary.map(item=>item.essence)
+    ].filter(Boolean);
+    document.getElementById('arch-traits').innerHTML=traitItems.map(tr=>`<span class="arch-tag">${escapeHTML(truncate(tr, 70))}</span>`).join('');
+    const details=p.case.details || {};
+    const insightCards=[
+      ['Tone', 'Warm but not soft. Sharp but not mean. Playful but not empty.'],
+      ['Signature', (details['Voice is'] || []).slice(0,4).join(', ')],
+      ['Not', (details['Voice is not'] || []).slice(0,4).join(', ')],
+    ].filter(card=>card[1]);
+    insightGrid.innerHTML = insightCards.map(([label,value])=>`
+      <article class="insight-card">
+        <div class="label">${escapeHTML(label)}</div>
+        <p>${escapeHTML(truncate(value, 150))}</p>
+      </article>
+    `).join('');
+    insightGrid.classList.add('visible');
+    if(data.moodboard && data.moodboard.length){
+      moodboardBlock.innerHTML=data.moodboard.slice(0,4).map(item=>`
+        <div class="moodboard-item"><img src="${escapeHTML(resolveAssetPath(item.path))}" alt="${escapeHTML(item.alt || item.role || 'Moodboard reference')}"></div>
+      `).join('');
+      moodboardBlock.classList.add('visible');
+    }
     ab.classList.add('visible');
   } else { ab.classList.remove('visible'); }
 

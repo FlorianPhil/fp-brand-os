@@ -137,6 +137,47 @@
             "Says 'I just want more clients' as the only goal",
             "Does not see the personal in the brand, or the brand in the personal"
           ]
+        },
+        "persona": {
+          "role": "The Invisible Expert",
+          "tagline": "Successful but unseen.",
+          "context": "Founders, executives, and brand owners. Personal or company. The block is both emotional and strategic.",
+          "need": "To feel seen without being made into a performance. They want confidence, relief, and permission to stop tweaking.",
+          "quote": "\"I am good at what I do. I know I should be more visible.\"\n",
+          "rationalMotivation": "They need positioning and language that make their expertise legible, defensible, and easy to explain.",
+          "painPoint": "They built real value through relationships, expertise, and hard work, but never invested in visibility. The brand does not reflect the caliber of the work, so they keep rewriting, second-guessing, and losing visibility to louder people.",
+          "decisionTrigger": "Lost a deal to someone louder; Preparing for a keynote; Raising a round",
+          "buyingCriteria": [
+            "Being understood",
+            "Strategic clarity",
+            "Founder-safe process",
+            "Taste",
+            "Specificity",
+            "No template",
+            "No hype",
+            "Practical deliverables"
+          ],
+          "tags": [
+            "Age 30-55",
+            "Founder",
+            "Executive",
+            "Expert",
+            "Entrepreneurial",
+            "Premium service",
+            "Growth plateau",
+            "New venture"
+          ],
+          "image": {
+            "path": "assets/people/persona-invisible-expert-female.png",
+            "alt": "Female founder/executive avatar for the Invisible Expert persona.",
+            "source_status": "generated",
+            "approval_status": "draft",
+            "generation_source": "Codex image generation, 2026-05-06",
+            "used_by": [
+              "focus-star",
+              "people"
+            ]
+          }
         }
       }
     },
@@ -275,7 +316,70 @@
             "Most branding starts with a logo",
             "credentialed"
           ]
-        }
+        },
+        "archetype": {
+          "primary": {
+            "name": "Innocent",
+            "weight": 0.5,
+            "essence": "Optimism, honesty, belief that clarity is simple when you stop overcomplicating it.",
+            "references": []
+          },
+          "secondary": [
+            {
+              "name": "Creator",
+              "weight": 0.3,
+              "essence": "Drive to build something meaningful and beautiful.",
+              "references": []
+            },
+            {
+              "name": "Friend",
+              "weight": 0.2,
+              "essence": "Conversation, not lectures. Perspective shifts, not lessons.",
+              "references": []
+            }
+          ]
+        },
+        "archetypeAssets": {
+          "primary": {
+            "name": "Innocent",
+            "icon": "assets/archetypes/no-background/Innocent.png",
+            "alt": "Innocent archetype icon."
+          },
+          "secondary": [
+            {
+              "name": "Creator",
+              "icon": "assets/archetypes/no-background/Creator.png",
+              "alt": "Creator archetype icon."
+            },
+            {
+              "name": "Friend",
+              "icon": "assets/archetypes/no-background/Friend.png",
+              "alt": "Friend archetype icon."
+            }
+          ]
+        },
+        "moodboard": [
+          {
+            "path": "assets/moodboard/quality-architecture.jpg",
+            "alt": "Architectural precision reference.",
+            "role": "structure"
+          },
+          {
+            "path": "assets/moodboard/stock-design.jpg",
+            "alt": "Design systems reference.",
+            "role": "composition"
+          },
+          {
+            "path": "assets/moodboard/fast-texture.jpg",
+            "alt": "Material texture reference.",
+            "role": "texture"
+          },
+          {
+            "path": "assets/moodboard/quality-workspace.jpg",
+            "alt": "Workspace environment reference.",
+            "role": "environment"
+          }
+        ]
       }
     }
   ],
