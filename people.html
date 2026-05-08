@@ -8,6 +8,161 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+.people-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: stretch;
+  margin: 36px 0 64px;
+}
+.people-hero-copy {
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(28px, 5vw, 56px) 0;
+}
+.people-hero-label,
+.people-card-label,
+.people-image-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.people-hero-copy h2 {
+  font-family: var(--ff-h);
+  font-size: clamp(46px, 6vw, 86px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 20px 0 22px;
+}
+.people-hero-copy p {
+  max-width: 680px;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.45;
+  color: var(--text);
+}
+.people-quote {
+  font-family: var(--ff-h);
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 720px;
+  margin: 34px 0 0;
+}
+.people-portrait {
+  display: grid;
+  grid-template-rows: minmax(420px, 1fr) auto;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+.people-portrait img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+.people-portrait figcaption {
+  border-top: 1px solid var(--border);
+  padding: 18px 20px 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.people-detail-grid,
+.people-mood-grid,
+.people-image-grid {
+  display: grid;
+  border-top: 1px solid var(--text);
+  border-left: 1px solid var(--border);
+  margin: 32px 0 52px;
+}
+.people-detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.people-mood-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.people-image-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.people-card,
+.people-mood,
+.people-image-card {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.people-card {
+  padding: 26px 24px;
+  min-height: 210px;
+}
+.people-card h3 {
+  font-size: clamp(28px, 3vw, 42px);
+  margin: 22px 0 14px;
+}
+.people-card p {
+  margin: 0;
+  max-width: 100%;
+}
+.people-image-card img,
+.people-mood img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.people-image-card .image-wrap {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: var(--border-soft);
+}
+.people-image-meta,
+.people-mood-meta {
+  padding: 18px 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.people-image-meta strong,
+.people-mood-meta strong {
+  display: block;
+  margin: 8px 0 6px;
+  font-family: var(--ff-h);
+  font-size: 24px;
+  line-height: 1;
+}
+.people-image-meta span,
+.people-mood-meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.people-mood .image-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--border-soft);
+}
+@media (max-width: 1100px) {
+  .people-hero,
+  .people-detail-grid,
+  .people-image-grid {
+    grid-template-columns: 1fr;
+  }
+  .people-mood-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .people-mood-grid {
+    grid-template-columns: 1fr;
+  }
+  .people-portrait img {
+    min-height: 340px;
+  }
+}
+</style>
 </head>
 <body class="grain strategy-page">
 <div class="shell">
@@ -73,36 +228,49 @@
 
 <main class="content">
 
-  <span class="eyebrow">Section A &middot; Brand Strategy &middot; Edge P2 &middot; Strict Contract</span>
+  <span class="eyebrow">Section A &middot; Brand Strategy &middot; Edge P2 &middot; Persona</span>
   <h1 class="page-title">People<span class="dot">.</span></h1>
-  <p class="page-subtitle">FP is built for capable leaders whose value is under-articulated: real expertise, weak articulation, and a visibility gap they are ready to solve.</p>
+  <p class="page-subtitle">The person I do Brand Therapy for: already good at the work, trusted up close, and still harder to understand from the outside than they should be.</p>
 
   <div class="meta-row">
-    <span>Status<strong>CONTRACT PILOT</strong></span>
+    <span>Status<strong>PERSONA PILOT</strong></span>
     <span>Edge<strong>P2</strong></span>
-    <span>Decision<span class="accent">Fit filter</span></span>
+    <span>Primary persona<span class="accent">The Invisible Expert</span></span>
+  </div>
+
+  <div class="people-hero">
+    <div class="people-hero-copy">
+      <div class="people-hero-label">Primary persona</div>
+      <h2>The Invisible Expert<span class="dot">.</span></h2>
+      <p>They have taste, standards, experience, and a real way of seeing the work. People who get close enough understand the value. The problem is that the brand does not make strangers understand it fast enough.</p>
+      <div class="people-quote">"The work is good. Why is it still this hard to explain?"</div>
+    </div>
+    <figure class="people-portrait">
+      <img src="assets/people/persona.png" alt="Persona portrait for The Invisible Expert">
+      <figcaption><span class="people-image-label">Avatar signal</span><br>Observed, quiet, already competent. Not a guru pose. Not a founder stock photo. A person mid-thought.</figcaption>
+    </figure>
   </div>
 
   <div class="snapshot-grid" aria-label="People snapshot">
     <div class="snapshot-cell">
-      <div class="label">Audience</div>
-      <strong>Capable leaders</strong>
-      <span>Real expertise with low public clarity.</span>
+      <div class="label">Already true</div>
+      <strong>Real value</strong>
+      <span>The work has substance. The public read is weaker than the private proof.</span>
     </div>
     <div class="snapshot-cell">
-      <div class="label">Tension</div>
-      <strong>Value hidden</strong>
-      <span>Opportunity is blocked by unclear articulation.</span>
+      <div class="label">The block</div>
+      <strong>Translation gap</strong>
+      <span>They explain too much because the brand does not carry enough meaning yet.</span>
     </div>
     <div class="snapshot-cell">
       <div class="label">Need</div>
-      <strong>Safe visibility</strong>
-      <span>Seen without performing for attention.</span>
+      <strong>Useful mirror</strong>
+      <span>Language, hierarchy, proof, and point of view that make the work easier to read.</span>
     </div>
     <div class="snapshot-cell">
       <div class="label">Filter</div>
       <strong>Understood</strong>
-      <span>They would rather be understood than admired.</span>
+      <span>They want visibility without turning into a content character.</span>
     </div>
   </div>
 
@@ -116,33 +284,38 @@
   </div>
 
   <div class="definition-block">
-    <p>FP is for founders, executives, and experts with real value that the market cannot yet read fast enough.</p>
+    <p>Brand Therapy fits when the person does not need to become more impressive. They need to become easier to understand.</p>
   </div>
 
   <!-- 02 ------------------------------------------------ -->
   <div class="section-label">
     <div class="section-number">02</div>
     <div class="section-head">
-      <div class="kicker">Tension</div>
-      <h2>What is blocked<span class="dot">.</span></h2>
+      <div class="kicker">Persona Reality</div>
+      <h2>What is actually happening<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <div class="benefit-grid">
-    <article class="benefit-card">
-      <div class="label">Pain</div>
-      <h3>Hidden value<span class="dot">.</span></h3>
-      <p>"The work is stronger than the way it shows up."</p>
+  <div class="people-detail-grid">
+    <article class="people-card">
+      <div class="people-card-label">What they know</div>
+      <h3>The work is not the issue<span class="dot">.</span></h3>
+      <p>They have proof, judgment, taste, clients, experience, or a method. They are not starting from zero.</p>
     </article>
-    <article class="benefit-card">
-      <div class="label">Rational</div>
-      <h3>Opportunity friction<span class="dot">.</span></h3>
-      <p>They need positioning, language, and proof that make expertise legible before a call.</p>
+    <article class="people-card">
+      <div class="people-card-label">What keeps breaking</div>
+      <h3>The explanation<span class="dot">.</span></h3>
+      <p>The bio, website, offer, intro, pitch, posts, and visuals all feel slightly off, so they keep rewriting the surface.</p>
     </article>
-    <article class="benefit-card">
-      <div class="label">Emotional</div>
-      <h3>Tired of translating<span class="dot">.</span></h3>
-      <p>They want confidence, relief and permission to stop second-guessing.</p>
+    <article class="people-card">
+      <div class="people-card-label">What they have tried</div>
+      <h3>Tweaking symptoms<span class="dot">.</span></h3>
+      <p>New headline. New logo moodboard. More posting. Competitor tabs. Another About draft. None of it solves the underlying point of view.</p>
+    </article>
+    <article class="people-card">
+      <div class="people-card-label">What they fear</div>
+      <h3>A costume<span class="dot">.</span></h3>
+      <p>They want clarity, but they do not want to become an influencer, a guru, or a polished version of someone else.</p>
     </article>
   </div>
 
@@ -157,19 +330,19 @@
 
   <div class="proof-grid">
     <div class="proof-card">
-      <div class="label">Inflection</div>
-      <strong>Visible</strong>
-      <p>A keynote, raise, launch, sale, or new role makes clarity urgent.</p>
+      <div class="label">Public moment</div>
+      <strong>Now visible</strong>
+      <p>A website rebuild, launch, keynote, podcast, proposal, raise, or new audience makes the old explanation too expensive.</p>
     </div>
     <div class="proof-card">
-      <div class="label">Market mismatch</div>
-      <strong>Sharper</strong>
-      <p>Someone less specific is easier to understand, remember, or refer.</p>
+      <div class="label">Referral ceiling</div>
+      <strong>Too private</strong>
+      <p>People who already know them can explain the value. Strangers cannot yet read it quickly enough.</p>
     </div>
     <div class="proof-card">
-      <div class="label">Growth ceiling</div>
-      <strong>Clearer</strong>
-      <p>The next level needs clarity, not more effort.</p>
+      <div class="label">Inner fatigue</div>
+      <strong>Too much translation</strong>
+      <p>They are tired of sounding too vague, too small, too serious, or too performative.</p>
     </div>
   </div>
 
@@ -177,32 +350,64 @@
   <div class="section-label">
     <div class="section-number">04</div>
     <div class="section-head">
-      <div class="kicker">Variants</div>
-      <h2>Three doors in<span class="dot">.</span></h2>
+      <div class="kicker">Persona Notes</div>
+      <h2>How they sound before the work<span class="dot">.</span></h2>
     </div>
   </div>
 
-  <div class="benefit-grid">
-    <article class="benefit-card">
-      <div class="label">Founder-led</div>
-      <h3>Trust changes the sale<span class="dot">.</span></h3>
-      <p>The company has value, but the founder's point of view is not doing enough work.</p>
-    </article>
-    <article class="benefit-card">
-      <div class="label">Expert-led</div>
-      <h3>Outcomes outrun the story<span class="dot">.</span></h3>
-      <p>The expertise is real. The language around it still sounds smaller than the work.</p>
-    </article>
-    <article class="benefit-card">
-      <div class="label">New venture</div>
-      <h3>Specific before loud<span class="dot">.</span></h3>
-      <p>They understand brand matters before the market teaches them the expensive way.</p>
-    </article>
+  <div class="process-table">
+    <div class="process-row">
+      <div class="label">Self-diagnosis</div>
+      <h3>"It feels close, but not right."</h3>
+      <p>They can tell when the brand is off, but they cannot always name the actual strategic problem.</p>
+    </div>
+    <div class="process-row">
+      <div class="label">Hidden want</div>
+      <h3>"I want it to sound like me."</h3>
+      <p>Not casual by default. Not corporate. Not impressive for the sake of it. Specific enough that it feels relieving.</p>
+    </div>
+    <div class="process-row">
+      <div class="label">Objection</div>
+      <h3>"Is this going to make me perform?"</h3>
+      <p>The fear is not strategy. The fear is being packaged into a louder personality they do not recognize.</p>
+    </div>
+    <div class="process-row">
+      <div class="label">Trust signal</div>
+      <h3>"You see the tension."</h3>
+      <p>They trust the work when the diagnosis lands before the offer explanation starts.</p>
+    </div>
   </div>
 
   <!-- 05 ------------------------------------------------ -->
   <div class="section-label">
     <div class="section-number">05</div>
+    <div class="section-head">
+      <div class="kicker">Variants</div>
+      <h2>Three useful doors in<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <div class="benefit-grid">
+    <article class="benefit-card">
+      <div class="label">Expert with receipts</div>
+      <h3>Proof without a point<span class="dot">.</span></h3>
+      <p>They have a body of work, taste, and results. The outside world still needs a simpler way to understand why it matters.</p>
+    </article>
+    <article class="benefit-card">
+      <div class="label">Founder in the brand</div>
+      <h3>Trust needs a person<span class="dot">.</span></h3>
+      <p>The business works better when the person behind it becomes clearer, more specific, and more trusted.</p>
+    </article>
+    <article class="benefit-card">
+      <div class="label">New chapter builder</div>
+      <h3>True before loud<span class="dot">.</span></h3>
+      <p>They are launching, repositioning, or stepping into a public role and want the brand to feel right before it gets amplified.</p>
+    </article>
+  </div>
+
+  <!-- 06 ------------------------------------------------ -->
+  <div class="section-label">
+    <div class="section-number">06</div>
     <div class="section-head">
       <div class="kicker">Fit Filter</div>
       <h2>Right fit<span class="dot">.</span></h2>
@@ -213,11 +418,11 @@
     <article class="scope-card">
       <div class="label">Rules in</div>
       <ul>
-        <li>Founders, executives, and experts with real expertise but low public clarity</li>
-        <li>Leaders at inflection moments where visibility now affects opportunity</li>
-        <li>People who want to be understood without being turned into a performance</li>
-        <li>Founder-led or expert-led brands where personal trust changes the sale</li>
-        <li>New ventures that understand brand matters before the market teaches them the expensive way</li>
+        <li>People whose work is stronger than the way it is explained</li>
+        <li>Personal-brand or founder-led work where trust changes the sale</li>
+        <li>Experts, consultants, creatives, operators, advisors, and service-business owners with a real point of view</li>
+        <li>People who can feel the issue is clarity, not another surface tweak</li>
+        <li>People who want to become easier to understand without becoming louder, flatter, or fake</li>
       </ul>
     </article>
     <article class="scope-card">
@@ -226,54 +431,8 @@
         <li>Logo shoppers looking for a surface refresh</li>
         <li>Hustle-culture personal branders optimizing for attention</li>
         <li>Social media management seekers</li>
-        <li>ROI-first founders who treat brand as a short-term marketing tactic</li>
-        <li>People who want to copy someone louder instead of becoming more specific</li>
-      </ul>
-    </article>
-  </div>
-
-  <!-- 06 ------------------------------------------------ -->
-  <div class="section-label">
-    <div class="section-number">06</div>
-    <div class="section-head">
-      <div class="kicker">Tradeoffs</div>
-      <h2>What this choice accepts<span class="dot">.</span></h2>
-    </div>
-  </div>
-
-  <div class="proof-grid">
-    <div class="proof-card">
-      <div class="label">Narrower</div>
-      <strong>Better fit</strong>
-      <p>Narrower than "founders who need branding"; stronger trust, sales clarity, and strategic relevance.</p>
-    </div>
-    <div class="proof-card">
-      <div class="label">Sharper</div>
-      <strong>Fewer quick fixes</strong>
-      <p>More emotionally precise sales conversations; fewer quick-turn design leads.</p>
-    </div>
-    <div class="proof-card">
-      <div class="label">Deeper</div>
-      <strong>Less generic</strong>
-      <p>More founder-safe depth; less appeal to clients who only want execution.</p>
-    </div>
-  </div>
-
-  <div class="scope-grid">
-    <article class="scope-card">
-      <div class="label">Proof required</div>
-      <ul>
-        <li>Visible proof that FP has handled founder-led and company brand strategy</li>
-        <li>Case studies showing clarity from ambiguity</li>
-        <li>Testimonials that mention being understood, strategic clarity, positioning, or confidence</li>
-      </ul>
-    </article>
-    <article class="scope-card">
-      <div class="label">Claim boundary</div>
-      <ul>
-        <li>Public claims stay limited to verified credentials, case studies, and visible proof assets</li>
-        <li>Do not invent industry authority, revenue outcomes, or client results that are not in the source</li>
-        <li>Use missing proof as a production request, not as copy to improvise around</li>
+        <li>People who want a content costume instead of a clearer point of view</li>
+        <li>People who want to copy someone louder or borrow a personality</li>
       </ul>
     </article>
   </div>
@@ -281,6 +440,115 @@
   <!-- 07 ------------------------------------------------ -->
   <div class="section-label">
     <div class="section-number">07</div>
+    <div class="section-head">
+      <div class="kicker">Visual Persona</div>
+      <h2>Avatar and moodboard<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <div class="people-image-grid">
+    <article class="people-image-card">
+      <div class="image-wrap"><img src="assets/people/persona.png" alt="Quiet persona portrait for The Invisible Expert"></div>
+      <div class="people-image-meta">
+        <div class="people-image-label">Avatar A</div>
+        <strong>Private clarity</strong>
+        <span>Quiet, thoughtful, not selling. The image says there is already substance here.</span>
+      </div>
+    </article>
+    <article class="people-image-card">
+      <div class="image-wrap"><img src="assets/people/persona-invisible-expert-female.png" alt="Working persona portrait with notebook and laptop"></div>
+      <div class="people-image-meta">
+        <div class="people-image-label">Avatar B</div>
+        <strong>Working mind</strong>
+        <span>In process, composed, observant. A person doing the thinking, not performing expertise.</span>
+      </div>
+    </article>
+  </div>
+
+  <div class="people-mood-grid">
+    <article class="people-mood">
+      <div class="image-wrap"><img src="assets/moodboard/quality-workspace.jpg" alt="Calm workspace with notebook"></div>
+      <div class="people-mood-meta">
+        <div class="people-image-label">Environment</div>
+        <strong>Intentional room</strong>
+        <span>Space to think. No startup clutter. No fake hustle.</span>
+      </div>
+    </article>
+    <article class="people-mood">
+      <div class="image-wrap"><img src="assets/moodboard/quality-design.jpg" alt="Minimal design model"></div>
+      <div class="people-mood-meta">
+        <div class="people-image-label">Form</div>
+        <strong>Precise structure</strong>
+        <span>The brand should feel edited, not decorated.</span>
+      </div>
+    </article>
+    <article class="people-mood">
+      <div class="image-wrap"><img src="assets/moodboard/quality-architecture.jpg" alt="Architectural precision reference"></div>
+      <div class="people-mood-meta">
+        <div class="people-image-label">Feeling</div>
+        <strong>Quiet authority</strong>
+        <span>Confidence without volume. Premium without polish theater.</span>
+      </div>
+    </article>
+    <article class="people-mood">
+      <div class="image-wrap"><img src="assets/moodboard/fast-texture.jpg" alt="Textural material reference"></div>
+      <div class="people-mood-meta">
+        <div class="people-image-label">Texture</div>
+        <strong>Human edge</strong>
+        <span>Enough imperfection that the work still feels lived in.</span>
+      </div>
+    </article>
+  </div>
+
+  <!-- 08 ------------------------------------------------ -->
+  <div class="section-label">
+    <div class="section-number">08</div>
+    <div class="section-head">
+      <div class="kicker">Strategic Tradeoffs</div>
+      <h2>What this choice accepts<span class="dot">.</span></h2>
+    </div>
+  </div>
+
+  <div class="proof-grid">
+    <div class="proof-card">
+      <div class="label">More personal</div>
+      <strong>Less segment</strong>
+      <p>This is less useful as a broad agency ICP and more useful for a personal Brand Therapy sales conversation.</p>
+    </div>
+    <div class="proof-card">
+      <div class="label">More emotional</div>
+      <strong>Less surface</strong>
+      <p>It will repel people who just want design output. That is a feature, not a bug.</p>
+    </div>
+    <div class="proof-card">
+      <div class="label">More useful to AI</div>
+      <strong>Less fluffy</strong>
+      <p>The system gives AI tension, objections, images, and voice rules, not just a target-market label.</p>
+    </div>
+  </div>
+
+  <div class="scope-grid">
+    <article class="scope-card">
+      <div class="label">Proof required</div>
+      <ul>
+        <li>Examples where messy personal or founder-led brands became easier to explain</li>
+        <li>Before-and-after language showing the shift from vague value to clear point of view</li>
+        <li>Testimonials or notes that mention feeling understood, clearer, more specific, or less stuck</li>
+      </ul>
+    </article>
+    <article class="scope-card">
+      <div class="label">Claim boundary</div>
+      <ul>
+        <li>Do not invent client outcomes or authority proof</li>
+        <li>Use missing proof as a production request, not copy to improvise around</li>
+        <li>Show the person as thoughtful and real, not staged as a guru</li>
+      </ul>
+    </article>
+  </div>
+
+  <!-- 09 ------------------------------------------------ -->
+  <div class="section-label">
+    <div class="section-number">09</div>
     <div class="section-head">
       <div class="kicker">Generation Rules</div>
       <h2>How AI should use this<span class="dot">.</span></h2>
@@ -291,20 +559,21 @@
     <article class="scope-card">
       <div class="label">Writing instructions</div>
       <ul>
-        <li>Write to the Invisible Expert as a capable peer, not a beginner</li>
+        <li>Write to The Invisible Expert as a smart adult with taste, not as a beginner or a corporate buyer</li>
         <li>Do not describe them as insecure, broken, behind, or naive</li>
-        <li>Tie visibility to opportunity, trust, and articulation, not attention for attention's sake</li>
-        <li>Make the reader feel seen before explaining the offer</li>
-        <li>Keep emotional language precise and adult: relief, confidence, permission to stop tweaking</li>
+        <li>Make the pain about translation, not talent: the work is not the problem; the public read is</li>
+        <li>Tie visibility to being understood, referred, trusted, and chosen, not attention for attention's sake</li>
+        <li>Mirror the human situation before explaining Brand Therapy</li>
+        <li>Never use generic segment labels. Name the human situation instead</li>
       </ul>
     </article>
     <article class="scope-card">
       <div class="label">Image brief</div>
       <ul>
-        <li>Show competence before crisis in a calm strategic environment</li>
-        <li>Frame the subject as observed rather than posed</li>
-        <li>Signal thoughtfulness, restraint, and value that is not fully articulated yet</li>
-        <li>Avoid stock-founder enthusiasm, laptop glow, hustle imagery, shame framing, and young startup cliche</li>
+        <li>Show competence before visibility in a calm strategic environment</li>
+        <li>Frame the person as observed mid-thought, not posing for a personal-brand shoot</li>
+        <li>Signal thoughtfulness, restraint, and unfinished public clarity</li>
+        <li>Avoid stock-founder enthusiasm, laptop glow, hustle imagery, shame framing, and guru energy</li>
       </ul>
     </article>
   </div>
