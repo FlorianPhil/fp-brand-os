@@ -186,20 +186,6 @@
   position: relative;
   overflow: hidden;
 }
-.fs-hero::after {
-  content: "";
-  position: absolute;
-  right: clamp(32px, 7vw, 112px);
-  bottom: clamp(28px, 5vw, 76px);
-  width: 220px;
-  height: 220px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background:
-    linear-gradient(72deg, transparent 47%, rgba(90,92,249,0.8) 47%, rgba(90,92,249,0.8) 53%, transparent 53%),
-    linear-gradient(-72deg, transparent 47%, rgba(255,255,255,0.55) 47%, rgba(255,255,255,0.55) 53%, transparent 53%);
-  opacity: 0.55;
-  pointer-events: none;
-}
 .fs-hero .hero-eyebrow,
 .fs-section-eyebrow {
   font-family: var(--ff-b);
@@ -430,7 +416,6 @@
     width: calc(100% + 56px);
     padding: 56px 28px 48px;
   }
-  .fs-hero::after { display: none; }
   .fs-status,
   .fs-edge-grid,
   .fs-rule-grid,
