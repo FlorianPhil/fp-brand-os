@@ -633,23 +633,14 @@
     .stage[data-mode="case"] {
       grid-template-columns: 1fr;
       grid-template-rows: minmax(0, 1fr) clamp(104px, 16svh, 180px);
-      width: 100vw;
-      max-width: 100vw;
       overflow: hidden;
     }
     .stage::after { display: none; }
     .reader {
       height: 100%;
       min-height: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
       padding: 26px clamp(20px,5vw,44px) 20px;
-    }
-    .reader-fit,
-    .detail-fit {
-      min-width: 0;
-      max-width: 100%;
     }
     .navigation-panel { margin-bottom: 26px; }
     .dial-wrap {
@@ -670,8 +661,6 @@
     .stage,
     .stage[data-mode="case"] {
       grid-template-rows: minmax(0, 1fr) clamp(82px, 12svh, 118px);
-      width: 100vw;
-      max-width: 100vw;
       overflow: hidden;
     }
     .stage,
@@ -698,7 +687,7 @@
     }
     .pillar-nav {
       display: grid;
-      grid-template-columns: repeat(5, minmax(58px, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       width: 100%;
       max-width: 100%;
       overflow: hidden;
@@ -710,7 +699,7 @@
       font-size: 8px;
     }
     .pillar-link .nav-label {
-      font-size: 8px;
+      font-size: 9px;
       letter-spacing: 0;
     }
     .arrow-btn {
@@ -726,21 +715,6 @@
     .pillar-desc {
       min-height: 0;
       margin-bottom: 24px;
-    }
-    .stage[data-mode="case"] .pillar-desc,
-    .stage[data-mode="case"] .persona-context,
-    .stage[data-mode="case"] .persona-need,
-    .stage[data-mode="case"] .apply-text,
-    .stage[data-mode="case"] .insight-card p {
-      max-width: 100%;
-      overflow-wrap: break-word;
-    }
-    .persona-block.visible,
-    .archetype-block.visible,
-    .insight-grid,
-    .moodboard-block,
-    .apply-block {
-      max-width: 100%;
     }
     .impacts {
       grid-template-columns: 1fr 1fr;
@@ -1406,12 +1380,6 @@ function fitReader(){
 
   detailFit.style.transform = 'scale(1)';
   detailFit.style.width = '100%';
-
-  if(window.innerWidth <= 980){
-    reader.dataset.fitScale = 'scroll';
-    fittingReader = false;
-    return;
-  }
 
   const styles = getComputedStyle(reader);
   const availableHeight = reader.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
