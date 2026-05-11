@@ -6,189 +6,12 @@
 <title>Product · FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-
-<style>
-.source-ribbon {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 28px;
-}
-.source-ribbon span {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  border: 1px solid var(--border);
-  padding: 7px 10px;
-  color: var(--muted);
-}
-.source-ribbon strong { color: var(--accent); font-weight: 700; }
-.summary-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--text);
-  border-left: 1px solid var(--border);
-  margin: 40px 0 56px;
-}
-.summary-strip .cell {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 22px;
-  background: var(--white);
-}
-.summary-strip .label,
-.data-card .label,
-.section-kicker {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.summary-strip .value {
-  font-family: var(--ff-h);
-  font-size: 23px;
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -.015em;
-}
-.generated-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  margin: 28px 0 56px;
-}
-.data-card {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 28px;
-  background: var(--white);
-}
-.data-card.dark {
-  background: var(--dark);
-  color: var(--white);
-  border-color: rgba(255,255,255,.12);
-}
-.data-card.dark h3,
-.data-card.dark p,
-.data-card.dark li { color: var(--white); }
-.data-card h2,
-.data-card h3 {
-  margin: 0 0 14px;
-  font-size: clamp(24px, 2.6vw, 36px);
-  max-width: 12ch;
-}
-.data-card p {
-  font-size: 14px;
-  color: var(--text);
-  margin: 0;
-}
-.data-card ul { margin: 14px 0 0; display: grid; gap: 8px; }
-.data-card li {
-  font-family: var(--ff-b);
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--text);
-  padding-left: 14px;
-  position: relative;
-}
-.data-card li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  position: absolute;
-  left: 0;
-  top: .7em;
-}
-.long-copy {
-  max-width: 760px;
-  margin: 0 0 56px;
-}
-.long-copy p {
-  font-size: 16px;
-  line-height: 1.8;
-}
-.quote-block {
-  border-left: 3px solid var(--accent);
-  padding: 10px 0 10px 24px;
-  margin: 32px 0 56px;
-  font-family: var(--ff-h);
-  font-size: clamp(24px, 3vw, 38px);
-  line-height: 1.16;
-  letter-spacing: -.015em;
-  max-width: 820px;
-}
-.pill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0 0;
-}
-.pill-list span {
-  border: 1px solid var(--border);
-  padding: 7px 11px;
-  font-family: var(--ff-b);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text);
-}
-.flow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0;
-  margin: 32px 0 56px;
-  border-top: 1px solid var(--text);
-  border-left: 1px solid var(--border);
-}
-.flow .step {
-  min-height: 150px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 24px;
-  position: relative;
-}
-.flow .step-num {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: .18em;
-  margin-bottom: 16px;
-}
-.flow h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-.compass-embed {
-  width: calc(100% + clamp(72px, 10vw, 180px));
-  margin-left: calc(-1 * clamp(36px, 5vw, 90px));
-  height: 860px;
-  border: 0;
-  display: block;
-  background: transparent;
-}
-@media (max-width: 960px) {
-  .compass-embed {
-    width: 100%;
-    margin-left: 0;
-    height: 760px;
-  }
-}
-</style>
-
 </head>
 <body class="grain">
 <div class="shell">
+
 <aside class="sidebar">
   <div class="brand-mark">
     <div class="name">FP<span class="dot">.</span></div>
@@ -197,37 +20,74 @@
   <div class="nav-section">
     <div class="label">Sections</div>
     <details class="nav-group" ><summary><span class="group-letter">.</span><span class="group-label">Overview</span></summary><div class="nav-list"><a href="index.html" class="">Home</a></div></details>
-<details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list"><a href="focus-star.html" class="">The 5 Ps</a><a href="product.html" class="active">Product</a><a href="people.html" class="">People</a><a href="purpose.html" class="">Purpose</a><a href="promise.html" class="">Promise</a><a href="personality.html" class="">Personality</a></div></details>
-<details class="nav-group" ><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list"><a href="creative-direction.html" class="">Creative Direction</a><a href="visual.html" class="">Look &amp; Feel</a><a href="voice.html" class="">Voice</a><a href="signature.html" class="">Signature</a></div></details>
-<details class="nav-group" ><summary><span class="group-letter">C</span><span class="group-label">Application</span></summary><div class="nav-list"><a href="application.html" class="">Overview</a><a href="application-copy.html" class="">Copy</a><a href="application-email.html" class="">Email</a><a href="application-social.html" class="">Social</a><a href="application-proof.html" class="">Proof</a><a href="application-assets.html" class="">Assets</a><a href="application-web.html" class="">Website</a><a href="application-stationery.html" class="">Stationery</a></div></details>
-<details class="nav-group" ><summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary><div class="nav-list"><a href="founder-identity.html" class="">Founder Identity</a><a href="background.html" class="">Background</a><a href="imagery.html" class="">Imagery</a></div></details>
+    <details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list"><a href="focus-star.html" class="">The 5 Ps</a><a href="product.html" class="active">Product</a><a href="people.html" class="">People</a><a href="purpose.html" class="">Purpose</a><a href="promise.html" class="">Promise</a><a href="personality.html" class="">Personality</a></div></details>
+    <details class="nav-group" ><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list"><a href="creative-direction.html" class="">Creative Direction</a><a href="visual.html" class="">Look &amp; Feel</a><a href="voice.html" class="">Voice</a><a href="signature.html" class="">Signature</a></div></details>
+    <details class="nav-group" ><summary><span class="group-letter">C</span><span class="group-label">Application</span></summary><div class="nav-list"><a href="application.html" class="">Overview</a><a href="application-copy.html" class="">Copy</a><a href="application-email.html" class="">Email</a><a href="application-social.html" class="">Social</a><a href="application-proof.html" class="">Proof</a><a href="application-assets.html" class="">Assets</a><a href="application-web.html" class="">Website</a><a href="application-stationery.html" class="">Stationery</a></div></details>
+    <details class="nav-group" ><summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary><div class="nav-list"><a href="founder-identity.html" class="">Founder Identity</a><a href="background.html" class="">Background</a><a href="imagery.html" class="">Imagery</a></div></details>
   </div>
   <div class="toolbar-mini">
-    <div class="row"><span>Source</span><strong>Notion</strong></div>
-    <div class="row"><span>Snapshot</span><strong>YAML</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-05-08</strong></div>
+    <div class="row"><span>Source</span><strong>section-a.source.json</strong></div>
+    <div class="row"><span>Render</span><strong>generated</strong></div>
+    <div class="row"><span>Scope</span><strong>Section A</strong></div>
   </div>
 </aside>
+
 <main class="content">
+
   <section class="p-hero">
     <div class="p-hero-copy">
-      <div class="p-kicker">Section A · P1 · Offer Intelligence</div>
+      <div class="p-kicker">Section A · P1 · generated from source</div>
       <h1>Product<span class="dot">.</span></h1>
-      <p>Brand Therapy is not a branding package. It is the clarity product: the process that turns unclear expertise into decisions the client can keep using.</p>
-      <div class="p-tags">
-        <span>Brand Therapy</span>
-        <span>Clarity</span>
-        <span>Decision system</span>
-        <span>Working blueprint</span>
-      </div>
+      <p>Brand Therapy. Brand Therapy gives clients the clarity to stop second-guessing, the confidence to make sharper brand decisions, and a working blueprint for what to say, show, sell, and build next, built through Florian&amp;#x27;s Focus Star at the intersection of brand strategy, psychology, and strategic positioning.</p>
+      <div class="p-tags"><span>Brand Therapy</span><span>Clarity</span><span>Decision system</span><span>Working blueprint</span></div>
     </div>
     <figure class="p-hero-media">
       <img src="assets/moodboard/quality-workspace.jpg" alt="Calm workspace with notebook, used as Product image direction.">
-      <figcaption class="p-caption">Image direction: calm diagnostic work surface, notes, structure, and space to think. No clinical therapy cues, no agency moodboard wall, no generic workshop energy.</figcaption>
+      <figcaption class="p-caption">Image direction: A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall.</figcaption>
     </figure>
   </section>
-
+  <div class="p-source-note">
+    <strong>Single source:</strong> assets/focus-star/section-a.source.json
+    <span>Rendered by scripts/build-section-a.py. Edit the source, not this page.</span>
+  </div>
   <div class="p-thesis">The product is not more assets. The product is fewer wrong decisions.</div>
+
+
+  <section class="p-section">
+    <div class="p-section-head">
+      <div class="p-section-num">00</div>
+      <div>
+        <div class="p-kicker">Source trail</div>
+        <h2>Where this page comes from<span class="dot">.</span></h2>
+        <p class="p-section-desc">This page is rendered from the same source object that feeds the Focus Star and AI context pack.</p>
+      </div>
+    </div>
+
+    <div class="p-grid">
+
+      <article class="p-card dark">
+        <div class="p-card-label">Authoring</div>
+        <h3>Strategic source</h3>
+        <p>Notion/source snapshot plus approved Section A feedback.</p>
+      </article>
+
+
+      <article class="p-card">
+        <div class="p-card-label">Approval</div>
+        <h3>Current status</h3>
+        <p>contract_review</p>
+      </article>
+
+
+      <article class="p-card">
+        <div class="p-card-label">Used by AI</div>
+        <h3>Source trail</h3>
+        <ul><li>Notion Brands row</li><li>brand-os/source/source.yaml snapshot</li><li>approved FP review feedback</li><li>Section A source contract</li></ul>
+      </article>
+
+    </div>
+
+  </section>
 
   <section class="p-section">
     <div class="p-section-head">
@@ -235,55 +95,69 @@
       <div>
         <div class="p-kicker">Strategic decision</div>
         <h2>What is being sold<span class="dot">.</span></h2>
-        <p class="p-section-desc">This page defines Brand Therapy as an offer system: what the client buys, why it matters, how it should be framed, and what AI should protect when generating sales or product copy.</p>
+        <p class="p-section-desc">Product defines the offer logic: what the client buys, what it replaces, and what AI must protect.</p>
       </div>
     </div>
-    <div class="p-grid">
+
+                <div class="p-grid">
+
       <article class="p-card dark">
         <div class="p-card-label">Offer name</div>
         <h3>Brand Therapy</h3>
-        <p>Florian's Focus Star process for giving clients clarity, confidence, and a working blueprint for what to say, show, sell, and build next.</p>
+        <p>Brand Therapy is Florian&#x27;s Focus Star process for giving clients clarity, confidence, and a working blueprint for what to say, show, sell, and build next.</p>
       </article>
+
+
       <article class="p-card">
         <div class="p-card-label">Client outcome</div>
         <h3>Clarity that holds</h3>
-        <p>The client stops tweaking from taste, anxiety, or imitation. Decisions get a reason, and the next asset has something stronger to answer to.</p>
+        <p>The client stops tweaking from taste, anxiety, or imitation. Decisions get a reason.</p>
       </article>
+
+
       <article class="p-card">
         <div class="p-card-label">Offer category</div>
         <h3>Strategic diagnosis</h3>
-        <p>The work sits between brand strategy, positioning, language, psychology, and creative direction. It should not be sold as design execution alone.</p>
+        <p>The product is the Focus Star-led process that turns unclear expertise into a strategic blueprint, messaging, and creative direction the client can actually use.</p>
       </article>
-    </div>
+
+                </div>
+
   </section>
 
   <section class="p-section">
     <div class="p-section-head">
       <div class="p-section-num">02</div>
       <div>
-        <div class="p-kicker">What clients buy</div>
-        <h2>The value stack<span class="dot">.</span></h2>
-        <p class="p-section-desc">Every Product output should show why the process matters before listing deliverables. The deliverables are useful because they make future decisions easier.</p>
+        <div class="p-kicker">Value stack</div>
+        <h2>What clients buy<span class="dot">.</span></h2>
+        <p class="p-section-desc">Every Product output should show why the process matters before listing deliverables.</p>
       </div>
     </div>
     <div class="p-row-list">
+
       <div class="p-row">
         <h3>Emotional benefit</h3>
-        <p>Relief from the loop of second-guessing, rewriting, redesigning, and asking for opinions that do not create a clearer strategic direction.</p>
+        <p>relief from the tweaking loop.</p>
       </div>
+
       <div class="p-row">
         <h3>Business benefit</h3>
-        <p>Sharper positioning, better sales language, clearer proof, stronger offer logic, and more coherent creative direction for the next stage of the business.</p>
+        <p>sharper positioning, proof, offer logic, and creative direction.</p>
       </div>
+
       <div class="p-row">
         <h3>Practical output</h3>
-        <p>A strategic blueprint that can inform website copy, landing pages, social content, email, proof, visual direction, sales conversations, and future creative briefs.</p>
+        <p>a blueprint for copy, website, social, email, sales, and creative briefs.</p>
       </div>
+
+
       <div class="p-row">
         <h3>Real test</h3>
         <p>If the work cannot help a client make a sharper decision after the session, it is decoration, not Brand Therapy.</p>
       </div>
-    </div>
+
+                </div>
   </section>
 
   <section class="p-section">
@@ -292,32 +166,25 @@
       <div>
         <div class="p-kicker">Offer boundaries</div>
         <h2>What belongs and what does not<span class="dot">.</span></h2>
-        <p class="p-section-desc">This is the filter that keeps Product copy from drifting into agency, therapy, coaching, or template language.</p>
+        <p class="p-section-desc">These filters prevent the offer from drifting into agency, therapy, coaching, or template language.</p>
       </div>
     </div>
     <div class="p-grid two">
+
       <article class="p-card">
         <div class="p-card-label">Rules in</div>
         <h3>Belongs</h3>
-        <ul>
-          <li>A guided clarity process using the Focus Star.</li>
-          <li>Strategy, positioning, language, hierarchy, and creative direction.</li>
-          <li>Outputs that help the client explain, choose, build, brief, and sell better.</li>
-          <li>A client who needs a decision system, not a pile of disconnected assets.</li>
-        </ul>
+        <ul><li>A guided clarity process using the Focus Star.</li><li>Strategy, positioning, language, hierarchy, and creative direction.</li><li>A client who needs a decision system, not a pile of assets.</li><li>Outputs that help the client explain, choose, build, and brief better.</li></ul>
       </article>
+
+
       <article class="p-card dark">
         <div class="p-card-label">Rules out</div>
         <h3>Does not belong</h3>
-        <ul>
-          <li>Logo refresh as the main job.</li>
-          <li>Content agency or social media management.</li>
-          <li>Clinical therapy, wellness, healing, or couch metaphors.</li>
-          <li>A generic brand workshop, template, or taste-led design sprint.</li>
-          <li>Done-for-you execution without strategic ownership.</li>
-        </ul>
+        <ul><li>Logo refresh as the main job.</li><li>Content agency or social media management.</li><li>Clinical therapy.</li><li>A template or generic brand workshop.</li><li>Done-for-you execution without strategic ownership.</li></ul>
       </article>
-    </div>
+
+                </div>
   </section>
 
   <section class="p-section">
@@ -325,39 +192,55 @@
       <div class="p-section-num">04</div>
       <div>
         <div class="p-kicker">Marketing use</div>
-        <h2>Triggers, proof, and sales language<span class="dot">.</span></h2>
-        <p class="p-section-desc">Product needs to shape how the offer is packaged, sold, and validated. It should make the buyer feel the cost of unclear decisions.</p>
+        <h2>Triggers, proof, and output controls<span class="dot">.</span></h2>
+        <p class="p-section-desc">This is the AI-readable layer for website copy, landing pages, sales, content, visual direction, and image prompts.</p>
       </div>
     </div>
     <div class="p-grid">
+
       <article class="p-card">
-        <div class="p-card-label">Buying triggers</div>
+        <div class="p-card-label">Triggers</div>
         <h3>When it matters</h3>
-        <ul>
-          <li>The client is rebuilding a website, offer, or public presence.</li>
-          <li>The work is good, but the explanation is messy.</li>
-          <li>They keep asking whether the brand, copy, audience, or offer is the problem.</li>
-          <li>They need a system before investing in more execution.</li>
-        </ul>
+        <ul><li>Rebuilding a website, offer, or public presence.</li><li>Good work with messy explanation.</li><li>Unclear whether brand, copy, audience, or offer is the real problem.</li><li>Need for a system before investing in more execution.</li></ul>
       </article>
+
+
       <article class="p-card">
         <div class="p-card-label">Proof required</div>
         <h3>Show evidence</h3>
-        <ul>
-          <li>Before/after examples where confusing value becomes easier to explain.</li>
-          <li>Artifacts showing the Focus Star turning into messaging, identity, offer, or website decisions.</li>
-          <li>Testimonials that mention clarity, specificity, relief, or stronger decision-making.</li>
-        </ul>
+        <ul><li>Before/after examples where confusing value becomes easier to explain.</li><li>Artifacts showing the Focus Star turning into messaging, identity, or offer decisions.</li><li>Testimonials that mention clarity, specificity, relief, or stronger decision-making.</li></ul>
       </article>
+
+
+      <article class="p-card dark">
+        <div class="p-card-label">AI rule</div>
+        <h3>AI behavior</h3>
+        <p>When generating Product copy, name the process before naming deliverables.</p>
+      </article>
+
+    </div>
+    <div class="p-grid">
+
       <article class="p-card">
-        <div class="p-card-label">AI sales rule</div>
-        <h3>Benefit first</h3>
-        <ul>
-          <li>Lead with clarity, confidence, direction, and decision relief.</li>
-          <li>Name the Focus Star as the process, not the whole value.</li>
-          <li>Do not make Brand Therapy sound like a company, therapy practice, or asset package.</li>
-        </ul>
+        <div class="p-card-label">Output control</div>
+        <h3>Copy</h3>
+        <p>Explain Brand Therapy as a process and decision system. Do not make it sound like an agency package.</p>
       </article>
+
+
+      <article class="p-card">
+        <div class="p-card-label">Output control</div>
+        <h3>Visual</h3>
+        <p>Show structure, diagnosis, and clarity. Avoid spa, therapy, or wellness cues.</p>
+      </article>
+
+
+      <article class="p-card">
+        <div class="p-card-label">Output control</div>
+        <h3>Image</h3>
+        <p>A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall.</p>
+      </article>
+
     </div>
   </section>
 
@@ -365,51 +248,40 @@
     <div class="p-section-head">
       <div class="p-section-num">05</div>
       <div>
-        <div class="p-kicker">Creative controls</div>
-        <h2>How Product should look and sound<span class="dot">.</span></h2>
-        <p class="p-section-desc">The offer should feel diagnostic, useful, and structured. It should not feel mystical, clinical, or overdesigned.</p>
+        <div class="p-kicker">Minimum fields</div>
+        <h2>What another brand must provide<span class="dot">.</span></h2>
+        <p class="p-section-desc">A second brand cannot generate this page responsibly until these fields are filled or explicitly marked missing.</p>
       </div>
     </div>
     <div class="p-grid">
-      <article class="p-card">
-        <div class="p-card-label">Image brief</div>
-        <h3>Working clarity</h3>
-        <ul>
-          <li>Annotated strategy surfaces, notebooks, screens, diagrams, and calm workspaces.</li>
-          <li>Evidence of thinking before execution.</li>
-          <li>Quiet precision, not workshop chaos.</li>
-        </ul>
-      </article>
-      <article class="p-card">
-        <div class="p-card-label">Copy texture</div>
-        <h3>Plain, exact, useful</h3>
-        <ul>
-          <li>Write like a strategist explaining the real problem.</li>
-          <li>Use the client's stuck loop before naming the solution.</li>
-          <li>Keep the promise concrete enough to brief a designer or writer.</li>
-        </ul>
-      </article>
+
       <article class="p-card dark">
-        <div class="p-card-label">Product contract</div>
-        <h3>Minimum fields</h3>
-        <ul>
-          <li>Offer definition.</li>
-          <li>Client outcome.</li>
-          <li>Deliverable logic.</li>
-          <li>Boundaries and exclusions.</li>
-          <li>Buying triggers.</li>
-          <li>Proof required.</li>
-          <li>AI and image rules.</li>
-        </ul>
+        <div class="p-card-label">Field contract</div>
+        <h3>Required source</h3>
+        <ul><li>Offer definition.</li><li>Client outcome.</li><li>Deliverable logic.</li><li>Boundaries and exclusions.</li><li>Buying triggers.</li><li>Proof required.</li><li>AI and image rules.</li></ul>
       </article>
-    </div>
+
+
+      <article class="p-card">
+        <div class="p-card-label">AI rule</div>
+        <h3>Missing-source behavior</h3>
+        <p>If a required field is empty, mark it missing. Do not fill the gap with polished strategy language.</p>
+      </article>
+
+
+      <article class="p-card">
+        <div class="p-card-label">One-shot use</div>
+        <h3>Website test</h3>
+        <p>The page must be enough to brief homepage hierarchy, audience language, offer framing, proof, and image direction.</p>
+      </article>
+
+        </div>
   </section>
 
-  <footer class="page-footer">
-    <span><a href="index.html">Home</a></span>
+  <div class="footer-nav">
     <span>Section A · Product intelligence</span>
     <span><a href="people.html">People &rarr;</a></span>
-  </footer>
+  </div>
 </main>
 </div>
 </body>

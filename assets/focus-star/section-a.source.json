@@ -20,9 +20,7 @@
     "authoringSource": "Notion Brands row",
     "snapshot": "brand-os/source/source.yaml",
     "rowUrl": "https://www.notion.so/358c22dccbf98141bc3ac16ad95274df",
-    "fetchedAt": "2026-05-06 01:41:11.384000+00:00",
-    "generatedFrom": "assets/focus-star/section-a.source.json",
-    "generatedBy": "scripts/build-section-a.py"
+    "fetchedAt": "2026-05-06 01:41:11.384000+00:00"
   },
   "brand": {
     "name": "Florian P. Consulting",
