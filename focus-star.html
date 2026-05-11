@@ -177,12 +177,268 @@
   display: block;
   background: transparent;
 }
+.fs-hero {
+  background: var(--dark);
+  color: var(--white);
+  margin: -96px calc(-1 * clamp(48px, 7vw, 120px)) 56px;
+  padding: 88px clamp(40px, 6vw, 80px) 64px;
+  width: calc(100% + 2 * clamp(48px, 7vw, 120px));
+  position: relative;
+  overflow: hidden;
+}
+.fs-hero::after {
+  content: "";
+  position: absolute;
+  right: clamp(32px, 7vw, 112px);
+  bottom: clamp(28px, 5vw, 76px);
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background:
+    linear-gradient(72deg, transparent 47%, rgba(90,92,249,0.8) 47%, rgba(90,92,249,0.8) 53%, transparent 53%),
+    linear-gradient(-72deg, transparent 47%, rgba(255,255,255,0.55) 47%, rgba(255,255,255,0.55) 53%, transparent 53%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.fs-hero .hero-eyebrow,
+.fs-section-eyebrow {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 26px;
+}
+.fs-hero h1 {
+  color: var(--white);
+  font-size: clamp(58px, 8.4vw, 112px);
+  line-height: 0.9;
+  max-width: 920px;
+  margin: 0 0 26px;
+}
+.fs-hero h1 .dot { color: var(--accent); }
+.fs-hero p {
+  color: rgba(255,255,255,0.72);
+  font-size: clamp(17px, 2vw, 23px);
+  line-height: 1.45;
+  max-width: 780px;
+}
+.fs-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+.fs-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.9);
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.fs-action.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.fs-status {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--text);
+  border-left: 1px solid var(--border);
+  margin: 0 0 64px;
+}
+.fs-status-item {
+  min-height: 132px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 24px;
+  background: var(--white);
+}
+.fs-status-label,
+.fs-edge-code,
+.fs-rule-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.fs-status-value {
+  font-family: var(--ff-h);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.06;
+}
+.fs-compass-panel {
+  margin: 0 0 88px;
+  padding-top: 20px;
+  border-top: 1px solid var(--text);
+}
+.fs-compass-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.fs-compass-header h2,
+.fs-section-title {
+  font-size: clamp(34px, 5vw, 62px);
+  margin: 0 0 10px;
+}
+.fs-compass-header p,
+.fs-section-desc {
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.fs-open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.fs-compass-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.fs-section {
+  margin: 0 0 88px;
+}
+.fs-section-head {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--text);
+  margin-bottom: 36px;
+}
+.fs-section-num {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding-top: 13px;
+}
+.fs-edge-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.fs-edge-card {
+  min-height: 390px;
+  padding: 26px 22px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+.fs-edge-card h3 {
+  font-size: clamp(25px, 2.6vw, 34px);
+  margin-bottom: 18px;
+}
+.fs-edge-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.fs-edge-card .fs-edge-link {
+  margin-top: auto;
+  padding-top: 26px;
+  color: var(--accent);
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.fs-rule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.fs-rule-card {
+  padding: 28px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.fs-rule-card.dark {
+  background: var(--dark);
+}
+.fs-rule-card.dark h3,
+.fs-rule-card.dark li { color: var(--white); }
+.fs-rule-card h3 {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+.fs-rule-card ul {
+  display: grid;
+  gap: 10px;
+}
+.fs-rule-card li {
+  font-family: var(--ff-b);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  position: relative;
+  padding-left: 16px;
+}
+.fs-rule-card li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+}
 @media (max-width: 960px) {
   .compass-embed {
     width: 100%;
     margin-left: 0;
     height: 760px;
   }
+  .fs-hero {
+    margin: -64px -28px 48px;
+    width: calc(100% + 56px);
+    padding: 56px 28px 48px;
+  }
+  .fs-hero::after { display: none; }
+  .fs-status,
+  .fs-edge-grid,
+  .fs-rule-grid,
+  .fs-compass-header,
+  .fs-section-head {
+    grid-template-columns: 1fr;
+  }
+  .fs-edge-card { min-height: auto; }
 }
 </style>
 
@@ -209,26 +465,129 @@
   </div>
 </aside>
 <main class="content">
-  <div class="source-ribbon">
-    <span>Authoring source <strong>Notion Brands row</strong></span>
-    <span>Local snapshot <strong>source.yaml</strong></span>
-    <span>Version <strong>4</strong></span>
-  </div>
-  <span class="eyebrow">Section A · Brand Strategy</span>
-  <h1 class="page-title">The 5 Ps Compass<span class="dot">.</span></h1>
-  <p class="page-subtitle">The interactive Focus Star is populated from the generated config, not inline page copy.</p>
+  <section class="fs-hero">
+    <div class="hero-eyebrow">Section A · Focus Star</div>
+    <h1>The brand strategy operating system<span class="dot">.</span></h1>
+    <p>Five strategic decisions define how Florian turns specific expertise into a brand the right market can understand, trust, refer, price, and choose.</p>
+    <div class="fs-hero-actions">
+      <a class="fs-action primary" href="#compass">Use the compass</a>
+      <a class="fs-action" href="creative-direction.html">Open creative direction</a>
+    </div>
+  </section>
 
-<iframe src="assets/focus-star/index.html" title="Generated Focus Star Compass" class="compass-embed"></iframe>
-<div class="summary-strip">
-  <div class="cell"><div class="label">Runtime</div><div class="value">Config-driven</div></div>
-  <div class="cell"><div class="label">Data file</div><div class="value">config.json</div></div>
-  <div class="cell"><div class="label">Source</div><div class="value">Notion snapshot</div></div>
-</div>
+  <div class="fs-status" aria-label="Brand OS status">
+    <div class="fs-status-item">
+      <div class="fs-status-label">Source</div>
+      <div class="fs-status-value">Focus Star</div>
+    </div>
+    <div class="fs-status-item">
+      <div class="fs-status-label">Center</div>
+      <div class="fs-status-value">Curiosity</div>
+    </div>
+    <div class="fs-status-item">
+      <div class="fs-status-label">Review state</div>
+      <div class="fs-status-value">Usable now</div>
+    </div>
+    <div class="fs-status-item">
+      <div class="fs-status-label">Next layer</div>
+      <div class="fs-status-value">Creative direction</div>
+    </div>
+  </div>
+
+  <section class="fs-compass-panel" id="compass">
+    <div class="fs-compass-header">
+      <div>
+        <div class="fs-section-eyebrow">Interactive compass</div>
+        <h2>The 5 Ps Compass<span class="dot">.</span></h2>
+        <p>Use this as the live Section A map. Each point opens the strategic decision, the AI-use rule, and the page that explains it in more detail.</p>
+      </div>
+      <a class="fs-open" href="assets/focus-star/index.html" target="_blank" rel="noopener">Open standalone</a>
+    </div>
+    <div class="fs-compass-wrap">
+      <iframe src="assets/focus-star/index.html" title="Generated Focus Star Compass" class="compass-embed"></iframe>
+    </div>
+  </section>
+
+  <section class="fs-section" id="decisions">
+    <div class="fs-section-head">
+      <div class="fs-section-num">01</div>
+      <div>
+        <div class="fs-section-eyebrow">Strategy spine</div>
+        <h2 class="fs-section-title">The five decisions<span class="dot">.</span></h2>
+        <p class="fs-section-desc">These are not final website paragraphs. They are the current strategic source for AI, creative direction, messaging, and page generation.</p>
+      </div>
+    </div>
+    <div class="fs-edge-grid">
+      <article class="fs-edge-card">
+        <div class="fs-edge-code">P1 · Product</div>
+        <h3>Brand Therapy</h3>
+        <p>Brand Therapy gives clients the clarity to stop second-guessing, the confidence to make sharper brand decisions, and a working blueprint for what to say, show, sell, and build next.</p>
+        <a class="fs-edge-link" href="product.html">Open product</a>
+      </article>
+      <article class="fs-edge-card">
+        <div class="fs-edge-code">P2 · People</div>
+        <h3>The Invisible Expert</h3>
+        <p>These are people whose work is meaningfully specific, but whose brand makes them look easier to compare than they should be.</p>
+        <a class="fs-edge-link" href="people.html">Open people</a>
+      </article>
+      <article class="fs-edge-card">
+        <div class="fs-edge-code">P3 · Purpose</div>
+        <h3>Make every brand unique</h3>
+        <p>Florian reveals what is already specific and turns it into decisions, not louder, prettier, or generically marketable positioning.</p>
+        <a class="fs-edge-link" href="purpose.html">Open purpose</a>
+      </article>
+      <article class="fs-edge-card">
+        <div class="fs-edge-code">P4 · Promise</div>
+        <h3>Curiosity</h3>
+        <p>Look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper choices.</p>
+        <a class="fs-edge-link" href="promise.html">Open promise</a>
+      </article>
+      <article class="fs-edge-card">
+        <div class="fs-edge-code">P5 · Personality</div>
+        <h3>Funny first, dry diagnosis</h3>
+        <p>Precise observation with dry humor: warm enough to disarm, sharp enough to be useful, and restrained enough to stay credible.</p>
+        <a class="fs-edge-link" href="personality.html">Open personality</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="fs-section">
+    <div class="fs-section-head">
+      <div class="fs-section-num">02</div>
+      <div>
+        <div class="fs-section-eyebrow">Operating rules</div>
+        <h2 class="fs-section-title">What this controls<span class="dot">.</span></h2>
+        <p class="fs-section-desc">The point of Section A is not to look finished. It is to make every next output less generic and easier to judge.</p>
+      </div>
+    </div>
+    <div class="fs-rule-grid">
+      <article class="fs-rule-card">
+        <div class="fs-rule-label">Use this for</div>
+        <h3>Direction</h3>
+        <ul>
+          <li>Website and landing page strategy</li>
+          <li>AI writing prompts and brand voice control</li>
+          <li>Creative direction and image briefs</li>
+          <li>Offer, proof, and messaging decisions</li>
+        </ul>
+      </article>
+      <article class="fs-rule-card dark">
+        <div class="fs-rule-label">Protect against</div>
+        <h3>Drift</h3>
+        <ul>
+          <li>No FP as a company subject. Use Florian.</li>
+          <li>No Brand Therapy as clinical therapy or a content agency.</li>
+          <li>No generic founder audience by default.</li>
+          <li>No claims, results, or proof unless source-backed.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
   <footer class="page-footer">
     <span><a href="index.html">Home</a></span>
-    <span>Generated from Notion Brands row</span>
-    <span><a href="https://www.notion.so/358c22dccbf98141bc3ac16ad95274df" target="_blank" rel="noopener">Notion row &rarr;</a></span>
+    <span>Section A · Focus Star</span>
+    <span><a href="creative-direction.html">Creative direction &rarr;</a></span>
   </footer>
 </main>
 </div>
