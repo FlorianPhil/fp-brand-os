@@ -1079,6 +1079,39 @@ footer.page-footer a:hover { color: var(--accent); }
   letter-spacing: -0.02em;
   max-width: 980px;
 }
+.p-source-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: baseline;
+  margin: -34px 0 38px;
+  padding: 13px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-b);
+  font-size: 12px;
+  color: var(--muted);
+}
+.p-source-note strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.p-inline-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin: 0 0 16px;
+  background: var(--paper);
+}
+.compass-embed {
+  width: 100%;
+  min-height: 780px;
+  border: 1px solid var(--border);
+  display: block;
+  background: transparent;
+}
 .p-section {
   margin: 0 0 82px;
 }

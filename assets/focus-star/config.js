@@ -1,9 +1,28 @@
 window.FOCUS_STAR_CONFIG = {
+  "system": {
+    "schemaVersion": "section_a.single_source.v1",
+    "canonicalSource": true,
+    "purpose": "One compact Focus Star source for Section A pages, Focus Star config, and AI website-generation context.",
+    "generatedOutputs": [
+      "assets/focus-star/config.json",
+      "assets/focus-star/config.js",
+      "assets/focus-star/section-a.ai-context.json",
+      "focus-star.html",
+      "product.html",
+      "people.html",
+      "purpose.html",
+      "promise.html",
+      "personality.html"
+    ],
+    "sourceRule": "Edit this file first. Do not hand-edit generated Section A pages for strategic content."
+  },
   "source": {
     "authoringSource": "Notion Brands row",
     "snapshot": "brand-os/source/source.yaml",
     "rowUrl": "https://www.notion.so/358c22dccbf98141bc3ac16ad95274df",
-    "fetchedAt": "2026-05-06 01:41:11.384000+00:00"
+    "fetchedAt": "2026-05-06 01:41:11.384000+00:00",
+    "generatedFrom": "assets/focus-star/section-a.source.json",
+    "generatedBy": "scripts/build-section-a.py"
   },
   "brand": {
     "name": "Florian P. Consulting",
@@ -79,7 +98,7 @@ window.FOCUS_STAR_CONFIG = {
             "When generating Product copy, name the process before naming deliverables."
           ],
           "Image signal": [
-            "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical couch, no agency moodboard wall."
+            "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall."
           ]
         },
         "contract": {
@@ -113,7 +132,47 @@ window.FOCUS_STAR_CONFIG = {
             "sales": "Qualify for readiness to make strategic decisions, not desire for more assets.",
             "content": "Use examples of the tweaking loop, vague positioning, and the relief of a clear decision.",
             "ai": "When generating Product copy, name the process before naming deliverables.",
-            "image": "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical couch, no agency moodboard wall."
+            "image": "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall."
+          }
+        },
+        "intelligence": {
+          "thesis": "The product is not more assets. The product is fewer wrong decisions.",
+          "offer_definition": "Brand Therapy is Florian's Focus Star process for giving clients clarity, confidence, and a working blueprint for what to say, show, sell, and build next.",
+          "client_outcomes": [
+            "Relief from second-guessing.",
+            "Sharper brand decisions.",
+            "Clearer sales language and proof.",
+            "A reusable strategic blueprint for future execution."
+          ],
+          "value_stack": [
+            "Emotional benefit: relief from the tweaking loop.",
+            "Business benefit: sharper positioning, proof, offer logic, and creative direction.",
+            "Practical output: a blueprint for copy, website, social, email, sales, and creative briefs."
+          ],
+          "buying_triggers": [
+            "Rebuilding a website, offer, or public presence.",
+            "Good work with messy explanation.",
+            "Unclear whether brand, copy, audience, or offer is the real problem.",
+            "Need for a system before investing in more execution."
+          ],
+          "creative_controls": [
+            "Show annotated strategy surfaces, notebooks, screens, diagrams, and calm workspaces.",
+            "Signal thinking before execution.",
+            "Avoid clinical therapy cues, agency moodboard walls, and generic workshops."
+          ],
+          "minimum_fields": [
+            "Offer definition.",
+            "Client outcome.",
+            "Deliverable logic.",
+            "Boundaries and exclusions.",
+            "Buying triggers.",
+            "Proof required.",
+            "AI and image rules."
+          ],
+          "image": {
+            "path": "assets/moodboard/quality-workspace.jpg",
+            "alt": "Calm workspace with notebook, used as Product image direction.",
+            "approval_status": "draft"
           }
         }
       }
@@ -172,6 +231,44 @@ window.FOCUS_STAR_CONFIG = {
           ],
           "Image signal": [
             "One person with quiet authority in a calm strategic environment."
+          ],
+          "Audience decision": [
+            "The problem is not lack of visibility. The problem is wrong comparison.",
+            "The audience is not everyone with a founder title. It is the person whose work has become more specific than the market can currently read."
+          ],
+          "Primary persona": [
+            "Founder, consultant, expert, studio lead, operator, or service-business owner where the person behind the work materially changes trust and choice.",
+            "Past the beginner stage. There is real value, real work, and some proof."
+          ],
+          "Psychographics": [
+            "Values depth, specificity, taste with a reason, autonomy, discernment, and adult trust.",
+            "Skeptical of hustle-culture visibility advice, generic premium branding, and personality as costume.",
+            "Tired of explaining. Irritated by being compared to cheaper or simpler alternatives."
+          ],
+          "Needs and wants": [
+            "Needs strategic clarity, language, hierarchy, proof, visual direction, clearer noes, and offer logic.",
+            "Wants better-fit referrals, easier sales conversations, pricing confidence, and a visual world that feels as specific as the work."
+          ],
+          "Decision triggers": [
+            "Entering a more expensive or visible market.",
+            "Rebuilding a website, offer, deck, or public presence.",
+            "Raising prices but still sounding comparable.",
+            "Realizing more content will only scale the wrong message.",
+            "Feeling the category has become too noisy or AI-flattened."
+          ],
+          "Alternatives": [
+            "Brand studio: stronger look, but not always sharper market meaning.",
+            "Positioning consultant: better language, but often weak creative translation.",
+            "Designer or logo refresh: visible progress before diagnosis.",
+            "Copywriter or content agency: more output, not necessarily a clearer source.",
+            "DIY AI or template: faster and cheaper, but likely to reproduce category language.",
+            "Coach or personal brand guru: confidence and attention, not always differentiation."
+          ],
+          "Creative rules": [
+            "One person, not a crowd or generic team.",
+            "Calm workspace, notes, laptop, strategic materials.",
+            "Editorial, grounded, observant, focused.",
+            "Avoid guru stage, hype pose, clinical therapy cues, exaggerated laptop smile, and chaotic moodboard walls."
           ]
         },
         "contract": {
@@ -211,17 +308,57 @@ window.FOCUS_STAR_CONFIG = {
         "persona": {
           "role": "The Invisible Expert",
           "tagline": "These are people whose work is meaningfully specific, but whose brand makes them look easier to compare than they should be.",
-          "context": "They are not beginners looking for confidence and not attention seekers chasing visibility. The work is real. The market read is too flat.",
-          "need": "Tie visibility to differentiation and better-fit demand. Never assume recognition is the primary motivation.",
-          "quote": "They are not beginners looking for confidence and not attention seekers chasing visibility. The work is real. The market read is too flat.",
+          "context": "The work is specific. The market read is too flat. They are past the beginner stage and do not want a visibility costume.",
+          "need": "A brand that makes specific work easier to understand, compare correctly, refer, trust, price, and choose.",
+          "quote": "The work is not generic. The way it is explained is.",
           "rationalMotivation": "The People test is whether clearer differentiation would change how the market understands, compares, trusts, refers, prices, and chooses the work.",
-          "painPoint": "This chooses business differentiation over broad visibility, recognition, or generic founder-brand appeal.",
-          "decisionTrigger": "People with real expertise, taste, judgment, method, or point of view.; Work where the person behind it changes trust and choice.; A next chapter where looking interchangeable creates business drag.",
+          "painPoint": "Wrong comparison creates business drag: weaker referrals, harder sales calls, pricing friction, and generic creative direction.",
+          "decisionTrigger": "A next chapter makes the old brand too flat: pricing shift, website rebuild, offer change, public presence, category noise, or higher-stakes buyers.",
           "buyingCriteria": [
-            "People with real expertise, taste, judgment, method, or point of view.",
-            "Work where the person behind it changes trust and choice.",
-            "A next chapter where looking interchangeable creates business drag.",
-            "People who need sharper differentiation before louder marketing."
+            "Florian has to read the nuance before prescribing.",
+            "The process must connect strategy, language, proof, and visuals.",
+            "The output must be reusable, not just impressive in the moment.",
+            "The work must feel sharp without turning them into a performance."
+          ],
+          "psychographics": [
+            "Values depth over volume.",
+            "Trusts taste when it has a reason.",
+            "Wants plain language that still protects nuance.",
+            "Rejects hustle-culture visibility advice and generic premium branding."
+          ],
+          "needs": [
+            "Strategic clarity.",
+            "Language that makes nuance legible.",
+            "Proof hierarchy.",
+            "Visual direction.",
+            "Offer logic.",
+            "Sharper sales filtering."
+          ],
+          "wants": [
+            "Better-fit demand.",
+            "Easier referrals.",
+            "Pricing confidence.",
+            "A brand that feels as specific as the work.",
+            "Fewer explanation loops."
+          ],
+          "objections": [
+            "I do not want to become a personal brand caricature.",
+            "I am not sure brand is the real business problem.",
+            "I need execution too, not just strategy.",
+            "I have rebuilt this before and still felt unclear."
+          ],
+          "alternatives": [
+            "Brand studio.",
+            "Positioning consultant.",
+            "Designer or logo refresh.",
+            "Copywriter or content agency.",
+            "DIY AI or template.",
+            "Coach or personal brand guru."
+          ],
+          "creativeDirection": [
+            "One person, quiet authority, calm strategic environment.",
+            "Competence before personality.",
+            "Avoid guru, influencer, beginner, therapy, and generic stock-business cues."
           ],
           "tags": [
             "Specific expertise",
@@ -296,7 +433,7 @@ window.FOCUS_STAR_CONFIG = {
             "Do not generate generic differentiation language. Name what is uniquely true and what it excludes."
           ],
           "Image signal": [
-            "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or growth-chart cliche."
+            "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or generic growth-chart imagery."
           ]
         },
         "contract": {
@@ -330,7 +467,42 @@ window.FOCUS_STAR_CONFIG = {
             "sales": "Ask what should become easier to refuse.",
             "content": "Write about perfect matches, not more matches.",
             "ai": "Do not generate generic differentiation language. Name what is uniquely true and what it excludes.",
-            "image": "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or growth-chart cliche."
+            "image": "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or generic growth-chart imagery."
+          }
+        },
+        "intelligence": {
+          "thesis": "The purpose is not to make brands louder. It is to make them harder to confuse.",
+          "purpose_line": "Make every brand unique.",
+          "strategic_belief": "Specificity already exists in the person, work, culture, standards, or point of view before it becomes copy or design.",
+          "decision_filters": [
+            "Name what is specifically true and what that excludes.",
+            "Use content to reveal useful distinctions, hidden tensions, wrong comparisons, and the cost of looking generic.",
+            "Choose collaborators, clients, and channels that sharpen the point of view.",
+            "Use design to make specificity visible, not merely decorative."
+          ],
+          "story_prompts": [
+            "Where generic positioning hides real value.",
+            "What the brand refuses to become.",
+            "Why stronger fit often starts with fewer audiences, fewer claims, and fewer borrowed references."
+          ],
+          "creative_controls": [
+            "Show focused selection, edited sets, contrast, or precise choices.",
+            "Signal subtraction and specificity.",
+            "Avoid crowds, funnels, megaphones, rocket ships, growth charts, and vague uniqueness symbols."
+          ],
+          "minimum_fields": [
+            "Purpose line.",
+            "Strategic belief.",
+            "Decision filters.",
+            "Rules in and out.",
+            "Proof required.",
+            "Story prompts.",
+            "AI and image rules."
+          ],
+          "image": {
+            "path": "assets/moodboard/quality-design.jpg",
+            "alt": "Minimal folded form used as Purpose image direction.",
+            "approval_status": "draft"
           }
         }
       }
@@ -425,6 +597,41 @@ window.FOCUS_STAR_CONFIG = {
             "content": "Turn suspicious obvious answers into sharper questions.",
             "ai": "When uncertain, ask or state the uncertainty. Do not fill gaps with confident brand jargon.",
             "image": "Close looking, notes, frames, or a moment of diagnosis. No crystal ball, lightbulb, or generic insight icon."
+          }
+        },
+        "intelligence": {
+          "thesis": "The promise is not certainty. It is the discipline that earns clarity.",
+          "operating_standard": "Curiosity is disciplined looking that turns uncertainty into a better question, then a sharper decision.",
+          "client_experience": "The client should feel accurately seen because the work notices what others skipped.",
+          "behavioral_system": [
+            "Discovery: ask before asserting and look for the contradiction, avoided choice, wrong comparison, or hidden tension.",
+            "Writing: lead with observation and plain diagnosis.",
+            "Design: use frames, annotations, evidence, focus, and proximity.",
+            "AI: flag missing source data instead of inventing certainty."
+          ],
+          "content_prompts": [
+            "The suspiciously obvious answer.",
+            "The question nobody asked before designing.",
+            "The tiny detail that explains the whole positioning problem."
+          ],
+          "creative_controls": [
+            "Show frames, notes, margins, evidence, diagrams, or diagnostic moments.",
+            "Signal attention before conclusion.",
+            "Avoid crystal balls, lightbulbs, binoculars, generic eye icons, mystical fog, and consultant certainty theater."
+          ],
+          "minimum_fields": [
+            "Operating standard.",
+            "Client experience.",
+            "Behavioral rules.",
+            "Discovery and writing rules.",
+            "Proof required.",
+            "AI uncertainty protocol.",
+            "Image exclusions."
+          ],
+          "image": {
+            "path": "assets/moodboard/quality-architecture.jpg",
+            "alt": "Precise architectural structure used as Promise image direction.",
+            "approval_status": "draft"
           }
         }
       }
@@ -521,6 +728,41 @@ window.FOCUS_STAR_CONFIG = {
             "content": "Write from observed tension, not advice-list structure.",
             "ai": "No em dashes, no motivational filler, no overworked jokes, no generic thought leadership.",
             "image": "Clean, editorial, observational, slightly wry. No inspirational stock energy."
+          }
+        },
+        "intelligence": {
+          "thesis": "Humor is not decoration. It is how the diagnosis lands.",
+          "personality_line": "Funny first, dry diagnosis.",
+          "voice_posture": "The brand sounds like a smart person noticing the true tension out loud, not like a coach, guru, agency, or AI thought leader.",
+          "archetype_mix": [
+            "50% Innocent: optimism, honesty, and clarity that can feel simple.",
+            "30% Creator: building something meaningful, useful, and visually considered.",
+            "20% Friend: conversation, perspective shifts, and human trust."
+          ],
+          "voice_behavior": [
+            "Spoken, exact, and slightly dry.",
+            "Observation first, diagnosis second, prescription third.",
+            "Warm snap, not cruelty.",
+            "Clean, editorial, restrained visual behavior."
+          ],
+          "creative_controls": [
+            "Clean, observational, slightly wry imagery.",
+            "Use framing, contrast, or restraint to create personality.",
+            "Avoid inspirational stock energy, joke-only cleverness, and guru performance."
+          ],
+          "minimum_fields": [
+            "Personality line.",
+            "Archetype mix.",
+            "Voice posture.",
+            "Behavior rules.",
+            "Rules in and out.",
+            "Approved and banned examples.",
+            "AI and image controls."
+          ],
+          "image": {
+            "path": "assets/personal-branding/florian-thinker-cafe-coffee.png",
+            "alt": "Florian thinking at a cafe, used as Personality image direction.",
+            "approval_status": "draft"
           }
         },
         "archetype": {
