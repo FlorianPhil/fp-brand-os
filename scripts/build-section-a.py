@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json
 import re
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 from typing import Any
 
@@ -55,7 +55,7 @@ def write_json(path: Path, payload: Any) -> None:
 
 
 def strip_tags(value: str) -> str:
-    return re.sub(r"<[^>]+>", "", value)
+    return unescape(re.sub(r"<[^>]+>", "", value))
 
 
 def esc(value: Any) -> str:
@@ -132,9 +132,9 @@ def nav_html(active: str) -> str:
     <details class="nav-group" ><summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary><div class="nav-list"><a href="founder-identity.html" class="">Founder Identity</a><a href="background.html" class="">Background</a><a href="imagery.html" class="">Imagery</a></div></details>
   </div>
   <div class="toolbar-mini">
-    <div class="row"><span>Source</span><strong>section-a.source.json</strong></div>
-    <div class="row"><span>Render</span><strong>generated</strong></div>
-    <div class="row"><span>Scope</span><strong>Section A</strong></div>
+    <div class="row"><span>Section</span><strong>Strategy</strong></div>
+    <div class="row"><span>Use</span><strong>AI + creative</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
   </div>
 </aside>
 """
@@ -150,7 +150,7 @@ def hero(pillar: dict[str, Any], image: dict[str, Any] | None, tags: list[str]) 
     return f"""
   <section class="p-hero">
     <div class="p-hero-copy">
-      <div class="p-kicker">Section A · {esc(pillar["code"])} · generated from source</div>
+      <div class="p-kicker">Section A · {esc(pillar["code"])} · Brand Strategy</div>
       <h1>{esc(pillar["title"])}<span class="dot">.</span></h1>
       <p>{esc(desc)}</p>
       <div class="p-tags">{tag_html}</div>
@@ -160,36 +160,8 @@ def hero(pillar: dict[str, Any], image: dict[str, Any] | None, tags: list[str]) 
       <figcaption class="p-caption">Image direction: {esc(contract["output_controls"].get("image", ""))}</figcaption>
     </figure>
   </section>
-  <div class="p-source-note">
-    <strong>Single source:</strong> assets/focus-star/section-a.source.json
-    <span>Rendered by scripts/build-section-a.py. Edit the source, not this page.</span>
-  </div>
   <div class="p-thesis">{esc((case.get("intelligence") or {}).get("thesis", contract["page_thesis"]))}</div>
 """
-
-
-def source_status_section(pillar: dict[str, Any]) -> str:
-    contract = pillar["case"]["contract"]
-    source_refs = pillar["case"].get("source_refs") or [
-        "Notion Brands row",
-        "brand-os/source/source.yaml snapshot",
-        "approved FP review feedback",
-        "Section A source contract",
-    ]
-    body = f"""
-    <div class="p-grid">
-      {card("Strategic source", "Authoring", "Notion/source snapshot plus approved Section A feedback.", True)}
-      {card("Current status", "Approval", contract.get("status", "contract_review"))}
-      {card("Source trail", "Used by AI", source_refs)}
-    </div>
-    """
-    return section(
-        "00",
-        "Source trail",
-        "Where this page comes from",
-        "This page is rendered from the same source object that feeds the Focus Star and AI context pack.",
-        body,
-    )
 
 
 def product_sections(pillar: dict[str, Any]) -> str:
@@ -198,7 +170,6 @@ def product_sections(pillar: dict[str, Any]) -> str:
     intel = case.get("intelligence") or {}
     return "".join(
         [
-            source_status_section(pillar),
             section(
                 "01",
                 "Strategic decision",
@@ -233,7 +204,6 @@ def product_sections(pillar: dict[str, Any]) -> str:
                 </div>""",
             ),
             marketing_and_controls(pillar, intel.get("buying_triggers", [])),
-            minimum_fields_section(pillar),
         ]
     )
 
@@ -245,7 +215,6 @@ def people_sections(pillar: dict[str, Any]) -> str:
     details = case.get("details") or {}
     return "".join(
         [
-            source_status_section(pillar),
             section(
                 "01",
                 "Audience decision",
@@ -304,7 +273,6 @@ def people_sections(pillar: dict[str, Any]) -> str:
                   {card("AI rule", "Generation", contract["output_controls"].get("ai", ""))}
                 </div>""",
             ),
-            minimum_fields_section(pillar, "06"),
         ]
     )
 
@@ -321,7 +289,6 @@ def generic_sections(pillar: dict[str, Any]) -> str:
         rows.append(row(title, value))
     return "".join(
         [
-            source_status_section(pillar),
             section(
                 "01",
                 "Strategic decision",
@@ -351,7 +318,6 @@ def generic_sections(pillar: dict[str, Any]) -> str:
                 </div>""",
             ),
             marketing_and_controls(pillar, intel.get("content_prompts", intel.get("story_prompts", []))),
-            minimum_fields_section(pillar),
         ]
     )
 
@@ -375,30 +341,6 @@ def marketing_and_controls(pillar: dict[str, Any], triggers: list[str]) -> str:
         "Triggers, proof, and output controls",
         "This is the AI-readable layer for website copy, landing pages, sales, content, visual direction, and image prompts.",
         body,
-    )
-
-
-def minimum_fields_section(pillar: dict[str, Any], num: str = "05") -> str:
-    intel = pillar["case"].get("intelligence") or {}
-    fields = intel.get("minimum_fields") or [
-        "Strategic question.",
-        "Core decision.",
-        "Rules in and out.",
-        "Tradeoff.",
-        "Proof required.",
-        "Output controls.",
-        "AI and image rules.",
-    ]
-    return section(
-        num,
-        "Minimum fields",
-        "What another brand must provide",
-        "A second brand cannot generate this page responsibly until these fields are filled or explicitly marked missing.",
-        f"""<div class="p-grid">
-          {card("Required source", "Field contract", fields, True)}
-          {card("Missing-source behavior", "AI rule", "If a required field is empty, mark it missing. Do not fill the gap with polished strategy language.")}
-          {card("Website test", "One-shot use", "The page must be enough to brief homepage hierarchy, audience language, offer framing, proof, and image direction.")}
-        </div>""",
     )
 
 
@@ -502,7 +444,7 @@ def build_focus_star_page(source: dict[str, Any]) -> str:
 <main class="content">
   <section class="p-hero">
     <div class="p-hero-copy">
-      <div class="p-kicker">Section A · Focus Star · generated from source</div>
+      <div class="p-kicker">Section A · Focus Star · Brand Strategy</div>
       <h1>Focus Star<span class="dot">.</span></h1>
       <p>{esc(source["brand"]["description"])}</p>
       <div class="p-tags">
@@ -511,20 +453,16 @@ def build_focus_star_page(source: dict[str, Any]) -> str:
     </div>
     <figure class="p-hero-media">
       <img src="assets/generated/signature-viewfinder-hero.png" alt="FP viewfinder visual direction.">
-      <figcaption class="p-caption">Center: {esc(source["center"])}. All Section A pages and the AI context pack are generated from the same source file.</figcaption>
+      <figcaption class="p-caption">Center: {esc(source["center"])}. Section A sets the strategic standard for copy, design, offers, proof, and AI-generated work.</figcaption>
     </figure>
   </section>
-  <div class="p-source-note">
-    <strong>Single source:</strong> assets/focus-star/section-a.source.json
-    <span>Rendered by scripts/build-section-a.py. Edit the source, not this page.</span>
-  </div>
   <div class="p-thesis">{esc(source["brand"]["description"])}</div>
 
   {section(
       "01",
       "Interactive compass",
-      "The same source in motion",
-      "The embedded Focus Star reads assets/focus-star/config.json, which is generated from the Section A source.",
+      "The Focus Star in motion",
+      "A usable compass for checking whether future copy, design, offers, proof, and content still point to the same strategy.",
       '<iframe src="assets/focus-star/index.html" title="Generated Focus Star Compass" class="compass-embed"></iframe>',
   )}
 
@@ -538,10 +476,10 @@ def build_focus_star_page(source: dict[str, Any]) -> str:
 
   {section(
       "03",
-      "Website generation rules",
-      "What the AI pack controls",
-      "This is the compact instruction layer used before generating websites, landing pages, email, social, proof, or image prompts.",
-      f'<div class="p-grid">{card("One-shot website test", "AI context", website_rules, True)}{card("Source behavior", "Governance", ["Use approved contract fields as hard strategy.", "Mark missing fields instead of inventing strategy.", "Rendered HTML is review surface, not the source."])}</div>',
+      "AI application rules",
+      "How this should shape output",
+      "Use these rules before generating websites, landing pages, email, social, proof, or image prompts.",
+      f'<div class="p-grid">{card("One-shot website test", "AI guidance", website_rules, True)}{card("Quality check", "Use", ["The audience tension should be clear before the hero gets polished.", "The offer should create clarity, confidence, and sharper decisions.", "The voice should feel spoken, exact, and slightly dry."])}</div>',
   )}
 
   <div class="footer-nav">

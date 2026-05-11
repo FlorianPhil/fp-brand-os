@@ -14,7 +14,8 @@
       "promise.html",
       "personality.html"
     ],
-    "sourceRule": "Edit this file first. Do not hand-edit generated Section A pages for strategic content."
+    "sourceRule": "Edit this file first. Do not hand-edit generated Section A pages for strategic content.",
+    "notionIntegrationStatus": "snapshot_only_not_live_api_import"
   },
   "source": {
     "authoringSource": "Notion Brands row",
@@ -134,7 +135,7 @@
           }
         },
         "intelligence": {
-          "thesis": "The product is not more assets. The product is fewer wrong decisions.",
+          "thesis": "Brand Therapy gives the client clarity, confidence, and a working blueprint for sharper brand decisions.",
           "offer_definition": "Brand Therapy is Florian's Focus Star process for giving clients clarity, confidence, and a working blueprint for what to say, show, sell, and build next.",
           "client_outcomes": [
             "Relief from second-guessing.",
