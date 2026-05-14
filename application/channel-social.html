@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social · FP Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Per-brand color and typography token overrides.
+     Injected by build.py from IDENTITY.md frontmatter. */
+  :root {
+    --accent: #5A5CF9;
+    --accent-glow: rgba(90, 92, 249, 0.35);
+    --accent-soft: rgba(90, 92, 249, 0.06);
+    --text: #1A1A2E;
+    --muted: #8888A0;
+    --border: #E5E7EB;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --dark: #18181B;
+    --dark-surface: #1D1D1D;
+    --ff-h: "Bricolage Grotesque", system-ui, sans-serif;
+    --ff-b: "Poppins", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">FP<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="" href="../index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="../strategy/index.html">Focus Star</a>
+<a href="../strategy/product.html">Product</a>
+<a href="../strategy/people.html">People</a>
+<a href="../strategy/purpose.html">Purpose</a>
+<a href="../strategy/promise.html">Promise</a>
+<a href="../strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a href="../identity/index.html">Creative Direction</a>
+<a href="../identity/look-and-feel.html">Look &amp; Feel</a>
+<a href="../identity/voice.html">Voice</a>
+<a href="../identity/signature.html">Signature</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">C</span><span class="group-label">Brand Application</span></summary><div class="nav-list">
+<a href="index.html">Application Overview</a>
+<a href="references.html">Reference Gallery</a>
+<a class="active" href="channel-rules.html">Channel Rules</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Application</strong></div>
+    <div class="row"><span>Use</span><strong>References + rules</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+.app-hero { margin: 0 0 72px; padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
+.app-hero .eyebrow { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.app-hero h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(52px, 8vw, 104px); line-height: 0.92; letter-spacing: -0.04em; color: var(--text); margin: 0 0 24px; }
+.app-hero h1 .dot { color: var(--accent); }
+.app-hero p { font-family: var(--ff-b); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.65; color: var(--text); max-width: 760px; margin: 0; }
+.app-section { margin: 0 0 88px; }
+.app-section-head { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 36px; }
+.app-section-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.app-section-kicker { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.app-section h2 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px, 4.5vw, 56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 10px; }
+.app-section h2 .dot { color: var(--accent); }
+.app-section-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 680px; margin: 0; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+.app-card { display: flex; flex-direction: column; min-height: 220px; padding: 28px 24px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); color: var(--text); text-decoration: none; }
+.app-card:hover { background: var(--accent-soft); }
+.app-card .code, .app-example .code { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.app-card h3 { font-family: var(--ff-h); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 12px; color: var(--text); }
+.app-card p, .app-example p, .app-rule p { font-family: var(--ff-b); font-size: 13px; line-height: 1.6; color: var(--muted); margin: 0; }
+.app-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.app-chip { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); padding: 6px 10px; background: var(--white); }
+.app-example-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.app-example, .app-rule { padding: 28px 24px; border: 1px solid var(--border); background: var(--white); }
+.app-example h3, .app-rule h3 { font-family: var(--ff-h); font-weight: 800; font-size: 20px; line-height: 1.15; color: var(--text); margin: 0 0 10px; }
+.app-example-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px; }
+.app-ref-link { display: inline-flex; align-items: center; min-height: 34px; padding: 8px 12px; border: 1px solid var(--text); color: var(--text); text-decoration: none; font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.app-ref-link:hover { background: var(--text); color: var(--white); }
+.app-ref-source { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.app-ref-preview { margin-top: 22px; border: 1px solid var(--border); background: var(--light); height: clamp(340px, 54vw, 620px); overflow: hidden; }
+.app-ref-preview iframe { width: 100%; height: 100%; border: 0; background: var(--white); }
+.app-rule-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+.app-rule-list .app-rule { border-left: 0; border-top: 0; }
+.app-note { padding: 28px 32px; border: 1px solid var(--border); background: var(--light); font-family: var(--ff-b); font-size: 14px; line-height: 1.7; color: var(--text); }
+</style>
+  <section class="app-hero">
+    <div class="eyebrow">Section C · Social</div>
+    <h1>Social<span class="dot">.</span></h1>
+    <p>Visibility through specific observation. Social should make the invisible expert feel accurately diagnosed, not broadly encouraged.</p>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-1">
+    <div class="app-section-head">
+      <div class="app-section-num">01</div>
+      <div>
+        <div class="app-section-kicker">Channel rules</div>
+        <h2 id="app-section-1">Voice and visual behavior<span class="dot">.</span></h2>
+        <p class="app-section-desc">How FP should show up on this surface.</p>
+      </div>
+    </div>
+    <div class="app-rule-list"><div class="app-rule"><h3>Voice dial<span class="dot">.</span></h3><p>Highest personality. Dry humor can lead, but every joke must carry a strategic point.</p></div><div class="app-rule"><h3>Visual dial<span class="dot">.</span></h3><p>Strong type, purple period, FP mark bottom-left, photo strips, viewfinder only when focus is the point.</p></div><div class="app-rule"><h3>Rules in<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">Hook under 100 characters for LinkedIn</span><span class="app-chip">Three to six short paragraphs</span><span class="app-chip">Perspective shift ending</span><span class="app-chip">One idea per post</span></div></div><div class="app-rule"><h3>Rules out<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">Advice-thread filler</span><span class="app-chip">Hustle-culture personal-brand tropes</span><span class="app-chip">Clever lines that work without strategy</span><span class="app-chip">Emoji as tone substitute</span></div></div></div>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-2">
+    <div class="app-section-head">
+      <div class="app-section-num">02</div>
+      <div>
+        <div class="app-section-kicker">Pattern</div>
+        <h2 id="app-section-2">Inputs and outputs<span class="dot">.</span></h2>
+        <p class="app-section-desc">What the agent or human needs before drafting this channel.</p>
+      </div>
+    </div>
+    <div class="app-rule-list"><div class="app-rule"><h3>Trigger<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">weekly observation</span><span class="app-chip">Brand Therapy Weekly idea</span><span class="app-chip">client pattern</span><span class="app-chip">format test</span></div></div><div class="app-rule"><h3>Inputs<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">post goal</span><span class="app-chip">one diagnosis</span><span class="app-chip">approved example type</span><span class="app-chip">CTA or no CTA</span></div></div><div class="app-rule"><h3>Outputs<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">post</span><span class="app-chip">card copy</span><span class="app-chip">carousel outline</span><span class="app-chip">visual recipe</span></div></div><div class="app-rule"><h3>Approval Gate<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">voice check</span><span class="app-chip">claim check</span><span class="app-chip">format fit</span></div></div></div>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-3">
+    <div class="app-section-head">
+      <div class="app-section-num">03</div>
+      <div>
+        <div class="app-section-kicker">AI rules</div>
+        <h2 id="app-section-3">Generation constraints<span class="dot">.</span></h2>
+        <p class="app-section-desc">Compact rules for channel-specific AI output.</p>
+      </div>
+    </div>
+    <div class="app-note"><div class="app-chip-row"><span class="app-chip">Make the reader feel seen before explaining the offer.</span><span class="app-chip">Use persona language before method language.</span><span class="app-chip">End with a reframe, not a lesson.</span></div></div>
+  </section>
+
+
+  <div class="footer-nav">
+    <span>Section C · Social</span>
+    <span><a href="channel-email.html">Email →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Look & Feel · FP Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Per-brand color and typography token overrides.
+     Injected by build.py from IDENTITY.md frontmatter. */
+  :root {
+    --accent: #5A5CF9;
+    --accent-glow: rgba(90, 92, 249, 0.35);
+    --accent-soft: rgba(90, 92, 249, 0.06);
+    --text: #1A1A2E;
+    --muted: #8888A0;
+    --border: #E5E7EB;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --dark: #18181B;
+    --dark-surface: #1D1D1D;
+    --ff-h: "Bricolage Grotesque", system-ui, sans-serif;
+    --ff-b: "Poppins", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">FP<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="" href="../index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="../strategy/index.html">Focus Star</a>
+<a href="../strategy/product.html">Product</a>
+<a href="../strategy/people.html">People</a>
+<a href="../strategy/purpose.html">Purpose</a>
+<a href="../strategy/promise.html">Promise</a>
+<a href="../strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a href="index.html">Creative Direction</a>
+<a class="active" href="look-and-feel.html">Look &amp; Feel</a>
+<a href="voice.html">Voice</a>
+<a href="signature.html">Signature</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">C</span><span class="group-label">Brand Application</span></summary><div class="nav-list">
+<a href="../application/index.html">Application Overview</a>
+<a href="../application/references.html">Reference Gallery</a>
+<a href="../application/channel-rules.html">Channel Rules</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Identity</strong></div>
+    <div class="row"><span>Use</span><strong>Visual + voice</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+.lf-section { margin: 0 0 96px; }
+.lf-section-head { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 40px; }
+.lf-section-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.lf-section-head h2 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px, 4.5vw, 56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 8px; }
+.lf-section-head h2 .dot { color: var(--accent); }
+.lf-section-sub { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.lf-section-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 640px; margin: 0; }
+.lf-palette-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; border: 1px solid var(--border); margin: 32px 0 0; }
+@media (max-width: 700px) { .lf-palette-grid { grid-template-columns: repeat(4, 1fr); } }
+.lf-swatch { aspect-ratio: 1; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; border-right: 1px solid var(--border); }
+.lf-swatch:last-child { border-right: none; }
+.lf-swatch-label { font-family: var(--ff-b); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+.lf-swatch-hex { font-family: var(--ff-b); font-size: 11px; font-weight: 500; letter-spacing: 0.04em; }
+.lf-swatch.dark-text .lf-swatch-label, .lf-swatch.dark-text .lf-swatch-hex { color: var(--text); }
+.lf-swatch.light-text .lf-swatch-label, .lf-swatch.light-text .lf-swatch-hex { color: var(--white); }
+.lf-rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); margin: 32px 0 48px; }
+.lf-rule-cell { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 28px; background: var(--white); }
+.lf-rule-cell.dont { background: var(--light); }
+.lf-rule-cell .lf-rule-kind { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px; }
+.lf-rule-cell.dont .lf-rule-kind { color: var(--text); }
+.lf-rule-cell p { font-family: var(--ff-b); font-size: 14px; color: var(--text); line-height: 1.6; margin: 0; }
+@media (max-width: 720px) { .lf-rules-grid { grid-template-columns: 1fr; } }
+.lf-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0 48px; }
+@media (max-width: 720px) { .lf-photo-grid { grid-template-columns: 1fr; } }
+.lf-photo-card { background: var(--white); border: 1px solid var(--border); padding: 24px; }
+.lf-photo-card h3 { font-family: var(--ff-h); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: var(--text); margin: 0 0 12px; }
+.lf-photo-card p { font-family: var(--ff-b); font-size: 14px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+.lf-anti-list { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+.lf-anti-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.lf-anti-item h3 { font-family: var(--ff-h); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin: 0 0 6px; }
+.lf-anti-item p { font-family: var(--ff-b); font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0; }
+</style>
+  <span class="eyebrow" style="font-family:var(--ff-b);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);">Section B · Brand Identity · Look & Feel</span>
+  <h1 style="font-family:var(--ff-h);font-weight:800;font-size:clamp(56px,8vw,112px);line-height:0.92;letter-spacing:-0.04em;color:var(--text);margin:16px 0 24px;">Look &amp; Feel<span class="dot">.</span></h1>
+  <p style="font-family:var(--ff-b);font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--text);max-width:640px;margin:0 0 64px;">The operational layer of the visual identity. Color, typography, layout, photography, and the categories the brand refuses to look like.</p>
+
+  <section class="lf-section" aria-labelledby="lf-1">
+    <div class="lf-section-head">
+      <div class="lf-section-num">01</div>
+      <div>
+        <div class="lf-section-sub">Color system</div>
+        <h2 id="lf-1">Palette<span class="dot">.</span></h2>
+        <p class="lf-section-desc">One accent. A small set of neutrals. The accent carries all brand energy; everything else stays quiet.</p>
+      </div>
+    </div>
+    <div class="lf-palette-grid"><div class="lf-swatch light-text" style="background:#5A5CF9;" role="img" aria-label="Accent color, hex #5A5CF9"><div class="lf-swatch-label">Accent</div><div class="lf-swatch-hex">#5A5CF9</div></div><div class="lf-swatch light-text" style="background:#1A1A2E;" role="img" aria-label="Text color, hex #1A1A2E"><div class="lf-swatch-label">Text</div><div class="lf-swatch-hex">#1A1A2E</div></div><div class="lf-swatch light-text" style="background:#8888A0;" role="img" aria-label="Muted color, hex #8888A0"><div class="lf-swatch-label">Muted</div><div class="lf-swatch-hex">#8888A0</div></div><div class="lf-swatch dark-text" style="background:#E5E7EB;" role="img" aria-label="Border color, hex #E5E7EB"><div class="lf-swatch-label">Border</div><div class="lf-swatch-hex">#E5E7EB</div></div><div class="lf-swatch dark-text" style="background:#F5F5F7;" role="img" aria-label="Light color, hex #F5F5F7"><div class="lf-swatch-label">Light</div><div class="lf-swatch-hex">#F5F5F7</div></div><div class="lf-swatch dark-text" style="background:#FFFFFF;" role="img" aria-label="White color, hex #FFFFFF"><div class="lf-swatch-label">White</div><div class="lf-swatch-hex">#FFFFFF</div></div><div class="lf-swatch light-text" style="background:#18181B;" role="img" aria-label="Dark color, hex #18181B"><div class="lf-swatch-label">Dark</div><div class="lf-swatch-hex">#18181B</div></div></div>
+  </section>
+
+  <section class="lf-section" aria-labelledby="lf-2">
+    <div class="lf-section-head">
+      <div class="lf-section-num">02</div>
+      <div>
+        <div class="lf-section-sub">Type system</div>
+        <h2 id="lf-2">Typography<span class="dot">.</span></h2>
+        <p class="lf-section-desc">Two typefaces. Bricolage Grotesque for impact. Poppins for information.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);background:var(--white);">
+      <div style="padding:32px 36px;border-right:1px solid var(--border);">
+        <div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Display</div>
+        <div style="font-family:var(--ff-h);font-weight:800;font-size:32px;letter-spacing:-0.01em;color:var(--text);margin-bottom:16px;">Bricolage Grotesque</div>
+        <p style="font-family:var(--ff-b);font-size:13px;color:var(--muted);line-height:1.6;margin:0;">Weight: 800 (ExtraBold). Use: hero headlines, section titles, pull quotes. ALL CAPS for hero-level type. Accent-colored period at the end of every brand headline.</p>
+      </div>
+      <div style="padding:32px 36px;">
+        <div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Body</div>
+        <div style="font-family:var(--ff-b);font-weight:400;font-size:32px;letter-spacing:-0.01em;color:var(--text);margin-bottom:16px;">Poppins</div>
+        <p style="font-family:var(--ff-b);font-size:13px;color:var(--muted);line-height:1.6;margin:0;">Weights: 400 Regular, 500 Medium, 600 SemiBold. Use: body text, labels, navigation, UI. Mono-style labels = same Poppins, tracked out 0.16–0.20em.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lf-section" aria-labelledby="lf-3">
+    <div class="lf-section-head">
+      <div class="lf-section-num">03</div>
+      <div>
+        <div class="lf-section-sub">System · Rules</div>
+        <h2 id="lf-3">Do &amp; Don't<span class="dot">.</span></h2>
+        <p class="lf-section-desc">Non-negotiable. These rules exist to maintain visual coherence across every touchpoint.</p>
+      </div>
+    </div>
+    <div class="lf-rules-grid"><div class="lf-rule-cell"><div class="lf-rule-kind">Do</div><p>Use the purple period at the end of every brand headline</p></div><div class="lf-rule-cell"><div class="lf-rule-kind">Do</div><p>Frame photos with the viewfinder bracket (2-corner on photos: top-right + bottom-left)</p></div><div class="lf-rule-cell"><div class="lf-rule-kind">Do</div><p>Lead with whitespace</p></div><div class="lf-rule-cell"><div class="lf-rule-kind">Do</div><p>Bold the load-bearing phrases (2-4 per long-form section)</p></div><div class="lf-rule-cell"><div class="lf-rule-kind">Do</div><p>Use sharp 90-degree corners on every element</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use em-dashes (U+2014) or en-dashes (U+2013) in public paragraph copy (headlines, hero sentences, body prose, hooks). OK in lists, quotes, parentheticals, file comments, and background context.</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Round any corners</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Introduce a third typeface</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use warm colors anywhere</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use polaroid treatments or stock photography</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use light font weights for display</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use italic emphasis on display type</p></div><div class="lf-rule-cell dont"><div class="lf-rule-kind">Don't</div><p>Use dark canvas as default</p></div></div>
+  </section>
+
+  <section class="lf-section" aria-labelledby="lf-4">
+    <div class="lf-section-head">
+      <div class="lf-section-num">04</div>
+      <div>
+        <div class="lf-section-sub">Imagery · Photography</div>
+        <h2 id="lf-4">Photography<span class="dot">.</span></h2>
+        <p class="lf-section-desc">How real photos and AI-generated imagery should look.</p>
+      </div>
+    </div>
+    <div style="font-family:var(--ff-b);font-size:15px;line-height:1.7;color:var(--text);max-width:760px;"><p><strong>Source:</strong> AI-generated for both personal and subject modes. Exception: real speaking/stage photos (can be AI-enhanced but not AI-generated).</p>
+<p><strong>Quality standard:</strong> Consistent lighting direction, color grading, and surface language across all images. Every image looks like the same photographer made it.</p>
+<p><strong>Modes:</strong></p>
+<ul>
+<li><strong>Personal mode (Florian in frame):</strong></li>
+<ul>
+<li>Style: natural/available light, warm color temperature. Full color inside the viewfinder bracket.</li>
+<li>Outfits:</li>
+<ul>
+<li><strong>Strategist:</strong> dark button-down shirt, sleeves rolled up, no tie</li>
+<li><strong>Speaker:</strong> checkered shirt under vest, sleeves rolled up. No pocket square, no handkerchief</li>
+<li><strong>Thinker:</strong> dark crew neck sweater or tee, minimal</li>
+</ul>
+<li>Composition: one idea per post. Oversized bold typography + photo inside viewfinder bracket.</li>
+</ul>
+</ul>
+<ul>
+<li><strong>Subject mode (concept, object, metaphor: no Florian):</strong></li>
+<ul>
+<li>Style: industrial minimalism. Matte textures, concrete/marble/stone, studio directional lighting. Japanese clean minimalism with slight organic warmth.</li>
+<li>Purple injection: ~3/4 of images use <code>#5A5CF9</code> as selective color accent within the subject. ~1/4 fully neutral; the bracket alone carries the brand.</li>
+<li>Primary use: BTW blog thumbnails, newsletter headers. Adaptable to square for social.</li>
+</ul>
+</ul>
+<p><strong>Safe subjects (render well in AI):</strong> concrete, glass, metal objects.</p>
+<p><strong>Risky subjects (need careful prompting):</strong> animals, organic textures, intricate fabrics.</p>
+<p><strong>Forbidden imagery:</strong></p>
+<ul>
+<li>Staged power poses</li>
+<li>Arms crossed</li>
+<li>Gradient backdrops</li>
+<li>Over-styled environments</li>
+<li>Generic stock photography</li>
+<li>Spa, therapy, or wellness cues (would conflict with the Brand Therapy methodology naming rule)</li>
+</ul>
+<p><strong>Editorial default:</strong> light color overall. Light bases, soft tones, restrained shadows. <code>#5A5CF9</code> as restrained accent only, never the dominant color in the frame.</p></div>
+  </section>
+
+  <section class="lf-section" aria-labelledby="lf-5">
+    <div class="lf-section-head">
+      <div class="lf-section-num">05</div>
+      <div>
+        <div class="lf-section-sub">Categories the brand refuses</div>
+        <h2 id="lf-5">Anti-references<span class="dot">.</span></h2>
+        <p class="lf-section-desc">What this brand is visually and categorically NOT, framed as anti-targets for AI image generation, layout work, and brand positioning.</p>
+      </div>
+    </div>
+    <div class="lf-anti-list"><div class="lf-anti-item"><h3>Consultancy template aesthetics</h3><p>Heavy gradient hero blocks, stock-photo people in front of glass walls, "trusted by" carousels of bland logos. FP's editorial restraint is the opposite.</p></div><div class="lf-anti-item"><h3>Personal-brand influencer aesthetics</h3><p>Cluttered LinkedIn graphics, neon accents, motivational quote overlays, branded talking-head selfies. FP is observed, not performed.</p></div><div class="lf-anti-item"><h3>Spa, therapy, or wellness aesthetics</h3><p>Soft warm gradients, sans-serif feminine type, leaf icons, "healing journey" language. The "therapy" in Brand Therapy is psychology of branding, not healing.</p></div><div class="lf-anti-item"><h3>SaaS-dashboard aesthetics</h3><p>Utility-first density, neutral grays, data-table layouts, "feature" grids with checkmarks. FP is editorial, not utility.</p></div><div class="lf-anti-item"><h3>Logo-portfolio studio aesthetics</h3><p>Lead with mark, big mark grids, monogram-as-hero, "brand systems" portfolio pages. FP leads with strategy, not the mark.</p></div><div class="lf-anti-item"><h3>AI-content-mill aesthetics</h3><p>Generic centered hero, three feature columns, listicle-style content blocks, "AI-powered" claims. FP shows precision, not output volume.</p></div></div>
+  </section>
+
+
+  <div class="footer-nav">
+    <span>Section B · LF · Brand Identity</span>
+    <span><a href="voice.html">Voice →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>

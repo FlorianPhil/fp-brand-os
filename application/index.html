@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand Application · FP Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Per-brand color and typography token overrides.
+     Injected by build.py from IDENTITY.md frontmatter. */
+  :root {
+    --accent: #5A5CF9;
+    --accent-glow: rgba(90, 92, 249, 0.35);
+    --accent-soft: rgba(90, 92, 249, 0.06);
+    --text: #1A1A2E;
+    --muted: #8888A0;
+    --border: #E5E7EB;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --dark: #18181B;
+    --dark-surface: #1D1D1D;
+    --ff-h: "Bricolage Grotesque", system-ui, sans-serif;
+    --ff-b: "Poppins", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">FP<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="" href="../index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="../strategy/index.html">Focus Star</a>
+<a href="../strategy/product.html">Product</a>
+<a href="../strategy/people.html">People</a>
+<a href="../strategy/purpose.html">Purpose</a>
+<a href="../strategy/promise.html">Promise</a>
+<a href="../strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a href="../identity/index.html">Creative Direction</a>
+<a href="../identity/look-and-feel.html">Look &amp; Feel</a>
+<a href="../identity/voice.html">Voice</a>
+<a href="../identity/signature.html">Signature</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">C</span><span class="group-label">Brand Application</span></summary><div class="nav-list">
+<a class="active" href="index.html">Application Overview</a>
+<a href="references.html">Reference Gallery</a>
+<a href="channel-rules.html">Channel Rules</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Application</strong></div>
+    <div class="row"><span>Use</span><strong>References + rules</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+.app-hero { margin: 0 0 72px; padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
+.app-hero .eyebrow { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.app-hero h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(52px, 8vw, 104px); line-height: 0.92; letter-spacing: -0.04em; color: var(--text); margin: 0 0 24px; }
+.app-hero h1 .dot { color: var(--accent); }
+.app-hero p { font-family: var(--ff-b); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.65; color: var(--text); max-width: 760px; margin: 0; }
+.app-section { margin: 0 0 88px; }
+.app-section-head { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 36px; }
+.app-section-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.app-section-kicker { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.app-section h2 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px, 4.5vw, 56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 10px; }
+.app-section h2 .dot { color: var(--accent); }
+.app-section-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 680px; margin: 0; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+.app-card { display: flex; flex-direction: column; min-height: 220px; padding: 28px 24px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); color: var(--text); text-decoration: none; }
+.app-card:hover { background: var(--accent-soft); }
+.app-card .code, .app-example .code { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.app-card h3 { font-family: var(--ff-h); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 12px; color: var(--text); }
+.app-card p, .app-example p, .app-rule p { font-family: var(--ff-b); font-size: 13px; line-height: 1.6; color: var(--muted); margin: 0; }
+.app-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.app-chip { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); padding: 6px 10px; background: var(--white); }
+.app-example-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.app-example, .app-rule { padding: 28px 24px; border: 1px solid var(--border); background: var(--white); }
+.app-example h3, .app-rule h3 { font-family: var(--ff-h); font-weight: 800; font-size: 20px; line-height: 1.15; color: var(--text); margin: 0 0 10px; }
+.app-example-meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px; }
+.app-ref-link { display: inline-flex; align-items: center; min-height: 34px; padding: 8px 12px; border: 1px solid var(--text); color: var(--text); text-decoration: none; font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.app-ref-link:hover { background: var(--text); color: var(--white); }
+.app-ref-source { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.app-ref-preview { margin-top: 22px; border: 1px solid var(--border); background: var(--light); height: clamp(340px, 54vw, 620px); overflow: hidden; }
+.app-ref-preview iframe { width: 100%; height: 100%; border: 0; background: var(--white); }
+.app-rule-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-left: 1px solid var(--border); border-top: 1px solid var(--border); }
+.app-rule-list .app-rule { border-left: 0; border-top: 0; }
+.app-note { padding: 28px 32px; border: 1px solid var(--border); background: var(--light); font-family: var(--ff-b); font-size: 14px; line-height: 1.7; color: var(--text); }
+</style>
+  <section class="app-hero">
+    <div class="eyebrow">Section C · Brand Application</div>
+    <h1>Brand Application<span class="dot">.</span></h1>
+    <p>Section C is one category: how approved strategy and identity become usable outputs. It does not introduce personal branding, a new offer, or a second strategy.</p>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-1">
+    <div class="app-section-head">
+      <div class="app-section-num">01</div>
+      <div>
+        <div class="app-section-kicker">How it works</div>
+        <h2 id="app-section-1">One category, three layers<span class="dot">.</span></h2>
+        <p class="app-section-desc">The review path is examples first, then rules. The examples show the target behavior; the medium and channel pages explain how to recreate it.</p>
+      </div>
+    </div>
+    <div class="app-grid"><a class="app-card" href="references.html"><div class="code">01</div><h3>Reference Gallery<span class="dot">.</span></h3><p>The visual example set. Start here when judging whether the brand system actually stretches across outputs.</p><div class="app-chip-row"><span class="app-chip">11 visual refs</span><span class="app-chip">11 examples</span><span class="app-chip">AI-ready</span></div></a><a class="app-card" href="social.html"><div class="code">02</div><h3>Medium Rules<span class="dot">.</span></h3><p>The production recipes by format: what changes when FP becomes social, ads, video, email, slides, events, or print.</p><div class="app-chip-row"><span class="app-chip">7 media</span><span class="app-chip">visual recipe</span><span class="app-chip">copy recipe</span></div></a><a class="app-card" href="channel-rules.html"><div class="code">03</div><h3>Channel Rules<span class="dot">.</span></h3><p>The behavior dials by operating surface: website, social, email, and sales deck each use the same source differently.</p><div class="app-chip-row"><span class="app-chip">channels</span><span class="app-chip">examples</span><span class="app-chip">AI rules</span></div></a></div>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-2">
+    <div class="app-section-head">
+      <div class="app-section-num">02</div>
+      <div>
+        <div class="app-section-kicker">Medium rules</div>
+        <h2 id="app-section-2">Format-specific recipes<span class="dot">.</span></h2>
+        <p class="app-section-desc">These pages are appendices for generation and QA. They should not compete with the reference gallery as the main review surface.</p>
+      </div>
+    </div>
+    <div class="app-grid"><a class="app-card" href="social.html"><div class="code">Medium rules</div><h3>Social<span class="dot">.</span></h3><p>Reusable rules for Instagram carousel, quote cards, LinkedIn cards, and stories.</p><div class="app-chip-row"><span class="app-chip">IG carousel 4:5</span><span class="app-chip">quote card 1:1</span><span class="app-chip">LinkedIn 1200x627</span></div></a><a class="app-card" href="ads.html"><div class="code">Medium rules</div><h3>Ads<span class="dot">.</span></h3><p>High-compression FP rules for paid placements, outdoor, magazine, and airport formats.</p><div class="app-chip-row"><span class="app-chip">leaderboard</span><span class="app-chip">medium rectangle</span><span class="app-chip">skyscraper</span></div></a><a class="app-card" href="video-audio.html"><div class="code">Medium rules</div><h3>Video + Audio<span class="dot">.</span></h3><p>Rules for thumbnails, podcast covers, long-form video hooks, and short spot storyboards.</p><div class="app-chip-row"><span class="app-chip">YouTube thumbnail 16:9</span><span class="app-chip">podcast cover 1:1</span><span class="app-chip">30 second storyboard</span></div></a><a class="app-card" href="email-newsletter.html"><div class="code">Medium rules</div><h3>Email + Newsletter<span class="dot">.</span></h3><p>How FP behaves in inboxes, from headers to full newsletter rhythm.</p><div class="app-chip-row"><span class="app-chip">email header</span><span class="app-chip">article header</span><span class="app-chip">promo</span></div></a><a class="app-card" href="slides.html"><div class="code">Medium rules</div><h3>Slides<span class="dot">.</span></h3><p>Rules for sparse, high-whitespace decks that explain without becoming a generic pitch template.</p><div class="app-chip-row"><span class="app-chip">title</span><span class="app-chip">agenda</span><span class="app-chip">problem</span></div></a><a class="app-card" href="events.html"><div class="code">Medium rules</div><h3>Events<span class="dot">.</span></h3><p>Rules for keynotes, workshops, posters, banners, and event social assets.</p><div class="app-chip-row"><span class="app-chip">keynote poster</span><span class="app-chip">workshop poster</span><span class="app-chip">promo banner</span></div></a><a class="app-card" href="print.html"><div class="code">Medium rules</div><h3>Print<span class="dot">.</span></h3><p>Rules for tactile collateral where recognition has to survive without animation or long copy.</p><div class="app-chip-row"><span class="app-chip">business card</span><span class="app-chip">event badge</span><span class="app-chip">letterhead</span></div></a></div>
+  </section>
+
+  <section class="app-section" aria-labelledby="app-section-3">
+    <div class="app-section-head">
+      <div class="app-section-num">03</div>
+      <div>
+        <div class="app-section-kicker">Shared patterns</div>
+        <h2 id="app-section-3">The repeatable system<span class="dot">.</span></h2>
+        <p class="app-section-desc">These patterns should survive every medium unless a page says otherwise.</p>
+      </div>
+    </div>
+    <div class="app-rule-list"><div class="app-rule"><h3>Visual system<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">Purple period on every headline</span><span class="app-chip">33 percent viewfinder arm length</span><span class="app-chip">Top-left heading lockup</span><span class="app-chip">Photo strip as accent</span><span class="app-chip">Sharp edges</span><span class="app-chip">Light canvas by default</span></div></div><div class="app-rule"><h3>Copy system<span class="dot">.</span></h3><div class="app-chip-row"><span class="app-chip">Two-beat rhythm: Not X. Y.</span><span class="app-chip">Concrete over abstract</span><span class="app-chip">No we-help opener</span><span class="app-chip">Maximum 12 words per statement</span><span class="app-chip">Bold the load-bearing phrases</span><span class="app-chip">Dry diagnosis before lesson</span></div></div></div>
+  </section>
+
+
+  <div class="footer-nav">
+    <span>Section C · Brand Application</span>
+    <span><a href="references.html">Reference Gallery →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C02 - Social Quote Cards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   C02 - SOCIAL QUOTE CARDS
+   6 variants. 1080x1080 (1:1) for feed. Testing different
+   hook styles and layouts. Light and dark variants.
+   ============================================================ */
+
+:root {
+  --accent: #5A5CF9;
+  --dark: #18181B;
+  --dark-2: #141418;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #8888A0;
+  --border: #E5E7EB;
+  --light: #F5F5F7;
+  --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-b: 'Poppins', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--ff-b);
+  background: #E8E8EC;
+  padding: 40px;
+}
+
+.label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 340px);
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.card {
+  width: 340px;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* Grain */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fp-mark {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 13px;
+  z-index: 5;
+}
+.fp-mark .dot { color: var(--accent); }
+
+.card-url {
+  position: absolute;
+  bottom: 26px;
+  right: 28px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  z-index: 5;
+}
+
+/* ============================================================
+   VARIANT A: Centered statement, white canvas
+   ============================================================ */
+.card-a {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+}
+.card-a .quote-text {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.card-a .accent { color: var(--accent); }
+.card-a .fp-mark { color: var(--dark); }
+.card-a .card-url { color: var(--muted); }
+
+/* ============================================================
+   VARIANT B: Left-aligned, accent left border, dark canvas
+   ============================================================ */
+.card-b {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 32px;
+}
+.card-b .quote-text {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+}
+.card-b .accent { color: var(--accent); }
+.card-b .fp-mark { color: rgba(255,255,255,0.25); }
+.card-b .card-url { color: rgba(255,255,255,0.15); }
+
+/* ============================================================
+   VARIANT C: Big number/stat + context, white canvas
+   ============================================================ */
+.card-c {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 32px;
+}
+.card-c .big-num {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.card-c .stat-label {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.card-c .stat-context {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 240px;
+}
+.card-c .fp-mark { color: var(--dark); }
+.card-c .card-url { color: var(--muted); }
+
+/* ============================================================
+   VARIANT D: Stacked words, one highlighted, light canvas
+   ============================================================ */
+.card-d {
+  background: var(--light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 36px;
+}
+.card-d .word-stack {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--border);
+}
+.card-d .word-stack .lit {
+  color: var(--text);
+}
+.card-d .word-stack .pop {
+  color: var(--accent);
+}
+.card-d .fp-mark { color: var(--dark); }
+.card-d .card-url { color: var(--muted); }
+
+/* ============================================================
+   VARIANT E: Question hook, dark + VF corners
+   ============================================================ */
+.card-e {
+  background: var(--dark-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 48px 36px;
+}
+.card-e::after {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  --b: 1px;
+  --arm: 40px;
+  background:
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+  z-index: 2;
+}
+.card-e .eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  z-index: 3;
+}
+.card-e .quote-text {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--white);
+  z-index: 3;
+}
+.card-e .accent { color: var(--accent); }
+.card-e .fp-mark { color: rgba(255,255,255,0.2); }
+.card-e .card-url { color: rgba(255,255,255,0.12); }
+
+/* ============================================================
+   VARIANT F: Observation + photo strip bottom, white canvas
+   ============================================================ */
+.card-f {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-f .text-area {
+  padding: 36px 28px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-f .quote-text {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.card-f .accent { color: var(--accent); }
+.card-f .attribution {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.card-f .photo-strip {
+  height: 90px;
+  display: flex;
+  gap: 2px;
+}
+.card-f .photo-strip img {
+  flex: 1;
+  object-fit: cover;
+  filter: grayscale(0.5);
+  height: 100%;
+  min-width: 0;
+}
+.card-f .fp-mark { bottom: auto; top: 24px; color: var(--dark); }
+.card-f .card-url { bottom: auto; top: 26px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<p class="label">C02 / Social Quote Cards / 1080 x 1080 (1:1) / 6 variants</p>
+
+<div class="grid">
+
+
+  <div class="card card-a">
+    <p class="quote-text">Your brand isn't broken. It's unfocused<span class="accent">.</span></p>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+
+  <div class="card card-b">
+    <p class="quote-text">You spent $40K on a brand guide <span class="accent">nobody opens</span>.</p>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+
+  <div class="card card-c">
+    <span class="big-num">47</span>
+    <p class="stat-label">slides in your brand deck.</p>
+    <p class="stat-context">Your customer remembers zero. Clarity is not a volume problem.</p>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+
+  <div class="card card-d">
+    <div class="word-stack">
+      Strategy<br>
+      <span class="lit">Positioning</span><br>
+      Mission<br>
+      <span class="pop">Clarity</span><br>
+      Values
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+
+  <div class="card card-e">
+    <span class="eyebrow">Brand Therapy</span>
+    <p class="quote-text">Can you explain what you do in one sentence<span class="accent">?</span><br><br>Without using "we help"<span class="accent">?</span></p>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+
+  <div class="card card-f">
+    <div class="text-area">
+      <p class="quote-text">Another rebrand won't fix what the last rebrand didn't fix<span class="accent">.</span></p>
+      <p class="attribution">Florian Philippe</p>
+    </div>
+    <div class="photo-strip">
+      <img src="florian-photos/florian-working-laptop-casual.jpg" alt="">
+      <img src="florian-photos/florian-editorial-atrium-blue.jpg" alt="">
+      <img src="florian-photos/florian-lifestyle-cafe-coffee.jpg" alt="">
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="card-url">florianp.com</span>
+  </div>
+
+</div>
+
+</body>
+</html>

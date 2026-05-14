@@ -1,35 +1,9 @@
 {
-  "system": {
-    "schemaVersion": "section_a.single_source.v1",
-    "canonicalSource": true,
-    "purpose": "One compact Focus Star source for Section A pages, Focus Star config, and AI website-generation context.",
-    "generatedOutputs": [
-      "assets/focus-star/config.json",
-      "assets/focus-star/config.js",
-      "assets/focus-star/section-a.ai-context.json",
-      "focus-star.html",
-      "product.html",
-      "people.html",
-      "purpose.html",
-      "promise.html",
-      "personality.html"
-    ],
-    "sourceRule": "Edit this file first. Do not hand-edit generated Section A pages for strategic content.",
-    "notionIntegrationStatus": "snapshot_only_not_live_api_import"
-  },
-  "source": {
-    "authoringSource": "Notion Brands row",
-    "snapshot": "brand-os/source/source.yaml",
-    "rowUrl": "https://www.notion.so/358c22dccbf98141bc3ac16ad95274df",
-    "fetchedAt": "2026-05-06 01:41:11.384000+00:00",
-    "generatedFrom": "assets/focus-star/section-a.source.json",
-    "generatedBy": "scripts/build-section-a.py"
-  },
   "brand": {
     "name": "Florian P. Consulting",
     "shortName": "FP",
-    "tagline": "Personal Brand Therapy, strategy, and creative direction",
-    "description": "Florian turns specific expertise into a brand the right market can understand, trust, refer, price, and choose.",
+    "tagline": "Brand Therapy practice. Brand strategy and creative direction for founders, brands, and companies.",
+    "description": "Brand Therapy practice. Brand strategy and creative direction for founders, brands, and companies.",
     "accentColor": "#5A5CF9",
     "inkColor": "#1A1A2E"
   },
@@ -37,8 +11,7 @@
     "darkMode": false,
     "fonts": {
       "heading": "Bricolage Grotesque",
-      "body": "Poppins",
-      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap"
+      "body": "Poppins"
     },
     "background": "#FFFFFF",
     "dialBackground": "#FFFFFF",
@@ -63,8 +36,8 @@
         ]
       },
       "case": {
-        "desc": "<strong>Brand Therapy.</strong> Brand Therapy gives clients the clarity to stop second-guessing, the confidence to make sharper brand decisions, and a working blueprint for what to say, show, sell, and build next, built through Florian&#x27;s Focus Star at the intersection of brand strategy, psychology, and strategic positioning.",
-        "apply": "The product is valuable because it ends the tweaking loop: the work gives every future brand decision a reason.",
+        "desc": "<strong>Brand Therapy.</strong> Brand Therapy is brand strategy with psychology built in. A diagnostic and business positioning practice for leaders, producing the working blueprint that turns hidden expertise into clarity impossible to ignore.",
+        "apply": "The product is not the deliverable. The product is the end of the articulation loop.",
         "impacts": [
           "Offering architecture",
           "Pricing",
@@ -74,107 +47,44 @@
           "Proof"
         ],
         "details": {
-          "Strategic question": [
-            "What exactly is being sold?"
+          "Strategic position": [
+            "Brand Therapy is brand strategy with psychology built in. A diagnostic and business positioning practice for leaders, producing the working blueprint that turns hidden expertise into clarity impossible to ignore."
           ],
-          "Use": [
-            "A guided clarity process using the Focus Star.",
-            "Strategy, positioning, language, hierarchy, and creative direction.",
-            "A client who needs a decision system, not a pile of assets.",
-            "Outputs that help the client explain, choose, build, and brief better."
+          "Compass": [
+            "Brand strategy with psychology built in. Business positioning that produces a strategic compass, not a tagline."
           ],
-          "Avoid": [
-            "Logo refresh as the main job.",
-            "Content agency or social media management.",
-            "Clinical therapy.",
-            "A template or generic brand workshop.",
-            "Done-for-you execution without strategic ownership."
+          "Rules in": [
+            "A guided clarity process using the Focus Star (5 edges)",
+            "Strategy, positioning, language, hierarchy, and creative direction",
+            "Outputs that help the client explain, choose, build, and brief better",
+            "A strategic blueprint the client can read, execute from, and return to",
+            "Discovery that feels therapeutic without implying clinical therapy"
+          ],
+          "Rules out": [
+            "Logo design",
+            "Content agency or social media management",
+            "Clinical therapy",
+            "Aesthetic refresh",
+            "Template solutions",
+            "Done-for-you execution without strategic ownership"
           ],
           "Proof required": [
-            "Before/after examples where confusing value becomes easier to explain.",
-            "Artifacts showing the Focus Star turning into messaging, identity, or offer decisions.",
-            "Testimonials that mention clarity, specificity, relief, or stronger decision-making."
+            "Service structure (Founders rate: $700; Brands rate: $5K-15K+)",
+            "Process steps (Discovery → Blueprint → Build → Launch)",
+            "Case evidence (Verdant Strategies, Cachet, Adam Freed / Freed Solutions)",
+            "Visible testimonials (Jon Tull of Cachet, Kevin Meredith of 4th Sector Innovations, Sam Goldman)",
+            "Public credentials (15+ years, 6 countries, 25+ clients/companies)"
           ],
           "AI rule": [
-            "When generating Product copy, name the process before naming deliverables."
+            "Refer to \"the Brand Therapy process\" or \"Brand Therapy work,\" never \"at Brand Therapy\" or \"the Brand Therapy team\"",
+            "Do not imply clinical therapy or psychological treatment",
+            "Do not fabricate guaranteed outcomes (revenue, clients, visibility)",
+            "Do not claim a \"proprietary framework\" beyond what source approves (Focus Star)",
+            "Open with clarity, confidence, working blueprint: then name the method"
           ],
           "Image signal": [
-            "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall."
+            "Brand Therapy: focused workspace, annotated strategy surface, calm diagnostic environment"
           ]
-        },
-        "contract": {
-          "status": "contract_review",
-          "strategic_question": "What exactly is being sold?",
-          "core_decision": "Brand Therapy gives clients the clarity to stop second-guessing, the confidence to make sharper brand decisions, and a working blueprint for what to say, show, sell, and build next, built through Florian's Focus Star at the intersection of brand strategy, psychology, and strategic positioning.",
-          "plain_meaning": "The product is the Focus Star-led process that turns unclear expertise into a strategic blueprint, messaging, and creative direction the client can actually use.",
-          "page_thesis": "The product is valuable because it ends the tweaking loop: the work gives every future brand decision a reason.",
-          "rules_in": [
-            "A guided clarity process using the Focus Star.",
-            "Strategy, positioning, language, hierarchy, and creative direction.",
-            "A client who needs a decision system, not a pile of assets.",
-            "Outputs that help the client explain, choose, build, and brief better."
-          ],
-          "rules_out": [
-            "Logo refresh as the main job.",
-            "Content agency or social media management.",
-            "Clinical therapy.",
-            "A template or generic brand workshop.",
-            "Done-for-you execution without strategic ownership."
-          ],
-          "tradeoff": "This sells sharper strategic clarity over instant surface change. It will be less attractive to buyers who only want a quick design fix.",
-          "proof_required": [
-            "Before/after examples where confusing value becomes easier to explain.",
-            "Artifacts showing the Focus Star turning into messaging, identity, or offer decisions.",
-            "Testimonials that mention clarity, specificity, relief, or stronger decision-making."
-          ],
-          "output_controls": {
-            "copy": "Explain Brand Therapy as a process and decision system. Do not make it sound like an agency package.",
-            "visual": "Show structure, diagnosis, and clarity. Avoid spa, therapy, or wellness cues.",
-            "sales": "Qualify for readiness to make strategic decisions, not desire for more assets.",
-            "content": "Use examples of the tweaking loop, vague positioning, and the relief of a clear decision.",
-            "ai": "When generating Product copy, name the process before naming deliverables.",
-            "image": "A focused working session, annotated strategy surface, or calm diagnostic environment. No clinical therapy cues, no agency moodboard wall."
-          }
-        },
-        "intelligence": {
-          "thesis": "Brand Therapy gives the client clarity, confidence, and a working blueprint for sharper brand decisions.",
-          "offer_definition": "Brand Therapy is Florian's Focus Star process for giving clients clarity, confidence, and a working blueprint for what to say, show, sell, and build next.",
-          "client_outcomes": [
-            "Relief from second-guessing.",
-            "Sharper brand decisions.",
-            "Clearer sales language and proof.",
-            "A reusable strategic blueprint for future execution."
-          ],
-          "value_stack": [
-            "Emotional benefit: relief from the tweaking loop.",
-            "Business benefit: sharper positioning, proof, offer logic, and creative direction.",
-            "Practical output: a blueprint for copy, website, social, email, sales, and creative briefs."
-          ],
-          "buying_triggers": [
-            "Rebuilding a website, offer, or public presence.",
-            "Good work with messy explanation.",
-            "Unclear whether brand, copy, audience, or offer is the real problem.",
-            "Need for a system before investing in more execution."
-          ],
-          "creative_controls": [
-            "Show annotated strategy surfaces, notebooks, screens, diagrams, and calm workspaces.",
-            "Signal thinking before execution.",
-            "Avoid clinical therapy cues, agency moodboard walls, and generic workshops."
-          ],
-          "minimum_fields": [
-            "Offer definition.",
-            "Client outcome.",
-            "Deliverable logic.",
-            "Boundaries and exclusions.",
-            "Buying triggers.",
-            "Proof required.",
-            "AI and image rules."
-          ],
-          "image": {
-            "path": "assets/moodboard/quality-workspace.jpg",
-            "alt": "Calm workspace with notebook, used as Product image direction.",
-            "approval_status": "draft"
-          }
         }
       }
     },
@@ -195,8 +105,8 @@
         ]
       },
       "case": {
-        "desc": "<strong>The Invisible Expert.</strong> These are people whose work is meaningfully specific, but whose brand makes them look easier to compare than they should be.",
-        "apply": "The People test is whether clearer differentiation would change how the market understands, compares, trusts, refers, prices, and chooses the work.",
+        "desc": "<strong>The Invisible Expert.</strong> Brand Therapy is for The Invisible Expert: someone with real taste, standards, and expertise whose public brand has not caught up to the quality of the work.",
+        "apply": "The People decision is a persona test, not a demographic segment: the work fits when the person wants to be understood without being turned into a performance.",
         "impacts": [
           "Positioning",
           "Language",
@@ -206,178 +116,45 @@
           "Sales filtering"
         ],
         "details": {
-          "Strategic question": [
-            "Who is this really for?"
+          "Strategic position": [
+            "Brand Therapy is for The Invisible Expert: someone with real taste, standards, and expertise whose public brand has not caught up to the quality of the work."
           ],
-          "Use": [
-            "People with real expertise, taste, judgment, method, or point of view.",
-            "Work where the person behind it changes trust and choice.",
-            "A next chapter where looking interchangeable creates business drag.",
-            "People who need sharper differentiation before louder marketing."
+          "Compass": [
+            "The Invisible Expert. Work is meaningful, but the brand makes them look easier to compare than they should be."
           ],
-          "Avoid": [
-            "Logo shoppers looking for surface change.",
-            "Hustle-culture personal branders optimizing for attention.",
-            "Social media management seekers.",
-            "People who want a content costume instead of a clearer point of view.",
-            "People who want to copy someone louder."
+          "Rules in": [
+            "Brands whose work is stronger than the way it is explained. The word \"brand\" covers individuals (founders, experts, consultants, creatives, operators, service-business owners) AND companies whose brand is founder-led or otherwise needs the same strategic clarity work.",
+            "Founders who want a company brand, not only a personal one. Brand Therapy applies to the company brand strategy too. Many founders need both: a founder-led personal brand and a company brand that can stand on its own.",
+            "Brands built around judgment, taste, method, or point of view",
+            "Brands at an inflection point: new offer, new audience, public moment, website rebuild, repositioning, or next chapter",
+            "Brands that have tried to tweak the surface and can feel the real issue is clarity",
+            "Brands that want to become easier to understand without becoming louder, flatter, or fake"
+          ],
+          "Rules out": [
+            "Logo shoppers looking for a surface refresh",
+            "Hustle-culture personal branders optimizing for attention",
+            "Social media management seekers",
+            "Brands that want a content costume instead of a clearer point of view",
+            "Brands that want to copy someone louder instead of becoming more specific"
           ],
           "Proof required": [
-            "Examples where a specific person or brand became less interchangeable.",
-            "Before/after language showing clearer market comparison.",
-            "Testimonials that mention clarity, specificity, better-fit demand, easier referral, or pricing confidence."
+            "Examples where a messy personal or founder-led brand became easier to explain",
+            "Before-and-after language showing the shift from vague value to clear point of view",
+            "Testimonials that mention feeling understood, clearer, more specific, or less stuck",
+            "Visual examples that show the person as thoughtful and real, not staged as a guru"
           ],
           "AI rule": [
-            "Tie visibility to differentiation and better-fit demand. Never assume recognition is the primary motivation."
+            "Use \"brand\" or \"your brand\" as the default address (covers both individuals and companies)",
+            "Write to The Invisible Expert as a capable peer with taste, not as a beginner or a corporate buyer",
+            "Do not describe them as insecure, broken, behind, or naive",
+            "Make the pain about translation, not talent: the work is not the problem; the public read is. The transformation is from being misunderstood to feeling clarity both internally and externally.",
+            "Use persona language before offer language: mirror their situation before explaining Brand Therapy",
+            "Keep the emotional language precise and adult: relief, recognition, confidence, permission to stop tweaking",
+            "Never use generic segment labels. Name the human situation instead"
           ],
           "Image signal": [
-            "One person with quiet authority in a calm strategic environment."
-          ],
-          "Audience decision": [
-            "The problem is not lack of visibility. The problem is wrong comparison.",
-            "The audience is not everyone with a founder title. It is the person whose work has become more specific than the market can currently read."
-          ],
-          "Primary persona": [
-            "Founder, consultant, expert, studio lead, operator, or service-business owner where the person behind the work materially changes trust and choice.",
-            "Past the beginner stage. There is real value, real work, and some proof."
-          ],
-          "Psychographics": [
-            "Values depth, specificity, taste with a reason, autonomy, discernment, and adult trust.",
-            "Skeptical of hustle-culture visibility advice, generic premium branding, and personality as costume.",
-            "Tired of explaining. Irritated by being compared to cheaper or simpler alternatives."
-          ],
-          "Needs and wants": [
-            "Needs strategic clarity, language, hierarchy, proof, visual direction, clearer noes, and offer logic.",
-            "Wants better-fit referrals, easier sales conversations, pricing confidence, and a visual world that feels as specific as the work."
-          ],
-          "Decision triggers": [
-            "Entering a more expensive or visible market.",
-            "Rebuilding a website, offer, deck, or public presence.",
-            "Raising prices but still sounding comparable.",
-            "Realizing more content will only scale the wrong message.",
-            "Feeling the category has become too noisy or AI-flattened."
-          ],
-          "Alternatives": [
-            "Brand studio: stronger look, but not always sharper market meaning.",
-            "Positioning consultant: better language, but often weak creative translation.",
-            "Designer or logo refresh: visible progress before diagnosis.",
-            "Copywriter or content agency: more output, not necessarily a clearer source.",
-            "DIY AI or template: faster and cheaper, but likely to reproduce category language.",
-            "Coach or personal brand guru: confidence and attention, not always differentiation."
-          ],
-          "Creative rules": [
-            "One person, not a crowd or generic team.",
-            "Calm workspace, notes, laptop, strategic materials.",
-            "Editorial, grounded, observant, focused.",
-            "Avoid guru stage, hype pose, clinical therapy cues, exaggerated laptop smile, and chaotic moodboard walls."
+            "Persona: The Invisible Expert, quiet authority observed mid-thought"
           ]
-        },
-        "contract": {
-          "status": "contract_review",
-          "strategic_question": "Who is this really for?",
-          "core_decision": "These are people whose work is meaningfully specific, but whose brand makes them look easier to compare than they should be.",
-          "plain_meaning": "They are not beginners looking for confidence and not attention seekers chasing visibility. The work is real. The market read is too flat.",
-          "page_thesis": "The People test is whether clearer differentiation would change how the market understands, compares, trusts, refers, prices, and chooses the work.",
-          "rules_in": [
-            "People with real expertise, taste, judgment, method, or point of view.",
-            "Work where the person behind it changes trust and choice.",
-            "A next chapter where looking interchangeable creates business drag.",
-            "People who need sharper differentiation before louder marketing."
-          ],
-          "rules_out": [
-            "Logo shoppers looking for surface change.",
-            "Hustle-culture personal branders optimizing for attention.",
-            "Social media management seekers.",
-            "People who want a content costume instead of a clearer point of view.",
-            "People who want to copy someone louder."
-          ],
-          "tradeoff": "This chooses business differentiation over broad visibility, recognition, or generic founder-brand appeal.",
-          "proof_required": [
-            "Examples where a specific person or brand became less interchangeable.",
-            "Before/after language showing clearer market comparison.",
-            "Testimonials that mention clarity, specificity, better-fit demand, easier referral, or pricing confidence."
-          ],
-          "output_controls": {
-            "copy": "Describe meaningful specificity first. Do not frame them as insecure or attention hungry.",
-            "visual": "Competent first, specific second. Avoid guru, influencer, or broken-beginner imagery.",
-            "sales": "Qualify for business drag caused by wrong comparison, not just desire to be seen.",
-            "content": "Write about the cost of looking comparable when the work is not comparable.",
-            "ai": "Tie visibility to differentiation and better-fit demand. Never assume recognition is the primary motivation.",
-            "image": "One person with quiet authority in a calm strategic environment."
-          }
-        },
-        "persona": {
-          "role": "The Invisible Expert",
-          "tagline": "These are people whose work is meaningfully specific, but whose brand makes them look easier to compare than they should be.",
-          "context": "The work is specific. The market read is too flat. They are past the beginner stage and do not want a visibility costume.",
-          "need": "A brand that makes specific work easier to understand, compare correctly, refer, trust, price, and choose.",
-          "quote": "The work is not generic. The way it is explained is.",
-          "rationalMotivation": "The People test is whether clearer differentiation would change how the market understands, compares, trusts, refers, prices, and chooses the work.",
-          "painPoint": "Wrong comparison creates business drag: weaker referrals, harder sales calls, pricing friction, and generic creative direction.",
-          "decisionTrigger": "A next chapter makes the old brand too flat: pricing shift, website rebuild, offer change, public presence, category noise, or higher-stakes buyers.",
-          "buyingCriteria": [
-            "Florian has to read the nuance before prescribing.",
-            "The process must connect strategy, language, proof, and visuals.",
-            "The output must be reusable, not just impressive in the moment.",
-            "The work must feel sharp without turning them into a performance."
-          ],
-          "psychographics": [
-            "Values depth over volume.",
-            "Trusts taste when it has a reason.",
-            "Wants plain language that still protects nuance.",
-            "Rejects hustle-culture visibility advice and generic premium branding."
-          ],
-          "needs": [
-            "Strategic clarity.",
-            "Language that makes nuance legible.",
-            "Proof hierarchy.",
-            "Visual direction.",
-            "Offer logic.",
-            "Sharper sales filtering."
-          ],
-          "wants": [
-            "Better-fit demand.",
-            "Easier referrals.",
-            "Pricing confidence.",
-            "A brand that feels as specific as the work.",
-            "Fewer explanation loops."
-          ],
-          "objections": [
-            "I do not want to become a personal brand caricature.",
-            "I am not sure brand is the real business problem.",
-            "I need execution too, not just strategy.",
-            "I have rebuilt this before and still felt unclear."
-          ],
-          "alternatives": [
-            "Brand studio.",
-            "Positioning consultant.",
-            "Designer or logo refresh.",
-            "Copywriter or content agency.",
-            "DIY AI or template.",
-            "Coach or personal brand guru."
-          ],
-          "creativeDirection": [
-            "One person, quiet authority, calm strategic environment.",
-            "Competence before personality.",
-            "Avoid guru, influencer, beginner, therapy, and generic stock-business cues."
-          ],
-          "tags": [
-            "Specific expertise",
-            "Wrong comparison",
-            "Business differentiation",
-            "Better-fit demand"
-          ],
-          "image": {
-            "path": "assets/people/persona-invisible-expert-female.png",
-            "alt": "Female founder/executive avatar for the Invisible Expert persona.",
-            "source_status": "generated",
-            "approval_status": "draft",
-            "generation_source": "Codex image generation, 2026-05-06",
-            "used_by": [
-              "focus-star",
-              "people"
-            ]
-          }
         }
       }
     },
@@ -398,8 +175,8 @@
         ]
       },
       "case": {
-        "desc": "<strong>Make every brand unique.</strong> Florian&#x27;s work exists to make every brand unique by revealing what is already specific and turning it into decisions, not by making brands louder, prettier, or generically marketable.",
-        "apply": "The goal is not more attention from more people. The goal is a brand that is easier to choose because it is less interchangeable.",
+        "desc": "<strong>Make every brand unique.</strong> FP exists to reveal the brand truth that already exists in each client, and make it strong enough to say no. The authenticity already exists. The work is revealing it, helping the brand own it, and making it the foundation for every decision.",
+        "apply": "The purpose is not inspiration. It is selection. \"Perfect matches, not more matches\" is the practical spine.",
         "impacts": [
           "Vision",
           "Story",
@@ -409,102 +186,38 @@
           "Editorial choices"
         ],
         "details": {
-          "Strategic question": [
-            "Why does this work need to exist?"
+          "Strategic position": [
+            "FP exists to reveal the brand truth that already exists in each client, and make it strong enough to say no. The authenticity already exists. The work is revealing it, helping the brand own it, and making it the foundation for every decision."
           ],
-          "Use": [
-            "Specificity already exists in the person, work, culture, standards, or point of view.",
-            "Strategy should reveal and sharpen, not invent a costume.",
-            "Growth comes from better matches, clearer noes, and stronger fit.",
-            "A brand should become easier to choose because it is less interchangeable."
+          "Compass": [
+            "Reveal what is already there. Find perfect matches, not more matches. Make each brand strong enough to say no."
           ],
-          "Avoid": [
-            "More marketing activity as the default answer.",
-            "Trend imitation.",
-            "Generic best-practice positioning.",
-            "A brand that tries to appeal to everyone.",
-            "Uniqueness as decoration instead of decision-making."
+          "Rules in": [
+            "Helping brands say no to opportunities that do not need their specificity",
+            "Revealing what's already there rather than inventing what should be",
+            "Making strategic clarity the foundation for every downstream decision (copy, visuals, channels, sales)",
+            "Treating uniqueness as a refusal to imitate, not a marketing differentiator slogan"
+          ],
+          "Rules out": [
+            "More-for-more's-sake growth strategies",
+            "Generic differentiation language (\"authentic,\" \"stand out,\" \"be yourself\") without specificity",
+            "Templated approaches that scale by reducing what makes each brand specific",
+            "Inspiration-only content with no operational follow-through"
           ],
           "Proof required": [
-            "Examples of saying no to wrong-fit opportunities.",
-            "Strategy decisions that make a brand more specific and less comparable.",
-            "Evidence that specificity improves clarity, confidence, referrals, or conversion quality."
+            "Florian's preference for branding \"boring\" industries where people expect the least to see a well-differentiated, unique brand. Example: Cachet Advisory, the CPA firm that gives a shit. A well-positioned brand in an industry that does not assume differentiation is possible is the clearest proof of the purpose.",
+            "Before/after positioning that shows narrowing, not broadening",
+            "Evidence of narrowed positioning or refusal language, where available",
+            "Client outcomes measured by fit, not volume"
           ],
           "AI rule": [
-            "Do not generate generic differentiation language. Name what is uniquely true and what it excludes."
+            "Frame purpose as selection, not inspiration",
+            "Avoid generic \"be authentic\" language; show the specific decision that creates authenticity",
+            "When tempted to write \"make every brand unique\" as a tagline, find the operational implication instead"
           ],
           "Image signal": [
-            "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or generic growth-chart imagery."
+            "Purpose: structural clarity, the architecture of a specific brand"
           ]
-        },
-        "contract": {
-          "status": "contract_review",
-          "strategic_question": "Why does this work need to exist?",
-          "core_decision": "Florian's work exists to make every brand unique by revealing what is already specific and turning it into decisions, not by making brands louder, prettier, or generically marketable.",
-          "plain_meaning": "Florian does not invent uniqueness. He finds what is already specific, makes it legible, and turns it into decisions the brand can keep using.",
-          "page_thesis": "The goal is not more attention from more people. The goal is a brand that is easier to choose because it is less interchangeable.",
-          "rules_in": [
-            "Specificity already exists in the person, work, culture, standards, or point of view.",
-            "Strategy should reveal and sharpen, not invent a costume.",
-            "Growth comes from better matches, clearer noes, and stronger fit.",
-            "A brand should become easier to choose because it is less interchangeable."
-          ],
-          "rules_out": [
-            "More marketing activity as the default answer.",
-            "Trend imitation.",
-            "Generic best-practice positioning.",
-            "A brand that tries to appeal to everyone.",
-            "Uniqueness as decoration instead of decision-making."
-          ],
-          "tradeoff": "This favors sharper fit over broad appeal. It may reduce possible audiences, but increases the value of the right audience.",
-          "proof_required": [
-            "Examples of saying no to wrong-fit opportunities.",
-            "Strategy decisions that make a brand more specific and less comparable.",
-            "Evidence that specificity improves clarity, confidence, referrals, or conversion quality."
-          ],
-          "output_controls": {
-            "copy": "Use uniqueness as a strategic filter, not a motivational slogan.",
-            "visual": "Show subtraction, focus, and specificity. Avoid generic growth imagery.",
-            "sales": "Ask what should become easier to refuse.",
-            "content": "Write about perfect matches, not more matches.",
-            "ai": "Do not generate generic differentiation language. Name what is uniquely true and what it excludes.",
-            "image": "A focused selection, edited set, or clear mark of distinction. No crowd, funnel, or generic growth-chart imagery."
-          }
-        },
-        "intelligence": {
-          "thesis": "The purpose is not to make brands louder. It is to make them harder to confuse.",
-          "purpose_line": "Make every brand unique.",
-          "strategic_belief": "Specificity already exists in the person, work, culture, standards, or point of view before it becomes copy or design.",
-          "decision_filters": [
-            "Name what is specifically true and what that excludes.",
-            "Use content to reveal useful distinctions, hidden tensions, wrong comparisons, and the cost of looking generic.",
-            "Choose collaborators, clients, and channels that sharpen the point of view.",
-            "Use design to make specificity visible, not merely decorative."
-          ],
-          "story_prompts": [
-            "Where generic positioning hides real value.",
-            "What the brand refuses to become.",
-            "Why stronger fit often starts with fewer audiences, fewer claims, and fewer borrowed references."
-          ],
-          "creative_controls": [
-            "Show focused selection, edited sets, contrast, or precise choices.",
-            "Signal subtraction and specificity.",
-            "Avoid crowds, funnels, megaphones, rocket ships, growth charts, and vague uniqueness symbols."
-          ],
-          "minimum_fields": [
-            "Purpose line.",
-            "Strategic belief.",
-            "Decision filters.",
-            "Rules in and out.",
-            "Proof required.",
-            "Story prompts.",
-            "AI and image rules."
-          ],
-          "image": {
-            "path": "assets/moodboard/quality-design.jpg",
-            "alt": "Minimal folded form used as Purpose image direction.",
-            "approval_status": "draft"
-          }
         }
       }
     },
@@ -525,8 +238,8 @@
         ]
       },
       "case": {
-        "desc": "<strong>Curiosity.</strong> Curiosity is the operating promise: look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper choices.",
-        "apply": "Curiosity is what keeps Brand Therapy from becoming templates, taste theater, or borrowed positioning. It is the method that finds the real point of view.",
+        "desc": "<strong>Curiosity.</strong> Curiosity is the non-negotiable operating method: look closely before deciding, ask the question that reveals what is actually there, and make every choice trace back to what is real rather than what is performed.",
+        "apply": "Curiosity is an operating rule. It changes discovery, copy, visuals, and client behavior. A deliverable that does not show the work was curious first does not fit the brand.",
         "impacts": [
           "Writing",
           "Visual metaphor",
@@ -536,104 +249,43 @@
           "Client process"
         ],
         "details": {
-          "Strategic question": [
-            "What standard should every decision hold?"
+          "Strategic position": [
+            "Curiosity is the non-negotiable operating method: look closely before deciding, ask the question that reveals what is actually there, and make every choice trace back to what is real rather than what is performed."
           ],
-          "Use": [
-            "Questions before assertions.",
-            "Observation before prescription.",
-            "Diagnosis before style.",
-            "Specific tension before broad advice.",
-            "Decisions that reveal what is already there."
+          "Compass": [
+            "Curiosity AS a method, not a personality trait. It forces every brand decision to trace back to what is actually there, not what is performed, imitated, or expected."
           ],
-          "Avoid": [
-            "Performing certainty to sound senior.",
-            "Best-practice answers before looking closely.",
-            "Borrowed category language.",
-            "Copying someone else's brand logic.",
-            "Jokes or taste choices that replace the strategy point."
+          "Rules in": [
+            "Always challenge the status quo. Play devil's advocate even when the surface answer seems acceptable.",
+            "Always consider different points of view and perspectives. Be extremely open to changing your mind when the better answer surfaces.",
+            "Treat curiosity as a training discipline: keeping everything open is uncomfortable, but it produces sharper decisions over time. (Curiosity can become a downfall when nothing closes; the discipline is knowing when to land.)",
+            "Looking before deciding",
+            "Asking before asserting",
+            "Making every choice trace back to what is actually there",
+            "Treating uncertainty as a signal to investigate, not paper over",
+            "Refusing to skip past what feels suspicious"
+          ],
+          "Rules out": [
+            "Performance of certainty (faux-expert authority, polished-but-empty answers)",
+            "Imitation of competitors as a shortcut to positioning",
+            "Decoration without strategic purpose (pretty visuals that say nothing)",
+            "\"Trust the process\" framing that bypasses the investigative work"
           ],
           "Proof required": [
-            "Examples where a better question changed the strategy.",
-            "Before/after showing a hidden tension becoming the core position.",
-            "Client language that mentions feeling seen, understood, or accurately diagnosed."
+            "Discovery notes or source-approved testimonials where the observation changed the strategic direction",
+            "Strategic recommendations traced back to specific noticed patterns",
+            "Voice exemplars showing the question-over-assertion pattern at work"
           ],
           "AI rule": [
-            "When uncertain, ask or state the uncertainty. Do not fill gaps with confident brand jargon."
+            "When tempted to assert, ask",
+            "When tempted to imitate, observe",
+            "When tempted to decorate, strip until the strategic point is visible",
+            "End paragraphs on perspective shifts, not lessons or CTAs",
+            "The funny line must sharpen the diagnosis. If the joke works without the strategy point, cut it"
           ],
           "Image signal": [
-            "Close looking, notes, frames, or a moment of diagnosis. No crystal ball, lightbulb, or generic insight icon."
+            "Promise: the viewfinder bracket, the literal expression of curiosity as method"
           ]
-        },
-        "contract": {
-          "status": "contract_review",
-          "strategic_question": "What standard should every decision hold?",
-          "core_decision": "Curiosity is the operating promise: look closely before deciding, ask the question that reveals what is actually there, and turn uncertainty into sharper choices.",
-          "plain_meaning": "The work does not perform certainty. It earns clarity by noticing what others skipped.",
-          "page_thesis": "Curiosity is what keeps Brand Therapy from becoming templates, taste theater, or borrowed positioning. It is the method that finds the real point of view.",
-          "rules_in": [
-            "Questions before assertions.",
-            "Observation before prescription.",
-            "Diagnosis before style.",
-            "Specific tension before broad advice.",
-            "Decisions that reveal what is already there."
-          ],
-          "rules_out": [
-            "Performing certainty to sound senior.",
-            "Best-practice answers before looking closely.",
-            "Borrowed category language.",
-            "Copying someone else's brand logic.",
-            "Jokes or taste choices that replace the strategy point."
-          ],
-          "tradeoff": "Curiosity may slow the beginning, but it prevents expensive certainty around the wrong answer.",
-          "proof_required": [
-            "Examples where a better question changed the strategy.",
-            "Before/after showing a hidden tension becoming the core position.",
-            "Client language that mentions feeling seen, understood, or accurately diagnosed."
-          ],
-          "output_controls": {
-            "copy": "Lead with observation and questions. Avoid generic confident claims.",
-            "visual": "Use frames, close looking, annotations, and evidence of attention.",
-            "sales": "Ask diagnostic questions that reveal fit and tension.",
-            "content": "Turn suspicious obvious answers into sharper questions.",
-            "ai": "When uncertain, ask or state the uncertainty. Do not fill gaps with confident brand jargon.",
-            "image": "Close looking, notes, frames, or a moment of diagnosis. No crystal ball, lightbulb, or generic insight icon."
-          }
-        },
-        "intelligence": {
-          "thesis": "The promise is not certainty. It is the discipline that earns clarity.",
-          "operating_standard": "Curiosity is disciplined looking that turns uncertainty into a better question, then a sharper decision.",
-          "client_experience": "The client should feel accurately seen because the work notices what others skipped.",
-          "behavioral_system": [
-            "Discovery: ask before asserting and look for the contradiction, avoided choice, wrong comparison, or hidden tension.",
-            "Writing: lead with observation and plain diagnosis.",
-            "Design: use frames, annotations, evidence, focus, and proximity.",
-            "AI: flag missing source data instead of inventing certainty."
-          ],
-          "content_prompts": [
-            "The suspiciously obvious answer.",
-            "The question nobody asked before designing.",
-            "The tiny detail that explains the whole positioning problem."
-          ],
-          "creative_controls": [
-            "Show frames, notes, margins, evidence, diagrams, or diagnostic moments.",
-            "Signal attention before conclusion.",
-            "Avoid crystal balls, lightbulbs, binoculars, generic eye icons, mystical fog, and consultant certainty theater."
-          ],
-          "minimum_fields": [
-            "Operating standard.",
-            "Client experience.",
-            "Behavioral rules.",
-            "Discovery and writing rules.",
-            "Proof required.",
-            "AI uncertainty protocol.",
-            "Image exclusions."
-          ],
-          "image": {
-            "path": "assets/moodboard/quality-architecture.jpg",
-            "alt": "Precise architectural structure used as Promise image direction.",
-            "approval_status": "draft"
-          }
         }
       }
     },
@@ -654,8 +306,8 @@
         ]
       },
       "case": {
-        "desc": "<strong>Funny first, dry diagnosis.</strong> The personality is precise observation with dry humor: warm enough to disarm, sharp enough to be useful, and restrained enough to stay credible.",
-        "apply": "Humor is not decoration. It is how the diagnosis lands. If the joke works without the strategy point, cut it.",
+        "desc": "<strong>Funny first, dry diagnosis.</strong> FP sounds funny because the diagnosis is precise, not because every line performs. The voice finds the absurdity inside the truth. Humor is how the insight arrives, not a decoration after it.",
+        "apply": "Personality is strategic, not stylistic. \"Funny first\" is operational discipline (the joke carries the strategy), not joke density.",
         "impacts": [
           "Voice",
           "Visual language",
@@ -665,177 +317,52 @@
           "Email rhythm"
         ],
         "details": {
-          "Strategic question": [
-            "How should the brand feel and behave?"
+          "Strategic position": [
+            "FP sounds funny because the diagnosis is precise, not because every line performs. The voice finds the absurdity inside the truth. Humor is how the insight arrives, not a decoration after it."
           ],
-          "Use": [
-            "Funny first, dry diagnosis.",
-            "Spoken register.",
-            "Specific observation before advice.",
-            "Warm snap, not cruelty.",
-            "Perspective shift over lesson."
+          "Compass": [
+            "Funny first, dry diagnosis. Warm enough to disarm, sharp enough to be useful, self-aware enough to make fun of the whole LinkedIn-influencer thing while still doing the work."
           ],
-          "Avoid": [
-            "Corporate newsletter voice.",
-            "Self-help affirmation.",
-            "Motivational founder content.",
-            "Joke-only cleverness.",
-            "Overwritten AI thought leadership.",
-            "Guru or first-chair founder performance."
+          "Rules in": [
+            "Direct observation over encouragement",
+            "Funny first, dry diagnosis over cheerleading",
+            "French dry humor and sarcasm. Light, not bitter.",
+            "Self-deprecating humor, used deliberately. Florian doesn't take himself too seriously; the brand voice doesn't either. Self-derision is a defense mechanism used as a feature, not a weakness.",
+            "Spoken register, not editorial",
+            "Questions over affirmations where useful",
+            "Short sentences when possible. Long when the idea demands breath",
+            "Silence is an option",
+            "Curious over prescriptive",
+            "Humor must sharpen the point. If the joke works without the strategy, cut it"
+          ],
+          "Rules out": [
+            "Joke-only lines that lose the strategy",
+            "Performative humor that decorates instead of diagnoses",
+            "Stand-up copy or punch-line-heavy writing",
+            "Hustle-culture motivational posts",
+            "Self-help book chapter energy",
+            "Therapist's Instagram caption energy",
+            "First-chair founder bios"
           ],
           "Proof required": [
-            "Approved writing examples that sound like Florian.",
-            "Off-voice examples showing where humor or cleverness went too far.",
-            "Banned phrases and characters enforced in output checks."
+            "Live voice exemplars (see references/voice-exemplars.md)",
+            "On-voice examples per channel and matching off-voice library entries showing what \"funny first\" looks like when it works vs. when it slides into joke-only",
+            "Channel-by-channel calibration evidence"
           ],
           "AI rule": [
-            "No em dashes, no motivational filler, no overworked jokes, no generic thought leadership."
+            "Open with observed scene, dry diagnosis, or honest admission. Never encouragement",
+            "The funny line must carry the strategy point",
+            "Vary sentence rhythm: short to anchor, long to reflect",
+            "End with a perspective shift, not a lesson",
+            "Use ellipsis (...) freely for rhythm and breathing room. Never em-dash, never en-dash",
+            "Bold the load-bearing phrases (2-4 per section in long-form)",
+            "Peer voice default: \"we/us\" not \"founders\" or \"every founder I know\""
           ],
           "Image signal": [
-            "Clean, editorial, observational, slightly wry. No inspirational stock energy."
+            "Personality: dry diagnosis with warm snap, observed mid-thought in the thinker preset"
           ]
-        },
-        "contract": {
-          "status": "contract_review",
-          "strategic_question": "How should the brand feel and behave?",
-          "core_decision": "The personality is precise observation with dry humor: warm enough to disarm, sharp enough to be useful, and restrained enough to stay credible.",
-          "plain_meaning": "The brand sounds like a smart person noticing the true tension out loud, not like a coach, guru, agency, or AI thought leader.",
-          "page_thesis": "Humor is not decoration. It is how the diagnosis lands. If the joke works without the strategy point, cut it.",
-          "rules_in": [
-            "Funny first, dry diagnosis.",
-            "Spoken register.",
-            "Specific observation before advice.",
-            "Warm snap, not cruelty.",
-            "Perspective shift over lesson."
-          ],
-          "rules_out": [
-            "Corporate newsletter voice.",
-            "Self-help affirmation.",
-            "Motivational founder content.",
-            "Joke-only cleverness.",
-            "Overwritten AI thought leadership.",
-            "Guru or first-chair founder performance."
-          ],
-          "tradeoff": "This voice will not comfort everyone. It chooses precision, wit, and adult trust over universal warmth.",
-          "proof_required": [
-            "Approved writing examples that sound like Florian.",
-            "Off-voice examples showing where humor or cleverness went too far.",
-            "Banned phrases and characters enforced in output checks."
-          ],
-          "output_controls": {
-            "copy": "Make the insight arrive through the line. Keep humor functional and sparse.",
-            "visual": "Sharp, clean, restrained, with a viewfinder or diagnostic feel.",
-            "sales": "Use plain diagnosis. Do not posture or over-explain.",
-            "content": "Write from observed tension, not advice-list structure.",
-            "ai": "No em dashes, no motivational filler, no overworked jokes, no generic thought leadership.",
-            "image": "Clean, editorial, observational, slightly wry. No inspirational stock energy."
-          }
-        },
-        "intelligence": {
-          "thesis": "Humor is not decoration. It is how the diagnosis lands.",
-          "personality_line": "Funny first, dry diagnosis.",
-          "voice_posture": "The brand sounds like a smart person noticing the true tension out loud, not like a coach, guru, agency, or AI thought leader.",
-          "archetype_mix": [
-            "50% Innocent: optimism, honesty, and clarity that can feel simple.",
-            "30% Creator: building something meaningful, useful, and visually considered.",
-            "20% Friend: conversation, perspective shifts, and human trust."
-          ],
-          "voice_behavior": [
-            "Spoken, exact, and slightly dry.",
-            "Observation first, diagnosis second, prescription third.",
-            "Warm snap, not cruelty.",
-            "Clean, editorial, restrained visual behavior."
-          ],
-          "creative_controls": [
-            "Clean, observational, slightly wry imagery.",
-            "Use framing, contrast, or restraint to create personality.",
-            "Avoid inspirational stock energy, joke-only cleverness, and guru performance."
-          ],
-          "minimum_fields": [
-            "Personality line.",
-            "Archetype mix.",
-            "Voice posture.",
-            "Behavior rules.",
-            "Rules in and out.",
-            "Approved and banned examples.",
-            "AI and image controls."
-          ],
-          "image": {
-            "path": "assets/personal-branding/florian-thinker-cafe-coffee.png",
-            "alt": "Florian thinking at a cafe, used as Personality image direction.",
-            "approval_status": "draft"
-          }
-        },
-        "archetype": {
-          "primary": {
-            "name": "Innocent",
-            "weight": 0.5,
-            "essence": "Optimism, honesty, belief that clarity is simple when you stop overcomplicating it.",
-            "references": []
-          },
-          "secondary": [
-            {
-              "name": "Creator",
-              "weight": 0.3,
-              "essence": "Drive to build something meaningful and beautiful.",
-              "references": []
-            },
-            {
-              "name": "Friend",
-              "weight": 0.2,
-              "essence": "Conversation, not lectures. Perspective shifts, not lessons.",
-              "references": []
-            }
-          ]
-        },
-        "archetypeAssets": {
-          "primary": {
-            "name": "Innocent",
-            "icon": "assets/archetypes/no-background/Innocent.png",
-            "alt": "Innocent archetype icon."
-          },
-          "secondary": [
-            {
-              "name": "Creator",
-              "icon": "assets/archetypes/no-background/Creator.png",
-              "alt": "Creator archetype icon."
-            },
-            {
-              "name": "Friend",
-              "icon": "assets/archetypes/no-background/Friend.png",
-              "alt": "Friend archetype icon."
-            }
-          ]
-        },
-        "moodboard": [
-          {
-            "path": "assets/moodboard/quality-architecture.jpg",
-            "alt": "Architectural precision reference.",
-            "role": "structure"
-          },
-          {
-            "path": "assets/moodboard/stock-design.jpg",
-            "alt": "Design systems reference.",
-            "role": "composition"
-          },
-          {
-            "path": "assets/moodboard/fast-texture.jpg",
-            "alt": "Material texture reference.",
-            "role": "texture"
-          },
-          {
-            "path": "assets/moodboard/quality-workspace.jpg",
-            "alt": "Workspace environment reference.",
-            "role": "environment"
-          }
-        ]
+        }
       }
     }
-  ],
-  "tweaks": {
-    "springStiffness": 1,
-    "springBounce": 8,
-    "scrollResistance": 100,
-    "activeLabelScale": "3x"
-  }
+  ]
 }

@@ -1,0 +1,40 @@
+{
+  "brand": "fp",
+  "version": "4.0.0",
+  "approved_at": "2026-05-14T20:27:35+00:00",
+  "approved_by": "Florian",
+  "source_hashes": {
+    "STRATEGY.md": "sha256:f68e1c9df2533c88dd7cd48d010c7cac7226de1f782f51399d4b1152960fab38",
+    "IDENTITY.md": "sha256:60d4c9f0ee75bbd5086f0b72b6a5d5eaacd81781f47c664f69c2d5103a5e6564",
+    "SKILL.md": "sha256:05ddd63a54fdefb992bbc370b07b3dc3b6f25505ec285941936936be958d43c8",
+    "APPLICATION.md": "sha256:a974828d8c7b57093f3a20002a45ff9ca6a2b1409e91967326bd331fce45ac86",
+    "CHANNELS.md": "sha256:2edaaff112556b018af7f7e03ceeb6a87734b18f1cf246a49d9fd2f601802fc4",
+    "references/methodology.md": "sha256:a78b3041530a33181897518135c9034708744d8d9d41c5b77fcf49c63c01c590",
+    "references/viewfinder.md": "sha256:c6003f97ab9850b2af89ca8615229cd74a796215efed6e6b6fe75c3d94c8ec40",
+    "references/voice-exemplars.md": "sha256:62edce5e4e74e55931da4d2152d2c593ce1cb388c1210f9f09c0c57ce13af649",
+    "images_manifest": "sha256:36eda64dadea98a37046e74705a911a1367201126caeadbe2d69dc0885f141ab",
+    "application_references_manifest": "sha256:84f2f4fddd3f0ef98c398a9d5c7e231eb7647da5e9a2f2f5cbb1a5e28173494d"
+  },
+  "bundle_hash": "sha256:7a5cdebed78f2c046272e86d1dc90bd09b0504a7ab132437cb2563ea95e28d50",
+  "outputs": {
+    "ai_context_emitted_at": "2026-05-14T20:27:35+00:00",
+    "ai_context_json_emitted_at": "2026-05-14T20:27:35+00:00",
+    "ai_context_git_sha": "775b016d85b86c7e8e46b3c50ec70cc02aff9846",
+    "strategy_html_emitted_at": "2026-05-14T20:27:35+00:00",
+    "identity_html_emitted_at": "2026-05-14T20:27:35+00:00",
+    "focus_star_json_emitted_at": "2026-05-14T20:27:35+00:00",
+    "application_html_emitted_at": "2026-05-14T20:27:35+00:00",
+    "channel_rules_html_emitted_at": "2026-05-14T20:27:35+00:00"
+  },
+  "validator_rules": {
+    "must_match_at_build": [
+      "source_hashes",
+      "bundle_hash"
+    ],
+    "warn_on_drift": [
+      "outputs.ai_context_git_sha"
+    ],
+    "fail_if_missing_source_file": true,
+    "fail_if_extra_source_file_without_hash": true
+  }
+}

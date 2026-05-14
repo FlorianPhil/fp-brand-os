@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C01 - Instagram Carousel: The Decision Problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   C01 - INSTAGRAM CAROUSEL (1080x1350 per slide, 4:5)
+   HOOK: "You don't have a brand problem."
+   CONCEPT: 5-slide educational carousel. Hook > Problem >
+   Framework > Proof > CTA. White canvas, accent punctuation,
+   extreme whitespace.
+   ============================================================ */
+
+:root {
+  --accent: #5A5CF9;
+  --dark: #18181B;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #8888A0;
+  --border: #E5E7EB;
+  --light: #F5F5F7;
+  --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-b: 'Poppins', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--ff-b);
+  background: #E8E8EC;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.label {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Carousel strip */
+.carousel-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 20px 0;
+  max-width: 100vw;
+}
+
+/* Each slide: 1080x1350 scaled to 360x450 for preview */
+.slide {
+  width: 360px;
+  height: 450px;
+  flex-shrink: 0;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* Grain overlay */
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Slide number indicator */
+.slide-num {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+.slide-num span {
+  width: 6px;
+  height: 6px;
+  background: var(--border);
+}
+.slide-num span.active {
+  background: var(--accent);
+  width: 20px;
+}
+
+/* FP. logo mark */
+.fp-mark {
+  position: absolute;
+  bottom: 48px;
+  left: 36px;
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--dark);
+  z-index: 5;
+}
+.fp-mark .dot { color: var(--accent); }
+
+/* ============================================================
+   SLIDE 1: HOOK
+   ============================================================ */
+.slide-1 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 48px 36px;
+}
+.slide-1 .eyebrow {
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+  position: relative;
+  padding-left: 20px;
+}
+.slide-1 .eyebrow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 8px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.slide-1 h1 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.slide-1 h1 .accent { color: var(--accent); }
+.slide-1 .subtext {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 20px;
+  max-width: 260px;
+}
+.slide-1 .swipe {
+  position: absolute;
+  bottom: 48px;
+  right: 36px;
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.slide-1 .swipe::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ============================================================
+   SLIDE 2: THE PROBLEM (dark slide)
+   ============================================================ */
+.slide-2 {
+  background: var(--dark);
+}
+.slide-2 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 48px 36px;
+}
+.slide-2 h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.slide-2 h2 .accent { color: var(--accent); }
+.slide-2 .problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.slide-2 .problem-list li {
+  font-size: 13px;
+  color: #8888A0;
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+}
+.slide-2 .problem-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+.slide-2 .fp-mark { color: rgba(255,255,255,0.2); }
+
+/* ============================================================
+   SLIDE 3: THE FRAMEWORK (Focus Star, minimal)
+   ============================================================ */
+.slide-3 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 48px 36px;
+}
+.slide-3 .section-label {
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.slide-3 h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+.slide-3 h2 .accent { color: var(--accent); }
+
+.edge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.edge-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.edge-item:first-child { border-top: 1px solid var(--border); }
+.edge-code {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--accent);
+}
+.edge-name {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ============================================================
+   SLIDE 4: PROOF/QUOTE
+   ============================================================ */
+.slide-4 {
+  background: var(--light);
+}
+.slide-4 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 48px 36px;
+}
+.slide-4 blockquote {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  margin-bottom: 24px;
+}
+.slide-4 blockquote .accent { color: var(--accent); }
+.slide-4 cite {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+  padding-left: 23px;
+}
+
+/* ============================================================
+   SLIDE 5: CTA
+   ============================================================ */
+.slide-5 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 48px 36px;
+}
+.slide-5 h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.slide-5 h2 .accent { color: var(--accent); }
+.slide-5 .body-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 240px;
+}
+.slide-5 .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  position: relative;
+}
+/* VF bracket corners on button */
+.slide-5 .cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  --b: 2px;
+  --arm: 33%;
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 0 0 / var(--b) var(--arm) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 100% 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(var(--accent), var(--accent)) 100% 100% / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+.slide-5 .url {
+  position: absolute;
+  bottom: 48px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<p class="label">C01 / Instagram Carousel / 1080 x 1350 (4:5) / 5 slides</p>
+
+<div class="carousel-strip">
+
+
+  <div class="slide slide-1">
+    <div class="content">
+      <span class="eyebrow">Brand Therapy</span>
+      <h1>You don't have a brand problem<span class="accent">.</span><br><br>You have a decision problem<span class="accent">.</span></h1>
+      <p class="subtext">Most brands are not broken. They are unfocused. Here is why.</p>
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <span class="swipe">Swipe</span>
+    <div class="slide-num">
+      <span class="active"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+
+  <div class="slide slide-2">
+    <div class="content">
+      <h2>The symptoms look like a brand problem<span class="accent">.</span></h2>
+      <ul class="problem-list">
+        <li>Everyone on your team describes the company differently</li>
+        <li>Your website says one thing, your pitch says another</li>
+        <li>You keep redesigning but nothing feels right</li>
+        <li>You hired a naming agency. You still can't explain what you do</li>
+      </ul>
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <div class="slide-num">
+      <span></span><span class="active"></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+
+  <div class="slide slide-3">
+    <div class="content">
+      <span class="section-label">The Focus Star</span>
+      <h2>Five edges<span class="accent">.</span> One center<span class="accent">.</span></h2>
+      <div class="edge-list">
+        <div class="edge-item">
+          <span class="edge-code">P1</span>
+          <span class="edge-name">Product</span>
+        </div>
+        <div class="edge-item">
+          <span class="edge-code">P2</span>
+          <span class="edge-name">People</span>
+        </div>
+        <div class="edge-item">
+          <span class="edge-code">P3</span>
+          <span class="edge-name">Purpose</span>
+        </div>
+        <div class="edge-item">
+          <span class="edge-code">P4</span>
+          <span class="edge-name">Personality</span>
+        </div>
+        <div class="edge-item">
+          <span class="edge-code">P5</span>
+          <span class="edge-name">Promise</span>
+        </div>
+      </div>
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <div class="slide-num">
+      <span></span><span></span><span class="active"></span><span></span><span></span>
+    </div>
+  </div>
+
+
+  <div class="slide slide-4">
+    <div class="content">
+      <blockquote>"I came in with twelve talking points. I left with <span class="accent">one sentence</span> that made the rest unnecessary."</blockquote>
+      <cite>Founder, Series A SaaS</cite>
+    </div>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <div class="slide-num">
+      <span></span><span></span><span></span><span class="active"></span><span></span>
+    </div>
+  </div>
+
+
+  <div class="slide slide-5">
+    <div class="content">
+      <h2>Clarity is decided<span class="accent">.</span></h2>
+      <p class="body-text">30-minute intake call. No pitch. Just an honest look at where your brand stands.</p>
+      <button class="cta-btn">Book a call</button>
+    </div>
+    <span class="url">florianp.com</span>
+    <div class="fp-mark">FP<span class="dot">.</span></div>
+    <div class="slide-num">
+      <span></span><span></span><span></span><span></span><span class="active"></span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

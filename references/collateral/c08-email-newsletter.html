@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C08 - Email Headers + Newsletter Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   C08 - EMAIL HEADERS + NEWSLETTER TEMPLATES
+   Header banners (600px wide, email-safe), BTW newsletter
+   layout, welcome email, promotional email.
+   ============================================================ */
+
+:root {
+  --accent: #5A5CF9;
+  --dark: #18181B;
+  --dark-2: #0E0E11;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #8888A0;
+  --border: #E5E7EB;
+  --light: #F5F5F7;
+  --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-b: 'Poppins', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--ff-b);
+  background: #E8E8EC;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ============================================================
+   EMAIL HEADER BANNERS (600px wide, various heights)
+   ============================================================ */
+.header-row { display: flex; flex-direction: column; gap: 16px; }
+
+.email-header {
+  width: 600px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.email-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Header A: BTW newsletter header (dark, compact) */
+.hdr-btw {
+  height: 120px;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  padding: 0 36px;
+  gap: 24px;
+}
+.hdr-btw .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--white);
+}
+.hdr-btw .fp-mark .dot { color: var(--accent); }
+.hdr-btw .divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.08);
+}
+.hdr-btw .title-area {}
+.hdr-btw h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+.hdr-btw .accent { color: var(--accent); }
+.hdr-btw .issue {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-top: 4px;
+}
+/* VF corners */
+.hdr-btw::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  --b: 1px;
+  --arm: 30px;
+  background:
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+
+/* Header B: Article/blog feature (photo + headline) */
+.hdr-article {
+  height: 200px;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
+.hdr-article .text-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 32px;
+}
+.hdr-article .eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.hdr-article h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--white);
+}
+.hdr-article .accent { color: var(--accent); }
+.hdr-article .photo {
+  position: relative;
+  overflow: hidden;
+}
+.hdr-article .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hdr-article .photo::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  --b: 1px;
+  --arm: 22%;
+  background:
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+
+/* Header C: Promo banner (light, with CTA) */
+.hdr-promo {
+  height: 140px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  justify-content: space-between;
+}
+.hdr-promo .text-area {
+  display: flex;
+  flex-direction: column;
+}
+.hdr-promo .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.hdr-promo .fp-mark .dot { color: var(--accent); }
+.hdr-promo h3 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hdr-promo .accent { color: var(--accent); }
+.hdr-promo .sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.hdr-promo .cta {
+  padding: 10px 24px;
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+}
+
+/* ============================================================
+   BTW NEWSLETTER FULL TEMPLATE (600px)
+   ============================================================ */
+.email-template {
+  width: 600px;
+  background: var(--white);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Nav bar */
+.email-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.email-nav .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--dark);
+}
+.email-nav .fp-mark .dot { color: var(--accent); }
+.email-nav .web-link {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+/* Hero section */
+.email-hero {
+  padding: 40px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.email-hero .issue-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.email-hero .issue-label::before {
+  content: '';
+  width: 10px;
+  height: 7px;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+}
+.email-hero h1 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.email-hero .accent { color: var(--accent); }
+.email-hero .intro {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 14px;
+  max-width: 480px;
+}
+
+/* Article section */
+.email-article {
+  padding: 28px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.email-article .art-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.email-article h2 {
+  font-family: var(--ff-h);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.email-article p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.email-article .read-more {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+/* Photo break */
+.email-photo {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+.email-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.email-photo::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  --b: 1px;
+  --arm: 20%;
+  background:
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.3), rgba(90,92,249,0.3)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+
+/* CTA section */
+.email-cta {
+  background: var(--dark);
+  padding: 32px;
+  text-align: center;
+}
+.email-cta h3 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.email-cta .accent { color: var(--accent); }
+.email-cta p {
+  font-size: 12px;
+  color: #8888A0;
+  margin-bottom: 20px;
+}
+.email-cta .cta-btn {
+  display: inline-flex;
+  padding: 10px 28px;
+  font-family: var(--ff-b);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+}
+
+/* Footer */
+.email-footer {
+  padding: 24px 32px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.email-footer .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.email-footer .fp-mark .dot { color: var(--accent); }
+.email-footer .footer-text {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.email-footer .footer-links {
+  margin-top: 10px;
+  font-size: 10px;
+}
+.email-footer .footer-links a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 8px;
+}
+</style>
+</head>
+<body>
+
+
+<div>
+  <p class="section-label">C08a / Email Header Banners / 600px wide / 3 variants</p>
+  <div class="header-row">
+
+    <div class="email-header hdr-btw">
+      <span class="fp-mark">FP<span class="dot">.</span></span>
+      <div class="divider"></div>
+      <div class="title-area">
+        <h2>Brand Therapy Weekly<span class="accent">.</span></h2>
+        <span class="issue">Issue #23 / April 2026</span>
+      </div>
+    </div>
+
+    <div class="email-header hdr-article">
+      <div class="text-area">
+        <span class="eyebrow">This week</span>
+        <h2>Why your team can't agree on what you do<span class="accent">.</span></h2>
+      </div>
+      <div class="photo">
+        <img src="florian-photos/florian-lifestyle-cafe-coffee.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="email-header hdr-promo">
+      <div class="text-area">
+        <span class="fp-mark">FP<span class="dot">.</span></span>
+        <h3>Clarity in 30 minutes<span class="accent">.</span></h3>
+        <p class="sub">Free intake call. No pitch, no commitment.</p>
+      </div>
+      <button class="cta">Book now</button>
+    </div>
+
+  </div>
+</div>
+
+
+<div>
+  <p class="section-label">C08b / BTW Newsletter Template / 600px / Full layout</p>
+
+  <div class="email-template">
+
+    <div class="email-nav">
+      <span class="fp-mark">FP<span class="dot">.</span></span>
+      <span class="web-link">View in browser</span>
+    </div>
+
+    <div class="email-hero">
+      <span class="issue-label">Brand Therapy Weekly #23</span>
+      <h1>The rebrand trap<span class="accent">.</span></h1>
+      <p class="intro">You redesigned the logo. You rewrote the About page. You picked new colors. Six months later, same confusion. Here is why.</p>
+    </div>
+
+    <div class="email-article">
+      <span class="art-eyebrow">This week's observation</span>
+      <h2>Redesigning is not deciding.</h2>
+      <p>Most rebrands fail because they skip the one step that matters: making a decision about what the brand actually is. New visuals on top of old confusion just makes prettier confusion.</p>
+      <p>The Focus Star starts with Product for a reason. If you cannot say what you sell in one sentence without using "we help," the logo is irrelevant.</p>
+      <a href="#" class="read-more">Continue reading</a>
+    </div>
+
+    <div class="email-photo">
+      <img src="florian-photos/florian-consulting-session-mountain.jpg" alt="">
+    </div>
+
+    <div class="email-article">
+      <span class="art-eyebrow">From the field</span>
+      <h2>One sentence that changed a Series A.</h2>
+      <p>A founder came in with twelve talking points and left with one sentence. That sentence went into the pitch deck, the homepage, and every sales call. Three months later, their close rate doubled.</p>
+      <a href="#" class="read-more">Read the case</a>
+    </div>
+
+    <div class="email-cta">
+      <h3>Ready to find your sentence<span class="accent">?</span></h3>
+      <p>30-minute intake call. No pitch. Just clarity.</p>
+      <button class="cta-btn">Book a call</button>
+    </div>
+
+    <div class="email-footer">
+      <span class="fp-mark">FP<span class="dot">.</span></span>
+      <p class="footer-text">Brand Therapy Weekly by Florian Philippe<br>You received this because you subscribed at florianp.com</p>
+      <div class="footer-links">
+        <a href="#">Website</a>
+        <a href="#">Unsubscribe</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

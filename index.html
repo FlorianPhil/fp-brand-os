@@ -1,632 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home · FP Brand OS</title>
+<title>Brand OS Overview · FP Brand OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <style>
-/* ========== HOME PAGE — SPECIFIC STYLES ========== */
-
-/* -- Dark hero block (inside content area) -- */
-.home-hero {
-  background: var(--dark);
-  padding: 96px clamp(40px, 5vw, 72px) 72px;
-  margin: -96px calc(-1 * clamp(48px, 7vw, 120px)) 56px;
-  width: calc(100% + 2 * clamp(48px, 7vw, 120px));
-  position: relative;
-}
-@media (max-width: 960px) {
-  .home-hero {
-    margin: -64px -28px 48px;
-    width: calc(100% + 56px);
-    padding: 56px 28px 48px;
+  /* Per-brand color and typography token overrides.
+     Injected by build.py from IDENTITY.md frontmatter. */
+  :root {
+    --accent: #5A5CF9;
+    --accent-glow: rgba(90, 92, 249, 0.35);
+    --accent-soft: rgba(90, 92, 249, 0.06);
+    --text: #1A1A2E;
+    --muted: #8888A0;
+    --border: #E5E7EB;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --dark: #18181B;
+    --dark-surface: #1D1D1D;
+    --ff-h: "Bricolage Grotesque", system-ui, sans-serif;
+    --ff-b: "Poppins", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
   }
-}
-.home-hero .hero-eyebrow {
-  font-family: var(--ff-b);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 32px;
-  display: block;
-}
-.home-hero h1 {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: clamp(56px, 9vw, 112px);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: #fff;
-  margin: 0 0 24px;
-}
-.home-hero h1 .dot { color: var(--accent); }
-.home-hero .hero-sub {
-  font-family: var(--ff-h);
-  font-weight: 400;
-  font-size: clamp(16px, 2vw, 22px);
-  color: rgba(255,255,255,0.4);
-  line-height: 1.5;
-  max-width: 560px;
-  margin: 0 0 48px;
-}
-.home-hero .hero-pills {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.hero-pill {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  padding: 10px 20px;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.hero-pill strong {
-  color: rgba(255,255,255,0.8);
-  margin-left: 6px;
-}
-
-/* -- Section headers (editorial style) -- */
-.home-section {
-  margin: 0 0 96px;
-}
-.home-section-header {
-  display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 24px;
-  align-items: start;
-  padding-top: 20px;
-  border-top: 1px solid var(--text);
-  margin-bottom: 40px;
-}
-.home-section-num {
-  font-family: var(--ff-b);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  padding-top: 12px;
-}
-.home-section-title {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: clamp(32px, 4.5vw, 56px);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  color: var(--text);
-  margin: 0 0 8px;
-}
-.home-section-sub {
-  font-family: var(--ff-b);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-.home-section-desc {
-  font-family: var(--ff-b);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--text);
-  max-width: 640px;
-  margin: 0;
-}
-
-/* -- TOC section grid -- */
-.toc-section-block {
-  margin-bottom: 40px;
-}
-.toc-section-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
-}
-.toc-section-letter {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-}
-.toc-section-name {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-.toc-section-role {
-  font-family: var(--ff-b);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-left: auto;
-}
-.toc-page-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0;
-  border-left: 1px solid var(--border);
-}
-.toc-page-card {
-  display: flex;
-  flex-direction: column;
-  padding: 28px 24px 24px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--white);
-  text-decoration: none;
-  color: var(--text);
-  position: relative;
-  transition: background 0.3s var(--ease-out-expo);
-}
-.toc-page-card:hover {
-  background: var(--accent-soft);
-}
-.toc-page-card .card-code {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  margin-bottom: 10px;
-}
-.toc-page-card .card-name {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.2;
-  flex: 1;
-}
-.toc-page-card .card-status {
-  font-family: var(--ff-b);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  display: inline-block;
-  align-self: flex-start;
-  margin-top: 8px;
-}
-.card-status.confirmed {
-  color: #2D7D5F;
-  border: 1px solid #2D7D5F;
-  background: rgba(45,125,95,0.06);
-}
-.card-status.draft {
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  background: var(--accent-soft);
-}
-.card-status.active {
-  color: var(--text);
-  border: 1px solid var(--text);
-  background: var(--white);
-}
-.toc-page-card .card-arrow {
-  position: absolute;
-  top: 28px;
-  right: 24px;
-  font-size: 16px;
-  color: var(--muted);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.3s, transform 0.3s var(--ease-out-expo), color 0.3s;
-}
-.toc-page-card:hover .card-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--accent);
-}
-
-/* -- Architecture diagram -- */
-.arch-diagram {
-  margin: 32px 0 48px;
-  position: relative;
-}
-
-/* Source files row */
-.arch-sources {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-bottom: 0;
-}
-.arch-source-box {
-  border: 1px solid var(--border);
-  padding: 24px;
-  background: var(--white);
-  position: relative;
-}
-.arch-source-box .arch-label {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.arch-source-box .arch-filename {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.arch-source-box .arch-meta {
-  font-family: var(--ff-b);
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* Flow connectors */
-.arch-flow-down {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-  position: relative;
-}
-.arch-flow-line {
-  width: 2px;
-  height: 40px;
-  background: var(--accent);
-  position: relative;
-}
-.arch-flow-line::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 8px solid var(--accent);
-}
-.arch-flow-merge {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  position: relative;
-  height: 40px;
-}
-.arch-flow-merge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 25%;
-  right: 25%;
-  height: 1px;
-  background: var(--accent);
-}
-.arch-flow-merge .arch-flow-line {
-  height: 40px;
-}
-/* Left and right vertical stubs from the horizontal merge bar */
-.arch-flow-merge .stub-left,
-.arch-flow-merge .stub-right {
-  position: absolute;
-  top: 0;
-  width: 2px;
-  height: 12px;
-  background: var(--accent);
-}
-.arch-flow-merge .stub-left { left: 25%; }
-.arch-flow-merge .stub-right { right: 25%; }
-.arch-flow-merge .stub-mid {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 12px;
-  background: var(--accent);
-  transform: translateX(-50%);
-}
-
-/* Processor box */
-.arch-processor {
-  border: 2px solid var(--accent);
-  padding: 20px 28px;
-  background: var(--accent-soft);
-  text-align: center;
-  max-width: 280px;
-  margin: 0 auto;
-}
-.arch-processor .arch-label {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.arch-processor .arch-filename {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-/* Fan-out connector */
-.arch-fanout {
-  position: relative;
-  height: 48px;
-  margin: 0;
-}
-.arch-fanout .fanout-stem {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 2px;
-  height: 24px;
-  background: var(--accent);
-  transform: translateX(-50%);
-}
-.arch-fanout .fanout-bar {
-  position: absolute;
-  top: 24px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: var(--accent);
-}
-.arch-fanout .fanout-drop {
-  position: absolute;
-  top: 24px;
-  width: 2px;
-  height: 18px;
-  background: var(--accent);
-}
-.arch-fanout .fanout-drop::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid var(--accent);
-}
-.arch-fanout .drop-1 { left: 10%; }
-.arch-fanout .drop-2 { left: 30%; }
-.arch-fanout .drop-3 { left: 50%; transform: translateX(-50%); }
-.arch-fanout .drop-4 { right: 30%; }
-.arch-fanout .drop-5 { right: 10%; }
-
-/* Output grid */
-.arch-outputs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-}
-.arch-output-box {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 16px;
-  background: var(--white);
-  text-align: center;
-}
-.arch-output-box .out-name {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 4px;
-  line-height: 1.2;
-}
-.arch-output-box .out-ext {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-
-/* Final output row */
-.arch-final {
-  margin-top: 0;
-}
-.arch-final-flow {
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-}
-.arch-final-box {
-  border: 1px solid var(--text);
-  padding: 28px 32px;
-  background: var(--dark);
-  text-align: center;
-}
-.arch-final-box .arch-label {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-.arch-final-box .arch-filename {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: -0.01em;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.arch-final-box .arch-meta {
-  font-family: var(--ff-b);
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-}
-
-/* Feedback loop */
-.arch-loop {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
-  padding: 16px 24px;
-  border: 1px dashed var(--border);
-  background: var(--accent-soft);
-}
-.arch-loop-icon {
-  font-size: 18px;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-.arch-loop-text {
-  font-family: var(--ff-b);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-.arch-loop-text strong {
-  font-weight: 600;
-  color: var(--accent);
-}
-
-@media (max-width: 700px) {
-  .arch-sources { grid-template-columns: 1fr; }
-  .arch-outputs { grid-template-columns: repeat(2, 1fr); }
-  .arch-flow-merge::before { left: 10%; right: 10%; }
-  .arch-flow-merge .stub-left { left: 10%; }
-  .arch-flow-merge .stub-right { right: 10%; }
-  .arch-flow-merge .stub-mid { display: none; }
-}
-
-/* -- Quick stats grid -- */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--text);
-  border-left: 1px solid var(--border);
-  margin: 32px 0 48px;
-}
-.stat-cell {
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  padding: 28px 24px;
-  background: var(--white);
-}
-.stat-cell .stat-number {
-  font-family: var(--ff-h);
-  font-weight: 800;
-  font-size: 40px;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-.stat-cell .stat-label {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.stat-cell.accent-stat .stat-number {
-  color: var(--accent);
-}
-
-/* -- Links grid -- */
-.links-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  margin: 32px 0 48px;
-}
-@media (max-width: 600px) {
-  .links-grid { grid-template-columns: 1fr; }
-}
-.link-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--white);
-  text-decoration: none;
-  color: var(--text);
-  transition: background 0.3s var(--ease-out-expo), padding-left 0.3s var(--ease-out-expo);
-}
-.link-card:hover {
-  background: var(--accent-soft);
-  padding-left: 32px;
-}
-.link-card .link-icon {
-  font-family: var(--ff-b);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  flex-shrink: 0;
-  min-width: 48px;
-}
-.link-card .link-name {
-  font-family: var(--ff-h);
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  flex: 1;
-}
-.link-card .link-path {
-  font-family: var(--ff-b);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-}
-.link-card .link-arrow {
-  font-size: 16px;
-  color: var(--muted);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.3s, transform 0.3s var(--ease-out-expo), color 0.3s;
-  flex-shrink: 0;
-}
-.link-card:hover .link-arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--accent);
-}
 </style>
 </head>
 <body class="grain">
@@ -637,292 +39,116 @@
     <div class="name">FP<span class="dot">.</span></div>
     <div class="meta">Brand OS</div>
   </div>
-
   <div class="nav-section">
     <div class="label">Sections</div>
-
-    <details class="nav-group" open>
-      <summary><span class="group-letter">&middot;</span><span class="group-label">Overview</span></summary>
-      <div class="nav-list"><a href="index.html" class="active">Home</a></div>
-    </details>
-
-    <details class="nav-group">
-      <summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary>
-      <div class="nav-list">
-        <a href="focus-star.html">The 5 Ps</a>
-        <a href="product.html">Product</a>
-        <a href="people.html">People</a>
-        <a href="purpose.html">Purpose</a>
-        <a href="promise.html">Promise</a>
-        <a href="personality.html">Personality</a>
-      </div>
-    </details>
-
-    <details class="nav-group">
-      <summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary>
-      <div class="nav-list">
-        <a href="creative-direction.html">Creative Direction</a>
-        <a href="visual.html">Look &amp; Feel</a>
-        <a href="voice.html">Voice</a>
-        <a href="signature.html">Signature</a>
-      </div>
-    </details>
-
-    <details class="nav-group">
-      <summary><span class="group-letter">C</span><span class="group-label">Application</span></summary>
-      <div class="nav-list">
-        <a href="application.html">Copy Patterns</a>
-      </div>
-    </details>
-
-    <details class="nav-group">
-      <summary><span class="group-letter">D</span><span class="group-label">Personal Branding</span></summary>
-      <div class="nav-list">
-        <a href="founder-identity.html">Founder Identity</a>
-        <a href="background.html">Background</a>
-        <a href="imagery.html">Imagery</a>
-      </div>
-    </details>
-    </div>
-
+    <div class="nav-list">
+<a class="active" href="index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="strategy/index.html">Focus Star</a>
+<a href="strategy/product.html">Product</a>
+<a href="strategy/people.html">People</a>
+<a href="strategy/purpose.html">Purpose</a>
+<a href="strategy/promise.html">Promise</a>
+<a href="strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a href="identity/index.html">Creative Direction</a>
+<a href="identity/look-and-feel.html">Look &amp; Feel</a>
+<a href="identity/voice.html">Voice</a>
+<a href="identity/signature.html">Signature</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">C</span><span class="group-label">Brand Application</span></summary><div class="nav-list">
+<a href="application/index.html">Application Overview</a>
+<a href="application/references.html">Reference Gallery</a>
+<a href="application/channel-rules.html">Channel Rules</a>
+</div></details>
+  </div>
   <div class="toolbar-mini">
-    <div class="row"><span>Source</span><strong>Notion row</strong></div>
-    <div class="row"><span>Updated</span><strong>2026-05-06</strong></div>
+    <div class="row"><span>Section</span><strong>Overview</strong></div>
+    <div class="row"><span>Use</span><strong>AI-first system</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
   </div>
 </aside>
 
 <main class="content">
 
-  <div class="home-hero">
-    <span class="hero-eyebrow">Florian P. Consulting</span>
-    <h1>Brand OS<span class="dot">.</span></h1>
-    <p class="hero-sub">The Focus Star is the strategy spine. Start with the five decisions, then use Creative Direction as the expression layer.</p>
+<style>
+/* Home/compass page styles, ported from brand-os/os/index.html inline block. */
+.home-hero { background: var(--dark); padding: 96px clamp(40px,5vw,72px) 72px; margin: -96px calc(-1 * clamp(48px,7vw,120px)) 56px; width: calc(100% + 2 * clamp(48px,7vw,120px)); position: relative; }
+@media (max-width: 960px) { .home-hero { margin: -64px -28px 48px; width: calc(100% + 56px); padding: 56px 28px 48px; } }
+.home-hero .hero-eyebrow { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; display: block; }
+.home-hero h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(56px,9vw,112px); line-height: 0.92; letter-spacing: -0.04em; color: #fff; margin: 0 0 24px; }
+.home-hero h1 .dot { color: var(--accent); }
+.home-hero .hero-sub { font-family: var(--ff-h); font-weight: 400; font-size: clamp(16px,2vw,22px); color: rgba(255,255,255,0.4); line-height: 1.5; max-width: 560px; margin: 0 0 48px; }
+.home-hero .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 10px 20px; border: 1px solid rgba(255,255,255,0.1); }
+.hero-pill strong { color: rgba(255,255,255,0.8); margin-left: 6px; }
+.home-section { margin: 0 0 96px; }
+.home-section-header { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 40px; }
+.home-section-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.home-section-title { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px,4.5vw,56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 8px; }
+.home-section-title .dot { color: var(--accent); }
+.home-section-sub { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.home-section-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 640px; margin: 0; }
+.toc-page-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-left: 1px solid var(--border); }
+.toc-page-card { display: flex; flex-direction: column; padding: 28px 24px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); text-decoration: none; color: var(--text); position: relative; transition: background 0.3s var(--ease-out-expo); }
+.toc-page-card:hover { background: var(--accent-soft); }
+.toc-page-card .card-code { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 10px; }
+.toc-page-card .card-name { font-family: var(--ff-h); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; line-height: 1.2; flex: 1; }
+.toc-page-card .card-name .dot { color: var(--accent); }
+.toc-page-card p { font-family: var(--ff-b); font-size: 13px; line-height: 1.6; color: var(--text); margin: 0 0 16px; }
+.toc-page-card .card-status { font-family: var(--ff-b); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 8px; display: inline-block; align-self: flex-start; color: var(--muted); border: 1px solid var(--border); }
+</style>
+<style>
+.flow-band { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); margin: 32px 0 0; }
+.flow-row { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.flow-row .flow-step { font-family: var(--ff-h); font-weight: 800; font-size: 34px; line-height: 1; color: var(--accent); }
+.flow-row h3 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(22px,2.4vw,30px); line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin: 0 0 8px; }
+.flow-row p { font-family: var(--ff-b); font-size: 14px; line-height: 1.65; color: var(--text); max-width: 720px; margin: 0; }
+@media (max-width: 720px) { .flow-row { grid-template-columns: 1fr; gap: 10px; } }
+</style>
+  <section class="home-hero">
+    <span class="hero-eyebrow">Brand OS · AI-first source system</span>
+    <h1>Florian P. Consulting Brand OS<span class="dot">.</span></h1>
+    <p class="hero-sub">One source thread: strategy decides, identity translates, application proves. Generated work is downstream until the source is approved.</p>
     <div class="hero-pills">
-      <div class="hero-pill">Start <strong>Focus Star</strong></div>
-      <div class="hero-pill">Promise <strong>Curiosity</strong></div>
-      <div class="hero-pill">State <strong>Ready to review</strong></div>
+      <div class="hero-pill">Source<strong>A → B → C</strong></div>
+      <div class="hero-pill">Mode<strong>AI-first</strong></div>
+      <div class="hero-pill">Review<strong>Sequential</strong></div>
     </div>
-  </div>
+  </section>
 
-
-  <div class="home-section">
+  <section class="home-section">
     <div class="home-section-header">
-      <div class="home-section-num">01</div>
+      <div class="home-section-num">THREAD</div>
       <div>
-        <div class="home-section-sub">Start here</div>
-        <h2 class="home-section-title">The two pages that matter first<span class="dot">.</span></h2>
+        <h2 class="home-section-title">How the system works<span class="dot">.</span></h2>
+        <p class="home-section-sub">Source of truth to generated output</p>
+        <p class="home-section-desc">The goal is not another static brand book. The goal is a compact source system that can generate a website direction, collateral, copy, and channel rules from approved strategic decisions.</p>
       </div>
     </div>
-    <p class="home-section-desc">The Brand OS is not a page collection to admire. It is a decision system. Section A defines the strategy. Section B translates it into creative direction.</p>
+    <div class="flow-band"><div class="flow-row"><div class="flow-step">A</div><div><h3>Strategy contract<span class="dot">.</span></h3><p>Focus Star turns the strategy into decisions an AI can reuse without re-interpreting the brand.</p></div></div><div class="flow-row"><div class="flow-step">B1</div><div><h3>Creative direction<span class="dot">.</span></h3><p>Style sliders, archetypes, moodboard, type, color, and signature device translate strategy into a first visual direction.</p></div></div><div class="flow-row"><div class="flow-step">B2</div><div><h3>Identity rules<span class="dot">.</span></h3><p>Look, feel, voice, and signature rules tighten the selected direction into reusable constraints.</p></div></div><div class="flow-row"><div class="flow-step">C</div><div><h3>Application references<span class="dot">.</span></h3><p>Examples and channel rules show how the approved strategy and identity behave in real formats.</p></div></div></div>
+  </section>
 
-    <div class="links-grid">
-      <a href="focus-star.html" class="link-card">
-        <span class="link-icon">A</span>
-        <span class="link-name">Focus Star</span>
-        <span class="link-path">Strategy spine</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-      <a href="creative-direction.html" class="link-card">
-        <span class="link-icon">&star;</span>
-        <span class="link-name">Creative Direction</span>
-        <span class="link-path">Expression layer</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="home-section">
+  <section class="home-section">
     <div class="home-section-header">
-      <div class="home-section-num">02</div>
+      <div class="home-section-num">REVIEW</div>
       <div>
-        <div class="home-section-sub">Section A &middot; Brand Strategy</div>
-        <h2 class="home-section-title">Focus Star pages<span class="dot">.</span></h2>
+        <h2 class="home-section-title">Review order<span class="dot">.</span></h2>
+        <p class="home-section-sub">Do not inspect everything at once</p>
+        <p class="home-section-desc">Approve the upstream decision layer first, then the identity translation, then application examples. If a downstream page reveals a better decision, edit the source and rebuild.</p>
       </div>
     </div>
-    <p class="home-section-desc">These pages hold the compact strategy source for AI, copy, creative direction, website decisions, and future client-facing outputs.</p>
+    <div class="toc-page-grid"><a class="toc-page-card" href="strategy/index.html"><div class="card-code">A</div><div class="card-name">Strategy contract<span class="dot">.</span></div><p>Focus Star turns the strategy into decisions an AI can reuse without re-interpreting the brand.</p><div class="card-status">Source: STRATEGY.md</div></a><a class="toc-page-card" href="identity/index.html"><div class="card-code">B1</div><div class="card-name">Creative direction<span class="dot">.</span></div><p>Style sliders, archetypes, moodboard, type, color, and signature device translate strategy into a first visual direction.</p><div class="card-status">Source: IDENTITY.md</div></a><a class="toc-page-card" href="identity/look-and-feel.html"><div class="card-code">B2</div><div class="card-name">Identity rules<span class="dot">.</span></div><p>Look, feel, voice, and signature rules tighten the selected direction into reusable constraints.</p><div class="card-status">Source: IDENTITY.md + references</div></a><a class="toc-page-card" href="application/references.html"><div class="card-code">C</div><div class="card-name">Application references<span class="dot">.</span></div><p>Examples and channel rules show how the approved strategy and identity behave in real formats.</p><div class="card-status">Source: APPLICATION.md + CHANNELS.md</div></a></div>
+  </section>
 
-    <div class="toc-section-block">
-      <div class="toc-section-label">
-        <span class="toc-section-letter">A</span>
-        <span class="toc-section-name">Brand Strategy</span>
-        <span class="toc-section-role">Focus Star</span>
-      </div>
-      <div class="toc-page-grid">
-        <a href="focus-star.html" class="toc-page-card">
-          <div class="card-name">The 5 Ps Compass</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="product.html" class="toc-page-card">
-          <div class="card-name">Product</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="people.html" class="toc-page-card">
-          <div class="card-name">People</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="purpose.html" class="toc-page-card">
-          <div class="card-name">Purpose</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="promise.html" class="toc-page-card">
-          <div class="card-name">Promise</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="personality.html" class="toc-page-card">
-          <div class="card-name">Personality</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-      </div>
-    </div>
+
+  <div class="footer-nav">
+    <span>Brand OS · Overview</span>
+    <span><a href="strategy/index.html">Brand Strategy →</a></span>
   </div>
-
-  <div class="home-section">
-    <div class="home-section-header">
-      <div class="home-section-num">03</div>
-      <div>
-        <div class="home-section-sub">Remaining system</div>
-        <h2 class="home-section-title">Use after Section A<span class="dot">.</span></h2>
-      </div>
-    </div>
-    <p class="home-section-desc">These pages are supporting layers. They should answer to the Focus Star, not compete with it.</p>
-
-    <div class="toc-section-block">
-      <div class="toc-section-label">
-        <span class="toc-section-letter">B</span>
-        <span class="toc-section-name">Brand Identity</span>
-        <span class="toc-section-role">Expression</span>
-      </div>
-      <div class="toc-page-grid">
-        <a href="creative-direction.html" class="toc-page-card">
-          <div class="card-name">Creative Direction</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="visual.html" class="toc-page-card">
-          <div class="card-name">Look &amp; Feel</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="voice.html" class="toc-page-card">
-          <div class="card-name">Voice</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="signature.html" class="toc-page-card">
-          <div class="card-name">Signature</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="toc-section-block">
-      <div class="toc-section-label">
-        <span class="toc-section-letter">C</span>
-        <span class="toc-section-name">Application</span>
-        <span class="toc-section-role">Execution</span>
-      </div>
-      <div class="toc-page-grid">
-        <a href="application.html" class="toc-page-card">
-          <div class="card-name">Copy Patterns</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="toc-section-block">
-      <div class="toc-section-label">
-        <span class="toc-section-letter">D</span>
-        <span class="toc-section-name">Personal Branding</span>
-        <span class="toc-section-role">Position 5</span>
-      </div>
-      <div class="toc-page-grid">
-        <a href="founder-identity.html" class="toc-page-card">
-          <div class="card-name">Founder Identity</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="background.html" class="toc-page-card">
-          <div class="card-name">Background</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-        <a href="imagery.html" class="toc-page-card">
-          <div class="card-name">Imagery</div>
-          <span class="card-arrow">&rarr;</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="home-section">
-    <div class="home-section-header">
-      <div class="home-section-num">04</div>
-      <div>
-        <div class="home-section-sub">AI operating use</div>
-        <h2 class="home-section-title">What the OS controls<span class="dot">.</span></h2>
-      </div>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-cell accent-stat">
-        <div class="stat-number">5</div>
-        <div class="stat-label">Strategy decisions</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-number">1</div>
-        <div class="stat-label">Compass center</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-number">AI</div>
-        <div class="stat-label">Prompt direction</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-number">No</div>
-        <div class="stat-label">Unsourced claims</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="home-section">
-    <div class="home-section-header">
-      <div class="home-section-num">05</div>
-      <div>
-        <div class="home-section-sub">Reference</div>
-        <h2 class="home-section-title">System links<span class="dot">.</span></h2>
-      </div>
-    </div>
-
-    <div class="links-grid">
-      <a href="https://github.com/FlorianPhil/fp-brand-os" class="link-card" target="_blank" rel="noopener">
-        <span class="link-icon">REPO</span>
-        <span class="link-name">GitHub Repository</span>
-        <span class="link-path">FlorianPhil/fp-brand-os</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-      <a href="https://www.notion.so/358c22dccbf98141bc3ac16ad95274df" class="link-card" target="_blank" rel="noopener">
-        <span class="link-icon">DB</span>
-        <span class="link-name">Notion source row</span>
-        <span class="link-path">Notion Brands</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-      <a href="creative-direction.html" class="link-card">
-        <span class="link-icon">&star;</span>
-        <span class="link-name">Creative Direction</span>
-        <span class="link-path">Design benchmark</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-      <a href="focus-star.html" class="link-card">
-        <span class="link-icon">A</span>
-        <span class="link-name">The 5 Ps Compass</span>
-        <span class="link-path">Start here</span>
-        <span class="link-arrow">&rarr;</span>
-      </a>
-    </div>
-  </div>
-
-
-  <footer class="page-footer">
-    <span><a href="focus-star.html">Begin with Brand Strategy &rarr;</a></span>
-    <span>Brand OS &middot; Focus Star first</span>
-    <span><a href="https://github.com/FlorianPhil/fp-brand-os" target="_blank" rel="noopener">GitHub &rarr;</a></span>
-  </footer>
-
 </main>
-
 </div>
+
+
+
 </body>
 </html>

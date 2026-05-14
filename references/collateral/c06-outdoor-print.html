@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C06 - Outdoor + Print Ad Creatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   C06 - OUTDOOR + PRINT AD CREATIVES
+   Billboard (48-sheet: ~3:1), Bus shelter (portrait),
+   Airport lounge banner, Full-page magazine, Half-page
+   magazine. All pure creative, Gemini mockups separate.
+   ============================================================ */
+
+:root {
+  --accent: #5A5CF9;
+  --dark: #18181B;
+  --dark-2: #0E0E11;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #8888A0;
+  --border: #E5E7EB;
+  --light: #F5F5F7;
+  --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
+  --ff-b: 'Poppins', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--ff-b);
+  background: #E8E8EC;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Grain */
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ============================================================
+   1. BILLBOARD (48-sheet, ~3:1, shown at 900x300)
+   Read at distance. Maximum 7 words. Logo, one line, URL.
+   ============================================================ */
+.billboard {
+  width: 900px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+/* Billboard A: Dark, pure type, maximum impact */
+.bb-a {
+  background: var(--dark-2);
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+}
+.bb-a .left {
+  flex: 1;
+}
+.bb-a h1 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+.bb-a .accent { color: var(--accent); }
+.bb-a .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.bb-a .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 36px;
+  color: var(--white);
+}
+.bb-a .fp-mark .dot { color: var(--accent); }
+.bb-a .url {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.3);
+}
+/* Subtle VF corners */
+.bb-a::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  --b: 1px;
+  --arm: 60px;
+  background:
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.15), rgba(90,92,249,0.15)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+
+/* Billboard B: White, with photo strip accent */
+.bb-b {
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 160px;
+}
+.bb-b .text-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 48px;
+}
+.bb-b .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+.bb-b .fp-mark .dot { color: var(--accent); }
+.bb-b h1 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+.bb-b .accent { color: var(--accent); }
+.bb-b .url {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+}
+.bb-b .photo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bb-b .photo-col img {
+  flex: 1;
+  object-fit: cover;
+  width: 100%;
+  min-height: 0;
+}
+
+/* ============================================================
+   2. BUS SHELTER (portrait, ~2:3, shown at 300x450)
+   ============================================================ */
+.bus-row { display: flex; gap: 20px; }
+
+.bus-shelter {
+  width: 300px;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.1);
+}
+
+/* Bus A: Dark, photo bottom */
+.bus-a {
+  background: var(--dark-2);
+  display: flex;
+  flex-direction: column;
+}
+.bus-a .text-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px;
+}
+.bus-a .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.bus-a .fp-mark .dot { color: var(--accent); }
+.bus-a h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.bus-a .accent { color: var(--accent); }
+.bus-a .url {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.25);
+  margin-top: 16px;
+  letter-spacing: 0.06em;
+}
+.bus-a .photo-bottom {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+}
+.bus-a .photo-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bus-a .photo-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(var(--dark-2), transparent);
+  z-index: 2;
+}
+
+/* Bus B: White, type-only with accent line */
+.bus-b {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 28px;
+}
+.bus-b .eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 16px;
+}
+.bus-b .eyebrow::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 9px;
+  height: 6px;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+}
+.bus-b h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.bus-b .accent { color: var(--accent); }
+.bus-b .sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 14px;
+  max-width: 220px;
+}
+.bus-b .bottom {
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bus-b .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--dark);
+}
+.bus-b .fp-mark .dot { color: var(--accent); }
+.bus-b .url {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   3. FULL-PAGE MAGAZINE AD (portrait, ~8.5x11, shown at 340x440)
+   ============================================================ */
+.mag-row { display: flex; gap: 20px; }
+
+.magazine {
+  width: 340px;
+  height: 440px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.1);
+}
+
+/* Mag A: Photo dominant with text band */
+.mag-a {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+}
+.mag-a .photo-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.mag-a .photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mag-a .photo-area::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  --b: 2px;
+  --arm: 30%;
+  background:
+    linear-gradient(rgba(90,92,249,0.35), rgba(90,92,249,0.35)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.35), rgba(90,92,249,0.35)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.35), rgba(90,92,249,0.35)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.35), rgba(90,92,249,0.35)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+  z-index: 2;
+}
+.mag-a .text-band {
+  padding: 20px 24px;
+  background: var(--white);
+}
+.mag-a .text-band h3 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.mag-a .accent { color: var(--accent); }
+.mag-a .text-band .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mag-a .text-band .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--dark);
+}
+.mag-a .text-band .fp-mark .dot { color: var(--accent); }
+.mag-a .text-band .url {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* Mag B: Editorial, type-heavy, white */
+.mag-b {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 36px 28px;
+}
+.mag-b .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+.mag-b .fp-mark .dot { color: var(--accent); }
+.mag-b .line { width: 40px; height: 1px; background: var(--accent); margin-bottom: 24px; }
+.mag-b h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.mag-b .accent { color: var(--accent); }
+.mag-b .body-copy {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 260px;
+}
+.mag-b .edge-strip {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+}
+.mag-b .edge-chip {
+  padding: 6px 12px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-right: none;
+  color: var(--muted);
+}
+.mag-b .edge-chip:last-child { border-right: 1px solid var(--border); }
+.mag-b .edge-chip.highlighted {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.mag-b .photo-inline {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+.mag-b .photo-inline img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mag-b .bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+.mag-b .cta-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.mag-b .url {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   4. AIRPORT BANNER (long horizontal, ~6:1, shown at 900x150)
+   ============================================================ */
+.airport {
+  width: 900px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  background: var(--dark-2);
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+}
+.airport .fp-mark {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--white);
+  margin-right: 40px;
+}
+.airport .fp-mark .dot { color: var(--accent); }
+.airport .divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255,255,255,0.08);
+  margin-right: 40px;
+}
+.airport h2 {
+  font-family: var(--ff-h);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  flex: 1;
+}
+.airport .accent { color: var(--accent); }
+.airport .right-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-left: 40px;
+}
+.airport .cta-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--white);
+  padding: 8px 20px;
+}
+.airport .url {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.04em;
+}
+/* VF corners */
+.airport::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  --b: 1px;
+  --arm: 40px;
+  background:
+    linear-gradient(rgba(90,92,249,0.12), rgba(90,92,249,0.12)) 0 100% / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.12), rgba(90,92,249,0.12)) 0 100% / var(--b) var(--arm) no-repeat,
+    linear-gradient(rgba(90,92,249,0.12), rgba(90,92,249,0.12)) 100% 0 / var(--arm) var(--b) no-repeat,
+    linear-gradient(rgba(90,92,249,0.12), rgba(90,92,249,0.12)) 100% 0 / var(--b) var(--arm) no-repeat;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+
+<div>
+  <p class="section-label">C06a / Billboard (48-sheet) / ~3:1 / 2 variants</p>
+  <div style="display:flex;flex-direction:column;gap:16px;">
+
+    <div class="billboard panel bb-a">
+      <div class="left">
+        <h1>Your brand isn't broken. It's unfocused<span class="accent">.</span></h1>
+      </div>
+      <div class="right">
+        <span class="fp-mark">FP<span class="dot">.</span></span>
+        <span class="url">florianp.com</span>
+      </div>
+    </div>
+
+    <div class="billboard panel bb-b">
+      <div class="text-area">
+        <span class="fp-mark">FP<span class="dot">.</span></span>
+        <h1>Clarity is decided<span class="accent">.</span></h1>
+        <span class="url">florianp.com</span>
+      </div>
+      <div class="photo-col">
+        <img src="florian-photos/florian-editorial-atrium-blue.jpg" alt="">
+        <img src="florian-photos/florian-consulting-session-mountain.jpg" alt="">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div>
+  <p class="section-label">C06b / Bus Shelter / Portrait / 2 variants</p>
+  <div class="bus-row">
+    <div class="bus-shelter panel bus-a">
+      <div class="text-area">
+        <span class="fp-mark">FP<span class="dot">.</span></span>
+        <h2>Your competitors are not the threat<span class="accent">.</span><br><br>Your own confusion is<span class="accent">.</span></h2>
+        <span class="url">florianp.com</span>
+      </div>
+      <div class="photo-bottom">
+        <img src="florian-photos/florian-working-laptop-sunlit.jpg" alt="">
+      </div>
+    </div>
+    <div class="bus-shelter panel bus-b">
+      <span class="eyebrow">Brand Therapy</span>
+      <h2>Can you explain what you do in one sentence<span class="accent">?</span></h2>
+      <p class="sub">Most founders can't. That is not a copywriting problem. That is a clarity problem.</p>
+      <div class="bottom">
+        <span class="fp-mark">FP<span class="dot">.</span></span>
+        <span class="url">florianp.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <p class="section-label">C06c / Full-Page Magazine Ad / 2 variants</p>
+  <div class="mag-row">
+
+    <div class="magazine panel mag-a">
+      <div class="photo-area">
+        <img src="florian-photos/florian-portrait-formal-dark.jpg" alt="">
+      </div>
+      <div class="text-band">
+        <h3>Brand Therapy<span class="accent">.</span> Clarity for founders.</h3>
+        <div class="meta">
+          <span class="fp-mark">FP<span class="dot">.</span></span>
+          <span class="url">florianp.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="magazine panel mag-b">
+      <span class="fp-mark">FP<span class="dot">.</span></span>
+      <div class="line"></div>
+      <h2>Five questions<span class="accent">.</span><br>One framework<span class="accent">.</span><br>Zero opinions<span class="accent">.</span></h2>
+      <p class="body-copy">Brand Therapy is a guided clarity process for founders and executives who are done collecting opinions and ready to commit.</p>
+      <div class="edge-strip">
+        <span class="edge-chip">Product</span>
+        <span class="edge-chip">People</span>
+        <span class="edge-chip highlighted">Purpose</span>
+        <span class="edge-chip">Personality</span>
+        <span class="edge-chip">Promise</span>
+      </div>
+      <div class="photo-inline">
+        <img src="florian-photos/florian-lifestyle-sofa-lobby.jpg" alt="">
+      </div>
+      <div class="bottom-bar">
+        <span class="cta-text">Book an intake call</span>
+        <span class="url">florianp.com</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div>
+  <p class="section-label">C06d / Airport Lounge Banner / ~6:1</p>
+  <div class="airport panel">
+    <span class="fp-mark">FP<span class="dot">.</span></span>
+    <div class="divider"></div>
+    <h2>Your brand is not broken<span class="accent">.</span> It is unfocused<span class="accent">.</span></h2>
+    <div class="right-area">
+      <span class="cta-text">florianp.com</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

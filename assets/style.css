@@ -328,7 +328,7 @@ code {
 
 /* ---------- Viewfinder brackets, the FP signature ---------- */
 /* DEFAULT: 2-corner (top-right + bottom-left). Brand standard.
-   4-corner is ONLY for buttons (.vf-btn). Never on photos. */
+   Button decoration is not a viewfinder signature mode. */
 .vf-frame {
   position: relative;
   --vf-arm: 64px;
@@ -397,15 +397,15 @@ code {
   height: var(--vf-arm-h);
 }
 .vf-hero::before {
-  top: var(--top);
-  right: var(--right);
+  top: calc(var(--top) - var(--vf-thick));
+  right: calc(var(--right) - var(--vf-thick));
   background:
     linear-gradient(var(--accent), var(--accent)) 100% 0 / 100% var(--vf-thick) no-repeat,
     linear-gradient(var(--accent), var(--accent)) 100% 0 / var(--vf-thick) 100% no-repeat;
 }
 .vf-hero::after {
-  bottom: var(--bottom);
-  left: var(--left);
+  bottom: calc(var(--bottom) - var(--vf-thick));
+  left: calc(var(--left) - var(--vf-thick));
   background:
     linear-gradient(var(--accent), var(--accent)) 0 100% / 100% var(--vf-thick) no-repeat,
     linear-gradient(var(--accent), var(--accent)) 0 100% / var(--vf-thick) 100% no-repeat;
@@ -458,7 +458,7 @@ code {
     linear-gradient(var(--accent), var(--accent)) 0 0 / var(--vf-thick) 100% no-repeat;
 }
 
-/* ---------- Viewfinder buttons ---------- */
+/* ---------- Legacy CTA buttons, not a viewfinder signature mode ---------- */
 .vf-btn {
   position: relative;
   display: inline-flex; align-items: center;

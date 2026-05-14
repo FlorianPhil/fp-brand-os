@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Direction · FP Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Per-brand color and typography token overrides.
+     Injected by build.py from IDENTITY.md frontmatter. */
+  :root {
+    --accent: #5A5CF9;
+    --accent-glow: rgba(90, 92, 249, 0.35);
+    --accent-soft: rgba(90, 92, 249, 0.06);
+    --text: #1A1A2E;
+    --muted: #8888A0;
+    --border: #E5E7EB;
+    --light: #F5F5F7;
+    --white: #FFFFFF;
+    --dark: #18181B;
+    --dark-surface: #1D1D1D;
+    --ff-h: "Bricolage Grotesque", system-ui, sans-serif;
+    --ff-b: "Poppins", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">FP<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="" href="../index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="../strategy/index.html">Focus Star</a>
+<a href="../strategy/product.html">Product</a>
+<a href="../strategy/people.html">People</a>
+<a href="../strategy/purpose.html">Purpose</a>
+<a href="../strategy/promise.html">Promise</a>
+<a href="../strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a class="active" href="index.html">Creative Direction</a>
+<a href="look-and-feel.html">Look &amp; Feel</a>
+<a href="voice.html">Voice</a>
+<a href="signature.html">Signature</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">C</span><span class="group-label">Brand Application</span></summary><div class="nav-list">
+<a href="../application/index.html">Application Overview</a>
+<a href="../application/references.html">Reference Gallery</a>
+<a href="../application/channel-rules.html">Channel Rules</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Identity</strong></div>
+    <div class="row"><span>Use</span><strong>Visual + voice</strong></div>
+    <div class="row"><span>Center</span><strong>Curiosity</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+/* Section B Creative Direction styles. CSS variables only; no hardcoded brand values. */
+.cd-step { margin: 0 0 96px; }
+.cd-step-header { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 40px; }
+.cd-step-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.cd-step-title { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px, 4.5vw, 56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 8px; }
+.cd-step-sub { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.cd-step-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 640px; margin: 0; }
+.cd-step-title .dot { color: var(--accent); }
+
+.archetype-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); margin: 32px 0 48px; }
+.archetype-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 28px 32px; text-align: center; background: var(--white); position: relative; }
+.archetype-card.primary { background: var(--accent-soft); }
+.archetype-card img { width: 96px; height: 96px; object-fit: contain; margin: 0 auto 24px; }
+.archetype-pct { font-family: var(--ff-h); font-weight: 800; font-size: 48px; letter-spacing: -0.03em; line-height: 1; color: var(--text); margin-bottom: 4px; }
+.archetype-card.primary .archetype-pct { color: var(--accent); }
+.archetype-name { font-family: var(--ff-h); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; }
+.archetype-role { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.archetype-bar { height: 4px; background: var(--border); margin-top: 20px; }
+.archetype-bar-fill { height: 100%; background: var(--accent); }
+
+.slider-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); margin: 32px 0 48px; }
+@media (max-width: 700px) { .slider-grid { grid-template-columns: 1fr; } }
+.slider-row { display: grid; grid-template-columns: 90px 1fr 90px; align-items: center; gap: 12px; padding: 14px 20px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); }
+.slider-label { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.slider-label-r { text-align: right; }
+.slider-track { position: relative; height: 2px; background: var(--border); }
+.slider-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--accent); }
+
+.keyword-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.keyword-cloud-label { width: 100%; font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.keyword { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 16px; border: 1px solid var(--border); color: var(--muted); }
+.keyword.active { border-color: var(--accent); color: var(--white); background: var(--accent); }
+
+.type-specimen { margin: 32px 0 48px; border: 1px solid var(--border); background: var(--white); }
+.type-specimen-hero { padding: 56px 48px; border-bottom: 1px solid var(--border); }
+.type-display { font-family: var(--ff-h); font-weight: 800; font-size: clamp(48px, 7vw, 88px); line-height: 0.95; letter-spacing: -0.03em; color: var(--text); margin-bottom: 24px; }
+.type-display .accent { color: var(--accent); }
+.type-body-sample { font-family: var(--ff-b); font-weight: 400; font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 560px; }
+.type-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.type-detail-card { padding: 32px 36px; border-right: 1px solid var(--border); }
+.type-detail-card:last-child { border-right: none; }
+.type-detail-label { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.type-detail-name { font-family: var(--ff-h); font-weight: 800; font-size: 24px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; }
+.type-detail-weights { font-family: var(--ff-b); font-size: 12px; color: var(--muted); line-height: 1.6; }
+.type-alphabet { padding: 28px 36px; border-top: 1px solid var(--border); }
+.type-alphabet-display { font-family: var(--ff-h); font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--text); line-height: 1.6; margin-bottom: 12px; word-break: break-all; }
+.type-alphabet-body { font-family: var(--ff-b); font-weight: 400; font-size: 14px; letter-spacing: 0.04em; color: var(--muted); line-height: 1.6; word-break: break-all; }
+
+.palette-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; border: 1px solid var(--border); margin: 32px 0 48px; }
+@media (max-width: 700px) { .palette-grid { grid-template-columns: repeat(4, 1fr); } }
+.palette-swatch { aspect-ratio: 1; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; border-right: 1px solid var(--border); }
+.palette-swatch:last-child { border-right: none; }
+.palette-swatch-label { font-family: var(--ff-b); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 4px; }
+.palette-swatch-hex { font-family: var(--ff-b); font-size: 11px; font-weight: 500; letter-spacing: 0.04em; }
+.palette-swatch.dark-text .palette-swatch-label, .palette-swatch.dark-text .palette-swatch-hex { color: var(--text); }
+.palette-swatch.light-text .palette-swatch-label, .palette-swatch.light-text .palette-swatch-hex { color: var(--white); }
+
+.cd-placeholder { padding: 64px 32px; border: 1px dashed var(--border); text-align: center; margin: 32px 0 48px; background: var(--light); }
+.cd-placeholder p { font-family: var(--ff-b); font-size: 13px; color: var(--muted); margin: 0; }
+
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); margin: 32px 0 48px; }
+.rule-cell { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 32px 28px; background: var(--white); }
+.rule-cell .rule-num { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 12px; }
+.rule-cell .rule-name { font-family: var(--ff-h); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; line-height: 1.2; }
+.rule-cell .rule-desc { font-family: var(--ff-b); font-size: 13px; color: var(--muted); line-height: 1.55; margin: 0; }
+@media (max-width: 720px) { .rules-grid { grid-template-columns: 1fr; } }
+
+.cd-meta-row { display: flex; gap: 32px; flex-wrap: wrap; padding: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 32px 0 64px; font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.cd-meta-row strong { display: block; color: var(--text); margin-top: 4px; font-weight: 700; }
+.cd-meta-row .accent { color: var(--accent); }
+
+.moodboard-grid { columns: 3; column-gap: 16px; margin: 32px 0 48px; }
+@media (max-width: 700px) { .moodboard-grid { columns: 2; } }
+.mood-item { break-inside: avoid; margin-bottom: 16px; position: relative; overflow: hidden; }
+.mood-item img { width: 100%; display: block; }
+.mood-item .mood-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 16px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
+
+	.vf-demo-card { background: var(--white); border: 1px solid var(--border); padding: 20px; }
+	.vf-demo-label { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+	.vf-demo-frame { position: relative; aspect-ratio: 4/3; overflow: hidden; container-type: inline-size; background: var(--light); }
+	.vf-demo-frame.vf-hero, .sig-frame.vf-hero { --top: 16%; --right: 12%; --bottom: 18%; --left: 14%; --vf-thick: clamp(4px, 1.25cqi, 8px); --vf-blur: 8px; --vf-bright: 0.45; }
+	.vf-demo-frame.vf-image, .sig-frame.vf-image { --vf-thick: clamp(4px, 1cqi, 7px); margin: calc(var(--vf-thick) * 1.5); overflow: visible; }
+	.vf-demo-frame.vf-hero img, .sig-frame.vf-hero img { margin: 0; }
+	.vf-demo-desc { font-family: var(--ff-b); font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
+	.vf-type-demo { display: grid; place-items: center; padding: 28px; }
+	.vf-heading-lockup { position: relative; padding: 32px 0 0 32px; font-family: var(--ff-h); font-weight: 800; font-size: clamp(28px, 12cqi, 56px); line-height: 0.96; color: var(--text); }
+	.vf-heading-lockup::before { content: ""; position: absolute; top: 0; left: 0; width: 28px; height: 10px; border-top: 4px solid var(--accent); border-left: 4px solid var(--accent); }
+	@media (max-width: 720px) { .vf-demo-grid { grid-template-columns: 1fr !important; } }
+	</style>
+<span class="eyebrow">Section B · Brand Identity · Creative Direction</span>
+<h1 class="page-title">Creative Direction<span class="dot">.</span></h1>
+<p class="page-subtitle">How the brand identity was built, step by step. From strategic foundations to visual execution.</p>
+<div class="cd-meta-row"><span>Status<strong>APPROVED</strong></span><span>Section<strong>B</strong></span><span>Approach<strong class="accent">Diagnostic Minimalism</strong></span></div>
+<section class="cd-step" aria-labelledby="cd-step-1"><div class="cd-step-header"><div class="cd-step-num">01</div><div><div class="cd-step-sub">Foundation · Archetype</div><h2 id="cd-step-1" class="cd-step-title">Personality DNA<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Every brand carries a psychological signature. The archetype mix balances character traits so the brand reads consistently across every touch point. Three archetypes, weighted, drive every downstream decision.</p><div class="archetype-grid"><div class="archetype-card primary" role="group" aria-label="Innocent, 50 percent, Primary"><img src="../images/archetypes/innocent.png" alt=""><div class="archetype-pct">50%</div><div class="archetype-name">Innocent</div><div class="archetype-role">Primary</div><div class="archetype-bar"><div class="archetype-bar-fill" style="width:100%"></div></div></div><div class="archetype-card" role="group" aria-label="Creator, 30 percent, Secondary"><img src="../images/archetypes/creator.png" alt=""><div class="archetype-pct">30%</div><div class="archetype-name">Creator</div><div class="archetype-role">Secondary</div><div class="archetype-bar"><div class="archetype-bar-fill" style="width:60%"></div></div></div><div class="archetype-card" role="group" aria-label="Friend, 20 percent, Tertiary"><img src="../images/archetypes/friend.png" alt=""><div class="archetype-pct">20%</div><div class="archetype-name">Friend</div><div class="archetype-role">Tertiary</div><div class="archetype-bar"><div class="archetype-bar-fill" style="width:40%"></div></div></div></div></section><section class="cd-step" aria-labelledby="cd-step-2"><div class="cd-step-header"><div class="cd-step-num">02</div><div><div class="cd-step-sub">Calibration · Spectrum</div><h2 id="cd-step-2" class="cd-step-title">Brand Style<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Axes that calibrate brand style. Each slider positions the brand on a spectrum from one trait to its opposite. The dots lock in a precise coordinate, not a vague direction.</p><div class="slider-grid"><div class="slider-row" role="img" aria-label="Classic to Modern: 75 percent toward Modern"><span class="slider-label">Classic</span><div class="slider-track"><div class="slider-dot" style="left:75%"></div></div><span class="slider-label slider-label-r">Modern</span></div><div class="slider-row" role="img" aria-label="Mature to Youthful: 55 percent toward Youthful"><span class="slider-label">Mature</span><div class="slider-track"><div class="slider-dot" style="left:55%"></div></div><span class="slider-label slider-label-r">Youthful</span></div><div class="slider-row" role="img" aria-label="Feminine to Masculine: 75 percent toward Masculine"><span class="slider-label">Feminine</span><div class="slider-track"><div class="slider-dot" style="left:75%"></div></div><span class="slider-label slider-label-r">Masculine</span></div><div class="slider-row" role="img" aria-label="Playful to Sophisticated: 55 percent toward Sophisticated"><span class="slider-label">Playful</span><div class="slider-track"><div class="slider-dot" style="left:55%"></div></div><span class="slider-label slider-label-r">Sophisticated</span></div><div class="slider-row" role="img" aria-label="Economical to Luxurious: 65 percent toward Luxurious"><span class="slider-label">Economical</span><div class="slider-track"><div class="slider-dot" style="left:65%"></div></div><span class="slider-label slider-label-r">Luxurious</span></div><div class="slider-row" role="img" aria-label="Abstract to Literal: 65 percent toward Literal"><span class="slider-label">Abstract</span><div class="slider-track"><div class="slider-dot" style="left:65%"></div></div><span class="slider-label slider-label-r">Literal</span></div><div class="slider-row" role="img" aria-label="Geometric to Organic: 5 percent toward Geometric"><span class="slider-label">Geometric</span><div class="slider-track"><div class="slider-dot" style="left:5%"></div></div><span class="slider-label slider-label-r">Organic</span></div><div class="slider-row" role="img" aria-label="Friendly to Professional: 35 percent toward Friendly"><span class="slider-label">Friendly</span><div class="slider-track"><div class="slider-dot" style="left:35%"></div></div><span class="slider-label slider-label-r">Professional</span></div><div class="slider-row" role="img" aria-label="Innovative to Traditional: 5 percent toward Innovative"><span class="slider-label">Innovative</span><div class="slider-track"><div class="slider-dot" style="left:5%"></div></div><span class="slider-label slider-label-r">Traditional</span></div><div class="slider-row" role="img" aria-label="Calm to Energetic: 15 percent toward Calm"><span class="slider-label">Calm</span><div class="slider-track"><div class="slider-dot" style="left:15%"></div></div><span class="slider-label slider-label-r">Energetic</span></div><div class="slider-row" role="img" aria-label="Rational to Emotional: 35 percent toward Rational"><span class="slider-label">Rational</span><div class="slider-track"><div class="slider-dot" style="left:35%"></div></div><span class="slider-label slider-label-r">Emotional</span></div><div class="slider-row" role="img" aria-label="Mysterious to Transparent: 85 percent toward Transparent"><span class="slider-label">Mysterious</span><div class="slider-track"><div class="slider-dot" style="left:85%"></div></div><span class="slider-label slider-label-r">Transparent</span></div><div class="slider-row" role="img" aria-label="Urban to Earthy: 5 percent toward Urban"><span class="slider-label">Urban</span><div class="slider-track"><div class="slider-dot" style="left:5%"></div></div><span class="slider-label slider-label-r">Earthy</span></div><div class="slider-row" role="img" aria-label="Quiet to Talkative: 35 percent toward Quiet"><span class="slider-label">Quiet</span><div class="slider-track"><div class="slider-dot" style="left:35%"></div></div><span class="slider-label slider-label-r">Talkative</span></div></div><div class="keyword-cloud"><div class="keyword-cloud-label">Distilled Keywords</div><span class="keyword active">Geometric</span><span class="keyword active">Innovative</span><span class="keyword active">Urban</span><span class="keyword active">Calm</span><span class="keyword active">Modern</span><span class="keyword active">Masculine</span><span class="keyword active">Transparent</span><span class="keyword">Sophisticated</span><span class="keyword">Luxurious</span><span class="keyword">Literal</span><span class="keyword">Youthful</span></div></section><section class="cd-step" aria-labelledby="cd-step-3"><div class="cd-step-header"><div class="cd-step-num">03</div><div><div class="cd-step-sub">Visual References · Moodboard</div><h2 id="cd-step-3" class="cd-step-title">Reference Library<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Every reference image maps to a design principle. These are not decoration. They are the visual vocabulary that informs every layout, photo direction, and texture choice.</p><div class="moodboard-grid"><div class="mood-item"><img src="../images/moodboard/quality-architecture.jpg" alt="Structural clarity"><div class="mood-label">Structural clarity</div></div><div class="mood-item"><img src="../images/moodboard/stock-design.jpg" alt="Systematic craft"><div class="mood-label">Systematic craft</div></div><div class="mood-item"><img src="../images/moodboard/fast-texture.jpg" alt="Tactile restraint"><div class="mood-label">Tactile restraint</div></div><div class="mood-item"><img src="../images/moodboard/quality-workspace.jpg" alt="Intentional environment"><div class="mood-label">Intentional environment</div></div><div class="mood-item"><img src="../images/moodboard/fast-architecture.jpg" alt="Geometric precision"><div class="mood-label">Geometric precision</div></div><div class="mood-item"><img src="../images/moodboard/stock-texture.jpg" alt="Raw materiality"><div class="mood-label">Raw materiality</div></div><div class="mood-item"><img src="../images/moodboard/quality-design.jpg" alt="Premium minimalism"><div class="mood-label">Premium minimalism</div></div><div class="mood-item"><img src="../images/moodboard/fast-design.jpg" alt="Confident reduction"><div class="mood-label">Confident reduction</div></div><div class="mood-item"><img src="../images/moodboard/stock-architecture.jpg" alt="Monumental scale"><div class="mood-label">Monumental scale</div></div><div class="mood-item"><img src="../images/moodboard/quality-texture.jpg" alt="Surface tension"><div class="mood-label">Surface tension</div></div><div class="mood-item"><img src="../images/moodboard/fast-workspace.jpg" alt="Productive focus"><div class="mood-label">Productive focus</div></div><div class="mood-item"><img src="../images/moodboard/stock-workspace.jpg" alt="Curated disorder"><div class="mood-label">Curated disorder</div></div></div></section><section class="cd-step" aria-labelledby="cd-step-4"><div class="cd-step-header"><div class="cd-step-num">04</div><div><div class="cd-step-sub">Type System · Hierarchy</div><h2 id="cd-step-4" class="cd-step-title">Typography<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Two typefaces. One for impact, one for information. The display family carries personality. The body family handles everything else with quiet legibility.</p><div class="type-specimen"><div class="type-specimen-hero"><div class="type-display">Curiosity is the strategy<span class="accent">.</span></div><div class="type-body-sample">The output is a strategic blueprint the brand returns to for years. Not a logo. Not a deck. A system of meaning that makes every decision easier.</div></div><div class="type-details"><div class="type-detail-card"><div class="type-detail-label">Display</div><div class="type-detail-name" style="font-family:var(--ff-h);font-weight:800;">Bricolage Grotesque</div><div class="type-detail-weights">Weight: 800 (ExtraBold)<br>Use: Headlines, titles, pull quotes</div></div><div class="type-detail-card"><div class="type-detail-label">Body</div><div class="type-detail-name" style="font-family:var(--ff-b);font-weight:400;">Poppins</div><div class="type-detail-weights">Weight: 400 (Regular), 600 (SemiBold)<br>Use: Body text, labels, navigation, UI</div></div></div><div class="type-alphabet"><div class="type-alphabet-display">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</div><div class="type-alphabet-body">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 &amp; ? ! . , : ; ( )</div></div></div></section><section class="cd-step" aria-labelledby="cd-step-5"><div class="cd-step-header"><div class="cd-step-num">05</div><div><div class="cd-step-sub">Color System · Palette</div><h2 id="cd-step-5" class="cd-step-title">Color<span class="dot">.</span></h2></div></div><p class="cd-step-desc">One accent. A small set of neutrals. The accent carries all brand energy; everything else stays quiet. The constraint is the point.</p><div class="palette-grid"><div class="palette-swatch light-text" style="background:#5A5CF9;" role="img" aria-label="Accent color, hex #5A5CF9"><div class="palette-swatch-label">Accent</div><div class="palette-swatch-hex">#5A5CF9</div></div><div class="palette-swatch light-text" style="background:#1A1A2E;" role="img" aria-label="Text color, hex #1A1A2E"><div class="palette-swatch-label">Text</div><div class="palette-swatch-hex">#1A1A2E</div></div><div class="palette-swatch light-text" style="background:#8888A0;" role="img" aria-label="Muted color, hex #8888A0"><div class="palette-swatch-label">Muted</div><div class="palette-swatch-hex">#8888A0</div></div><div class="palette-swatch dark-text" style="background:#E5E7EB;" role="img" aria-label="Border color, hex #E5E7EB"><div class="palette-swatch-label">Border</div><div class="palette-swatch-hex">#E5E7EB</div></div><div class="palette-swatch dark-text" style="background:#F5F5F7;" role="img" aria-label="Light color, hex #F5F5F7"><div class="palette-swatch-label">Light</div><div class="palette-swatch-hex">#F5F5F7</div></div><div class="palette-swatch dark-text" style="background:#FFFFFF;" role="img" aria-label="White color, hex #FFFFFF"><div class="palette-swatch-label">White</div><div class="palette-swatch-hex">#FFFFFF</div></div><div class="palette-swatch light-text" style="background:#18181B;" role="img" aria-label="Dark color, hex #18181B"><div class="palette-swatch-label">Dark</div><div class="palette-swatch-hex">#18181B</div></div></div></section><section class="cd-step" aria-labelledby="cd-step-6"><div class="cd-step-header"><div class="cd-step-num">06</div><div><div class="cd-step-sub">Signature · Mark</div><h2 id="cd-step-6" class="cd-step-title">Logo Mark<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Letters and a period. The dot carries the accent color and becomes the brand's most recognizable element. Works at every scale, on every surface.</p><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:32px 0 48px;"><div class="logo-cell" style="padding:48px 32px;border:1px solid var(--border);text-align:center;"><div style="font-family:var(--ff-h);font-weight:800;font-size:72px;letter-spacing:-0.04em;line-height:1;">FP<span style="color:var(--accent);">.</span></div><div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:24px;">Primary / 72px</div></div><div class="logo-cell" style="padding:48px 32px;border:1px solid var(--border);text-align:center;background:var(--dark);color:var(--white);"><div style="font-family:var(--ff-h);font-weight:800;font-size:56px;letter-spacing:-0.04em;line-height:1;">FP<span style="color:var(--accent);">.</span></div><div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:24px;">Dark / 56px</div></div><div class="logo-cell" style="padding:48px 32px;border:1px solid var(--border);text-align:center;background:var(--accent);color:var(--white);"><div style="font-family:var(--ff-h);font-weight:800;font-size:40px;letter-spacing:-0.04em;line-height:1;">FP<span style="color:var(--accent);">.</span></div><div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:24px;">Accent / 40px</div></div><div class="logo-cell" style="padding:48px 32px;border:1px solid var(--border);text-align:center;background:var(--light);"><div style="font-family:var(--ff-h);font-weight:800;font-size:24px;letter-spacing:-0.04em;line-height:1;">FP<span style="color:var(--accent);">.</span></div><div style="font-family:var(--ff-b);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:24px;">Compact / 24px</div></div></div></section><section class="cd-step" aria-labelledby="cd-step-7"><div class="cd-step-header"><div class="cd-step-num">07</div><div><div class="cd-step-sub">Signature · Device</div><h2 id="cd-step-7" class="cd-step-title">The Viewfinder Bracket<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Variants of the the viewfinder bracket. Each has a specific use case. Never decorative. Full construction spec: references/viewfinder.md.</p><div class="vf-demo-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:32px 0 48px;"><div class="vf-demo-card"><div class="vf-demo-label">Heading · 1-corner</div><div class="vf-demo-frame vf-type-demo"><div class="vf-heading-lockup">Clarity<br>comes into focus<span class="dot">.</span></div></div><div class="vf-demo-desc">Top-left only. Asymmetric L shape (border-top + border-left, 28x10px). Entry point marker for headings.</div></div><div class="vf-demo-card"><div class="vf-demo-label">Focal · 2-corner</div><div class="vf-demo-frame vf-hero vf-focal" aria-label="The Viewfinder Bracket 2-corner demo"><img class="vf-bg" src="../images/p4-promise.jpg" alt=""><img class="vf-fg" src="../images/p4-promise.jpg" alt="The Viewfinder Bracket 2-corner demo"></div><div class="vf-demo-desc">Top-right and bottom-left anchored to the focal rectangle inside an image. The same image stays visible outside the frame, blurred and darkened.</div></div><div class="vf-demo-card"><div class="vf-demo-label">Image · 2-corner</div><div class="vf-demo-frame vf-hero vf-no-focus vf-image" aria-label="The Viewfinder Bracket 2-corner demo"><img class="vf-bg" src="../images/p4-promise.jpg" alt=""><img class="vf-fg" src="../images/p4-promise.jpg" alt="The Viewfinder Bracket 2-corner demo"></div><div class="vf-demo-desc">Top-right and bottom-left sitting completely outside the image edge. No blur, no focal crop; used when the image itself should remain intact.</div></div></div></section><section class="cd-step" aria-labelledby="cd-step-8"><div class="cd-step-header"><div class="cd-step-num">08</div><div><div class="cd-step-sub">System · Constraints</div><h2 id="cd-step-8" class="cd-step-title">Design Rules<span class="dot">.</span></h2></div></div><p class="cd-step-desc">Non-negotiable constraints. These rules exist to maintain visual coherence across every touchpoint.</p><div class="rules-grid"><div class="rule-cell"><div class="rule-num">01</div><div class="rule-name">Sharp edges</div><p class="rule-desc">Zero border-radius everywhere. Precision is the aesthetic.</p></div><div class="rule-cell"><div class="rule-num">02</div><div class="rule-name">Light canvas</div><p class="rule-desc">White is the default surface. Dark sections used sparingly as accent.</p></div><div class="rule-cell"><div class="rule-num">03</div><div class="rule-name">Extreme whitespace</div><p class="rule-desc">Generous spacing between sections. Density is the enemy of clarity.</p></div><div class="rule-cell"><div class="rule-num">04</div><div class="rule-name">Single accent</div><p class="rule-desc">One accent color carries brand energy. No secondary accent.</p></div><div class="rule-cell"><div class="rule-num">05</div><div class="rule-name">No warm colors</div><p class="rule-desc">Reds, oranges, yellows permanently excluded. Cool palette only.</p></div><div class="rule-cell"><div class="rule-num">06</div><div class="rule-name">Two typefaces</div><p class="rule-desc">Display + body. No third typeface. Mono-style labels use the body family with letter-spacing.</p></div><div class="rule-cell"><div class="rule-num">07</div><div class="rule-name">Grain texture</div><p class="rule-desc">Subtle noise overlay on all surfaces. Analog warmth against digital precision.</p></div><div class="rule-cell"><div class="rule-num">08</div><div class="rule-name">Photography-forward</div><p class="rule-desc">Real images, not illustrations. Slightly desaturated, high contrast.</p></div></div></section>
+
+  <div class="footer-nav">
+    <span>Section B · CD · Brand Identity</span>
+    <span><a href="look-and-feel.html">Look & Feel →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>
