@@ -8,12 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C10 - VIDEO AD STORYBOARD
-   30-second brand spot. 8 frames with timing, camera notes,
-   VO text, and on-screen text. Also: 15-second cut, and
-   6-second bumper.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -50,9 +45,7 @@ body {
   width: 100%;
 }
 
-/* ============================================================
-   STORYBOARD GRID
-   ============================================================ */
+
 .storyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -73,7 +66,7 @@ body {
   overflow: hidden;
 }
 
-/* Frame variants */
+
 .frame-visual.dark-bg { background: var(--dark-2); }
 .frame-visual.light-bg { background: var(--white); }
 .frame-visual.photo-bg { background: var(--dark); }
@@ -85,7 +78,7 @@ body {
   object-fit: cover;
 }
 
-/* On-screen text overlay in visual */
+
 .frame-visual .on-screen {
   position: absolute;
   inset: 0;
@@ -115,7 +108,7 @@ body {
 }
 .frame-visual .on-screen .fp-mark .dot { color: var(--accent); }
 
-/* VF overlay on photo frames */
+
 .frame-visual .vf-overlay {
   position: absolute;
   inset: 8px;
@@ -130,7 +123,7 @@ body {
   z-index: 4;
 }
 
-/* Gradient overlay on photos */
+
 .frame-visual .photo-gradient {
   position: absolute;
   inset: 0;
@@ -138,7 +131,7 @@ body {
   z-index: 2;
 }
 
-/* Frame details panel */
+
 .frame-details {
   padding: 10px 12px;
   border-top: 2px solid var(--accent);
@@ -182,9 +175,7 @@ body {
   margin-top: 4px;
 }
 
-/* ============================================================
-   BUMPER (6-second, 3 frames)
-   ============================================================ */
+
 .bumper-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

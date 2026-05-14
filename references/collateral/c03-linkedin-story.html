@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C03 - LINKEDIN POST CARDS (1200x627) + INSTAGRAM STORIES (1080x1920)
-   Testing: LinkedIn landscape format for article shares, thought
-   leadership graphics. IG stories for swipe-up / link sticker.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -50,9 +46,7 @@ body {
   width: 100%;
 }
 
-/* ============================================================
-   LINKEDIN CARDS (1200x627, shown at 600x313.5)
-   ============================================================ */
+
 .linkedin-row {
   display: flex;
   gap: 20px;
@@ -66,7 +60,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
-/* Grain */
+
 .li-card::before, .story::before {
   content: '';
   position: absolute;
@@ -85,7 +79,7 @@ body {
 }
 .fp-mark .dot { color: var(--accent); }
 
-/* --- LinkedIn A: Article share / thought leadership --- */
+
 .li-a {
   background: var(--white);
   display: grid;
@@ -157,7 +151,7 @@ body {
 }
 .li-a .fp-mark { bottom: 20px; left: 36px; color: var(--dark); }
 
-/* --- LinkedIn B: Dark, full-width statement --- */
+
 .li-b {
   background: var(--dark);
   display: flex;
@@ -186,7 +180,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* --- LinkedIn C: Photo-dominant with text overlay --- */
+
 .li-c {
   background: var(--dark);
   position: relative;
@@ -232,9 +226,7 @@ body {
 }
 .li-c .fp-mark { top: 20px; left: 28px; color: var(--white); z-index: 4; }
 
-/* ============================================================
-   INSTAGRAM STORIES (1080x1920, shown at 240x427)
-   ============================================================ */
+
 .story-row {
   display: flex;
   gap: 16px;
@@ -248,7 +240,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.1);
 }
 
-/* --- Story A: Quote on dark --- */
+
 .story-a {
   background: var(--dark);
   display: flex;
@@ -294,7 +286,7 @@ body {
 }
 .story-a .fp-mark { top: 20px; left: 24px; color: rgba(255,255,255,0.25); }
 
-/* --- Story B: Photo with VF bracket overlay --- */
+
 .story-b {
   background: var(--dark);
 }
@@ -308,7 +300,7 @@ body {
   inset: 0;
   z-index: 3;
 }
-/* Blur outside brackets effect using gradients */
+
 .story-b .vf-overlay::before {
   content: '';
   position: absolute;
@@ -358,7 +350,7 @@ body {
 }
 .story-b .fp-mark { top: 20px; left: 24px; color: var(--white); z-index: 5; }
 
-/* --- Story C: Stat/number callout --- */
+
 .story-c {
   background: var(--white);
   display: flex;
@@ -396,7 +388,7 @@ body {
 .story-c .accent { color: var(--accent); }
 .story-c .fp-mark { bottom: 20px; left: 24px; color: var(--dark); }
 
-/* --- Story D: Poll/question interactive feel --- */
+
 .story-d {
   background: var(--light);
   display: flex;

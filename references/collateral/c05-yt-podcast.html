@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C05 - YOUTUBE THUMBNAILS (1280x720) + PODCAST COVERS
-   Thumbnails: 4 variants testing different hook + photo combos
-   Podcast: 1 main cover (3000x3000 / shown at 400x400)
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -56,9 +52,7 @@ body {
   max-width: 1080px;
 }
 
-/* ============================================================
-   YOUTUBE THUMBNAIL (1280x720, shown at 520x293)
-   ============================================================ */
+
 .yt-thumb {
   width: 520px;
   height: 293px;
@@ -67,7 +61,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.12);
 }
 
-/* Grain */
+
 .yt-thumb::before {
   content: '';
   position: absolute;
@@ -86,7 +80,7 @@ body {
 }
 .yt-thumb .fp-mark .dot { color: var(--accent); }
 
-/* --- Thumb A: Split layout, photo left, text right --- */
+
 .yt-a {
   display: grid;
   grid-template-columns: 45% 55%;
@@ -135,7 +129,7 @@ body {
 .yt-a .accent { color: var(--accent); }
 .yt-a .fp-mark { bottom: 16px; right: 20px; color: rgba(255,255,255,0.2); }
 
-/* --- Thumb B: Full photo bg, text overlay bottom --- */
+
 .yt-b {
   background: var(--dark);
 }
@@ -183,7 +177,7 @@ body {
   text-transform: uppercase;
   color: rgba(255,255,255,0.4);
 }
-/* VF bracket overlay */
+
 .yt-b .vf {
   position: absolute;
   inset: 16px;
@@ -199,7 +193,7 @@ body {
 }
 .yt-b .fp-mark { top: 16px; left: 20px; color: var(--white); z-index: 5; }
 
-/* --- Thumb C: Centered big text, no photo, pure typography --- */
+
 .yt-c {
   background: var(--white);
   display: flex;
@@ -231,7 +225,7 @@ body {
 .yt-c .fp-mark { bottom: 16px; left: 20px; color: var(--dark); }
 .yt-c .url { position: absolute; bottom: 18px; right: 20px; font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
 
-/* --- Thumb D: Dark, photo right with diagonal crop feel --- */
+
 .yt-d {
   background: var(--dark);
   display: grid;
@@ -299,9 +293,7 @@ body {
 }
 .yt-d .fp-mark { bottom: 16px; left: 20px; color: rgba(255,255,255,0.2); }
 
-/* ============================================================
-   PODCAST COVER (3000x3000, shown at 360x360)
-   ============================================================ */
+
 .podcast-row {
   display: flex;
   gap: 20px;
@@ -324,7 +316,7 @@ body {
   z-index: 10;
 }
 
-/* --- Podcast A: Dark, minimal, type-driven --- */
+
 .pod-a {
   background: var(--dark-2);
   display: flex;
@@ -384,7 +376,7 @@ body {
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
 }
-/* VF corners */
+
 .pod-a::after {
   content: '';
   position: absolute;
@@ -400,7 +392,7 @@ body {
   z-index: 5;
 }
 
-/* --- Podcast B: Light, photo accent --- */
+
 .pod-b {
   background: var(--white);
   display: grid;
@@ -447,7 +439,7 @@ body {
   filter: grayscale(0.4);
 }
 
-/* --- Episode thumbnail variant (square, for individual eps) --- */
+
 .ep-thumb {
   width: 360px;
   height: 360px;

@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C02 - SOCIAL QUOTE CARDS
-   6 variants. 1080x1080 (1:1) for feed. Testing different
-   hook styles and layouts. Light and dark variants.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -61,7 +57,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
-/* Grain */
+
 .card::before {
   content: '';
   position: absolute;
@@ -92,9 +88,7 @@ body {
   z-index: 5;
 }
 
-/* ============================================================
-   VARIANT A: Centered statement, white canvas
-   ============================================================ */
+
 .card-a {
   background: var(--white);
   display: flex;
@@ -115,9 +109,7 @@ body {
 .card-a .fp-mark { color: var(--dark); }
 .card-a .card-url { color: var(--muted); }
 
-/* ============================================================
-   VARIANT B: Left-aligned, accent left border, dark canvas
-   ============================================================ */
+
 .card-b {
   background: var(--dark);
   display: flex;
@@ -139,9 +131,7 @@ body {
 .card-b .fp-mark { color: rgba(255,255,255,0.25); }
 .card-b .card-url { color: rgba(255,255,255,0.15); }
 
-/* ============================================================
-   VARIANT C: Big number/stat + context, white canvas
-   ============================================================ */
+
 .card-c {
   background: var(--white);
   display: flex;
@@ -174,9 +164,7 @@ body {
 .card-c .fp-mark { color: var(--dark); }
 .card-c .card-url { color: var(--muted); }
 
-/* ============================================================
-   VARIANT D: Stacked words, one highlighted, light canvas
-   ============================================================ */
+
 .card-d {
   background: var(--light);
   display: flex;
@@ -201,9 +189,7 @@ body {
 .card-d .fp-mark { color: var(--dark); }
 .card-d .card-url { color: var(--muted); }
 
-/* ============================================================
-   VARIANT E: Question hook, dark + VF corners
-   ============================================================ */
+
 .card-e {
   background: var(--dark-2);
   display: flex;
@@ -248,9 +234,7 @@ body {
 .card-e .fp-mark { color: rgba(255,255,255,0.2); }
 .card-e .card-url { color: rgba(255,255,255,0.12); }
 
-/* ============================================================
-   VARIANT F: Observation + photo strip bottom, white canvas
-   ============================================================ */
+
 .card-f {
   background: var(--white);
   display: flex;

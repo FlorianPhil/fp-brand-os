@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C11 - BUSINESS CARD, EVENT BADGE, LETTERHEAD
-   Business card (3.5x2", front+back), event/conference badge
-   (4x6"), letterhead header, and invoice header.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -51,7 +47,7 @@ body {
 
 .row { display: flex; gap: 20px; align-items: flex-start; }
 
-/* Grain */
+
 .grain::before {
   content: '';
   position: absolute;
@@ -61,9 +57,7 @@ body {
   z-index: 10;
 }
 
-/* ============================================================
-   BUSINESS CARD (3.5 x 2", shown at 350x200)
-   ============================================================ */
+
 .biz-card {
   width: 350px;
   height: 200px;
@@ -72,7 +66,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.1);
 }
 
-/* Card Front A: Dark */
+
 .card-front-dark {
   background: var(--dark-2);
   display: flex;
@@ -104,7 +98,7 @@ body {
   color: #8888A0;
   letter-spacing: 0.04em;
 }
-/* VF corners */
+
 .card-front-dark::after {
   content: '';
   position: absolute;
@@ -119,7 +113,7 @@ body {
   pointer-events: none;
 }
 
-/* Card Back A: Contact info */
+
 .card-back {
   background: var(--white);
   display: flex;
@@ -160,7 +154,7 @@ body {
 }
 .card-back .fp-tiny .dot { color: var(--accent); opacity: 0.3; }
 
-/* Card Front B: White */
+
 .card-front-white {
   background: var(--white);
   display: flex;
@@ -198,7 +192,7 @@ body {
   text-align: right;
 }
 
-/* Card Back B: Dark with accent accent */
+
 .card-back-dark {
   background: var(--dark);
   display: flex;
@@ -239,9 +233,7 @@ body {
 }
 .card-back-dark .fp-tiny .dot { color: var(--accent); opacity: 0.15; }
 
-/* ============================================================
-   EVENT BADGE (4x6", shown at 280x420)
-   ============================================================ */
+
 .badge {
   width: 280px;
   height: 420px;
@@ -250,7 +242,7 @@ body {
   box-shadow: 0 6px 32px rgba(0,0,0,0.1);
 }
 
-/* Badge A: Attendee */
+
 .badge-attendee {
   background: var(--white);
   display: flex;
@@ -324,7 +316,7 @@ body {
   padding: 4px 10px;
 }
 
-/* Badge B: Speaker (dark) */
+
 .badge-speaker {
   background: var(--dark-2);
   display: flex;
@@ -384,7 +376,7 @@ body {
   color: var(--white);
   padding: 4px 10px;
 }
-/* VF corners */
+
 .badge-speaker::after {
   content: '';
   position: absolute;
@@ -399,9 +391,7 @@ body {
   pointer-events: none;
 }
 
-/* ============================================================
-   LETTERHEAD HEADER (600px wide, for invoice/doc top)
-   ============================================================ */
+
 .letterhead {
   width: 600px;
   background: var(--white);

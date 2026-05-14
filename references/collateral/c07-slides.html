@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C07 - PRESENTATION SLIDE DECK (16:9, 1920x1080)
-   8 key slides: title, agenda, problem, framework,
-   deep-dive, quote, CTA, closing. Shown at 640x360.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -55,7 +51,7 @@ body {
   gap: 16px;
 }
 
-/* Base slide */
+
 .slide {
   width: 640px;
   height: 360px;
@@ -72,7 +68,7 @@ body {
   z-index: 10;
 }
 
-/* Slide number */
+
 .slide-number {
   position: absolute;
   bottom: 16px;
@@ -83,7 +79,7 @@ body {
   z-index: 5;
 }
 
-/* FP mark on slides */
+
 .s-mark {
   position: absolute;
   bottom: 16px;
@@ -95,9 +91,7 @@ body {
 }
 .s-mark .dot { color: var(--accent); }
 
-/* ============================================================
-   SLIDE 1: TITLE
-   ============================================================ */
+
 .s-title {
   background: var(--dark-2);
   display: flex;
@@ -144,7 +138,7 @@ body {
   color: #8888A0;
   margin-top: 2px;
 }
-/* VF corners */
+
 .s-title::after {
   content: '';
   position: absolute;
@@ -160,9 +154,7 @@ body {
   z-index: 2;
 }
 
-/* ============================================================
-   SLIDE 2: AGENDA
-   ============================================================ */
+
 .s-agenda {
   background: var(--white);
   display: flex;
@@ -206,9 +198,7 @@ body {
 .s-agenda .s-mark { color: var(--dark); }
 .s-agenda .slide-number { color: var(--muted); }
 
-/* ============================================================
-   SLIDE 3: PROBLEM STATEMENT (big type)
-   ============================================================ */
+
 .s-problem {
   background: var(--dark);
   display: flex;
@@ -229,9 +219,7 @@ body {
 .s-problem .s-mark { color: rgba(255,255,255,0.15); }
 .s-problem .slide-number { color: rgba(255,255,255,0.2); }
 
-/* ============================================================
-   SLIDE 4: FRAMEWORK (Focus Star diagram)
-   ============================================================ */
+
 .s-framework {
   background: var(--white);
   display: grid;
@@ -289,7 +277,7 @@ body {
 .star-node.n3 { bottom: 10%; right: 10%; }
 .star-node.n4 { bottom: 10%; left: 10%; }
 .star-node.n5 { top: 25%; left: 0; }
-/* Lines from center to edges */
+
 .star-diagram::before {
   content: '';
   position: absolute;
@@ -303,9 +291,7 @@ body {
 .s-framework .s-mark { color: var(--dark); }
 .s-framework .slide-number { color: var(--muted); }
 
-/* ============================================================
-   SLIDE 5: CONTENT SLIDE (two-column with photo)
-   ============================================================ */
+
 .s-content {
   background: var(--white);
   display: grid;
@@ -381,9 +367,7 @@ body {
 .s-content .s-mark { color: var(--dark); }
 .s-content .slide-number { color: var(--muted); }
 
-/* ============================================================
-   SLIDE 6: QUOTE
-   ============================================================ */
+
 .s-quote {
   background: var(--light);
   display: flex;
@@ -413,9 +397,7 @@ body {
 .s-quote .s-mark { color: var(--dark); }
 .s-quote .slide-number { color: var(--muted); }
 
-/* ============================================================
-   SLIDE 7: CTA
-   ============================================================ */
+
 .s-cta {
   background: var(--dark-2);
   display: flex;
@@ -468,9 +450,7 @@ body {
 .s-cta .s-mark { color: rgba(255,255,255,0.15); }
 .s-cta .slide-number { color: rgba(255,255,255,0.2); }
 
-/* ============================================================
-   SLIDE 8: CLOSING
-   ============================================================ */
+
 .s-closing {
   background: var(--dark-2);
   display: flex;
@@ -499,7 +479,7 @@ body {
   color: rgba(255,255,255,0.15);
   letter-spacing: 0.04em;
 }
-/* VF corners */
+
 .s-closing::after {
   content: '';
   position: absolute;

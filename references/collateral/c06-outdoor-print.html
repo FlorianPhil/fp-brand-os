@@ -8,12 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C06 - OUTDOOR + PRINT AD CREATIVES
-   Billboard (48-sheet: ~3:1), Bus shelter (portrait),
-   Airport lounge banner, Full-page magazine, Half-page
-   magazine. All pure creative, Gemini mockups separate.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -50,7 +45,7 @@ body {
   width: 100%;
 }
 
-/* Grain */
+
 .panel::before {
   content: '';
   position: absolute;
@@ -60,10 +55,7 @@ body {
   z-index: 10;
 }
 
-/* ============================================================
-   1. BILLBOARD (48-sheet, ~3:1, shown at 900x300)
-   Read at distance. Maximum 7 words. Logo, one line, URL.
-   ============================================================ */
+
 .billboard {
   width: 900px;
   height: 300px;
@@ -72,7 +64,7 @@ body {
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
 }
 
-/* Billboard A: Dark, pure type, maximum impact */
+
 .bb-a {
   background: var(--dark-2);
   display: flex;
@@ -110,7 +102,7 @@ body {
   letter-spacing: 0.06em;
   color: rgba(255,255,255,0.3);
 }
-/* Subtle VF corners */
+
 .bb-a::after {
   content: '';
   position: absolute;
@@ -125,7 +117,7 @@ body {
   pointer-events: none;
 }
 
-/* Billboard B: White, with photo strip accent */
+
 .bb-b {
   background: var(--white);
   display: grid;
@@ -173,9 +165,7 @@ body {
   min-height: 0;
 }
 
-/* ============================================================
-   2. BUS SHELTER (portrait, ~2:3, shown at 300x450)
-   ============================================================ */
+
 .bus-row { display: flex; gap: 20px; }
 
 .bus-shelter {
@@ -186,7 +176,7 @@ body {
   box-shadow: 0 6px 32px rgba(0,0,0,0.1);
 }
 
-/* Bus A: Dark, photo bottom */
+
 .bus-a {
   background: var(--dark-2);
   display: flex;
@@ -244,7 +234,7 @@ body {
   z-index: 2;
 }
 
-/* Bus B: White, type-only with accent line */
+
 .bus-b {
   background: var(--white);
   display: flex;
@@ -310,9 +300,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ============================================================
-   3. FULL-PAGE MAGAZINE AD (portrait, ~8.5x11, shown at 340x440)
-   ============================================================ */
+
 .mag-row { display: flex; gap: 20px; }
 
 .magazine {
@@ -323,7 +311,7 @@ body {
   box-shadow: 0 6px 32px rgba(0,0,0,0.1);
 }
 
-/* Mag A: Photo dominant with text band */
+
 .mag-a {
   background: var(--dark);
   display: flex;
@@ -384,7 +372,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* Mag B: Editorial, type-heavy, white */
+
 .mag-b {
   background: var(--white);
   display: flex;
@@ -468,9 +456,7 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ============================================================
-   4. AIRPORT BANNER (long horizontal, ~6:1, shown at 900x150)
-   ============================================================ */
+
 .airport {
   width: 900px;
   height: 150px;
@@ -527,7 +513,7 @@ body {
   color: rgba(255,255,255,0.2);
   letter-spacing: 0.04em;
 }
-/* VF corners */
+
 .airport::after {
   content: '';
   position: absolute;

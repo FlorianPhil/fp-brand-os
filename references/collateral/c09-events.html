@@ -8,11 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,600;12..96,700;12..96,800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   C09 - EVENT POSTERS + WORKSHOP PROMO
-   Speaking event poster (portrait), workshop banner (landscape),
-   event social announcement (square), conference badge-back.
-   ============================================================ */
+
 
 :root {
   --accent: #5A5CF9;
@@ -51,7 +47,7 @@ body {
 
 .row { display: flex; gap: 20px; align-items: flex-start; }
 
-/* Grain */
+
 .panel::before {
   content: '';
   position: absolute;
@@ -61,9 +57,7 @@ body {
   z-index: 10;
 }
 
-/* ============================================================
-   SPEAKING EVENT POSTER (portrait, ~11x17 feel, shown 380x560)
-   ============================================================ */
+
 .event-poster {
   width: 380px;
   height: 560px;
@@ -72,7 +66,7 @@ body {
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
 }
 
-/* Poster A: Dark, photo top, type bottom */
+
 .poster-a {
   background: var(--dark-2);
   display: flex;
@@ -167,7 +161,7 @@ body {
 }
 .poster-a .fp-mark .dot { color: var(--accent); }
 
-/* Poster B: White, editorial feel */
+
 .poster-b {
   background: var(--white);
   display: flex;
@@ -254,9 +248,7 @@ body {
   border: none;
 }
 
-/* ============================================================
-   WORKSHOP BANNER (landscape, 800x400, shown at 640x320)
-   ============================================================ */
+
 .workshop-banner {
   width: 640px;
   height: 320px;
@@ -349,9 +341,7 @@ body {
 }
 .workshop-banner .fp-mark .dot { color: var(--accent); }
 
-/* ============================================================
-   EVENT SOCIAL ANNOUNCEMENT (1080x1080, shown 340x340)
-   ============================================================ */
+
 .event-social {
   width: 340px;
   height: 340px;
@@ -399,7 +389,7 @@ body {
   color: rgba(255,255,255,0.2);
 }
 .event-social .fp-mark .dot { color: var(--accent); }
-/* VF corners */
+
 .event-social::after {
   content: '';
   position: absolute;

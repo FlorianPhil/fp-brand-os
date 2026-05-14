@@ -1,5 +1,4 @@
-/* FP Brand OS, anchored to website v13.
-   Light theme. Sharp edges only. Bricolage Grotesque 800 + Poppins 400. */
+
 
 :root {
   --accent: #5A5CF9;
@@ -15,7 +14,7 @@
   --border-soft: #F0F0F5;
   --ff-h: 'Bricolage Grotesque', system-ui, sans-serif;
   --ff-b: 'Poppins', system-ui, sans-serif;
-  /* No third typeface. Mono-style labels use Poppins + letter-spacing. */
+
   --section-pad: clamp(80px, 10vw, 140px);
   --container: 1200px;
   --gutter: clamp(24px, 5vw, 64px);
@@ -45,7 +44,7 @@ h1, h2, h3, h4, h5 {
   color: var(--text);
 }
 
-/* ---------- Grain ---------- */
+
 .grain::before {
   content: '';
   position: fixed;
@@ -56,7 +55,7 @@ h1, h2, h3, h4, h5 {
   pointer-events: none;
 }
 
-/* ---------- Layout ---------- */
+
 .shell {
   position: relative;
   z-index: 2;
@@ -86,7 +85,7 @@ main.content {
   main.content { padding: 64px 28px 96px; }
 }
 
-/* ---------- Sidebar (logo + nav) ---------- */
+
 .brand-mark {
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 40px;
@@ -206,7 +205,7 @@ details.nav-group .group-label {
 .toolbar-mini .row { display: flex; justify-content: space-between; }
 .toolbar-mini .row strong { color: var(--text); font-weight: 600; }
 
-/* ---------- Page hero ---------- */
+
 .eyebrow {
   font-family: var(--ff-b);
   font-size: 13px;
@@ -229,7 +228,7 @@ h1.page-title {
   max-width: 14ch;
 }
 h1.page-title .dot { color: var(--accent); }
-/* No italic emphasis on display headings (struck per Florian 2026-04-27). */
+
 
 .page-subtitle {
   font-family: var(--ff-h);
@@ -290,7 +289,7 @@ code {
   color: var(--text);
 }
 
-/* ---------- Section labels (numbered, editorial) ---------- */
+
 .section-label {
   display: grid;
   grid-template-columns: 64px 1fr;
@@ -326,9 +325,8 @@ code {
   margin: 4px 0 12px;
 }
 
-/* ---------- Viewfinder brackets, the FP signature ---------- */
-/* DEFAULT: 2-corner (top-right + bottom-left). Brand standard.
-   Button decoration is not a viewfinder signature mode. */
+
+
 .vf-frame {
   position: relative;
   --vf-arm: 64px;
@@ -336,7 +334,7 @@ code {
   padding: clamp(32px, 5vw, 56px);
   margin: 32px 0 56px;
 }
-/* 2-corner: TR + BL via pseudo-elements */
+
 .vf-frame::before, .vf-frame::after {
   content: ""; position: absolute; pointer-events: none;
   width: var(--vf-arm); height: var(--vf-arm);
@@ -347,23 +345,21 @@ code {
 .vf-frame::before { top: 0; right: 0; transform: scaleX(-1); }
 .vf-frame::after  { bottom: 0; left: 0; transform: scaleY(-1); }
 
-/* ---------- Viewfinder hero (FULL treatment, reusable) ---------- */
-/* Two stacked images: blurred bg + sharp clipped fg + 2-corner brackets.
-   Per-instance: set --top/--right/--bottom/--left (% inset to the focal rectangle)
-   on the .vf-hero element. Add .vf-subject for stronger blur+darken. */
+
+
 .vf-hero {
   position: relative;
   overflow: hidden;
-  /* Per-instance overrides (focal rectangle inset, in %): */
+
   --top: 0%;
   --right: 0%;
   --bottom: 0%;
   --left: 0%;
-  /* Treatment defaults (portrait mode): */
+
   --vf-blur: 8px;
   --vf-bright: 0.45;
   --vf-thick: 6px;
-  /* Computed focal rect dimensions and arm lengths (33% of rect): */
+
   --vf-rect-w: calc(100% - var(--left) - var(--right));
   --vf-rect-h: calc(100% - var(--top) - var(--bottom));
   --vf-arm-w: calc(var(--vf-rect-w) * 0.33);
@@ -386,7 +382,7 @@ code {
   clip-path: inset(var(--top) var(--right) var(--bottom) var(--left));
   z-index: 2;
 }
-/* 2-corner brackets: TR + BL, snapped to focal rectangle edges */
+
 .vf-hero::before,
 .vf-hero::after {
   content: "";
@@ -410,20 +406,16 @@ code {
     linear-gradient(var(--accent), var(--accent)) 0 100% / 100% var(--vf-thick) no-repeat,
     linear-gradient(var(--accent), var(--accent)) 0 100% / var(--vf-thick) 100% no-repeat;
 }
-/* Subject mode variant: stronger blur + darker outside */
+
 .vf-hero.vf-subject {
   --vf-blur: 12px;
   --vf-bright: 0.3;
 }
 
-/* No-focus mode: brackets sit OUTSIDE the image edges.
-   No focal rectangle, no blur, no clip. Decorative framing only.
-   Arms and thickness pulled from viewfinder-tokens.css (generated from source.yaml).
-   Per-instance: override --vf-thick with a px value matching weight_pct_no_focus
-   for the image's min-dimension (e.g. 17px on a 560px-tall hero). */
+
 .vf-hero.vf-no-focus {
   overflow: visible;
-  /* Arms snap to IMAGE edges, not focal rectangle. Use spec arm length. */
+
   --vf-arm-w: var(--vf-arm-pct, 33%);
   --vf-arm-h: var(--vf-arm-pct, 33%);
   margin: 48px var(--vf-thick) 96px var(--vf-thick);
@@ -436,7 +428,7 @@ code {
   clip-path: none;
   height: 100%;
 }
-/* Brackets sit OUTSIDE image edges, anchored to image corners (not focal rect) */
+
 .vf-hero.vf-no-focus::before {
   top: calc(-1 * var(--vf-thick));
   right: calc(-1 * var(--vf-thick));
@@ -458,7 +450,7 @@ code {
     linear-gradient(var(--accent), var(--accent)) 0 0 / var(--vf-thick) 100% no-repeat;
 }
 
-/* ---------- Legacy CTA buttons, not a viewfinder signature mode ---------- */
+
 .vf-btn {
   position: relative;
   display: inline-flex; align-items: center;
@@ -486,7 +478,7 @@ code {
 
 .cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 48px 0 32px; }
 
-/* ---------- Meta pills (status row) ---------- */
+
 .meta-row {
   display: flex; gap: 18px; flex-wrap: wrap;
   margin: 0 0 56px;
@@ -502,7 +494,7 @@ code {
 .meta-row strong { color: var(--text); font-weight: 600; margin-left: 6px; }
 .meta-row .accent { color: var(--accent); margin-left: 6px; font-weight: 600; }
 
-/* ---------- TOC cards (homepage) ---------- */
+
 .toc-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -564,7 +556,7 @@ code {
 }
 .toc-card:hover .arrow { color: var(--accent); transform: translateX(4px); }
 
-/* ---------- The 5 Ps cards (focus-star) ---------- */
+
 .p-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -619,7 +611,7 @@ code {
   display: inline-block;
 }
 
-/* ---------- Strategy snapshot pages ---------- */
+
 .snapshot-grid,
 .benefit-grid,
 .offer-grid,
@@ -806,7 +798,7 @@ code {
   }
 }
 
-/* ---------- Focus Star pentagon ---------- */
+
 .star-stage {
   margin: 56px 0;
   padding: 56px 0;
@@ -864,7 +856,7 @@ code {
   letter-spacing: 0.16em;
 }
 
-/* ---------- Footer ---------- */
+
 footer.page-footer {
   margin-top: 96px;
   padding: 32px 0 0;
@@ -879,7 +871,7 @@ footer.page-footer {
 footer.page-footer a { color: var(--text); transition: color 0.2s; }
 footer.page-footer a:hover { color: var(--accent); }
 
-/* ---------- FILL marker (for pages with empty source) ---------- */
+
 .fill-banner {
   display: flex; align-items: center; gap: 14px;
   padding: 14px 20px;
@@ -901,7 +893,7 @@ footer.page-footer a:hover { color: var(--accent); }
   color: var(--accent);
 }
 
-/* ---------- Status board (PM-style punch list) ---------- */
+
 .status-board {
   border-top: 1px solid var(--text);
   margin: 32px 0 64px;
@@ -994,7 +986,7 @@ footer.page-footer a:hover { color: var(--accent); }
 }
 .status-summary-cell.accent .count { color: var(--accent); }
 
-/* Shared Section A intelligence pages */
+
 .p-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
