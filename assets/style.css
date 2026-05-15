@@ -96,12 +96,16 @@ main.content {
   font-family: var(--ff-h);
   font-weight: 800;
   font-size: 22px;
-  letter-spacing: -0.01em;
+  line-height: 1.02;
+  letter-spacing: 0;
   color: var(--text);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .brand-mark .name .dot { color: var(--accent); }
 .brand-mark .meta {
   margin-left: auto;
+  flex: 0 0 auto;
   font-family: var(--ff-b);
   font-size: 10px;
   font-weight: 600;
