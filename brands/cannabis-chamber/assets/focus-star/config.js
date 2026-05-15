@@ -1,0 +1,380 @@
+window.FOCUS_STAR_CONFIG = {
+  "brand": {
+    "name": "The Cannabis Chamber of Commerce",
+    "shortName": "CCC",
+    "tagline": "Global cannabis and hemp business trade association",
+    "description": "Global cannabis and hemp business trade association",
+    "accentColor": "#505A66",
+    "inkColor": "#171A1F"
+  },
+  "visual": {
+    "darkMode": false,
+    "fonts": {
+      "heading": "Sora",
+      "body": "Atkinson Hyperlegible"
+    },
+    "background": "#FFFFFF",
+    "dialBackground": "#FFFFFF",
+    "bgMode": "unified"
+  },
+  "center": "Standards",
+  "pillars": [
+    {
+      "id": "product",
+      "code": "P1",
+      "title": "Product",
+      "eyebrow": "Your offering",
+      "guide": {
+        "desc": "<strong>Product.</strong> What you actually sell, and the standard the offer has to hold.",
+        "impacts": [
+          "Offering architecture",
+          "Pricing",
+          "Deliverables",
+          "Sales conversation",
+          "Client experience",
+          "Proof"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Chamber business infrastructure.</strong> The Cannabis Chamber of Commerce is a business infrastructure platform for the cannabis and hemp industry. It connects professionals, creates networking and sponsorship opportunities, supports local and global industry participation, educates members, and gives businesses a credible organized voice without becoming a lobbying organization.",
+        "apply": "The Chamber turns a fragmented, hard-to-enter market into a structured business network where professionals can meet the right people, understand the industry, and create real opportunity.",
+        "impacts": [
+          "Offering architecture",
+          "Pricing",
+          "Deliverables",
+          "Sales conversation",
+          "Client experience",
+          "Proof"
+        ],
+        "details": {
+          "Strategic position": [
+            "The Cannabis Chamber of Commerce is a business infrastructure platform for the cannabis and hemp industry. It connects professionals, creates networking and sponsorship opportunities, supports local and global industry participation, educates members, and gives businesses a credible organized voice without becoming a lobbying organization."
+          ],
+          "Compass": [
+            "Where cannabis business connects. Access, events, education, exposure, and trusted relationships for people building in and around cannabis."
+          ],
+          "Rules in": [
+            "Membership network for cannabis and hemp professionals at different stages of participation",
+            "Plant-touching operators: cultivators, retailers, manufacturers, distributors, lab testers, and other licensed operators",
+            "Ancillary services: accounting, security, IT, operations, legal-adjacent services, marketing, real estate, insurance, finance, and other business support",
+            "Professionals and outsiders who want to enter the industry credibly",
+            "Networking events, regional events, sponsored events, member exposure, and education",
+            "Policy insight, regulatory awareness, and representation of business concerns",
+            "Future value ideas clearly marked as future ideas: directories, mentorship, badges, pins, market reports, and sponsorship perks"
+          ],
+          "Rules out": [
+            "Lobbying as a core activity",
+            "Consumer cannabis lifestyle positioning",
+            "A passive directory as the primary product",
+            "Lead scraping, vendor spam, or access without contribution",
+            "Hype, weed puns, stoner aesthetics, 420 culture, or novelty-first campaigns",
+            "Promising revenue, introductions, investment, legal outcomes, regulatory victories, or sponsorship results that are not proven"
+          ],
+          "Proof required": [
+            "Event attendance, regional activity, sponsorship packages, and member participation",
+            "Member categories showing plant-touching and ancillary businesses",
+            "Examples of business value created through networking or exposure",
+            "Education resources and practical industry guidance",
+            "Clear membership tier differences once the free-to-paid strategy is solved",
+            "Public proof that CCC does representation and insight, not lobbying"
+          ],
+          "AI rule": [
+            "Frame the Chamber as cannabis business infrastructure, not a consumer brand",
+            "Address professionals broadly, not only executives",
+            "Distinguish plant-touching operators from ancillary service providers when useful",
+            "Mark future ideas as future ideas",
+            "Never imply CCC lobbies",
+            "Avoid treating free membership conversion as solved"
+          ],
+          "Image signal": [
+            "Cannabis business infrastructure."
+          ]
+        }
+      }
+    },
+    {
+      "id": "people",
+      "code": "P2",
+      "title": "People",
+      "eyebrow": "Your tribe",
+      "guide": {
+        "desc": "<strong>People.</strong> The specific people the brand is built to serve. Not everyone.",
+        "impacts": [
+          "Positioning",
+          "Language",
+          "Visibility",
+          "Offer fit",
+          "Content themes",
+          "Sales filtering"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Cannabis professionals building access.</strong> The Chamber serves cannabis and hemp professionals: people already operating in the industry, people selling services into it, people trying to enter it, and people building regional relationships around it. The audience includes plant-touching operators, ancillary service providers, small businesses, consultants, entrepreneurs, investors, sponsors, regional leaders, and serious newcomers.",
+        "apply": "The Chamber is for people with a real business reason to be in the room, whether they touch the plant directly or support the businesses that do.",
+        "impacts": [
+          "Positioning",
+          "Language",
+          "Visibility",
+          "Offer fit",
+          "Content themes",
+          "Sales filtering"
+        ],
+        "details": {
+          "Strategic position": [
+            "The Chamber serves cannabis and hemp professionals: people already operating in the industry, people selling services into it, people trying to enter it, and people building regional relationships around it. The audience includes plant-touching operators, ancillary service providers, small businesses, consultants, entrepreneurs, investors, sponsors, regional leaders, and serious newcomers."
+          ],
+          "Compass": [
+            "Professionals who want credible access to cannabis business: meet people, understand the industry, sell services, find partners, sponsor events, and participate without looking unserious."
+          ],
+          "Rules in": [
+            "Plant-touching operators: cultivators, retailers, manufacturers, processors, distributors, and lab testers",
+            "Ancillary service providers: accounting, security, IT, operations, marketing, finance, insurance, real estate, staffing, and related business services",
+            "Entrepreneurs, consultants, investors, sponsors, and professional organizations",
+            "Outsiders with serious intent to enter the industry and learn how it works",
+            "Regional leaders building local events and local networks",
+            "People who want to network, sell services, learn, sponsor, partner, or participate professionally"
+          ],
+          "Rules out": [
+            "Consumer cannabis fans with no business intent",
+            "People looking only for visibility without participation",
+            "Vendors who treat the Chamber as a cold lead list",
+            "Stoner culture, lifestyle-first brands, and casual hype seekers",
+            "Anyone expecting networking to replace credibility, follow-through, or contribution"
+          ],
+          "Proof required": [
+            "Member examples across plant-touching and ancillary categories",
+            "Regional event participation and sponsor participation",
+            "Testimonials from operators and service providers",
+            "Evidence that newcomers can learn and enter professionally",
+            "Clear rules of conduct that prevent vendor spam"
+          ],
+          "AI rule": [
+            "Do not narrow the audience to executives only",
+            "Explain plant-touching versus ancillary when it clarifies membership value",
+            "Keep the room professional, but do not make it feel locked or elitist",
+            "Never use \"everyone in cannabis\" without a business-intent qualifier",
+            "Avoid \"badge energy\" unless discussing a negative anti-persona"
+          ],
+          "Image signal": [
+            "Cannabis professionals building access."
+          ]
+        }
+      }
+    },
+    {
+      "id": "purpose",
+      "code": "P3",
+      "title": "Purpose",
+      "eyebrow": "Your why",
+      "guide": {
+        "desc": "<strong>Purpose.</strong> The reason the brand exists beyond activity and attention.",
+        "impacts": [
+          "Vision",
+          "Story",
+          "Partnerships",
+          "Recruitment",
+          "Saying no",
+          "Editorial choices"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Move cannabis business forward.</strong> The Chamber exists to move cannabis and hemp business forward by expanding access to relationships, education, regional events, sponsorship opportunities, market insight, and credible business representation. It helps people participate in a complex industry with more clarity, more trust, and more opportunity.",
+        "apply": "Cannabis earns lasting legitimacy when professionals organize around higher standards, useful education, trusted relationships, local activity, and visible business value.",
+        "impacts": [
+          "Vision",
+          "Story",
+          "Partnerships",
+          "Recruitment",
+          "Saying no",
+          "Editorial choices"
+        ],
+        "details": {
+          "Strategic position": [
+            "The Chamber exists to move cannabis and hemp business forward by expanding access to relationships, education, regional events, sponsorship opportunities, market insight, and credible business representation. It helps people participate in a complex industry with more clarity, more trust, and more opportunity."
+          ],
+          "Compass": [
+            "The measure is not attention. The measure is business movement."
+          ],
+          "Rules in": [
+            "Create practical business opportunity through connection, education, and events",
+            "Help professionals enter and navigate the industry credibly",
+            "Support regional networking and local business activity",
+            "Create exposure for sponsors and participating businesses",
+            "Provide policy insight and representation without lobbying",
+            "Build trust between plant-touching operators and ancillary partners",
+            "Use future ideas to guide roadmap thinking, not current promises"
+          ],
+          "Rules out": [
+            "Lobbying claims",
+            "Visibility-first campaigns that do not create useful participation",
+            "Activity for activity's sake",
+            "Consumer activism, lifestyle advocacy, or culture-first cannabis messaging",
+            "Overstating market reports, directories, mentorship, badges, or sponsorship perks before they exist"
+          ],
+          "Proof required": [
+            "Events hosted, regional participation, and sponsor outcomes",
+            "Member stories tied to access, learning, or opportunity",
+            "Clear differentiation between advocacy insight and lobbying",
+            "Education resources that help newcomers and professionals navigate the industry",
+            "Signals that local value comes from local networking and events"
+          ],
+          "AI rule": [
+            "Use \"movement\" to mean business progress, not vague inspiration",
+            "Do not claim lobbying",
+            "Do not imply future products are live",
+            "Treat regional networking and events as current value",
+            "Tie purpose back to access, standards, opportunity, and trust"
+          ],
+          "Image signal": [
+            "Move cannabis business forward."
+          ]
+        }
+      }
+    },
+    {
+      "id": "promise",
+      "code": "P4",
+      "title": "Promise",
+      "eyebrow": "Your non-negotiable",
+      "guide": {
+        "desc": "<strong>Promise.</strong> The one standard that should hold across every touchpoint.",
+        "impacts": [
+          "Writing",
+          "Visual metaphor",
+          "Discovery",
+          "Decision filter",
+          "Content topics",
+          "Client process"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Elevating Business Standards.</strong> Elevating Business Standards. The Chamber helps cannabis and hemp professionals show up credibly, connect constructively, learn the market, represent the industry professionally, and create business value through trusted relationships.",
+        "apply": "The Chamber's promise is not exclusivity for its own sake. It is a more professional way for people to enter, participate in, and grow through cannabis and hemp business.",
+        "impacts": [
+          "Writing",
+          "Visual metaphor",
+          "Discovery",
+          "Decision filter",
+          "Content topics",
+          "Client process"
+        ],
+        "details": {
+          "Strategic position": [
+            "Elevating Business Standards. The Chamber helps cannabis and hemp professionals show up credibly, connect constructively, learn the market, represent the industry professionally, and create business value through trusted relationships."
+          ],
+          "Compass": [
+            "Standards turn access into trust. Trust turns relationships into opportunity."
+          ],
+          "Rules in": [
+            "Meaningful relationships over visibility",
+            "Long-term credibility over hype",
+            "Leadership over noise",
+            "Sustainable growth over short-term attention",
+            "Clear expectations for events, sponsors, members, and regional leaders",
+            "Credible business representation without lobbying",
+            "Education that helps professionals participate better"
+          ],
+          "Rules out": [
+            "Filling the calendar just to look active",
+            "Treating networking as vendor access without boundaries",
+            "Diluting standards to inflate member count",
+            "Overclaiming the free membership strategy",
+            "Selling future ideas as current benefits",
+            "Chasing cannabis novelty over business trust"
+          ],
+          "Proof required": [
+            "Event standards and sponsor standards",
+            "Public member expectations and code of conduct",
+            "Education and onboarding resources",
+            "Differentiated membership tiers when the business model is ready",
+            "Examples of professional representation without lobbying"
+          ],
+          "AI rule": [
+            "Default frame: standards make participation easier and more credible",
+            "Use contrasts from source: relationships over visibility, credibility over hype, leadership over noise, sustainable growth over short-term attention",
+            "Do not make standards sound like a closed club",
+            "Do not claim the monetization model is solved"
+          ],
+          "Image signal": [
+            "Standards make access credible."
+          ]
+        }
+      }
+    },
+    {
+      "id": "personality",
+      "code": "P5",
+      "title": "Personality",
+      "eyebrow": "How you show up",
+      "guide": {
+        "desc": "<strong>Personality.</strong> How the brand sounds, looks, behaves, and is recognized.",
+        "impacts": [
+          "Voice",
+          "Visual language",
+          "Social behavior",
+          "Website tone",
+          "Decks",
+          "Email rhythm"
+        ]
+      },
+      "case": {
+        "desc": "<strong>Credible, open, standards-led.</strong> Professional, confident, credible, and direct. Operator-aware but not operator-only. Welcoming to serious professionals, including outsiders entering the industry, while clear about the standard expected in the room.",
+        "apply": "The Chamber's voice is the public signal that cannabis business can be serious, accessible, credible, and useful at the same time.",
+        "impacts": [
+          "Voice",
+          "Visual language",
+          "Social behavior",
+          "Website tone",
+          "Decks",
+          "Email rhythm"
+        ],
+        "details": {
+          "Strategic position": [
+            "Professional, confident, credible, and direct. Operator-aware but not operator-only. Welcoming to serious professionals, including outsiders entering the industry, while clear about the standard expected in the room."
+          ],
+          "Compass": [
+            "Business-first, standards-led, useful, and transparent. The Chamber sounds like an institution that helps people participate, not a club that enjoys keeping them out."
+          ],
+          "Rules in": [
+            "Professional, confident, credible, and direct",
+            "Clear over clever",
+            "Authoritative over performative",
+            "Strategic over promotional",
+            "Useful over inspirational",
+            "Welcoming to serious professionals",
+            "Plain business language",
+            "Transparent distinctions: plant-touching, ancillary, newcomer, sponsor, regional leader",
+            "Practical optimism grounded in real business value"
+          ],
+          "Rules out": [
+            "Consumer cannabis culture",
+            "Hype-driven or trend-chasing language",
+            "Lifestyle-first framing",
+            "Visibility-first promises",
+            "Generic networking cliches",
+            "Corporate theater",
+            "Stoner culture cues, weed puns, smoke, 420 references, and leaf cliches",
+            "Lobbying claims",
+            "\"Family\" or vague community language without a concrete business meaning"
+          ],
+          "Proof required": [
+            "Published Chamber copy demonstrating professional welcome without hype",
+            "Event and membership language that avoids vendor spam",
+            "Member proof across plant-touching and ancillary categories",
+            "Voice exemplars maintained in references/voice-exemplars.md as the canonical bank"
+          ],
+          "AI rule": [
+            "Address cannabis and hemp professionals broadly",
+            "Use preferred vocabulary: standards, access, professionals, plant-touching, ancillary, operators, sponsors, regional leaders, events, education, market access, business value, trusted relationships, exposure, opportunity, leadership",
+            "Avoid banned language: lobbying, stoner cues, weed puns, hype, disruption, vague community, visibility-first copy, cheap exclusivity, generic networking",
+            "Apply linguistic rules: concise declarative sentences, plain business language, and specific business value",
+            "When in doubt, make the Chamber useful before making it impressive"
+          ],
+          "Image signal": [
+            "Credible, open, standards-led."
+          ]
+        }
+      }
+    }
+  ]
+};

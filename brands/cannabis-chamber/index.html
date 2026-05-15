@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand OS Overview · CCC Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Atkinson+Hyperlegible:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+
+  :root {
+    --accent: #505A66;
+    --accent-glow: rgba(80, 90, 102, 0.24);
+    --accent-soft: rgba(80, 90, 102, 0.07);
+    --text: #171A1F;
+    --muted: #6E7580;
+    --border: #D9DEE5;
+    --light: #F3F5F7;
+    --white: #FFFFFF;
+    --dark: #121417;
+    --dark-surface: #1B2026;
+    --ff-h: "Sora", system-ui, sans-serif;
+    --ff-b: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">CCC<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="active" href="index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="strategy/index.html">Focus Star</a>
+<a href="strategy/product.html">Product</a>
+<a href="strategy/people.html">People</a>
+<a href="strategy/purpose.html">Purpose</a>
+<a href="strategy/promise.html">Promise</a>
+<a href="strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a href="identity/index.html">Direction One</a>
+<a href="identity/the-posse.html">Direction Two</a>
+<a href="identity/the-tribe.html">Direction Three</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Overview</strong></div>
+    <div class="row"><span>Use</span><strong>AI-first system</strong></div>
+    <div class="row"><span>Center</span><strong>Standards</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+
+.home-hero { background: var(--dark); padding: 96px clamp(40px,5vw,72px) 72px; margin: -96px calc(-1 * clamp(48px,7vw,120px)) 56px; width: calc(100% + 2 * clamp(48px,7vw,120px)); position: relative; }
+@media (max-width: 960px) { .home-hero { margin: -64px -28px 48px; width: calc(100% + 56px); padding: 56px 28px 48px; } }
+.home-hero .hero-eyebrow { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; display: block; }
+.home-hero h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(56px,9vw,112px); line-height: 0.92; letter-spacing: -0.04em; color: #fff; margin: 0 0 24px; }
+.home-hero h1 .dot { color: var(--accent); }
+.home-hero .hero-sub { font-family: var(--ff-h); font-weight: 400; font-size: clamp(16px,2vw,22px); color: rgba(255,255,255,0.4); line-height: 1.5; max-width: 560px; margin: 0 0 48px; }
+.home-hero .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { font-family: var(--ff-b); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 10px 20px; border: 1px solid rgba(255,255,255,0.1); }
+.hero-pill strong { color: rgba(255,255,255,0.8); margin-left: 6px; }
+.home-section { margin: 0 0 96px; }
+.home-section-header { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 20px; border-top: 1px solid var(--text); margin-bottom: 40px; }
+.home-section-num { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--accent); padding-top: 12px; }
+.home-section-title { font-family: var(--ff-h); font-weight: 800; font-size: clamp(32px,4.5vw,56px); line-height: 1.02; letter-spacing: -0.025em; color: var(--text); margin: 0 0 8px; }
+.home-section-title .dot { color: var(--accent); }
+.home-section-sub { font-family: var(--ff-b); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.home-section-desc { font-family: var(--ff-b); font-size: 15px; line-height: 1.7; color: var(--text); max-width: 640px; margin: 0; }
+.toc-page-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0; border-left: 1px solid var(--border); }
+.toc-page-card { display: flex; flex-direction: column; padding: 28px 24px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); text-decoration: none; color: var(--text); position: relative; transition: background 0.3s var(--ease-out-expo); }
+.toc-page-card:hover { background: var(--accent-soft); }
+.toc-page-card .card-code { font-family: var(--ff-b); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 10px; }
+.toc-page-card .card-name { font-family: var(--ff-h); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; line-height: 1.2; flex: 1; }
+.toc-page-card .card-name .dot { color: var(--accent); }
+.toc-page-card p { font-family: var(--ff-b); font-size: 13px; line-height: 1.6; color: var(--text); margin: 0 0 16px; }
+.toc-page-card .card-status { font-family: var(--ff-b); font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 8px; display: inline-block; align-self: flex-start; color: var(--muted); border: 1px solid var(--border); }
+</style>
+<style>
+.flow-band { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); margin: 32px 0 0; }
+.flow-row { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+.flow-row .flow-step { font-family: var(--ff-h); font-weight: 800; font-size: 34px; line-height: 1; color: var(--accent); }
+.flow-row h3 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(22px,2.4vw,30px); line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin: 0 0 8px; }
+.flow-row p { font-family: var(--ff-b); font-size: 14px; line-height: 1.65; color: var(--text); max-width: 720px; margin: 0; }
+@media (max-width: 720px) { .flow-row { grid-template-columns: 1fr; gap: 10px; } }
+</style>
+  <section class="home-hero">
+    <span class="hero-eyebrow">Brand OS · AI-first source system</span>
+    <h1>The Cannabis Chamber of Commerce Brand OS<span class="dot">.</span></h1>
+    <p class="hero-sub">One source thread: strategy decides, identity translates, application proves. Generated work is downstream until the source is approved.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">Source<strong>A → B → C</strong></div>
+      <div class="hero-pill">Mode<strong>AI-first</strong></div>
+      <div class="hero-pill">Review<strong>Sequential</strong></div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="home-section-header">
+      <div class="home-section-num">THREAD</div>
+      <div>
+        <h2 class="home-section-title">How the system works<span class="dot">.</span></h2>
+        <p class="home-section-sub">Source of truth to generated output</p>
+        <p class="home-section-desc">The goal is not another static brand book. The goal is a compact source system that can generate a website direction, collateral, copy, and channel rules from approved strategic decisions.</p>
+      </div>
+    </div>
+    <div class="flow-band"><div class="flow-row"><div class="flow-step">A</div><div><h3>Strategy contract<span class="dot">.</span></h3><p>Focus Star turns the strategy into decisions an AI can reuse without re-interpreting the brand.</p></div></div><div class="flow-row"><div class="flow-step">B</div><div><h3>Creative direction options<span class="dot">.</span></h3><p>Three Section B directions translate the same Section A strategy into different visual systems before one is approved.</p></div></div><div class="flow-row"><div class="flow-step">C</div><div><h3>Application references<span class="dot">.</span></h3><p>Examples and channel rules show how the approved strategy and identity behave in real formats.</p></div></div></div>
+  </section>
+
+  <section class="home-section">
+    <div class="home-section-header">
+      <div class="home-section-num">REVIEW</div>
+      <div>
+        <h2 class="home-section-title">Review order<span class="dot">.</span></h2>
+        <p class="home-section-sub">Do not inspect everything at once</p>
+        <p class="home-section-desc">Approve the upstream decision layer first, then the identity translation, then application examples. If a downstream page reveals a better decision, edit the source and rebuild.</p>
+      </div>
+    </div>
+    <div class="toc-page-grid"><a class="toc-page-card" href="strategy/index.html"><div class="card-code">A</div><div class="card-name">Strategy contract<span class="dot">.</span></div><p>Focus Star turns the strategy into decisions an AI can reuse without re-interpreting the brand.</p><div class="card-status">Strategy</div></a><a class="toc-page-card" href="identity/index.html"><div class="card-code">B</div><div class="card-name">Creative direction options<span class="dot">.</span></div><p>Three Section B directions translate the same Section A strategy into different visual systems before one is approved.</p><div class="card-status">Creative direction</div></a><a class="toc-page-card" href="identity/index.html"><div class="card-code">C</div><div class="card-name">Application references<span class="dot">.</span></div><p>Examples and channel rules show how the approved strategy and identity behave in real formats.</p><div class="card-status">Application</div></a></div>
+  </section>
+
+
+  <div class="footer-nav">
+    <span>Brand OS · Overview</span>
+    <span><a href="strategy/index.html">Brand Strategy →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>

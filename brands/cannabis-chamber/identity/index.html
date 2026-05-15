@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction One · CCC Brand OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Atkinson+Hyperlegible:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+
+  :root {
+    --accent: #505A66;
+    --accent-glow: rgba(80, 90, 102, 0.24);
+    --accent-soft: rgba(80, 90, 102, 0.07);
+    --text: #171A1F;
+    --muted: #6E7580;
+    --border: #D9DEE5;
+    --light: #F3F5F7;
+    --white: #FFFFFF;
+    --dark: #121417;
+    --dark-surface: #1B2026;
+    --ff-h: "Sora", system-ui, sans-serif;
+    --ff-b: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+</style>
+</head>
+<body class="grain">
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="brand-mark">
+    <div class="name">CCC<span class="dot">.</span></div>
+    <div class="meta">Brand OS</div>
+  </div>
+  <div class="nav-section">
+    <div class="label">Sections</div>
+    <div class="nav-list">
+<a class="" href="../index.html">System Overview</a>
+</div><details class="nav-group" open><summary><span class="group-letter">A</span><span class="group-label">Brand Strategy</span></summary><div class="nav-list">
+<a href="../strategy/index.html">Focus Star</a>
+<a href="../strategy/product.html">Product</a>
+<a href="../strategy/people.html">People</a>
+<a href="../strategy/purpose.html">Purpose</a>
+<a href="../strategy/promise.html">Promise</a>
+<a href="../strategy/personality.html">Personality</a>
+</div></details><details class="nav-group" open><summary><span class="group-letter">B</span><span class="group-label">Brand Identity</span></summary><div class="nav-list">
+<a class="active" href="index.html">Direction One</a>
+<a href="the-posse.html">Direction Two</a>
+<a href="the-tribe.html">Direction Three</a>
+</div></details>
+  </div>
+  <div class="toolbar-mini">
+    <div class="row"><span>Section</span><strong>Identity</strong></div>
+    <div class="row"><span>Use</span><strong>Visual + voice</strong></div>
+    <div class="row"><span>Center</span><strong>Standards</strong></div>
+  </div>
+</aside>
+
+<main class="content">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@600;700;800&family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700;6..96,800&family=Chivo:wght@400;600;700;800&family=Libre+Baskerville:wght@400;700&family=Sora:wght@400;600;700;800&family=Urbanist:wght@400;600;700;800&display=swap');
+
+.dir-review { --dir-primary: var(--accent); --dir-secondary: var(--text); --dir-signal: var(--accent); --dir-paper: var(--white); --dir-ink: var(--text); font-family: var(--dir-font-body, var(--ff-b)); }
+.dir-hero { margin: 0 0 72px; padding: 64px clamp(28px,5vw,64px); background: radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--dir-signal) 42%, transparent), transparent 28%), linear-gradient(135deg, var(--dir-secondary), color-mix(in srgb, var(--dir-secondary) 82%, #000 18%)); color: var(--white); position: relative; overflow: hidden; min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; }
+.dir-hero::before { content: ""; position: absolute; inset: 22px; border: 1px solid rgba(255,255,255,0.15); pointer-events: none; }
+.dir-hero::after { content: ""; position: absolute; inset: auto 0 0; height: 10px; background: linear-gradient(90deg, var(--dir-primary), var(--dir-signal), var(--dir-paper)); }
+.dir-kicker, .dir-status, .dir-label { font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dir-signal); }
+.dir-hero h1 { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: clamp(58px,9vw,122px); line-height: 0.9; letter-spacing: 0; margin: 16px 0 12px; color: var(--white); max-width: 900px; }
+.dir-hero h1 .dot { color: var(--dir-signal); }
+.dir-working { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: clamp(24px,3vw,42px); line-height: 1; letter-spacing: 0; color: rgba(255,255,255,0.9); margin: 0 0 22px; }
+.dir-thesis { font-family: var(--dir-font-body, var(--ff-b)); font-size: clamp(15px,1.6vw,20px); line-height: 1.65; color: rgba(255,255,255,0.74); max-width: 850px; margin: 0; }
+.dir-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.dir-meta span { border: 1px solid rgba(255,255,255,0.16); padding: 9px 12px; font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.dir-meta strong { color: rgba(255,255,255,0.9); margin-left: 5px; }
+.dir-section { margin: 0 0 92px; }
+.dir-section-head { display: grid; grid-template-columns: 72px 1fr; gap: 24px; align-items: start; padding-top: 22px; border-top: 1px solid var(--text); margin-bottom: 32px; }
+.dir-num { font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: var(--dir-primary); padding-top: 12px; }
+.dir-section h2 { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: clamp(32px,4.5vw,58px); line-height: 1; letter-spacing: 0; color: var(--text); margin: 0 0 10px; }
+.dir-section h2 .dot { color: var(--dir-signal); }
+.dir-section-desc { font-family: var(--dir-font-body, var(--ff-b)); font-size: 15px; line-height: 1.75; color: var(--text); max-width: 820px; margin: 0; }
+.dir-panel { border: 1px solid var(--border); background: var(--white); padding: 30px; }
+.dir-board-shell { border: 1px solid var(--border); background: var(--white); padding: clamp(10px,1.5vw,18px); box-shadow: 0 22px 60px rgba(16,24,40,0.12); }
+.dir-board-shell img { display: block; width: 100%; height: auto; border: 1px solid var(--border); background: var(--dir-paper); }
+.dir-board-note { margin-top: 14px; font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dir-primary); }
+.dir-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); padding: 28px 24px; }
+.dir-card h3 { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: 23px; line-height: 1.08; letter-spacing: 0; color: var(--text); margin: 0 0 10px; }
+.dir-card p, .dir-card li, .dir-panel p, .dir-panel li { font-family: var(--dir-font-body, var(--ff-b)); font-size: 13px; line-height: 1.68; color: var(--muted); }
+.dir-card p, .dir-panel p { margin: 0; }
+.dir-card ul, .dir-panel ul { margin: 0; padding-left: 18px; }
+.dir-slider-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-slider { display: grid; grid-template-columns: 96px 1fr 96px; gap: 12px; align-items: center; padding: 14px 18px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); }
+.dir-slider span { font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.dir-slider span:last-child { text-align: right; }
+.dir-track { height: 3px; background: var(--border); position: relative; }
+.dir-dot { width: 13px; height: 13px; background: var(--dir-primary); position: absolute; top: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 4px color-mix(in srgb, var(--dir-primary) 12%, transparent); }
+.dir-palette { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-swatch { min-height: 160px; padding: 16px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; }
+.dir-swatch-name { font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.dir-swatch-hex { font-family: var(--dir-font-body, var(--ff-b)); font-size: 12px; font-weight: 700; }
+.dir-swatch-role { font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; line-height: 1.45; margin-top: 8px; max-width: 190px; }
+.dir-mood { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-mood-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--white); }
+.dir-mood-item img { width: 100%; aspect-ratio: 1.05; object-fit: cover; display: block; filter: saturate(1.02) contrast(1.04); }
+.dir-mood-label { padding: 12px 14px; font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); }
+.dir-logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-logo-grid:has(.dir-logo-cell:only-child) { grid-template-columns: 1fr; }
+.dir-logo-cell { min-height: 230px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; padding: 26px; background: var(--white); position: relative; }
+.dir-logo-cell.dark { background: var(--dir-secondary); }
+.dir-logo-cell img { max-width: 84%; max-height: 160px; display: block; }
+.dir-logo-cell:only-child { min-height: 520px; }
+.dir-logo-cell:only-child img { width: 100%; max-width: 100%; max-height: none; height: auto; }
+.dir-logo-cell span { position: absolute; left: 14px; bottom: 12px; font-family: var(--dir-font-body, var(--ff-b)); font-size: 9px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
+.dir-logo-cell.dark span { color: rgba(255,255,255,0.62); }
+.dir-signature-demo { min-height: 290px; background: var(--dir-paper); color: var(--dir-ink); border: 1px solid var(--border); display: grid; place-items: center; padding: 36px; position: relative; overflow: hidden; }
+.dir-signature-demo .sig-lines { width: min(460px,80%); display: grid; gap: 8px; margin: 0 auto; }
+.dir-signature-demo .sig-line { height: 7px; background: var(--dir-primary); }
+.dir-signature-demo .sig-line:nth-child(2) { background: var(--dir-secondary); }
+.dir-signature-demo .sig-line:nth-child(3) { background: var(--dir-signal); }
+.dir-signature-demo .sig-word { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: clamp(42px,7vw,82px); line-height: 0.92; letter-spacing: 0; margin-bottom: 30px; text-align: center; }
+.dir-copy-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-copy-list .dir-card { min-height: 180px; }
+.dir-application-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.dir-app { border: 1px solid var(--border); background: var(--white); padding: 22px; display: grid; gap: 18px; min-width: 0; overflow: hidden; }
+.dir-app-head { display: flex; justify-content: space-between; gap: 18px; align-items: start; border-bottom: 1px solid var(--border); padding-bottom: 14px; }
+.dir-app-head h3 { font-family: var(--dir-font-display, var(--ff-h)); font-size: 24px; line-height: 1.05; letter-spacing: 0; margin: 0; color: var(--text); }
+.dir-app-head span, .dir-app-format { font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dir-primary); white-space: nowrap; }
+.dir-app-role { font-family: var(--dir-font-body, var(--ff-b)); font-size: 13px; line-height: 1.6; color: var(--muted); margin: 0; }
+.dir-app-image { width: 100%; height: auto; display: block; border: 1px solid var(--border); background: var(--dir-paper); box-shadow: 0 12px 32px rgba(16,24,40,0.1); }
+.dir-mock { width: 100%; max-width: 100%; min-width: 0; min-height: 330px; border: 1px solid var(--border); background: var(--dir-paper); color: var(--dir-ink); position: relative; overflow: hidden; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+.mock-mark { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: 24px; letter-spacing: 0; color: var(--dir-secondary); }
+.mock-kicker { font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dir-primary); }
+.mock-headline { font-family: var(--dir-font-display, var(--ff-h)); font-weight: 800; font-size: clamp(34px,5vw,62px); line-height: 0.96; letter-spacing: 0; max-width: 560px; color: var(--dir-secondary); }
+.mock-sub { font-family: var(--dir-font-body, var(--ff-b)); font-size: 14px; line-height: 1.5; max-width: 460px; color: color-mix(in srgb, var(--dir-secondary) 74%, transparent); }
+.mock-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.mock-pill { border: 1px solid currentColor; padding: 6px 10px; font-family: var(--dir-font-body, var(--ff-b)); font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dir-secondary); background: color-mix(in srgb, var(--dir-paper) 78%, transparent); }
+.dir-mock.flyer { aspect-ratio: 4 / 5; min-height: 520px; background: linear-gradient(160deg, var(--dir-paper) 0 48%, color-mix(in srgb, var(--dir-primary) 18%, var(--dir-paper)) 48% 100%); }
+.dir-mock.flyer::after { content: ""; position: absolute; width: 34%; height: 18%; right: 0; bottom: 0; background: var(--dir-signal); mix-blend-mode: multiply; opacity: 0.9; }
+.dir-mock.badge { aspect-ratio: 3 / 4.5; max-width: 390px; margin: 0 auto; min-height: 500px; background: var(--white); border-color: var(--dir-secondary); }
+.badge-band { height: 18px; background: linear-gradient(90deg, var(--dir-primary), var(--dir-signal)); margin: -24px -24px 24px; }
+.badge-name { font-family: var(--dir-font-display, var(--ff-h)); font-size: 46px; line-height: 0.95; font-weight: 800; color: var(--dir-secondary); }
+.badge-company { font-family: var(--dir-font-body, var(--ff-b)); font-size: 15px; color: var(--muted); margin-top: 8px; }
+.badge-role { margin-top: 24px; display: inline-flex; align-self: flex-start; padding: 8px 12px; background: var(--dir-secondary); color: var(--white); font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.badge-qr { width: 72px; height: 72px; margin-top: auto; background: repeating-linear-gradient(45deg, var(--dir-secondary) 0 6px, transparent 6px 12px), var(--white); border: 8px solid var(--white); box-shadow: 0 0 0 1px var(--border); }
+.dir-mock.backdrop { aspect-ratio: 16 / 9; min-height: 0; background: var(--dir-secondary); color: var(--white); display: grid; place-items: center; text-align: center; }
+.dir-mock.backdrop::before { content: ""; position: absolute; inset: 28px; border: 1px solid color-mix(in srgb, var(--dir-signal) 70%, transparent); }
+.backdrop-repeat { position: absolute; inset: 0; opacity: 0.17; background-image: linear-gradient(90deg, transparent 47%, var(--dir-paper) 47% 53%, transparent 53%), linear-gradient(0deg, transparent 47%, var(--dir-paper) 47% 53%, transparent 53%); background-size: 150px 120px; }
+.backdrop-title { font-family: var(--dir-font-display, var(--ff-h)); font-size: clamp(34px,4.2vw,62px); line-height: 0.92; font-weight: 800; letter-spacing: 0; position: relative; z-index: 1; max-width: 92%; overflow-wrap: break-word; margin: 0 auto; }
+.backdrop-sponsor { position: relative; z-index: 1; margin-top: 22px; color: rgba(255,255,255,0.7); font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.dir-mock.cardset { min-height: 360px; background: color-mix(in srgb, var(--dir-paper) 84%, var(--dir-primary) 16%); display: grid; place-items: center; }
+.card-pair { width: min(440px, 92%); display: grid; gap: 14px; transform: rotate(-3deg); }
+.card-face { min-height: 132px; padding: 20px; background: var(--white); border: 1px solid var(--dir-secondary); box-shadow: 10px 10px 0 color-mix(in srgb, var(--dir-signal) 42%, transparent); display: flex; flex-direction: column; justify-content: space-between; }
+.card-face.dark { background: var(--dir-secondary); color: var(--white); transform: translateX(24px) rotate(4deg); }
+.card-name { font-family: var(--dir-font-display, var(--ff-h)); font-size: 28px; line-height: 1; font-weight: 800; letter-spacing: 0; }
+.card-detail { font-family: var(--dir-font-body, var(--ff-b)); font-size: 11px; line-height: 1.5; letter-spacing: 0.06em; text-transform: uppercase; color: inherit; opacity: 0.78; }
+.dir-reference-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 1px solid var(--border); border-left: 1px solid var(--border); }
+.dir-ref { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 24px; background: var(--white); }
+.dir-ref h3 { font-family: var(--dir-font-display, var(--ff-h)); font-size: 22px; line-height: 1.1; margin: 0 0 12px; letter-spacing: 0; }
+.dir-ref p { font-family: var(--dir-font-body, var(--ff-b)); font-size: 13px; line-height: 1.62; color: var(--muted); margin: 0; }
+@media (max-width: 980px) { .dir-grid, .dir-mood, .dir-logo-grid, .dir-slider-grid, .dir-copy-list, .dir-application-grid, .dir-reference-grid { grid-template-columns: 1fr; } .dir-slider { grid-template-columns: 84px 1fr 84px; } .dir-section-head { grid-template-columns: 1fr; gap: 10px; } }
+</style>
+<div class="dir-review" style="--dir-primary:#2454FF; --dir-secondary:#101828; --dir-signal:#FF4F64; --dir-paper:#F6F9FF; --dir-ink:#101828; --dir-font-display:&quot;Barlow Condensed&quot;, &quot;Arial Narrow&quot;, system-ui, sans-serif; --dir-font-body:&quot;Chivo&quot;, system-ui, sans-serif;">
+  <section class="dir-hero">
+    <div class="dir-kicker">Section B · Creative direction proposal</div>
+    <h1>Direction One<span class="dot">.</span></h1>
+    <div class="dir-working">The Crew</div>
+    <p class="dir-thesis">A high-energy access network for cannabis professionals who need the next useful room: operators, service providers, sponsors, regional leaders, and serious newcomers. It feels active, civic, and event-ready without becoming startup cute.</p>
+    <div class="dir-meta">
+      <span>Status<strong>proposal</strong></span>
+      <span>Source<strong>Net-new assets. Public logo uses full name; CCC is internal shorthand only.</strong></span>
+      <span>Center<strong>Standards</strong></span>
+      <span>System<strong>Switchboard</strong></span>
+    </div>
+  </section>
+
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">01</div><div><div class="dir-label">Generated creative board</div><h2>Logo, mood, and event system<span class="dot">.</span></h2><p class="dir-section-desc">This raster board is the lead creative artifact for the direction: logo exploration, mood, event flyer, member credential, sponsor backdrop, business card, and environmental cues in one generated system.</p></div></div>
+    <div class="dir-board-shell"><img src="../images/generated-boards/crew-creative-board.png" alt="Generated board: The Crew / Switchboard"><div class="dir-board-note">Generated board: The Crew / Switchboard</div></div>
+  </section>
+
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">02</div><div><div class="dir-label">Strategy translation</div><h2>What this direction is saying<span class="dot">.</span></h2><p class="dir-section-desc">The Crew turns the Chamber into a living switchboard for cannabis business. The brand does not ask people to admire the institution from far away. It helps them find the right room, table, person, sponsor lane, or learning path quickly.</p></div></div>
+    <div class="dir-grid">
+      <div class="dir-card"><h3>Best Fit</h3><p>Membership growth, regional events, sponsor visibility, social promotion, onboarding, and a website that needs to make participation feel obvious.</p></div>
+      <div class="dir-card"><h3>Watchout</h3><p>If pushed too colorful, it can feel like a tech meetup instead of a Chamber. The system needs strong black structure and direct business copy to keep authority.</p></div>
+      <div class="dir-card"><h3>Operating Idea</h3><p>Useful energy. Every surface should answer one question: what can I do next?</p></div>
+    </div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">03</div><div><div class="dir-label">Creative platform</div><h2>The world this builds<span class="dot">.</span></h2><p class="dir-section-desc">The direction is treated as a brand system, not a palette. These are the decisions a flyer, badge, backdrop, sponsor deck, and website would all inherit.</p></div></div>
+    <div class="dir-grid"><div class="dir-card"><h3>Creative idea</h3><p>The Chamber as a live switchboard for access.</p></div><div class="dir-card"><h3>World</h3><p>Event floor, sponsor booth, regional meetup, and operator conversation all connected by one visible system.</p></div><div class="dir-card"><h3>Feeling</h3><p>Fast, welcoming, practical, and slightly charged.</p></div><div class="dir-card"><h3>Behavior</h3><p>Use color as routing, not decoration. Every color marks a role, action, or event state.</p></div><div class="dir-card"><h3>Signature line</h3><p>Find the room. Meet the market.</p></div><div class="dir-card"><h3>Not this</h3><p>Not Google colors, not conference confetti, not startup networking fluff.</p></div></div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">04</div><div><div class="dir-label">Brand sliders</div><h2>Style coordinates<span class="dot">.</span></h2><p class="dir-section-desc">The slider positions are the design contract for this option. They are different enough that each direction should generate a different event system.</p></div></div>
+    <div class="dir-slider-grid"><div class="dir-slider" role="img" aria-label="Classic to Modern: 88 percent"><span>Classic</span><div class="dir-track"><div class="dir-dot" style="left:88%"></div></div><span>Modern</span></div><div class="dir-slider" role="img" aria-label="Mature to Youthful: 52 percent"><span>Mature</span><div class="dir-track"><div class="dir-dot" style="left:52%"></div></div><span>Youthful</span></div><div class="dir-slider" role="img" aria-label="Formal to Energetic: 86 percent"><span>Formal</span><div class="dir-track"><div class="dir-dot" style="left:86%"></div></div><span>Energetic</span></div><div class="dir-slider" role="img" aria-label="Institutional to Human: 70 percent"><span>Institutional</span><div class="dir-track"><div class="dir-dot" style="left:70%"></div></div><span>Human</span></div><div class="dir-slider" role="img" aria-label="Quiet to Talkative: 78 percent"><span>Quiet</span><div class="dir-track"><div class="dir-dot" style="left:78%"></div></div><span>Talkative</span></div><div class="dir-slider" role="img" aria-label="Muted to Vibrant: 82 percent"><span>Muted</span><div class="dir-track"><div class="dir-dot" style="left:82%"></div></div><span>Vibrant</span></div><div class="dir-slider" role="img" aria-label="Minimal to Expressive: 66 percent"><span>Minimal</span><div class="dir-track"><div class="dir-dot" style="left:66%"></div></div><span>Expressive</span></div><div class="dir-slider" role="img" aria-label="Literal to Abstract: 58 percent"><span>Literal</span><div class="dir-track"><div class="dir-dot" style="left:58%"></div></div><span>Abstract</span></div><div class="dir-slider" role="img" aria-label="Traditional to Inventive: 84 percent"><span>Traditional</span><div class="dir-track"><div class="dir-dot" style="left:84%"></div></div><span>Inventive</span></div><div class="dir-slider" role="img" aria-label="Closed to Accessible: 92 percent"><span>Closed</span><div class="dir-track"><div class="dir-dot" style="left:92%"></div></div><span>Accessible</span></div></div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">05</div><div><div class="dir-label">Visual vocabulary</div><h2>Moodboard<span class="dot">.</span></h2><p class="dir-section-desc">New local reference images generated for this pass. They are not copied from the archive and are meant to teach composition, material, energy, and event context.</p></div></div>
+    <div class="dir-mood"><div class="dir-mood-item"><img src="../images/generated-boards/crew-mood-01-logo.png" alt="Logo and routing system"><div class="dir-mood-label">Logo and routing system</div></div><div class="dir-mood-item"><img src="../images/generated-boards/crew-mood-02-flyer.png" alt="Regional event flyer"><div class="dir-mood-label">Regional event flyer</div></div><div class="dir-mood-item"><img src="../images/generated-boards/crew-mood-03-badge.png" alt="Member credential"><div class="dir-mood-label">Member credential</div></div><div class="dir-mood-item"><img src="../images/generated-boards/crew-mood-04-backdrop.png" alt="Sponsor stage backdrop"><div class="dir-mood-label">Sponsor stage backdrop</div></div><div class="dir-mood-item"><img src="../images/generated-boards/crew-mood-05-event-room.png" alt="Event room energy"><div class="dir-mood-label">Event room energy</div></div></div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">06</div><div><div class="dir-label">Identity ingredients</div><h2>Palette and type<span class="dot">.</span></h2><p class="dir-section-desc">Proposed identity ingredients stay scoped inside this page until a direction is approved. The surrounding Brand OS shell is neutral review chrome.</p></div></div>
+    <div class="dir-palette"><div class="dir-swatch" style="background:#2454FF; color:#fff"><div class="dir-swatch-name">Switch Blue</div><div class="dir-swatch-hex">#2454FF</div><div class="dir-swatch-role">Primary routing color for actions, links, and event modules.</div></div><div class="dir-swatch" style="background:#101828; color:#fff"><div class="dir-swatch-name">Operator Black</div><div class="dir-swatch-hex">#101828</div><div class="dir-swatch-role">Authority, type, dark panels, and the anchor that prevents startup cheer.</div></div><div class="dir-swatch" style="background:#FF4F64; color:#fff"><div class="dir-swatch-name">Badge Red</div><div class="dir-swatch-hex">#FF4F64</div><div class="dir-swatch-role">High-attention event moments, badges, speaker highlights, and urgent CTAs.</div></div><div class="dir-swatch" style="background:#FFC233; color:var(--text)"><div class="dir-swatch-name">Sponsor Gold</div><div class="dir-swatch-hex">#FFC233</div><div class="dir-swatch-role">Sponsor exposure, opportunity markers, and premium visibility moments.</div></div><div class="dir-swatch" style="background:#36C4FF; color:var(--text)"><div class="dir-swatch-name">Signal Cyan</div><div class="dir-swatch-hex">#36C4FF</div><div class="dir-swatch-role">Education, newcomer paths, and digital wayfinding.</div></div><div class="dir-swatch" style="background:#F6F9FF; color:var(--text)"><div class="dir-swatch-name">Cloud White</div><div class="dir-swatch-hex">#F6F9FF</div><div class="dir-swatch-role">Primary canvas for web, collateral, and information-dense pages.</div></div></div>
+    <div class="dir-grid" style="margin-top:24px;">
+      <div class="dir-card"><h3>Display</h3><p>Barlow Condensed, heavy, compressed, event-poster direct.</p></div>
+      <div class="dir-card"><h3>Body</h3><p>Chivo, practical and sturdy, built for schedules, labels, and sponsor decks.</p></div>
+      <div class="dir-card"><h3>Use</h3><p>Best for event flyers, quick-scan pages, sponsor packages, regional calendars, and practical onboarding.</p></div>
+    </div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">07</div><div><div class="dir-label">Signature system</div><h2>Mark and device<span class="dot">.</span></h2><p class="dir-section-desc">A directional bar and node system. It signs event pages, sponsor blocks, badges, and social cards by turning the Chamber into a visible access map.</p></div></div>
+    <div class="dir-logo-grid"><div class="dir-logo-cell"><img src="../images/generated-boards/crew-logo-concept.png" alt="Generated logo and signature concepts"><span>Generated logo and signature concepts</span></div></div>
+    <div class="dir-signature-demo" style="margin-top:24px;">
+      <div>
+        <div class="sig-word">The Routing Strip</div>
+        <div class="sig-lines"><div class="sig-line"></div><div class="sig-line"></div><div class="sig-line"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">08</div><div><div class="dir-label">Event application system</div><h2>Flyer, badge, backdrop, card<span class="dot">.</span></h2><p class="dir-section-desc">The real test is whether the direction can run an event organization: promote an event, identify people, give sponsors visibility, and make the Chamber feel credible in someone&apos;s hand.</p></div></div>
+    <div class="dir-application-grid"><article class="dir-app"><div class="dir-app-head"><div><h3>Event flyer</h3><p class="dir-app-role">Primary promotion surface for regional networking events.</p></div><span>4:5 social / print crop</span></div><img class="dir-app-image event-flyer" src="../images/generated-boards/crew-app-flyer.png" alt="Generated Crew event flyer mockup"><div class="dir-app-format">Flyers use routing color, one strong CTA, and zero lifestyle imagery.</div><div class="mock-row"><span class="mock-pill">route by color</span><span class="mock-pill">big action line</span><span class="mock-pill">event-first</span></div></article><article class="dir-app"><div class="dir-app-head"><div><h3>Member badge</h3><p class="dir-app-role">On-site credential that makes roles legible across a noisy event floor.</p></div><span>3 x 4.5 in</span></div><img class="dir-app-image badge" src="../images/generated-boards/crew-app-badge.png" alt="Generated Crew member badge mockup"><div class="dir-app-format">Name first, role second, Chamber system visible.</div><div class="mock-row"><span class="mock-pill">role color</span><span class="mock-pill">fast scan</span><span class="mock-pill">network utility</span></div></article><article class="dir-app"><div class="dir-app-head"><div><h3>Sponsor backdrop</h3><p class="dir-app-role">Step-and-repeat and stage wall for sponsor exposure without cheap logo wallpaper.</p></div><span>16:9 stage</span></div><img class="dir-app-image sponsor-backdrop" src="../images/generated-boards/crew-app-backdrop.png" alt="Generated Crew sponsor backdrop mockup"><div class="dir-app-format">Keep a clean center for people, use repeating routing marks at low opacity.</div><div class="mock-row"><span class="mock-pill">clean center</span><span class="mock-pill">photo-ready</span><span class="mock-pill">sponsor value</span></div></article><article class="dir-app"><div class="dir-app-head"><div><h3>Business card</h3><p class="dir-app-role">Chamber team and regional leader card system.</p></div><span>3.5 x 2 in</span></div><img class="dir-app-image business-card" src="../images/generated-boards/crew-app-card.png" alt="Generated Crew business card mockup"><div class="dir-app-format">Cards behave like access passes, not corporate stationery.</div><div class="mock-row"><span class="mock-pill">short actions</span><span class="mock-pill">routing strip</span><span class="mock-pill">black anchor</span></div></article></div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">09</div><div><div class="dir-label">Production references</div><h2>How to extend it<span class="dot">.</span></h2><p class="dir-section-desc">These notes define the first downstream artifacts if this direction is selected for a proper identity build.</p></div></div>
+    <div class="dir-reference-grid"><article class="dir-ref"><h3>Event landing page</h3><p>Hero with one city, one date, one action, then audience routes for operator, ancillary, sponsor, and newcomer.</p></article><article class="dir-ref"><h3>Sponsor kit</h3><p>Tier cards use color as visibility level and explain exposure without promising outcomes.</p></article><article class="dir-ref"><h3>Regional calendar</h3><p>Dense, scannable event list with location, audience, and CTA hierarchy.</p></article></div>
+  </section>
+
+  <section class="dir-section">
+    <div class="dir-section-head"><div class="dir-num">10</div><div><div class="dir-label">AI production rules</div><h2>Generator notes<span class="dot">.</span></h2><p class="dir-section-desc">These are the first constraints a future website or campaign generator should load if this direction is selected.</p></div></div>
+    <div class="dir-copy-list">
+      <div class="dir-card"><h3>Do</h3><ul><li>Use Cannabis Chamber Of Commerce as the public wordmark. Do not use CCC on public-facing artifacts.</li><li>Use color to route audience roles, event states, sponsor areas, and content categories.</li><li>Pair high energy with black structure and plain business language.</li><li>Show events as useful rooms, not parties.</li><li>Keep cannabis references professional, abstract, and secondary.</li></ul></div>
+      <div class="dir-card"><h3>Avoid</h3><ul><li>Google imitation, tech-startup cheer, or rainbow confetti.</li><li>Networking hype without a concrete business action.</li><li>Cannabis leaf icons, smoke, neon, or 420 cues.</li><li>Sponsor claims that imply guaranteed leads or outcomes.</li></ul></div>
+    </div>
+  </section>
+</div>
+
+
+  <div class="footer-nav">
+    <span>Section B · Direction One · Creative Direction</span>
+    <span><a href="the-posse.html">Direction Two →</a></span>
+  </div>
+</main>
+</div>
+
+
+
+</body>
+</html>
