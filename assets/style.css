@@ -999,6 +999,10 @@ footer.page-footer a:hover { color: var(--accent); }
   border-top: 1px solid var(--text);
   border-left: 1px solid var(--border);
 }
+.p-hero.no-media {
+  grid-template-columns: minmax(0, 1fr);
+  border-right: 1px solid var(--border);
+}
 .p-hero-copy {
   background: var(--dark);
   color: var(--white);
@@ -1020,6 +1024,7 @@ footer.page-footer a:hover { color: var(--accent); }
   color: var(--white);
   font-size: clamp(58px, 8vw, 104px);
   line-height: 0.9;
+  overflow-wrap: anywhere;
   margin: 0 0 24px;
 }
 .p-hero-copy p {

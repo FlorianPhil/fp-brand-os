@@ -1,10 +1,10 @@
 {
   "brand": "ccc",
   "version": "1.1.0",
-  "approved_at": "2026-05-15T21:57:19+00:00",
+  "approved_at": "2026-05-15T23:58:55+00:00",
   "approved_by": "Florian",
   "source_hashes": {
-    "STRATEGY.md": "sha256:3e401adc41058b41858477ebf0aa80d0aae65046d71cc4ed45deab6629e7bf22",
+    "STRATEGY.md": "sha256:9c44bfdf11bef152d34e61cdb21e7bccfd6224e6a8d2966b0b3d3c99aef9830e",
     "IDENTITY.md": "sha256:c8ecbf30371a7c7f030396ca46032d7cf078c2069727de41a02cdbbf0c8fa0e6",
     "SKILL.md": "sha256:fc8683847548e14c62eab2d663c9a3d07c249ffe4be0dd88ffeac8ce96e774cf",
     "DIRECTIONS.md": "sha256:1beaf198c559421462c5e7a3e7116082365d8cffb0b50ea30f217929a6aea221",
@@ -12,14 +12,14 @@
     "references/voice-exemplars.md": "sha256:ddc9136487f39bec01fcf57ab6891f1af70ee53043d274a34a4f41742aebae28",
     "images_manifest": "sha256:0d694716e5b41298f389b50ac04f39d9a6bfa84a507ef8cc570a64f6eeeea84b"
   },
-  "bundle_hash": "sha256:e5194f2a69563d3f855d6dfe839df784ac0e572afe72d460122b10a090a80a3a",
+  "bundle_hash": "sha256:c77441d5ffe00ce024a124780973d92470267dc509dc949a9752e3360afa4e37",
   "outputs": {
-    "ai_context_emitted_at": "2026-05-15T21:57:19+00:00",
-    "ai_context_json_emitted_at": "2026-05-15T21:57:19+00:00",
-    "ai_context_git_sha": "cfda5626530d374bd062e85c4b01f4b27d367b5d",
-    "strategy_html_emitted_at": "2026-05-15T21:57:19+00:00",
-    "identity_html_emitted_at": "2026-05-15T21:57:19+00:00",
-    "focus_star_json_emitted_at": "2026-05-15T21:57:19+00:00"
+    "ai_context_emitted_at": "2026-05-15T23:58:55+00:00",
+    "ai_context_json_emitted_at": "2026-05-15T23:58:55+00:00",
+    "ai_context_git_sha": "2a2dc67dd554e3bc47f5ab7b941879bfb6e3886f",
+    "strategy_html_emitted_at": "2026-05-15T23:58:55+00:00",
+    "identity_html_emitted_at": "2026-05-15T23:58:55+00:00",
+    "focus_star_json_emitted_at": "2026-05-15T23:58:55+00:00"
   },
   "validator_rules": {
     "must_match_at_build": [

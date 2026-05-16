@@ -67,9 +67,10 @@
 <style>
 
 .p-hero { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: center; margin: 0 0 64px; padding-top: 12px; }
+.p-hero.no-media { grid-template-columns: minmax(0, 900px); align-items: start; }
 @media (max-width: 900px) { .p-hero { grid-template-columns: 1fr; } }
 .p-kicker { font-family: var(--ff-b); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-.p-hero-copy h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(56px, 8vw, 112px); line-height: 0.92; letter-spacing: -0.04em; color: var(--text); margin: 0 0 24px; }
+.p-hero-copy h1 { font-family: var(--ff-h); font-weight: 800; font-size: clamp(56px, 8vw, 112px); line-height: 0.92; letter-spacing: 0; color: var(--text); margin: 0 0 24px; overflow-wrap: anywhere; }
 .p-hero-copy h1 .dot { color: var(--accent); }
 .p-hero-copy p { font-family: var(--ff-b); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: var(--text); margin: 0 0 24px; max-width: 540px; }
 .p-tags { display: flex; gap: 8px; flex-wrap: wrap; }
